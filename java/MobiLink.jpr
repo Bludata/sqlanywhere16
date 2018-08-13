@@ -1,0 +1,7 @@
+PluginName=MobiLink 16
+PluginId=mobilink1600
+PluginClass=com.sybase.mobilink.plugin.MLPlugin
+PluginFile=/opt/sqlanywhere16/java/mlplugin.jar
+AdditionalClasspath=/opt/sqlanywhere16/java/isql.jar:/opt/sqlanywhere16/java/salib.jar:/opt/sqlanywhere16/java/JComponents1600.jar:/opt/sqlanywhere16/java/jlogon.jar:/opt/sqlanywhere16/java/mldesign.jar:/opt/sqlanywhere16/java/jodbc4.jar:/opt/sqlanywhere16/java/stax-api-1.0.jar:/opt/sqlanywhere16/java/wstx-asl-3.2.6.jar:/opt/sqlanywhere16/java/velocity-1.7-dep.jar
+ClassloaderId=SA1600
+InitialLoadOrder=2

@@ -1,0 +1,144 @@
+Changes in version 2.0.11	15th August 2012
+  o Added support for PHP 5.4.0-5
+  o Threaded PHP driver now uses the threaded dbcapi (DLL/SO)
+
+Changes in version 2.0.10	29th April 2010
+  o SASQL_USE_RESULT causes a crash if used within nested queries.
+
+Changes in version 2.0.9	23rd March 2010
+  o calling sasql_result_all() using a result set returned by sasql_use_result() does 
+    not output the full result set. sqlanywhere_result_all() is also affected.
+  o Fixed crashes related to sasql_stmt_bind_param and big-endian platforms
+  o Fixed phpinfo() would show "Unknown" for client version
+  o Added sasql_stmt_sqlstate
+  o sqlstate should been only 5 characters long
+  o sasql_sqlstate() now accepts no connection handle and returns global sqlstate
+    just like sasql_error()
+  o Fixed a bug when using data sasql_data_seek() with a negative value the seek 
+    would be incorrect. This only affects cached results sets.
+  o Fixed a crash when using sasql_stmt_next_result()
+  o Allow binding null php variables in calls to sasql_stmt_bind_param()/sasql_stmt_bind_param_ex()
+  o Fixed a bug when binding null integer or floating point php variables in calls to sasql_stmt_bind_param_ex().  It would change the value to 0.  Now it leaves it as null.
+    o A workaround is to set the variable back to null after binding it.
+  o Fixed a bug when calling sasql_data_seek() from cached result that had no rows, an error message is returned
+
+Changes in version 2.0.8	22nd September 2009
+  o Added support for building NTS and ZTS versions for php-5.3.0
+  o Added support for PHP 5.2.11
+  o Improved debugging support
+
+Changes in version 2.0.7	22nd September 2009
+  o Better error handling from sasql_error() And sasql_errorcode()
+  o sasql_result_all() crash when passing in table row formating
+
+Changes in version 2.0.6	20th July 2009
+  o Fixed crash in php on shutdown when used with SQLAnywhere external environment.
+  o Changes needed to compile driver with PHP 5.3.0
+
+Changes in version 2.0.5	1st April 2009
+  o sasql_pconnect() now makes sure that the connection is alive before returning
+    the connection handle.
+  o Missing auto commits added when using sasql_real_query() and sasql_query()
+  o Added an error message when dbcapi cannot be found and allowed the driver to always load.
+  o sasql_stmt_next_result() did not update the row count from sasql_num_rows()
+  
+Changes in version 2.0.4	10th November 2008
+  o Fixed sasql_num_rows() not returning an estimate when used with SASQL_USE_RESULT
+  o sasql_stmt_error() And sasql_stmt_errno() were expecting a connection and not
+    a statement as documented
+
+Changes in version 2.0.3	15th August 2008
+  o Fixed a problem with driver not loading in Apache on UNIX.
+  o Tracing gear now creates log in /tmp directory
+  o Improved the webisql.php example to handle statements that
+    do not return a result set.
+
+Changes in version 2.0.2	28th July 2008
+  o Fixed SIGBUG on Solaris because ini integer fields were interpreted as longs
+
+Changes in version 2.0.1	1st July 2008
+  o sasql_escape_string did not handle double quotes properly
+
+Changes in version 2.0.0	9th May 2008
+  o Added support for prepared statements and binding of parameters and result columns
+  o Added support for fetching multiple result sets from stored procedures
+  o Added support for stored procedure IN,OUT, and INOUT parameters
+  o Added support to send/retrieve data in large chunks.
+  o Added ability to retrieve buffered and unbuffered result.
+  o MySQL interface compatibility.
+
+Changes in version 1.0.8	8th Aug 2005
+  o Fixed "Attempted two active database requests" error
+  o Added row_counts option
+  o Added verbose_errors option, defaults to true. If set to false no error
+    message are displayed and user needs to call sqlanywhere_error() or sqlanywhere_error_code()
+    for further info. 
+  o Added sqlanywhere_result_id()/sqlanywhere_identity() to return the identity of the last inserted row
+  o Added sqlanywhere_execute( conn, sql )
+  o sqlanywhere_set_option() now accepts "on","off", in addition to true and false values.
+
+Changes in version 1.0.7	7th September 2004
+  o Fixed handling of float data types.
+  o Null columns are now returned as PHP NULL values, previous
+    behaviour was to return the string "(NULL)"
+  o Better handling of transactions: sqlanywhere_commit(), sqlanywhere_rollback() 
+  o Added sqlanywhere_set_option( conn, option, value ). The only recognized option
+    is "auto_commit" and takes a PHP boolean value of true or false. Default is
+    is to auto commit statements.
+  o Added example on how to do transactions (transactions.php)
+  o Ported to Win32
+
+Changes in version 1.0.6	6th November 2003
+  o Fixed bug in retrieving string data types. 
+  o Removed references to PHP license.
+  o Added Changes file.
+
+Changes in version 1.0.5	28 August 2003, 31 July 2003, 30 July 2003,
+				25 July 2003, 18 July 2003, 16 July 2003,
+  o Added Sybase license agreement.
+  o Build process can now recognize ASA 9.
+  o Fixed retrieval of Date-time and big int columns.
+  o Added examples for inserting/fetching images.
+  o Fixed bug while fetching blob data that contains null characters
+    such as images.
+  o Added support for building on Mac OSX.
+  o Cleaned up examples directory.
+  o Cursors are now opened with "WITH HOLD" option otherwise
+    a commit will close a cursor automatically especially in nested
+    query situations.
+  o Removed Makefile.in and added Makefile.frag (proper way of 
+    building)
+  o Build process now recognizes the environment variables
+    ASANY{version} and ASANY
+  o Fixed syntax error in webisql.php example.
+  o Update code to remove references to .lval members.
+  o Added support for nested queries on same connection.
+  o Added nested query example.
+
+Changes in version 1.0.4	19 July 2002
+  o Fixed a bug when retrieving char columns.
+  o Added a blob example.
+
+Changes in version 1.0.3	9 July 2002
+  o sqlanywhere_fetch_*() functions now maintain correct number 
+    of rows available in the result set.
+
+Changes in version 1.0.2	8 July 2002
+  o Now sqlanywhere_num_rows() returns negative number for estimates
+    and positive numbers for accurate counts.
+  o Fixed a bug in sqlanywhere_fetch_row() if sqlanywhere_num_rows() 
+    was returning estimates.
+  o Fixed webisql.php example
+  o Config files can now build sqlanywhere.so module thanks to
+    Torsten Curdt (tcurdt@dff.st)
+
+Changes in version 1.0.1	19 June 2002
+  o Fixed a bug with sqlanywhere_fetch_object().
+  o Fixed compilation issues with PHP 4.1.x
+  o Build process now picks up latest ASA version software found 
+    first
+  o Added sample programs
+
+Changes in version 1.0.0	24 January 2002
+  Initial release of ASA PHP driver.
+

@@ -1,0 +1,65 @@
+<HTML>
+  <HEAD>
+    <TITLE>更新サービス</TITLE>
+    <META HTTP-EQUIV="Pragma" content="no-cache">
+    <META HTTP-EQUIV="Content-Type" content="text/html">
+    <SCRIPT language="JavaScript">
+        function handleError() {
+            alert("現在、更新サービスへの接続を確立できません。インターネットへの接続が無効になっているか、更新サービスが現在利用できない状態になっている可能性があります。後でもう一度実行してください。");
+        }
+        function checkForUpdate() {
+            if( document.testImage.complete ) {
+               document.forms[0].submit();
+            }
+        }
+        window.onerror=handleError;
+        window.onload=checkForUpdate;
+    </SCRIPT>
+  </HEAD>
+  <BODY BGCOLOR="ffffff">
+    <TABLE border="0" width="100%" bgcolor="#330065" cellspacing="2" cellpadding="2">
+      <TR>
+      <TD width="200"><A HREF="http://www.ianywhere.com"></A></TD>
+      <P>
+      <TD><FONT FACE="arial, helvetica, geneva", SIZE="+2" color="#FFFFFF"><B>
+        更新サービス
+      </B></FONT></TD>
+      </TR>
+    </TABLE>
+    <FORM method="post" action="http://www.ianywhere.com/update_checker/updateservice" id="frmcheck">
+	<INPUT type="hidden" name="vendor1" value="iAnywhere">
+	<INPUT type="hidden" name="p1" value="SA:DB">
+	<INPUT type="hidden" name="v1" value="16.0.0.1324">
+	<INPUT type="hidden" name="os1" value="LINUX_X64">
+	<INPUT type="hidden" name="vendor2" value="iAnywhere">
+	<INPUT type="hidden" name="p2" value="SA:CL">
+	<INPUT type="hidden" name="v2" value="16.0.0.1324">
+	<INPUT type="hidden" name="os2" value="LINUX_X64">
+	<INPUT type="hidden" name="vendor3" value="iAnywhere">
+	<INPUT type="hidden" name="p3" value="SA:CL">
+	<INPUT type="hidden" name="v3" value="16.0.0.1324">
+	<INPUT type="hidden" name="os3" value="LINUX_X86">
+	<INPUT type="hidden" name="vendor4" value="iAnywhere">
+	<INPUT type="hidden" name="p4" value="SA:ML">
+	<INPUT type="hidden" name="v4" value="16.0.0.1324">
+	<INPUT type="hidden" name="os4" value="LINUX_X64">
+	<INPUT type="hidden" name="vendor5" value="iAnywhere">
+	<INPUT type="hidden" name="p5" value="SA:UL">
+	<INPUT type="hidden" name="v5" value="16.0.0.1324">
+	<INPUT type="hidden" name="os5" value="LINUX_X86">
+	<INPUT type="hidden" name="vendor6" value="iAnywhere">
+	<INPUT type="hidden" name="p6" value="SA:AT">
+	<INPUT type="hidden" name="v6" value="16.0.0.1324">
+	<INPUT type="hidden" name="os6" value="LINUX_X64">
+	<FONT FACE="arial, helvetica, geneva", SIZE="-1">
+	    <INPUT type="submit" value="更新をチェックしています">
+        </FONT>
+    </FORM>
+    <HR>
+    <FONT FACE="arial, helvetica, geneva", SIZE="-2">
+        Copyright &copy; 2001-2010, iAnywhere Solutions, Inc.  Portions copyright &copy; 1988-2010, Sybase, Inc.
+    </FONT>
+    <IMG name="testImage" src="http://www.ianywhere.com/update_checker/images/dot.gif" width=1 height=1 onerror="alert('A connection to the Update Service cannot be established at this time.  Your connection to the Internet may be disabled or the Update Service may not be available right now.  Please try again later.')">
+  </BODY>
+</HTML>
+<html><body></body></html>

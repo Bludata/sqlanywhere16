@@ -1,0 +1,1096 @@
+{\rtf1\adeflang1025\ansi\ansicpg1252\uc1\adeff0\deff0\stshfdbch31505\stshfloch31506\stshfhich31506\stshfbi0\deflang1033\deflangfe1033\themelang1033\themelangfe0\themelangcs0{\fonttbl{\f0\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman{\*\falt Times New Roman};}
+{\f1\fbidi \fswiss\fcharset0\fprq2{\*\panose 020b0604020202020204}Arial{\*\falt Arial};}{\f2\fbidi \fmodern\fcharset0\fprq1{\*\panose 02070309020205020404}Courier New{\*\falt Courier New};}
+{\f34\fbidi \froman\fcharset0\fprq2{\*\panose 02040503050406030204}Cambria Math;}{\f36\fbidi \froman\fcharset0\fprq2{\*\panose 02040503050406030204}Cambria;}{\f39\fbidi \fswiss\fcharset0\fprq2{\*\panose 020b0604030504040204}Verdana{\*\falt Verdana};}
+{\flomajor\f31500\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman{\*\falt Times New Roman};}{\fdbmajor\f31501\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman{\*\falt Times New Roman};}
+{\fhimajor\f31502\fbidi \froman\fcharset0\fprq2{\*\panose 02040503050406030204}Cambria;}{\fbimajor\f31503\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman{\*\falt Times New Roman};}
+{\flominor\f31504\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman{\*\falt Times New Roman};}{\fdbminor\f31505\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman{\*\falt Times New Roman};}
+{\fhiminor\f31506\fbidi \fswiss\fcharset0\fprq2{\*\panose 020f0502020204030204}Calibri;}{\fbiminor\f31507\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman{\*\falt Times New Roman};}
+{\f40\fbidi \froman\fcharset238\fprq2 Times New Roman CE{\*\falt Times New Roman};}{\f41\fbidi \froman\fcharset204\fprq2 Times New Roman Cyr{\*\falt Times New Roman};}{\f43\fbidi \froman\fcharset161\fprq2 Times New Roman Greek{\*\falt Times New Roman};}
+{\f44\fbidi \froman\fcharset162\fprq2 Times New Roman Tur{\*\falt Times New Roman};}{\f45\fbidi \froman\fcharset177\fprq2 Times New Roman (Hebrew){\*\falt Times New Roman};}
+{\f46\fbidi \froman\fcharset178\fprq2 Times New Roman (Arabic){\*\falt Times New Roman};}{\f47\fbidi \froman\fcharset186\fprq2 Times New Roman Baltic{\*\falt Times New Roman};}
+{\f48\fbidi \froman\fcharset163\fprq2 Times New Roman (Vietnamese){\*\falt Times New Roman};}{\f50\fbidi \fswiss\fcharset238\fprq2 Arial CE{\*\falt Arial};}{\f51\fbidi \fswiss\fcharset204\fprq2 Arial Cyr{\*\falt Arial};}
+{\f53\fbidi \fswiss\fcharset161\fprq2 Arial Greek{\*\falt Arial};}{\f54\fbidi \fswiss\fcharset162\fprq2 Arial Tur{\*\falt Arial};}{\f55\fbidi \fswiss\fcharset177\fprq2 Arial (Hebrew){\*\falt Arial};}
+{\f56\fbidi \fswiss\fcharset178\fprq2 Arial (Arabic){\*\falt Arial};}{\f57\fbidi \fswiss\fcharset186\fprq2 Arial Baltic{\*\falt Arial};}{\f58\fbidi \fswiss\fcharset163\fprq2 Arial (Vietnamese){\*\falt Arial};}
+{\f60\fbidi \fmodern\fcharset238\fprq1 Courier New CE{\*\falt Courier New};}{\f61\fbidi \fmodern\fcharset204\fprq1 Courier New Cyr{\*\falt Courier New};}{\f63\fbidi \fmodern\fcharset161\fprq1 Courier New Greek{\*\falt Courier New};}
+{\f64\fbidi \fmodern\fcharset162\fprq1 Courier New Tur{\*\falt Courier New};}{\f65\fbidi \fmodern\fcharset177\fprq1 Courier New (Hebrew){\*\falt Courier New};}{\f66\fbidi \fmodern\fcharset178\fprq1 Courier New (Arabic){\*\falt Courier New};}
+{\f67\fbidi \fmodern\fcharset186\fprq1 Courier New Baltic{\*\falt Courier New};}{\f68\fbidi \fmodern\fcharset163\fprq1 Courier New (Vietnamese){\*\falt Courier New};}{\f380\fbidi \froman\fcharset238\fprq2 Cambria Math CE;}
+{\f381\fbidi \froman\fcharset204\fprq2 Cambria Math Cyr;}{\f383\fbidi \froman\fcharset161\fprq2 Cambria Math Greek;}{\f384\fbidi \froman\fcharset162\fprq2 Cambria Math Tur;}{\f387\fbidi \froman\fcharset186\fprq2 Cambria Math Baltic;}
+{\f388\fbidi \froman\fcharset163\fprq2 Cambria Math (Vietnamese);}{\f400\fbidi \froman\fcharset238\fprq2 Cambria CE;}{\f401\fbidi \froman\fcharset204\fprq2 Cambria Cyr;}{\f403\fbidi \froman\fcharset161\fprq2 Cambria Greek;}
+{\f404\fbidi \froman\fcharset162\fprq2 Cambria Tur;}{\f407\fbidi \froman\fcharset186\fprq2 Cambria Baltic;}{\f408\fbidi \froman\fcharset163\fprq2 Cambria (Vietnamese);}{\f430\fbidi \fswiss\fcharset238\fprq2 Verdana CE{\*\falt Verdana};}
+{\f431\fbidi \fswiss\fcharset204\fprq2 Verdana Cyr{\*\falt Verdana};}{\f433\fbidi \fswiss\fcharset161\fprq2 Verdana Greek{\*\falt Verdana};}{\f434\fbidi \fswiss\fcharset162\fprq2 Verdana Tur{\*\falt Verdana};}
+{\f437\fbidi \fswiss\fcharset186\fprq2 Verdana Baltic{\*\falt Verdana};}{\f438\fbidi \fswiss\fcharset163\fprq2 Verdana (Vietnamese){\*\falt Verdana};}{\flomajor\f31508\fbidi \froman\fcharset238\fprq2 Times New Roman CE{\*\falt Times New Roman};}
+{\flomajor\f31509\fbidi \froman\fcharset204\fprq2 Times New Roman Cyr{\*\falt Times New Roman};}{\flomajor\f31511\fbidi \froman\fcharset161\fprq2 Times New Roman Greek{\*\falt Times New Roman};}
+{\flomajor\f31512\fbidi \froman\fcharset162\fprq2 Times New Roman Tur{\*\falt Times New Roman};}{\flomajor\f31513\fbidi \froman\fcharset177\fprq2 Times New Roman (Hebrew){\*\falt Times New Roman};}
+{\flomajor\f31514\fbidi \froman\fcharset178\fprq2 Times New Roman (Arabic){\*\falt Times New Roman};}{\flomajor\f31515\fbidi \froman\fcharset186\fprq2 Times New Roman Baltic{\*\falt Times New Roman};}
+{\flomajor\f31516\fbidi \froman\fcharset163\fprq2 Times New Roman (Vietnamese){\*\falt Times New Roman};}{\fdbmajor\f31518\fbidi \froman\fcharset238\fprq2 Times New Roman CE{\*\falt Times New Roman};}
+{\fdbmajor\f31519\fbidi \froman\fcharset204\fprq2 Times New Roman Cyr{\*\falt Times New Roman};}{\fdbmajor\f31521\fbidi \froman\fcharset161\fprq2 Times New Roman Greek{\*\falt Times New Roman};}
+{\fdbmajor\f31522\fbidi \froman\fcharset162\fprq2 Times New Roman Tur{\*\falt Times New Roman};}{\fdbmajor\f31523\fbidi \froman\fcharset177\fprq2 Times New Roman (Hebrew){\*\falt Times New Roman};}
+{\fdbmajor\f31524\fbidi \froman\fcharset178\fprq2 Times New Roman (Arabic){\*\falt Times New Roman};}{\fdbmajor\f31525\fbidi \froman\fcharset186\fprq2 Times New Roman Baltic{\*\falt Times New Roman};}
+{\fdbmajor\f31526\fbidi \froman\fcharset163\fprq2 Times New Roman (Vietnamese){\*\falt Times New Roman};}{\fhimajor\f31528\fbidi \froman\fcharset238\fprq2 Cambria CE;}{\fhimajor\f31529\fbidi \froman\fcharset204\fprq2 Cambria Cyr;}
+{\fhimajor\f31531\fbidi \froman\fcharset161\fprq2 Cambria Greek;}{\fhimajor\f31532\fbidi \froman\fcharset162\fprq2 Cambria Tur;}{\fhimajor\f31535\fbidi \froman\fcharset186\fprq2 Cambria Baltic;}
+{\fhimajor\f31536\fbidi \froman\fcharset163\fprq2 Cambria (Vietnamese);}{\fbimajor\f31538\fbidi \froman\fcharset238\fprq2 Times New Roman CE{\*\falt Times New Roman};}
+{\fbimajor\f31539\fbidi \froman\fcharset204\fprq2 Times New Roman Cyr{\*\falt Times New Roman};}{\fbimajor\f31541\fbidi \froman\fcharset161\fprq2 Times New Roman Greek{\*\falt Times New Roman};}
+{\fbimajor\f31542\fbidi \froman\fcharset162\fprq2 Times New Roman Tur{\*\falt Times New Roman};}{\fbimajor\f31543\fbidi \froman\fcharset177\fprq2 Times New Roman (Hebrew){\*\falt Times New Roman};}
+{\fbimajor\f31544\fbidi \froman\fcharset178\fprq2 Times New Roman (Arabic){\*\falt Times New Roman};}{\fbimajor\f31545\fbidi \froman\fcharset186\fprq2 Times New Roman Baltic{\*\falt Times New Roman};}
+{\fbimajor\f31546\fbidi \froman\fcharset163\fprq2 Times New Roman (Vietnamese){\*\falt Times New Roman};}{\flominor\f31548\fbidi \froman\fcharset238\fprq2 Times New Roman CE{\*\falt Times New Roman};}
+{\flominor\f31549\fbidi \froman\fcharset204\fprq2 Times New Roman Cyr{\*\falt Times New Roman};}{\flominor\f31551\fbidi \froman\fcharset161\fprq2 Times New Roman Greek{\*\falt Times New Roman};}
+{\flominor\f31552\fbidi \froman\fcharset162\fprq2 Times New Roman Tur{\*\falt Times New Roman};}{\flominor\f31553\fbidi \froman\fcharset177\fprq2 Times New Roman (Hebrew){\*\falt Times New Roman};}
+{\flominor\f31554\fbidi \froman\fcharset178\fprq2 Times New Roman (Arabic){\*\falt Times New Roman};}{\flominor\f31555\fbidi \froman\fcharset186\fprq2 Times New Roman Baltic{\*\falt Times New Roman};}
+{\flominor\f31556\fbidi \froman\fcharset163\fprq2 Times New Roman (Vietnamese){\*\falt Times New Roman};}{\fdbminor\f31558\fbidi \froman\fcharset238\fprq2 Times New Roman CE{\*\falt Times New Roman};}
+{\fdbminor\f31559\fbidi \froman\fcharset204\fprq2 Times New Roman Cyr{\*\falt Times New Roman};}{\fdbminor\f31561\fbidi \froman\fcharset161\fprq2 Times New Roman Greek{\*\falt Times New Roman};}
+{\fdbminor\f31562\fbidi \froman\fcharset162\fprq2 Times New Roman Tur{\*\falt Times New Roman};}{\fdbminor\f31563\fbidi \froman\fcharset177\fprq2 Times New Roman (Hebrew){\*\falt Times New Roman};}
+{\fdbminor\f31564\fbidi \froman\fcharset178\fprq2 Times New Roman (Arabic){\*\falt Times New Roman};}{\fdbminor\f31565\fbidi \froman\fcharset186\fprq2 Times New Roman Baltic{\*\falt Times New Roman};}
+{\fdbminor\f31566\fbidi \froman\fcharset163\fprq2 Times New Roman (Vietnamese){\*\falt Times New Roman};}{\fhiminor\f31568\fbidi \fswiss\fcharset238\fprq2 Calibri CE;}{\fhiminor\f31569\fbidi \fswiss\fcharset204\fprq2 Calibri Cyr;}
+{\fhiminor\f31571\fbidi \fswiss\fcharset161\fprq2 Calibri Greek;}{\fhiminor\f31572\fbidi \fswiss\fcharset162\fprq2 Calibri Tur;}{\fhiminor\f31575\fbidi \fswiss\fcharset186\fprq2 Calibri Baltic;}
+{\fhiminor\f31576\fbidi \fswiss\fcharset163\fprq2 Calibri (Vietnamese);}{\fbiminor\f31578\fbidi \froman\fcharset238\fprq2 Times New Roman CE{\*\falt Times New Roman};}
+{\fbiminor\f31579\fbidi \froman\fcharset204\fprq2 Times New Roman Cyr{\*\falt Times New Roman};}{\fbiminor\f31581\fbidi \froman\fcharset161\fprq2 Times New Roman Greek{\*\falt Times New Roman};}
+{\fbiminor\f31582\fbidi \froman\fcharset162\fprq2 Times New Roman Tur{\*\falt Times New Roman};}{\fbiminor\f31583\fbidi \froman\fcharset177\fprq2 Times New Roman (Hebrew){\*\falt Times New Roman};}
+{\fbiminor\f31584\fbidi \froman\fcharset178\fprq2 Times New Roman (Arabic){\*\falt Times New Roman};}{\fbiminor\f31585\fbidi \froman\fcharset186\fprq2 Times New Roman Baltic{\*\falt Times New Roman};}
+{\fbiminor\f31586\fbidi \froman\fcharset163\fprq2 Times New Roman (Vietnamese){\*\falt Times New Roman};}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;
+\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}{\*\defchp 
+\fs22\loch\af31506\hich\af31506\dbch\af31505 }{\*\defpap \ql \li0\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 }\noqfpromote {\stylesheet{\ql \li0\ri0\sa200\sl276\slmult1
+\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs22\alang1025 \ltrch\fcs0 \fs22\lang1033\langfe1033\loch\f31506\hich\af31506\dbch\af31505\cgrid\langnp1033\langfenp1033 \snext0 \sqformat \spriority0 Normal;}{
+\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\f31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 \sbasedon0 \snext0 \slink15 \sqformat \spriority9 \styrsid7476090 heading 1;}{\*\cs10 \additive \ssemihidden \sunhideused \spriority1 
+Default Paragraph Font;}{\*\ts11\tsrowd\trftsWidthB3\trpaddl108\trpaddr108\trpaddfl3\trpaddft3\trpaddfb3\trpaddfr3\trcbpat1\trcfpat1\tblind0\tblindtype3\tsvertalt\tsbrdrt\tsbrdrl\tsbrdrb\tsbrdrr\tsbrdrdgl\tsbrdrdgr\tsbrdrh\tsbrdrv 
+\ql \li0\ri0\sa200\sl276\slmult1\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs22\alang1025 \ltrch\fcs0 \fs22\lang1033\langfe1033\loch\f31506\hich\af31506\dbch\af31505\cgrid\langnp1033\langfenp1033 
+\snext11 \ssemihidden \sunhideused Normal Table;}{\*\cs15 \additive \rtlch\fcs1 \ab\af0\afs32 \ltrch\fcs0 \b\fs32\kerning32\loch\f31502\hich\af31502\dbch\af31501 \sbasedon10 \slink1 \slocked \spriority9 \styrsid7476090 Heading 1 Char;}{
+\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\f39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 \snext16 \spriority0 Default;}}{\*\listtable
+{\list\listtemplateid-1722157808\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0
+\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listname ;}\listid250453597}{\list\listtemplateid-2032730211\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listname ;}\listid1737781746}}{\*\listoverridetable{\listoverride\listid1737781746\listoverridecount0\ls1}
+{\listoverride\listid250453597\listoverridecount0\ls2}}{\*\rsidtbl \rsid161272\rsid269149\rsid589849\rsid1002177\rsid7476090\rsid8412270\rsid9790004\rsid12530973\rsid12729254\rsid13184484\rsid13507751\rsid13850426\rsid14228180\rsid14442597\rsid15074444}
+{\mmathPr\mmathFont34\mbrkBin0\mbrkBinSub0\msmallFrac0\mdispDef1\mlMargin0\mrMargin0\mdefJc1\mwrapIndent1440\mintLim0\mnaryLim1}{\info{\operator Hillis, Bill}{\creatim\yr2011\mo1\dy20\hr13\min28}{\revtim\yr2013\mo3\dy7\hr11\min48}{\version14}{\edmins38}
+{\nofpages18}{\nofwords8476}{\nofchars48316}{\nofcharsws56679}{\vern49275}}{\*\xmlnstbl {\xmlns1 http://schemas.microsoft.com/office/word/2003/wordml}}\paperw12240\paperh15840\margl1660\margr1460\margt1420\margb1440\gutter0\ltrsect 
+\widowctrl\ftnbj\aenddoc\trackmoves0\trackformatting1\donotembedsysfont0\relyonvml0\donotembedlingdata1\grfdocevents0\validatexml0\showplaceholdtext0\ignoremixedcontent0\saveinvalidxml0\showxmlerrors0\horzdoc\dghspace120\dgvspace120\dghorigin1701
+\dgvorigin1984\dghshow0\dgvshow3\jcompress\viewkind1\viewscale100\rsidroot161272 \fet0{\*\wgrffmtfilter 2450}\ilfomacatclnup0\ltrpar \sectd \ltrsect\sbknone\linex0\sectdefaultcl\sftnbj {\*\pnseclvl1\pnucrm\pnstart1\pnindent720\pnhang {\pntxta .}}
+{\*\pnseclvl2\pnucltr\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl3\pndec\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl4\pnlcltr\pnstart1\pnindent720\pnhang {\pntxta )}}{\*\pnseclvl5\pndec\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}
+{\*\pnseclvl6\pnlcltr\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl7\pnlcrm\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl8\pnlcltr\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl9
+\pnlcrm\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 
+\fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af0\afs27 \ltrch\fcs0 \b\fs27\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 FREE DOWNLOAD COMPONENTS/THIRD PARTY TERMS AND CONDITIONS}{
+\rtlch\fcs1 \af39 \ltrch\fcs0 \cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39 \ltrch\fcs0 \cf0\insrsid12729254 
+\par }{\rtlch\fcs1 \ab\af39\afs27 \ltrch\fcs0 \b\fs27\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 \hich\f39 PROGRAM: SQL Anywhere\'ae\loch\f39  v. }{\rtlch\fcs1 \ab\af39\afs27 \ltrch\fcs0 \b\fs27\cf0\insrsid161272 \hich\af39\dbch\af31505\loch\f39 16}{
+\rtlch\fcs1 \ab\af39\afs27 \ltrch\fcs0 \b\fs27\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 .x }{\rtlch\fcs1 \af39 \ltrch\fcs0 \cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  
+\par }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 
+The Program contains open source and other free download components as identified below. Third party license terms and other third party-required notices are provided below.}{\rtlch\fcs1 \af39 \ltrch\fcs0 \cf0\insrsid13507751 
+\hich\af39\dbch\af31505\loch\f39  
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid7476090 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 Adobe Systems Incorporated 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Component: Corelib }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par \hich\af39\dbch\af31505\loch\f39 Adobe Systems Incorporated(r) So\hich\af39\dbch\af31505\loch\f39 urce Code License Agreement 
+\par \hich\af39\dbch\af31505\loch\f39 Copyright(c) 2005 Adobe Systems Incorporated. All rights reserved. 
+\par \hich\af39\dbch\af31505\loch\f39      
+\par \hich\af39\dbch\af31505\loch\f39 Please read this Source Code License Agreement carefully before using the source code. 
+\par \hich\af39\dbch\af31505\loch\f39      
+\par \hich\af39\dbch\af31505\loch\f39 Adobe Systems Incorporated grants to you a perpetual, world\hich\af39\dbch\af31505\loch\f39 wide, 
+\par \hich\af39\dbch\af31505\loch\f39 non-exclusive, no-charge, royalty-free, irrevocable copyright license, 
+\par \hich\af39\dbch\af31505\loch\f39 to reproduce, prepare derivative works of, publicly display, publicly 
+\par \hich\af39\dbch\af31505\loch\f39 perform, and distribute this source code and such derivative works in 
+\par \hich\af39\dbch\af31505\loch\f39 source or object code form without \hich\af39\dbch\af31505\loch\f39 any attribution requirements. 
+\par \hich\af39\dbch\af31505\loch\f39      
+\par \hich\af39\dbch\af31505\loch\f39 The name "Adobe Systems Incorporated" must not be used to endorse or 
+\par \hich\af39\dbch\af31505\loch\f39 promote products derived from the source code without prior written 
+\par \hich\af39\dbch\af31505\loch\f39 permission. 
+\par \hich\af39\dbch\af31505\loch\f39      
+\par \hich\af39\dbch\af31505\loch\f39 You agree to indemnify, hold harmless and defend Adobe System\hich\af39\dbch\af31505\loch\f39 s 
+\par \hich\af39\dbch\af31505\loch\f39 Incorporated from and against any loss, damage, claims or lawsuits, 
+\par \hich\af39\dbch\af31505\loch\f39 including attorney's fees that arise or result from your use or 
+\par \hich\af39\dbch\af31505\loch\f39 distribution of the source code. 
+\par \hich\af39\dbch\af31505\loch\f39      
+\par \hich\af39\dbch\af31505\loch\f39 THIS SOURCE CODE IS PROVIDED "AS IS" AND "WITH ALL FAULTS", WITHOUT ANY 
+\par \hich\af39\dbch\af31505\loch\f39 TECHNI\hich\af39\dbch\af31505\loch\f39 CAL SUPPORT OR ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, 
+\par \hich\af39\dbch\af31505\loch\f39 BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND 
+\par \hich\af39\dbch\af31505\loch\f39 FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. ALSO, THERE IS NO 
+\par \hich\af39\dbch\af31505\loch\f39 WARRANTY OF NON-INFRINGEMENT, TITLE OR QUIET ENJOYMENT. IN NO EVENT 
+\par \hich\af39\dbch\af31505\loch\f39 SHALL MACROMEDIA OR ITS SUPPLIERS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+\par \hich\af39\dbch\af31505\loch\f39 INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+\par \hich\af39\dbch\af31505\loch\f39 BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE \hich\af39\dbch\af31505\loch\f39 
+GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOURCE 
+\hich\af39\dbch\af31505\loch\f39 C\hich\af39\dbch\af31505\loch\f39 ODE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 Aladdin Enterprises 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Component: MD5 }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par \hich\af39\dbch\af31505\loch\f39 Copyright (C) 1999, 2000, 2002 Aladdin Enterprises.  All rights reserved. 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 This software is provided 'as-is', without any express or implied warranty.  In no \hich\af39\dbch\af31505\loch\f39 event will the authors be held liable for any damages arising from the use of this software. 
+\par \hich\af39\dbch\af31505\loch\f39 Permission is granted to anyone to use this software for any purpose, including commercial applications, and to alter it and redistribute it freely, subject to th\hich\af39\dbch\af31505\loch\f39 e following restrictions: 
+
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\ls1\rin0\lin0\itap0 {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 1.}{\rtlch\fcs1 \af1\afs20 \ltrch\fcs0 
+\f1\fs20\cf0\insrsid13507751 \hich\af1\dbch\af31505\loch\f1  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 
+The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but i
+\hich\af39\dbch\af31505\loch\f39 s not required. 
+\par {\listtext\tab}\hich\af39\dbch\af31505\loch\f39 2.}{\rtlch\fcs1 \af1\afs20 \ltrch\fcs0 \f1\fs20\cf0\insrsid13507751 \hich\af1\dbch\af31505\loch\f1  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 
+Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software. 
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\ls1\rin0\lin0\itap0\pararsid14442597 {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 3.}{\rtlch\fcs1 \af1\afs20 \ltrch\fcs0 
+\f1\fs20\cf0\insrsid13507751 \hich\af1\dbch\af31505\loch\f1  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 This notice may not be removed or altered from any source distribution. }{\rtlch\fcs1 
+\af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751\charrsid14442597 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 L. Peter Deutsch (ghost@aladdin.com)}{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 
+\b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid7476090 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 Apache Software Foundation }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\insrsid7476090 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Components: Xerces XML Parser }{\rtlch\fcs1 \af39 \ltrch\fcs0 \cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39 \ltrch\fcs0 \cf0\insrsid7476090 
+\par }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 \hich\f39 Copyright\'a9\loch\f39 
+ 1999-2003 The Apache Software Foundation. All rights reserved. Redistribution and use in source and binary forms, with or without modification, are permitted provided that the followin\hich\af39\dbch\af31505\loch\f39 
+g conditions are met: (i) redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer; (ii) redistributions in binary form must reproduce the above copyright notice, this list of conditions a
+\hich\af39\dbch\af31505\loch\f39 n\hich\af39\dbch\af31505\loch\f39 
+d the following disclaimer in the documentation and/or other materials provided with the distribution; (iii) the end-user documentation included with the redistribution, if any, must include the following acknowledgment: "This product includes software de
+\hich\af39\dbch\af31505\loch\f39 v\hich\af39\dbch\af31505\loch\f39 eloped by the Apache Software Foundation ( }{\field{\*\fldinst {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 
+HYPERLINK "http://www.apache.org/"}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid161272 {\*\datafield 
+00d0c9ea79f9bace118c8200aa004ba90b0200000003000000e0c9ea79f9bace118c8200aa004ba90b4600000068007400740070003a002f002f007700770077002e006100700061006300680065002e006f00720067002f000000795881f43b1d7f48af2c825dc485276300000000a5ab00000061}}}{\fldrslt {
+\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 http://www.apache.org/}}}\sectd \ltrsect\sbknone\linex0\sectdefaultcl\sftnbj {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\hich\af39\dbch\af31505\loch\f39  )." Alternately, this acknowledgment may\hich\af39\dbch\af31505\loch\f39 
+ appear in the software itself, if and wherever such third-party acknowledgments normally appear; (iv) the names "Apache,"" "Apache Software Foundation" and the names of the components identified above must not be used to endorse or promote products deriv
+\hich\af39\dbch\af31505\loch\f39 e\hich\af39\dbch\af31505\loch\f39 d from this software without prior written permission. For written permission, please contact }{\field{\*\fldinst {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\hich\af39\dbch\af31505\loch\f39 HYPERLINK "mailto:apache@apache.org"}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid161272 {\*\datafield 
+00d0c9ea79f9bace118c8200aa004ba90b0200000003000000e0c9ea79f9bace118c8200aa004ba90b4a0000006d00610069006c0074006f003a0061007000610063006800650040006100700061006300680065002e006f00720067000000795881f43b1d7f48af2c825dc485276300000000a5ab00000000}}}{\fldrslt 
+{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf2\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 apache@apache.org}}}\sectd \ltrsect\sbknone\linex0\sectdefaultcl\sftnbj {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\hich\af39\dbch\af31505\loch\f39 ; and (v) \hich\af39\dbch\af31505\loch\f39 
+products derived from this software may not be called "Apache," nor may "Apache" appear in their name, without prior written permission of the Apache Software Foundation. THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING
+,\hich\af39\dbch\af31505\loch\f39 
+ BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE APACHE SOFTWARE FOUNDATION OR ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+\hich\af39\dbch\af31505\loch\f39  \hich\af39\dbch\af31505\loch\f39 
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCL
+\hich\af39\dbch\af31505\loch\f39 U\hich\af39\dbch\af31505\loch\f39 DING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.}{\rtlch\fcs1 \af39 \ltrch\fcs0 \cf0\insrsid13507751 
+\hich\af39\dbch\af31505\loch\f39  
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid161272 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \cs15\insrsid13507751\charrsid7476090 \hich\af31502\dbch\af31501\loch\f31502 Apache Software Foundation }{\rtlch\fcs1 
+\af0 \ltrch\fcs0 \cs15\insrsid7476090\charrsid7476090 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 
+\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 Components}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 : }{\rtlch\fcs1 
+\ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 Velocity Template Library, }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid161272\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 
+java-diff-utils, odata4j}{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 , Batik,}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751\charrsid7476090 
+\hich\af39\dbch\af31505\loch\f39  HTTP Server}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid7476090\charrsid7476090 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 The above\hich\af39\dbch\af31505\loch\f39 
+ components are licensed}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751\charrsid7476090 \hich\af39\dbch\af31505\loch\f39  under th}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 
+e Apache License version 2.0, a cop}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39 y of which is at Attachment 1. }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090\charrsid7476090 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 Eclipse.org 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 Component:  Eclipse}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid161272\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 , Jetty Web Server}{\rtlch\fcs1 
+\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751\charrsid7476090 \hich\af39\dbch\af31505\loch\f39  
+\par }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 This Program in\hich\af39\dbch\af31505\loch\f39 
+cludes Eclipse software licensed from Eclipse.org under the terms of the Eclipse Public License (see Attachment 2).  Any provisions of this Agreement that conflict with the license are not applicable to the Eclipse software.  Source code for the Eclipse s
+\hich\af39\dbch\af31505\loch\f39 o\hich\af39\dbch\af31505\loch\f39 \hich\f39 
+ftware is available at http://www.sybase.com/thirdpartysourcecode.  The Java Ssh Applet component of the Eclipse software is based on software developed by Cedric Gourio.  Copyright \'a9\loch\f39  1998 Cedric Gourio.  All rights reserved.  (}
+{\field{\*\fldinst {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 HYPERLINK "http://www.cl.cam\hich\af39\dbch\af31505\loch\f39 .ac.uk/~fapp2/software/java-ssh/"}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 
+\fs20\cf0\insrsid161272 {\*\datafield 
+00d0c9ea79f9bace118c8200aa004ba90b0200000003000000e0c9ea79f9bace118c8200aa004ba90b7c00000068007400740070003a002f002f007700770077002e0063006c002e00630061006d002e00610063002e0075006b002f007e00660061007000700032002f0073006f006600740077006100720065002f006a00
+6100760061002d007300730068002f000000795881f43b1d7f48af2c825dc485276300000000a5ab00000800}}}{\fldrslt {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf2\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 http://www.cl.cam.ac.uk/~fapp2/software/java-ssh/}}}
+\sectd \ltrsect\sbknone\linex0\sectdefaultcl\sftnbj {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  ) (}{\field{\*\fldinst {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\hich\af39\dbch\af31505\loch\f39 HYPERLINK "mailto:javassh@france-mail.com"}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid161272 {\*\datafield 
+00d0c9ea79f9bace118c8200aa004ba90b0200000003000000e0c9ea79f9bace118c8200aa004ba90b560000006d00610069006c0074006f003a006a0061007600610073007300680040006600720061006e00630065002d006d00610069006c002e0063006f006d000000795881f43b1d7f48af2c825dc485276300000000
+a5ab0000004e}}}{\fldrslt {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf2\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 javassh@france-mail.com}}}\sectd \ltrsect\sbknone\linex0\sectdefaultcl\sftnbj {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 
+\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  ).  
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid15074444 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid15074444\charrsid15074444 \hich\af31502\dbch\af31501\loch\f31502 Asual
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0\pararsid15074444 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 
+\ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid15074444\charrsid15074444 \hich\af39\dbch\af31505\loch\f39 Component: SWFAddress
+\par }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid15074444\charrsid12530973 \hich\af39\dbch\af31505\loch\f39 Copyright (c) 2006-2008 Rostislav Hristov, Asual DZZD
+\par }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid15074444\charrsid15074444 \hich\af39\dbch\af31505\loch\f39 Permission is hereby granted, free of\hich\af39\dbch\af31505\loch\f39 
+ charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense
+,\hich\af39\dbch\af31505\loch\f39  and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+\par 
+\par \hich\af39\dbch\af31505\loch\f39 The above copyright notice and this permission notice shall be included in all copies or substantial portions of th\hich\af39\dbch\af31505\loch\f39 e Software.
+\par 
+\par \hich\af39\dbch\af31505\loch\f39 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
+\par \hich\af39\dbch\af31505\loch\f39 OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+\par \hich\af39\dbch\af31505\loch\f39 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+\par \hich\af39\dbch\af31505\loch\f39 IN NO EVENT SHALL THE AUTHORS OR COPYR\hich\af39\dbch\af31505\loch\f39 IGHT HOLDERS BE LIABLE FOR ANY 
+\par \hich\af39\dbch\af31505\loch\f39 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+\par \hich\af39\dbch\af31505\loch\f39 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+\par \hich\af39\dbch\af31505\loch\f39 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid15074444 
+\par }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid8412270 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0\pararsid8412270 {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid8412270\charrsid8412270 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid8412270\charrsid8412270 \hich\af31502\dbch\af31501\loch\f31502 Barreto, Paulo
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0\pararsid8412270 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 
+\ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid8412270\charrsid8412270 \hich\af39\dbch\af31505\loch\f39 Component: Rinj\hich\af39\dbch\af31505\loch\f39 dael implementation in Java
+\par }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid8412270\charrsid8412270 \hich\af39\dbch\af31505\loch\f39 The above component is in the public domain.}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid269149\charrsid269149 \hich\af31502\dbch\af31501\loch\f31502 Boost
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0\pararsid269149 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 
+\ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid269149\charrsid269149 \hich\af39\dbch\af31505\loch\f39 Component: Boost C++ class libraries
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149\charrsid13184484 \hich\af39\dbch\af31505\loch\f39 Boost Software License - Version 1.0 - August 17th, 2003
+\par }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149\charrsid269149 \hich\af39\dbch\af31505\loch\f39 Permission is hereby granted, free of charge, to any person or organization}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149 
+\hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149\charrsid269149 \hich\af39\dbch\af31505\loch\f39 obtaini\hich\af39\dbch\af31505\loch\f39 ng a copy of the software and accompanying documentation covered by}{
+\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149\charrsid269149 \hich\af39\dbch\af31505\loch\f39 
+this license (the "Software") to use, reproduce, display, distribute,}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149\charrsid269149 
+\hich\af39\dbch\af31505\loch\f39 execute, and transmit the Software, and to prepare derivative works of the}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 
+\fs20\cf0\insrsid269149\charrsid269149 \hich\af39\dbch\af31505\loch\f39 Software, and to permit third-parties to wh\hich\af39\dbch\af31505\loch\f39 om the Software is furnished to}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149 
+\hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149\charrsid269149 \hich\af39\dbch\af31505\loch\f39 do so, all subject to the following:
+\par 
+\par \hich\af39\dbch\af31505\loch\f39 The copyright notices in the Software and this entire statement, including}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 
+\fs20\cf0\insrsid269149\charrsid269149 \hich\af39\dbch\af31505\loch\f39 the above license grant, this restriction and the following disclaimer,}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 
+\af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149\charrsid269149 \hich\af39\dbch\af31505\loch\f39 must be included in all copies of the S\hich\af39\dbch\af31505\loch\f39 oftware, in whole or in part, and}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 
+\fs20\cf0\insrsid269149 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149\charrsid269149 \hich\af39\dbch\af31505\loch\f39 all derivative works of the Software, unless such copies or derivative}{\rtlch\fcs1 
+\af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149\charrsid269149 \hich\af39\dbch\af31505\loch\f39 
+works are solely in the form of machine-executable object code generated by}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149\charrsid269149 
+\hich\af39\dbch\af31505\loch\f39 a source language processor.
+\par 
+\par \hich\af39\dbch\af31505\loch\f39 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+\par \hich\af39\dbch\af31505\loch\f39 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+\par \hich\af39\dbch\af31505\loch\f39 FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT
+\par \hich\af39\dbch\af31505\loch\f39 SHALL THE COPYRIGHT HOLDERS OR ANY\hich\af39\dbch\af31505\loch\f39 ONE DISTRIBUTING THE SOFTWARE BE LIABLE
+\par \hich\af39\dbch\af31505\loch\f39 FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 
+\fs20\cf0\insrsid269149\charrsid269149 \hich\af39\dbch\af31505\loch\f39 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149 \hich\af39\dbch\af31505\loch\f39  }{
+\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid269149\charrsid269149 \hich\af39\dbch\af31505\loch\f39 DEALINGS IN THE SOFTWARE.}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid589849 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid589849\charrsid589849 \hich\af31502\dbch\af31501\loch\f31502 Colebourne, Stephen
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0\pararsid589849 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 
+\ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid589849\charrsid589849 \hich\af39\dbch\af31505\loch\f39 Component: Joda
+\par }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid589849\charrsid589849 \hich\af39\dbch\af31505\loch\f39 Th\hich\af39\dbch\af31505\loch\f39 e above component is licensed under the Apache License version 2.0, a copy of which }{\rtlch\fcs1 \af39\afs20 
+\ltrch\fcs0 \fs20\cf0\insrsid589849 \hich\af39\dbch\af31505\loch\f39 i}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid589849\charrsid589849 \hich\af39\dbch\af31505\loch\f39 s at Attachment 1.}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 
+\fs20\cf0\insrsid589849\charrsid15074444 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 FlexLib Contributors 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Component:  FlexLib }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par \hich\af39\dbch\af31505\loch\f39 Copyright (c) 2007 FlexLib Contributors.  See: http://code.google.com/p/flexlib/wiki/ProjectContributors 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 Permission is hereby granted, free of charge, to any person obtaining a copy 
+\par \hich\af39\dbch\af31505\loch\f39 of this software and associated documentation files (the "Software"), to deal 
+\par \hich\af39\dbch\af31505\loch\f39 in the Software without restriction, including without limitation the rights 
+\par \hich\af39\dbch\af31505\loch\f39 to use, copy, modify\hich\af39\dbch\af31505\loch\f39 , merge, publish, distribute, sublicense, and/or sell 
+\par \hich\af39\dbch\af31505\loch\f39 copies of the Software, and to permit persons to whom the Software is 
+\par \hich\af39\dbch\af31505\loch\f39 furnished to do so, subject to the following conditions: 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 The above copyright notice and this permission notice shall be include\hich\af39\dbch\af31505\loch\f39 d in 
+\par \hich\af39\dbch\af31505\loch\f39 all copies or substantial portions of the Software. 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRING
+\hich\af39\dbch\af31505\loch\f39 
+EMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR O}{\rtlch\fcs1 
+\af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid14442597 \hich\af39\dbch\af31505\loch\f39 THER DEALINGS IN THE \hich\af39\dbch\af31505\loch\f39 SOFTWARE. }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 JCraft, Inc. 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Component:  JZLib Compression Library }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par \hich\af39\dbch\af31505\loch\f39 Copyright (c) 2000,2001,2002,2003 ymnk, JCraft,Inc. All rights reserved. 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39   1. Redistributions of source code must retain the above copyright notice, 
+\par \hich\af39\dbch\af31505\loch\f39      this list of conditions and \hich\af39\dbch\af31505\loch\f39 the following disclaimer. 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39   2. Redistributions in binary form must reproduce the above copyright  
+\par \hich\af39\dbch\af31505\loch\f39      notice, this list of conditions and the following disclaimer in  
+\par \hich\af39\dbch\af31505\loch\f39      the documentation and/or other materials provided with the distribution. 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39   \hich\af39\dbch\af31505\loch\f39 3. The names of the authors may not be used to endorse or promote products 
+\par \hich\af39\dbch\af31505\loch\f39      derived from this software without specific prior written permission. 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITE\hich\af39\dbch\af31505\loch\f39 
+D TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL JCRAFT, INC. OR ANY CONTRIBUTORS TO THIS SOFTWARE BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL D
+\hich\af39\dbch\af31505\loch\f39 A\hich\af39\dbch\af31505\loch\f39 
+MAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
+\par \hich\af39\dbch\af31505\loch\f39 NEGLIGENCE\hich\af39\dbch\af31505\loch\f39  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid14442597 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid14442597 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 Jean-Loup Gailly and Mark Adler }{\rtlch\fcs1 \af0 
+\ltrch\fcs0 \insrsid14442597 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Component: Zlib Compression Library}{\rtlch\fcs1 \af39 \ltrch\fcs0 \cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39 \ltrch\fcs0 \cf0\insrsid14442597 
+\par }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 \hich\f39 Copyright\'a9\loch\f39  1995-2003 Jean-loup Gailly and Mark Adler\hich\af39\dbch\af31505\loch\f39 . All rights reserved. }{\rtlch\fcs1 \af39\afs20 
+\ltrch\fcs0 \fs20\cf0\insrsid14442597 
+\par }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 
+This software is provided 'as-is,' without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software. Permission is granted to anyone to use this software for 
+\hich\af39\dbch\af31505\loch\f39 
+any purpose, including commercial applications, and to alter it and redistribute it freely, subject to the following restrictions: 1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you u
+\hich\af39\dbch\af31505\loch\f39 s\hich\af39\dbch\af31505\loch\f39 
+e this software in a product, an acknowledgment in the product documentation would be appreciated but is not required. 2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software. 3. This notice
+\hich\af39\dbch\af31505\loch\f39  \hich\af39\dbch\af31505\loch\f39 may not be removed or altered from any source distribution. 
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid7476090 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 Kientzle, Tim 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Component: libarchive }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par \hich\af39\dbch\af31505\loch\f39 Copyright (c) 2003-2009 Tim Kientzle 
+\par \hich\af39\dbch\af31505\loch\f39 All rights reserved. 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 Redistribution and use in source and binary forms, with or without modification, are permitted\hich\af39\dbch\af31505\loch\f39  provided that the following conditions are met: 
+\par \hich\af39\dbch\af31505\loch\f39 1. Redistributions of source code must retain the above copyright 
+\par \hich\af39\dbch\af31505\loch\f39    notice, this list of conditions and the following disclaimer 
+\par \hich\af39\dbch\af31505\loch\f39    in this position and unchanged. 
+\par \hich\af39\dbch\af31505\loch\f39 2. Redistributions in binary form must reproduce the above copyright 
+\par \hich\af39\dbch\af31505\loch\f39    notice, this list of conditions and the following disclaimer in the 
+\par \hich\af39\dbch\af31505\loch\f39    documentation and/or other materials provided with the distribution. 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 THIS SOFTWARE IS PROVIDED BY THE AUTHOR\hich\af39\dbch\af31505\loch\f39 
+(S) ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR(S) BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENT
+\hich\af39\dbch\af31505\loch\f39 A\hich\af39\dbch\af31505\loch\f39 
+L, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRIC
+\hich\af39\dbch\af31505\loch\f39 T\hich\af39\dbch\af31505\loch\f39  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 IBM Corporation 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Component:  ICU }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par \hich\af39\dbch\af31505\loch\f39 The ICU software is provided subject to the following additi\hich\af39\dbch\af31505\loch\f39 \hich\f39 onal provisions: Copyright \'a9\loch\f39 \hich\f39 
+ 1995-2002 International Business Machines Corporation and others.  All rights reserved.  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \'93\loch\f39 So
+\hich\af39\dbch\af31505\loch\f39 f\hich\af39\dbch\af31505\loch\f39 \hich\f39 tware\'94\loch\f39 
+), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, provided 
+\hich\af39\dbch\af31505\loch\f39 t\hich\af39\dbch\af31505\loch\f39 \hich\f39 
+hat the above copyright notice(s) and this permission notice appear in all copies of the Software and that both the above copyright notices(s) and this permission notice appear in supporting documentation.  THE SOFTWARE IS PROVIDED \'93\loch\f39 
+\hich\f39 AS IS\'94\loch\f39 , WITHOUT WARRAN\hich\af39\dbch\af31505\loch\f39 T\hich\af39\dbch\af31505\loch\f39 
+Y OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY RIGHTS.  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED IN THIS NOTICE BE LI
+\hich\af39\dbch\af31505\loch\f39 A\hich\af39\dbch\af31505\loch\f39 
+BLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OF OTHER TORTUOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
+\hich\af39\dbch\af31505\loch\f39  \hich\af39\dbch\af31505\loch\f39 
+OR PERFORMANCE OF THIS SOFTWARE.  Except as contained in this notice, the name of a copyright holder shall not be used in advertising or otherwise to promote the sale, use or other dealings in this Software without prior written authorization of the copyr
+\hich\af39\dbch\af31505\loch\f39 i\hich\af39\dbch\af31505\loch\f39 ght holder. 
+\par }{\rtlch\fcs1 \ab\af1\afs20 \ltrch\fcs0 \b\f1\fs20\cf0\insrsid13507751 \hich\af1\dbch\af31505\loch\f1  }{\rtlch\fcs1 \af1\afs20 \ltrch\fcs0 \f1\fs20\cf0\insrsid13507751 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 Keyworks Software 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Component: Keyhh.exe }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par \hich\af39\dbch\af31505\loch\f39 The Program includes software developed by KeyWorks Software. The KeyWorks software is provided subject to the following additional provisions. KeyHH is free. You may download it and install it on as 
+\hich\af39\dbch\af31505\loch\f39 
+many machines as you want for no charge. But first, let's get the legal stuff out of the way: BECAUSE THIS PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR THIS PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED I
+\hich\af39\dbch\af31505\loch\f39 N\hich\af39\dbch\af31505\loch\f39 
+ WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE E
+\hich\af39\dbch\af31505\loch\f39 N\hich\af39\dbch\af31505\loch\f39 
+TIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL AN
+\hich\af39\dbch\af31505\loch\f39 Y\hich\af39\dbch\af31505\loch\f39 
+ COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING 
+\hich\af39\dbch\af31505\loch\f39 B\hich\af39\dbch\af31505\loch\f39 
+UT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF TH}{\rtlch\fcs1 
+\af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39 E POSSIBILITY OF SUCH DAM\hich\af39\dbch\af31505\loch\f39 AGES. }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 Microsoft Corporation 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Components: VC++ Runtime Libraries, Debugging Tools, HTML Help, }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid161272 \hich\af39\dbch\af31505\loch\f39 CabWiz}{
+\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par \hich\af39\dbch\af31505\loch\f39 No third party license terms or additional notices required. 
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 MIT 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Component:  MIT Kerberos }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par \hich\af39\dbch\af31505\loch\f39 The MIT Kerberos software is provided subject to the follow\hich\af39\dbch\af31505\loch\f39 ing additional provisions.   
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\ls2\rin0\lin0\itap0 {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 1.}{\rtlch\fcs1 \af1\afs20 \ltrch\fcs0 
+\f1\fs20\cf0\insrsid13507751 \hich\af1\dbch\af31505\loch\f1  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 \hich\f39 Copyright \'a9\loch\f39 
+ 1985-2004 by the Massachusetts Institute of Technology. All rights reserved. Export of this software from the United States of America may require a specific license from the United States Government.  It is th\hich\af39\dbch\af31505\loch\f39 
+e responsibility of any person or organization contemplating export to obtain such a license before exporting. WITHIN THAT CONSTRAINT, permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is h
+\hich\af39\dbch\af31505\loch\f39 e\hich\af39\dbch\af31505\loch\f39 
+reby granted, provided that the above copyright notice appear in all copies and that both that copyright notice and this permission notice appear in supporting documentation, and that the name of M.I.T. not be used in advertising or publicity pertaining t
+\hich\af39\dbch\af31505\loch\f39 o\hich\af39\dbch\af31505\loch\f39 
+ distribution of the software without specific, written prior permission.  Furthermore if you modify this software you must label your software as modified software and not distribute it in such a fashion that it might be confused with the original MIT so
+\hich\af39\dbch\af31505\loch\f39 f\hich\af39\dbch\af31505\loch\f39 
+tware. M.I.T. makes no representations about the suitability of this software for any purpose.  It is provided "as is" without express or implied warranty. THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, WITHO
+\hich\af39\dbch\af31505\loch\f39 U\hich\af39\dbch\af31505\loch\f39 
+T LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE. Individual source code files are copyright MIT, Cygnus Support, OpenVision, Oracle, Sun Soft, FundsXpress, and others. Project Athena, Athena, Athena MUSE, Discu
+\hich\af39\dbch\af31505\loch\f39 s\hich\af39\dbch\af31505\loch\f39 
+s, Hesiod, Kerberos, Moira, and Zephyr are trademarks of the Massachusetts Institute of Technology (MIT).  No commercial use of these trademarks may be made without prior written permission of MIT. 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 "Commercial use" means use of a name in a product or o\hich\af39\dbch\af31505\loch\f39 
+ther for-profit manner.  It does NOT prevent a commercial firm from referring to the MIT trademarks in order to convey information (although in doing so, recognition of their trademark status should be given).  
+\par \hich\af39\dbch\af31505\loch\f39  2. The following copyright and permission n\hich\af39\dbch\af31505\loch\f39 
+otice applies to the OpenVision Kerberos Administration system located in kadmin/create, kadmin/dbutil, kadmin/passwd, kadmin/server, lib/kadm5, and portions of lib/rpc: Copyright, OpenVision Technologies, Inc., 1996, All Rights Reserved. WARNING: Retriev
+\hich\af39\dbch\af31505\loch\f39 i\hich\af39\dbch\af31505\loch\f39 
+ng the OpenVision Kerberos Administration system source code, as described below, indicates your acceptance of the following terms.  If you do not agree to the following terms, do not retrieve the OpenVision Kerberos administration system. You may freely 
+\hich\af39\dbch\af31505\loch\f39 u\hich\af39\dbch\af31505\loch\f39 
+se and distribute the Source Code and Object Code compiled from it, with or without modification, but this Source Code is provided to you "AS IS" EXCLUSIVE OF ANY WARRANTY, INCLUDING, WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A 
+\hich\af39\dbch\af31505\loch\f39 P\hich\af39\dbch\af31505\loch\f39 
+ARTICULAR PURPOSE, OR ANY OTHER WARRANTY, WHETHER EXPRESS OR IMPLIED.  IN NO EVENT WILL OPENVISION HAVE ANY LIABILITY FOR ANY LOST PROFITS, LOSS OF DATA OR COSTS OF PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES, OR FOR ANY SPECIAL, INDIRECT, OR CONSEQUENTIA
+\hich\af39\dbch\af31505\loch\f39 L\hich\af39\dbch\af31505\loch\f39 
+ DAMAGES ARISING OUT OF THIS AGREEMENT, INCLUDING, WITHOUT LIMITATION, THOSE RESULTING FROM THE USE OF THE SOURCE CODE, OR THE FAILURE OF THE SOURCE CODE TO PERFORM, OR FOR ANY OTHER REASON. OpenVision retains all copyrights in the donated Source Code. Op
+\hich\af39\dbch\af31505\loch\f39 e\hich\af39\dbch\af31505\loch\f39 nVision also retains copyright to derivative works of the Source 
+\par \hich\af39\dbch\af31505\loch\f39 Code, whether created by OpenVision or by a third party. The OpenVision copyright notice must be preserved if derivative works are made based on the donated Source Code.  
+\par \hich\af39\dbch\af31505\loch\f39 
+ 3. Portions contributed by Matt Crawford <crawdad@fnal.gov> were work performed at Fermi National Accelerator Laboratory, which is operated by Universities Research Association, Inc., under contract DE-AC02-76CHO3000 with the U.S. Department of Energy. 
+
+\par \hich\af39\dbch\af31505\loch\f39  \hich\af39\dbch\af31505\loch\f39 
+4. The implementation of the Yarrow pseudo-random number generator in src/lib/crypto/yarrow has the following copyright: Copyright 2000 by Zero-Knowledge Systems, Inc. Permission to use, copy, modify, distribute, and sell this software and its documentati
+\hich\af39\dbch\af31505\loch\f39 o\hich\af39\dbch\af31505\loch\f39 
+n for any purpose is hereby granted without fee, provided that the above copyright notice appear in all copies and that both that copyright notice and this permission notice appear in supporting documentation, and that the name of Zero-Knowledge Systems, 
+\hich\af39\dbch\af31505\loch\f39 I\hich\af39\dbch\af31505\loch\f39 
+nc. not be used in advertising or publicity pertaining to distribution of the software without specific, written prior permission.  Zero-Knowledge Systems, Inc. makes no representations about the suitability of this software for any purpose.  It is provid
+\hich\af39\dbch\af31505\loch\f39 e\hich\af39\dbch\af31505\loch\f39 
+d "as is" without express or implied warranty. ZERO-KNOWLEDGE SYSTEMS, INC. DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL ZERO-KNOWLEDGE SYSTEMS, INC. BE LIABLE FO
+\hich\af39\dbch\af31505\loch\f39 R\hich\af39\dbch\af31505\loch\f39 
+ ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTUOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF TH
+\hich\af39\dbch\af31505\loch\f39 I\hich\af39\dbch\af31505\loch\f39 S SOFTWARE. 
+\par \hich\af39\dbch\af31505\loch\f39 \hich\f39  5. The implementation of the AES encryption algorithm in src/lib/crypto/aes has the following copyright: Copyright \'a9\loch\f39 
+ 2001, Dr Brian Gladman (brg@gladman.uk.net), Worcester, UK. All rights reserved. The free distribution and use of this softwa\hich\af39\dbch\af31505\loch\f39 
+re in both source and binary form is allowed (with or without changes) provided that: 1. distributions of this source code include the above copyright notice, this list of conditions and the following disclaimer; 2. distributions in binary form include th
+\hich\af39\dbch\af31505\loch\f39 e\hich\af39\dbch\af31505\loch\f39 
+ above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other associated materials; 3. the copyright holder's name is not used to endorse products built using this software without specific written permiss
+\hich\af39\dbch\af31505\loch\f39 i\hich\af39\dbch\af31505\loch\f39 on. This software is provided 'as is' with no explicit or implied warranties in respect of any properties, including, but not limited to, correctness and fitness for purpose. 
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid15074444 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 
+Open Software Foundation, Inc., Hewlett-Packard Company, Digital Equipment Corp\hich\af31502\dbch\af31501\loch\f31502 oration, Microsoft 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Component:  UUID }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par \hich\af39\dbch\af31505\loch\f39 ** Copyright (c) 1990- 1993, 1996 Open Software Foundation, Inc. 
+\par \hich\af39\dbch\af31505\loch\f39 ** Copyright (c) 1989 by Hewlett-Packard Company, Palo Alto, Ca. & 
+\par \hich\af39\dbch\af31505\loch\f39 ** Digital Equipment Corporation, Maynard, Mass. 
+\par \hich\af39\dbch\af31505\loch\f39 ** Copyright (c) 1998 Microsoft. 
+\par \hich\af39\dbch\af31505\loch\f39 ** To anyone who acknowledges that this file is provided "AS IS" 
+\par \hich\af39\dbch\af31505\loch\f39 ** without any express or implied warranty: permission to use, copy, 
+\par \hich\af39\dbch\af31505\loch\f39 ** modify, and distribute this file for any purpose is hereby 
+\par \hich\af39\dbch\af31505\loch\f39 ** granted without fee, provided that the above copyright\hich\af39\dbch\af31505\loch\f39  notices and 
+\par \hich\af39\dbch\af31505\loch\f39 ** this notice appears in all source code copies, and that none of 
+\par \hich\af39\dbch\af31505\loch\f39 ** the names of Open Software Foundation, Inc., Hewlett-Packard 
+\par \hich\af39\dbch\af31505\loch\f39 ** Company, or Digital Equipment Corporation be used in advertising 
+\par \hich\af39\dbch\af31505\loch\f39 ** or publicity pertaining to distributi\hich\af39\dbch\af31505\loch\f39 on of the software without 
+\par \hich\af39\dbch\af31505\loch\f39 ** specific, written prior permission.  Neither Open Software 
+\par \hich\af39\dbch\af31505\loch\f39 ** Foundation, Inc., Hewlett-Packard Company, Microsoft, nor Digital Equipment 
+\par \hich\af39\dbch\af31505\loch\f39 ** Corporation makes any representations about the suitability of 
+\par \hich\af39\dbch\af31505\loch\f39 ** this software f\hich\af39\dbch\af31505\loch\f39 or any purpose. 
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid15074444 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 OpenSSL Project 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Component:  Open SSL }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par \hich\af39\dbch\af31505\loch\f39 \hich\f39 The OpenSSL software is provided subject to the following additional provisions.  Copyright \'a9\loch\f39 \hich\f39  1998-2001 The OpenSSL Project and Copyright \'a9\loch\f39 
+ 1995-1998 Eric Young.  All rights reserved.  Redistribution\hich\af39\dbch\af31505\loch\f39 
+ and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: (i) redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaime
+\hich\af39\dbch\af31505\loch\f39 r\hich\af39\dbch\af31505\loch\f39 
+; (ii) redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution; (iii) all advertising materials mentioning fe
+\hich\af39\dbch\af31505\loch\f39 a\hich\af39\dbch\af31505\loch\f39 tures or use of this software must display the following acknowledgment: "This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit. (}
+{\field{\*\fldinst {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 HYPERLINK "http://www.openssl.org/"}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid161272 {\*\datafield 
+00d0c9ea79f9bace118c8200aa004ba90b0200000003000000e0c9ea79f9bace118c8200aa004ba90b4800000068007400740070003a002f002f007700770077002e006f00700065006e00730073006c002e006f00720067002f000000795881f43b1d7f48af2c825dc485276300000000a5ab00000000}}}{\fldrslt {
+\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf2\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 http://www.openssl.org/}}}\sectd \ltrsect\sbknone\linex0\sectdefaultcl\sftnbj {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\hich\af39\dbch\af31505\loch\f39 \hich\f39 )" and \'93\loch\f39 This product includes cryptographic software written by Eric Young (}{\field{\*\fldinst {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 
+HYPERLINK "mailto:eay@cryptsoft.com"}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid161272 {\*\datafield 
+00d0c9ea79f9bace118c8200aa004ba90b0200000003000000e0c9ea79f9bace118c8200aa004ba90b4a0000006d00610069006c0074006f003a0065006100790040006300720079007000740073006f00660074002e0063006f006d000000795881f43b1d7f48af2c825dc485276300000000a5ab00000010}}}{\fldrslt 
+{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf2\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 eay@cryptsoft.com}}}\sectd \ltrsect\sbknone\linex0\sectdefaultcl\sftnbj {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\hich\af39\dbch\af31505\loch\f39 \hich\f39 )\'94\loch\f39 .  The word cryptographic can be left out if the routines from the library being used are not cryptographic related; (iv) the names "OpenS\hich\af39\dbch\af31505\loch\f39 
+SL Toolkit" and "OpenSSL Project" must not be used to endorse or promote products derived from this software without prior written permission. For written permission, please contact }{\field{\*\fldinst {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 
+\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 HYPERLINK "mailto:openssl-core@openssl.org"}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid161272 {\*\datafield 
+00d0c9ea79f9bace118c8200aa004ba90b0200000003000000e0c9ea79f9bace118c8200aa004ba90b580000006d00610069006c0074006f003a006f00700065006e00730073006c002d0063006f007200650040006f00700065006e00730073006c002e006f00720067000000795881f43b1d7f48af2c825dc48527630000
+0000a5ab00000000}}}{\fldrslt {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf2\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 openssl-core@openssl.org}}}\sectd \ltrsect\sbknone\linex0\sectdefaultcl\sftnbj {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 
+\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 ; (v) products derived from this software may not be called "OpenSSL" nor may "OpenSSL" appear in their names without prior written permission of the OpenSS\hich\af39\dbch\af31505\loch\f39 
+\hich\f39 L Project; (vi) if you include any Windows specific code (or a derivative thereof) from the apps directory (application code) you must include an acknowledgement: \'93\loch\f39 This product includes software written by Tim Hudson (}
+{\field{\*\fldinst {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 HYPERLINK "mailto:tjh@cryptsoft.com"}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid161272 {\*\datafield 
+00d0c9ea79f9bace118c8200aa004ba90b0200000003000000e0c9ea79f9bace118c8200aa004ba90b4a0000006d00610069006c0074006f003a0074006a00680040006300720079007000740073006f00660074002e0063006f006d000000795881f43b1d7f48af2c825dc485276300000000a5ab00000000}}}{\fldrslt 
+{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf2\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 tjh@cryptsoft.com}}}\sectd \ltrsect\sbknone\linex0\sectdefaultcl\sftnbj {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\hich\af39\dbch\af31505\loch\f39 \hich\f39 )\'94\loch\f39 ; and (vii) redistributions of any form whatsoever must retain the following acknowledgment: "This product includes software developed by th\hich\af39\dbch\af31505\loch\f39 
+e OpenSSL Project for use in the OpenSSL Toolkit (}{\field{\*\fldinst {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 HYPERLINK "http://www.openssl.org/"}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 
+\fs20\cf0\insrsid161272 {\*\datafield 
+00d0c9ea79f9bace118c8200aa004ba90b0200000003000000e0c9ea79f9bace118c8200aa004ba90b4800000068007400740070003a002f002f007700770077002e006f00700065006e00730073006c002e006f00720067002f000000795881f43b1d7f48af2c825dc485276300000000a5ab00000000}}}{\fldrslt {
+\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf2\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 http://www.openssl.org/}}}\sectd \ltrsect\sbknone\linex0\sectdefaultcl\sftnbj {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\hich\af39\dbch\af31505\loch\f39 )".  THIS SOFTWARE IS PROVIDED BY THE OpenSSL PRO\hich\af39\dbch\af31505\loch\f39 \hich\f39 JECT AND ERIC YOUNG \'93\loch\f39 
+AS IS'' AND ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE OpenSSL PROJECT, TIM YOUNG OR THEIR 
+\hich\af39\dbch\af31505\loch\f39 C\hich\af39\dbch\af31505\loch\f39 
+ONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED A
+\hich\af39\dbch\af31505\loch\f39 N\hich\af39\dbch\af31505\loch\f39 
+D ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.   
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 Public Domain 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Component: htmlview}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  The above component is in the public domain.}{\rtlch\fcs1 
+\ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 Saloranta, Tatu 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Component: Woodstox}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 
+ The above component is licensed under the Apache License version 2.0, a copy of which is at Attachment 1. 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39  
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 Seward, Julian R 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Component: bzip2 }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par \hich\af39\dbch\af31505\loch\f39 This program, "bzip2", the associated library "libbzip2", and all 
+\par \hich\af39\dbch\af31505\loch\f39 documentation, are copyright (C) 1996-2006 Julian R Seward.  All 
+\par \hich\af39\dbch\af31505\loch\f39 rights reserved. 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 Redistribution and use in source and binary forms, with or without 
+\par \hich\af39\dbch\af31505\loch\f39 modification, are permitted provide\hich\af39\dbch\af31505\loch\f39 d that the following conditions 
+\par \hich\af39\dbch\af31505\loch\f39 are met: 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 1. Redistributions of source code must retain the above copyright 
+\par \hich\af39\dbch\af31505\loch\f39    notice, this list of conditions and the following disclaimer. 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 2. The origin of this software must not be misrepresented; you must  
+\par \hich\af39\dbch\af31505\loch\f39    not\hich\af39\dbch\af31505\loch\f39  claim that you wrote the original software.  If you use this  
+\par \hich\af39\dbch\af31505\loch\f39    software in a product, an acknowledgment in the product  
+\par \hich\af39\dbch\af31505\loch\f39    documentation would be appreciated but is not required. 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 3. Altered source versions must be plainly marked as such, and must 
+\par \hich\af39\dbch\af31505\loch\f39    not be misrepresented as being the original software. 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 4. The name of the author may not be used to endorse or promote  
+\par \hich\af39\dbch\af31505\loch\f39    products derived from this software without specific prior written  
+\par \hich\af39\dbch\af31505\loch\f39    permission. 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 THIS SOFTWARE IS PROVIDED BY THE AUTHOR \hich\af39\dbch\af31505\loch\f39 ``AS IS'' AND ANY EXPRESS 
+\par \hich\af39\dbch\af31505\loch\f39 OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+\par \hich\af39\dbch\af31505\loch\f39 WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+\par \hich\af39\dbch\af31505\loch\f39 ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY 
+\par \hich\af39\dbch\af31505\loch\f39 DIRECT, INDIRECT, INCIDENTAL,\hich\af39\dbch\af31505\loch\f39  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL 
+\par \hich\af39\dbch\af31505\loch\f39 DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
+\par \hich\af39\dbch\af31505\loch\f39 GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+\par \hich\af39\dbch\af31505\loch\f39 INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+\par \hich\af39\dbch\af31505\loch\f39 WHETHER IN CONTRACT, STRI\hich\af39\dbch\af31505\loch\f39 CT LIABILITY, OR TORT (INCLUDING 
+\par \hich\af39\dbch\af31505\loch\f39 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+\par \hich\af39\dbch\af31505\loch\f39 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid161272 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid14228180 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 Sun Microsystems }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\insrsid14228180 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0\pararsid14228180 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 
+\ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751\charrsid14228180 \hich\af39\dbch\af31505\loch\f39 Components: JRE, JavaBeans Activation Framework, JavaMail }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid7476090\charrsid14228180 
+\hich\af39\dbch\af31505\loch\f39 A}{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751\charrsid14228180 \hich\af39\dbch\af31505\loch\f39 PI }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid7476090\charrsid14228180 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 No third p\hich\af39\dbch\af31505\loch\f39 arty license terms or notices.}{
+\rtlch\fcs1 \af39 \ltrch\fcs0 \cf0\insrsid14228180 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39 \ltrch\fcs0 \cf0\insrsid7476090\charrsid14228180 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 University of Toronto 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Components: regexp.c}{\rtlch\fcs1 \af39 \ltrch\fcs0 \cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39 \ltrch\fcs0 \cf0\insrsid14228180 
+\par }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Copyright (c) 1986 by University of Toronto. 
+\par \hich\af39\dbch\af31505\loch\f39  * Written by Henry Spencer.  Not derived from licensed software. 
+\par \hich\af39\dbch\af31505\loch\f39  * 
+\par \hich\af39\dbch\af31505\loch\f39  * Permission is granted to anyone to use this software for an\hich\af39\dbch\af31505\loch\f39 y 
+\par \hich\af39\dbch\af31505\loch\f39  * purpose on any computer system, and to redistribute it freely, 
+\par \hich\af39\dbch\af31505\loch\f39  * subject to the following restrictions: 
+\par \hich\af39\dbch\af31505\loch\f39  * 
+\par \hich\af39\dbch\af31505\loch\f39  * 1. The author is not responsible for the consequences of use of 
+\par \hich\af39\dbch\af31505\loch\f39  *  this software, no matter how awful, even if they arise 
+\par \hich\af39\dbch\af31505\loch\f39  *  from defects in it. 
+\par \hich\af39\dbch\af31505\loch\f39  * 
+\par \hich\af39\dbch\af31505\loch\f39  * 2. The origin of this software must not be misrepresented, either 
+\par \hich\af39\dbch\af31505\loch\f39  *  by explicit claim or by omission. 
+\par \hich\af39\dbch\af31505\loch\f39  * 
+\par \hich\af39\dbch\af31505\loch\f39  * 3. Altered versions must be plainly marked as such, and must not 
+\par \hich\af39\dbch\af31505\loch\f39  *  be misrepresented as being the original s\hich\af39\dbch\af31505\loch\f39 oftware. 
+\par \hich\af39\dbch\af31505\loch\f39  * 
+\par \hich\af39\dbch\af31505\loch\f39  * Beware that some of this code is subtly aware of the way operator 
+\par \hich\af39\dbch\af31505\loch\f39  * precedence is structured in regular expressions.  Serious changes in 
+\par \hich\af39\dbch\af31505\loch\f39  * regular-expression syntax might require a total rethink. 
+\par }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 Copyr}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid14228180 \hich\af0\dbch\af31505\loch\f0 ight (c) 2000, Frank Warmerdam }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\cf0\insrsid13507751 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 W\hich\af31502\dbch\af31501\loch\f31502 armerdam, Frank 
+
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af39\afs20 
+\ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Component:  PROJ.4 }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 
+\par \hich\af39\dbch\af31505\loch\f39 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitatio
+\hich\af39\dbch\af31505\loch\f39 n the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 The above copyright notice and this per\hich\af39\dbch\af31505\loch\f39 mission notice shall be included in all copies or substantial portions of the Software. 
+\par \hich\af39\dbch\af31505\loch\f39  
+\par \hich\af39\dbch\af31505\loch\f39 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PAR\hich\af39\dbch\af31505\loch\f39 
+TICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR TH
+\hich\af39\dbch\af31505\loch\f39 E\hich\af39\dbch\af31505\loch\f39  USE OR OTHER DEALINGS IN THE SOFTWARE. 
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 Other}{\rtlch\fcs1 \af39 \ltrch\fcs0 \cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 
+\fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 
+The Program may also contain other free download and/or open source content (including but not limited to header files) required for interoperation with the operating system(s) on which the product is designed\hich\af39\dbch\af31505\loch\f39 
+ to run, and/or with third party applications. 
+\par }{\rtlch\fcs1 \ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid161272 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid13507751 \hich\af31502\dbch\af31501\loch\f31502 SYBASE COMPONENTS }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\insrsid14228180 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0\pararsid14228180 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 
+\ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid13507751\charrsid14228180 \hich\af39\dbch\af31505\loch\f39 May Include Additional Free Download Components  
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 This Program is provided with PowerDesigner Physical Architect }{\rtlch\fcs1 
+\af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid161272 \hich\af39\dbch\af31505\loch\f39 16.5}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 .  Free Download Components in PowerDesigner are identified on the FREE
+\hich\af39\dbch\af31505\loch\f39  DOWNLOAD COMPONENTS/THIRD PARTY TERMS AND CONDITIONS Document for PowerDesigner Physical Architect }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid161272 \hich\af39\dbch\af31505\loch\f39 16.5}{\rtlch\fcs1 
+\af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39 . 
+\par }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 
+\par }\pard\plain \ltrpar\s1\ql \li0\ri0\sb240\sa60\sl276\slmult1\keepn\widctlpar\wrapdefault\aspalpha\aspnum\faauto\outlinelevel0\adjustright\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \ab\af0\afs32\alang1025 \ltrch\fcs0 
+\b\fs32\lang1033\langfe1033\kerning32\loch\af31502\hich\af31502\dbch\af31501\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid7476090\charrsid7476090 \hich\af31502\dbch\af31501\loch\f31502 Wagner, Richard J.
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0\pararsid7476090 \rtlch\fcs1 \af39\afs24\alang1025 \ltrch\fcs0 \fs24\cf1\lang1033\langfe1033\loch\af39\hich\af39\dbch\af31505\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 
+\ab\af39\afs20 \ltrch\fcs0 \b\fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 Component: Mersenne Twister
+\par }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 Copyright (C) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura,
+\par \hich\af39\dbch\af31505\loch\f39 Copyright (C) 2000 - 2009, Richard J. Wagner}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090\charrsid7476090 
+\hich\af39\dbch\af31505\loch\f39 All rights reserved.
+\par 
+\par \hich\af39\dbch\af31505\loch\f39 Redistribution and use in source and binary forms, with or without}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 
+\fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 modification, are permitted provided that the following conditions}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 
+\af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 are met:
+\par 
+\par \hich\af39\dbch\af31505\loch\f39   1. Redistributions of source code must reta\hich\af39\dbch\af31505\loch\f39 in the above copyright}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 
+\af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 notice, this list of conditions and the following disclaimer.
+\par 
+\par \hich\af39\dbch\af31505\loch\f39   2. Redistributions in binary form must reproduce the above copyright}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 
+\fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 notice, this list of conditions and the following disclaimer in the}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 
+\af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 documentation and/or other mate\hich\af39\dbch\af31505\loch\f39 rials provided with the distribution.
+\par 
+\par \hich\af39\dbch\af31505\loch\f39   3. The names of its contributors may not be used to endorse or promote products derived from this software without specific prior written permission.
+\par 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUT
+\hich\af39\dbch\af31505\loch\f39 ORS "AS IS"}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090\charrsid7476090 
+\hich\af39\dbch\af31505\loch\f39 IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 
+\fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39  }{
+\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 LIABLE FOR ANY DIRECT\hich\af39\dbch\af31505\loch\f39 , INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 
+\fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF}{\rtlch\fcs1 
+\af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090\charrsid7476090 
+\hich\af39\dbch\af31505\loch\f39 INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHE\hich\af39\dbch\af31505\loch\f39 R IN}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 
+\af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090 
+\hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE}{\rtlch\fcs1 \af39\afs20 
+\ltrch\fcs0 \fs20\cf0\insrsid7476090 \hich\af39\dbch\af31505\loch\f39  }{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 \fs20\cf0\insrsid7476090\charrsid7476090 \hich\af39\dbch\af31505\loch\f39 POSSIBILITY OF SUCH DAMAGE.}{\rtlch\fcs1 \af39\afs20 \ltrch\fcs0 
+\fs20\cf0\insrsid13507751\charrsid7476090 
+\par }{\rtlch\fcs1 \af39 \ltrch\fcs0 \cf0\insrsid13507751 \hich\af39\dbch\af31505\loch\f39  
+\par }{\rtlch\fcs1 \ab\af0\afs20 \ltrch\fcs0 \b\f0\fs20\cf0\insrsid7476090 \page }{\rtlch\fcs1 \ab\af0\afs20 \ltrch\fcs0 \b\f0\fs20\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 ATTACHMENT 1 }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 
+\f0\fs20\cf0\insrsid13507751 
+\par }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\cf0\insrsid13507751 \hich\af2\dbch\af31505\loch\f2                                  Apache License 
+\par \hich\af2\dbch\af31505\loch\f2           \hich\af2\dbch\af31505\loch\f2                  Version 2.0, January 2004 
+\par \hich\af2\dbch\af31505\loch\f2                         http://www.apache.org/licenses/ 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2    1. Definitions. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2       "License" shall mean the terms and conditions for use, rep\hich\af2\dbch\af31505\loch\f2 roduction, 
+\par \hich\af2\dbch\af31505\loch\f2       and distribution as defined by Sections 1 through 9 of this document. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2       "Licensor" shall mean the copyright owner or entity authorized by 
+\par \hich\af2\dbch\af31505\loch\f2       the copyright owner that is granting the License. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2       "Legal Entity" shall mean the union of the acting entity and all 
+\par \hich\af2\dbch\af31505\loch\f2       other entities that control, are controlled by, or are under common 
+\par \hich\af2\dbch\af31505\loch\f2       control with that entity. For the purposes of this definition, 
+\par \hich\af2\dbch\af31505\loch\f2       "control" means (i) the power, di\hich\af2\dbch\af31505\loch\f2 rect or indirect, to cause the 
+\par \hich\af2\dbch\af31505\loch\f2       direction or management of such entity, whether by contract or 
+\par \hich\af2\dbch\af31505\loch\f2       otherwise, or (ii) ownership of fifty percent (50%) or more of the 
+\par \hich\af2\dbch\af31505\loch\f2       outstanding shares, or (iii) beneficial ownership of such entity. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2      \hich\af2\dbch\af31505\loch\f2  "You" (or "Your") shall mean an individual or Legal Entity 
+\par \hich\af2\dbch\af31505\loch\f2       exercising permissions granted by this License. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2       "Source" form shall mean the preferred form for making modifications, 
+\par \hich\af2\dbch\af31505\loch\f2       including but not limited to software source code, docu\hich\af2\dbch\af31505\loch\f2 mentation 
+\par \hich\af2\dbch\af31505\loch\f2       source, and configuration files. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2       "Object" form shall mean any form resulting from mechanical 
+\par \hich\af2\dbch\af31505\loch\f2       transformation or translation of a Source form, including but 
+\par \hich\af2\dbch\af31505\loch\f2       not limited to compiled object code, generated documentation,\hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2       and conversions to other media types. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2       "Work" shall mean the work of authorship, whether in Source or 
+\par \hich\af2\dbch\af31505\loch\f2       Object form, made available under the License, as indicated by a 
+\par \hich\af2\dbch\af31505\loch\f2       copyright notice that is included in or attached to the wor\hich\af2\dbch\af31505\loch\f2 k 
+\par \hich\af2\dbch\af31505\loch\f2       (an example is provided in the Appendix below). 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2       "Derivative Works" shall mean any work, whether in Source or Object 
+\par \hich\af2\dbch\af31505\loch\f2       form, that is based on (or derived from) the Work and for which the 
+\par \hich\af2\dbch\af31505\loch\f2       editorial revisions, annotations, elaborations, or other modifications 
+\par \hich\af2\dbch\af31505\loch\f2       represent, as a whole, an original work of authorship. For the purposes 
+\par \hich\af2\dbch\af31505\loch\f2       of this License, Derivative Works shall not include works that remain 
+\par \hich\af2\dbch\af31505\loch\f2       separable from, \hich\af2\dbch\af31505\loch\f2 or merely link (or bind by name) to the interfaces of, 
+\par \hich\af2\dbch\af31505\loch\f2       the Work and Derivative Works thereof. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2       "Contribution" shall mean any work of authorship, including 
+\par \hich\af2\dbch\af31505\loch\f2       the original version of the Work and any modifications or additions 
+\par \hich\af2\dbch\af31505\loch\f2       to t\hich\af2\dbch\af31505\loch\f2 hat Work or Derivative Works thereof, that is intentionally 
+\par \hich\af2\dbch\af31505\loch\f2       submitted to Licensor for inclusion in the Work by the copyright owner 
+\par \hich\af2\dbch\af31505\loch\f2       or by an individual or Legal Entity authorized to submit on behalf of 
+\par \hich\af2\dbch\af31505\loch\f2       the copyright owner. For the purpo\hich\af2\dbch\af31505\loch\f2 ses of this definition, "submitted" 
+\par \hich\af2\dbch\af31505\loch\f2       means any form of electronic, verbal, or written communication sent 
+\par \hich\af2\dbch\af31505\loch\f2       to the Licensor or its representatives, including but not limited to 
+\par \hich\af2\dbch\af31505\loch\f2       communication on electronic mailing lists, source code control\hich\af2\dbch\af31505\loch\f2  systems, 
+\par \hich\af2\dbch\af31505\loch\f2       and issue tracking systems that are managed by, or on behalf of, the 
+\par \hich\af2\dbch\af31505\loch\f2       Licensor for the purpose of discussing and improving the Work, but 
+\par \hich\af2\dbch\af31505\loch\f2       excluding communication that is conspicuously marked or otherwise 
+\par \hich\af2\dbch\af31505\loch\f2       designated in wr\hich\af2\dbch\af31505\loch\f2 iting by the copyright owner as "Not a Contribution." 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2       "Contributor" shall mean Licensor and any individual or Legal Entity 
+\par \hich\af2\dbch\af31505\loch\f2       on behalf of whom a Contribution has been received by Licensor and 
+\par \hich\af2\dbch\af31505\loch\f2       subsequently incorporated within the Work. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2    2. Grant of Copyright License. Subject to the terms and conditions of 
+\par \hich\af2\dbch\af31505\loch\f2       this License, each Contributor hereby grants to You a perpetual, 
+\par \hich\af2\dbch\af31505\loch\f2       worldwide, non-exclusive, no-charge, royalty-free, irrevocable 
+\par \hich\af2\dbch\af31505\loch\f2       copyright license to reproduce,\hich\af2\dbch\af31505\loch\f2  prepare Derivative Works of, 
+\par \hich\af2\dbch\af31505\loch\f2       publicly display, publicly perform, sublicense, and distribute the 
+\par \hich\af2\dbch\af31505\loch\f2       Work and such Derivative Works in Source or Object form. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2    3. Grant of Patent License. Subject to the terms and conditions of 
+\par \hich\af2\dbch\af31505\loch\f2       this License, each Contributor hereby grants to You a perpetual, 
+\par \hich\af2\dbch\af31505\loch\f2       worldwide, non-exclusive, no-charge, royalty-free, irrevocable 
+\par \hich\af2\dbch\af31505\loch\f2       (except as stated in this section) patent license to make, have made, 
+\par \hich\af2\dbch\af31505\loch\f2       use, offer to sell, sell, impor\hich\af2\dbch\af31505\loch\f2 t, and otherwise transfer the Work, 
+\par \hich\af2\dbch\af31505\loch\f2       where such license applies only to those patent claims licensable 
+\par \hich\af2\dbch\af31505\loch\f2       by such Contributor that are necessarily infringed by their 
+\par \hich\af2\dbch\af31505\loch\f2       Contribution(s) alone or by combination of their Contribution(s) 
+\par \hich\af2\dbch\af31505\loch\f2       w\hich\af2\dbch\af31505\loch\f2 ith the Work to which such Contribution(s) was submitted. If You 
+\par \hich\af2\dbch\af31505\loch\f2       institute patent litigation against any entity (including a 
+\par \hich\af2\dbch\af31505\loch\f2       cross-claim or counterclaim in a lawsuit) alleging that the Work 
+\par \hich\af2\dbch\af31505\loch\f2       or a Contribution incorporated within the Wor\hich\af2\dbch\af31505\loch\f2 k constitutes direct 
+\par \hich\af2\dbch\af31505\loch\f2       or contributory patent infringement, then any patent licenses 
+\par \hich\af2\dbch\af31505\loch\f2       granted to You under this License for that Work shall terminate 
+\par \hich\af2\dbch\af31505\loch\f2       as of the date such litigation is filed. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2    4. Redistribution. You may reproduce and \hich\af2\dbch\af31505\loch\f2 distribute copies of the 
+\par \hich\af2\dbch\af31505\loch\f2       Work or Derivative Works thereof in any medium, with or without 
+\par \hich\af2\dbch\af31505\loch\f2       modifications, and in Source or Object form, provided that You 
+\par \hich\af2\dbch\af31505\loch\f2       meet the following conditions: 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2       (a) You must give any other recipients of t\hich\af2\dbch\af31505\loch\f2 he Work or 
+\par \hich\af2\dbch\af31505\loch\f2           Derivative Works a copy of this License; and 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2       (b) You must cause any modified files to carry prominent notices 
+\par \hich\af2\dbch\af31505\loch\f2           stating that You changed the files; and 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2       (c) Y\hich\af2\dbch\af31505\loch\f2 ou must retain, in the Source form of any Derivative Works 
+\par \hich\af2\dbch\af31505\loch\f2           that You distribute, all copyright, patent, trademark, and 
+\par \hich\af2\dbch\af31505\loch\f2           attribution notices from the Source form of the Work, 
+\par \hich\af2\dbch\af31505\loch\f2           excluding those notices that do not pertain to any \hich\af2\dbch\af31505\loch\f2 part of 
+\par \hich\af2\dbch\af31505\loch\f2           the Derivative Works; and 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2       (d) If the Work includes a "NOTICE" text file as part of its 
+\par \hich\af2\dbch\af31505\loch\f2           distribution, then any Derivative Works that You distribute must 
+\par \hich\af2\dbch\af31505\loch\f2           include a readable copy of the attribution notices con\hich\af2\dbch\af31505\loch\f2 tained 
+\par \hich\af2\dbch\af31505\loch\f2           within such NOTICE file, excluding those notices that do not 
+\par \hich\af2\dbch\af31505\loch\f2           pertain to any part of the Derivative Works, in at least one 
+\par \hich\af2\dbch\af31505\loch\f2           of the following places: within a NOTICE text file distributed 
+\par \hich\af2\dbch\af31505\loch\f2           as part of the Deriv\hich\af2\dbch\af31505\loch\f2 ative Works; within the Source form or 
+\par \hich\af2\dbch\af31505\loch\f2           documentation, if provided along with the Derivative Works; or, 
+\par \hich\af2\dbch\af31505\loch\f2           within a display generated by the Derivative Works, if and 
+\par \hich\af2\dbch\af31505\loch\f2           wherever such third-party notices normally appear. The conten\hich\af2\dbch\af31505\loch\f2 ts 
+\par \hich\af2\dbch\af31505\loch\f2           of the NOTICE file are for informational purposes only and 
+\par \hich\af2\dbch\af31505\loch\f2           do not modify the License. You may add Your own attribution 
+\par \hich\af2\dbch\af31505\loch\f2           notices within Derivative Works that You distribute, alongside 
+\par \hich\af2\dbch\af31505\loch\f2           or as an addendum to the NO\hich\af2\dbch\af31505\loch\f2 TICE text from the Work, provided 
+\par \hich\af2\dbch\af31505\loch\f2           that such additional attribution notices cannot be construed 
+\par \hich\af2\dbch\af31505\loch\f2           as modifying the License. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2       You may add Your own copyright statement to Your modifications and 
+\par \hich\af2\dbch\af31505\loch\f2       may provide additional or diff\hich\af2\dbch\af31505\loch\f2 erent license terms and conditions 
+\par \hich\af2\dbch\af31505\loch\f2       for use, reproduction, or distribution of Your modifications, or 
+\par \hich\af2\dbch\af31505\loch\f2       for any such Derivative Works as a whole, provided Your use, 
+\par \hich\af2\dbch\af31505\loch\f2       reproduction, and distribution of the Work otherwise complies with 
+\par \hich\af2\dbch\af31505\loch\f2       the conditions stated in this License. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2    5. Submission of Contributions. Unless You explicitly state otherwise, 
+\par \hich\af2\dbch\af31505\loch\f2       any Contribution intentionally submitted for inclusion in the Work 
+\par \hich\af2\dbch\af31505\loch\f2       by You to the Licensor shall be under the terms and c\hich\af2\dbch\af31505\loch\f2 onditions of 
+\par \hich\af2\dbch\af31505\loch\f2       this License, without any additional terms or conditions. 
+\par \hich\af2\dbch\af31505\loch\f2       Notwithstanding the above, nothing herein shall supersede or modify 
+\par \hich\af2\dbch\af31505\loch\f2       the terms of any separate license agreement you may have executed 
+\par \hich\af2\dbch\af31505\loch\f2       with Licensor regarding\hich\af2\dbch\af31505\loch\f2  such Contributions. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2    6. Trademarks. This License does not grant permission to use the trade 
+\par \hich\af2\dbch\af31505\loch\f2       names, trademarks, service marks, or product names of the Licensor, 
+\par \hich\af2\dbch\af31505\loch\f2       except as required for reasonable and customary use in describing the 
+\par \hich\af2\dbch\af31505\loch\f2      \hich\af2\dbch\af31505\loch\f2  origin of the Work and reproducing the content of the NOTICE file. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2    7. Disclaimer of Warranty. Unless required by applicable law or 
+\par \hich\af2\dbch\af31505\loch\f2       agreed to in writing, Licensor provides the Work (and each 
+\par \hich\af2\dbch\af31505\loch\f2       Contributor provides its Contributions) on an\hich\af2\dbch\af31505\loch\f2  "AS IS" BASIS, 
+\par \hich\af2\dbch\af31505\loch\f2       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
+\par \hich\af2\dbch\af31505\loch\f2       implied, including, without limitation, any warranties or conditions 
+\par \hich\af2\dbch\af31505\loch\f2       of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A 
+\par \hich\af2\dbch\af31505\loch\f2       PARTICULAR PURPOS\hich\af2\dbch\af31505\loch\f2 E. You are solely responsible for determining the 
+\par \hich\af2\dbch\af31505\loch\f2       appropriateness of using or redistributing the Work and assume any 
+\par \hich\af2\dbch\af31505\loch\f2       risks associated with Your exercise of permissions under this License. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2    8. Limitation of Liability. In no event and unde\hich\af2\dbch\af31505\loch\f2 r no legal theory, 
+\par \hich\af2\dbch\af31505\loch\f2       whether in tort (including negligence), contract, or otherwise, 
+\par \hich\af2\dbch\af31505\loch\f2       unless required by applicable law (such as deliberate and grossly 
+\par \hich\af2\dbch\af31505\loch\f2       negligent acts) or agreed to in writing, shall any Contributor be 
+\par \hich\af2\dbch\af31505\loch\f2       liable to You for damages, including any direct, indirect, special, 
+\par \hich\af2\dbch\af31505\loch\f2       incidental, or consequential damages of any character arising as a 
+\par \hich\af2\dbch\af31505\loch\f2       result of this License or out of the use or inability to use the 
+\par \hich\af2\dbch\af31505\loch\f2       Work (including but not limit\hich\af2\dbch\af31505\loch\f2 ed to damages for loss of goodwill, 
+\par \hich\af2\dbch\af31505\loch\f2       work stoppage, computer failure or malfunction, or any and all 
+\par \hich\af2\dbch\af31505\loch\f2       other commercial damages or losses), even if such Contributor 
+\par \hich\af2\dbch\af31505\loch\f2       has been advised of the possibility of such damages. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2    9. Accepting Wa\hich\af2\dbch\af31505\loch\f2 rranty or Additional Liability. While redistributing 
+\par \hich\af2\dbch\af31505\loch\f2       the Work or Derivative Works thereof, You may choose to offer, 
+\par \hich\af2\dbch\af31505\loch\f2       and charge a fee for, acceptance of support, warranty, indemnity, 
+\par \hich\af2\dbch\af31505\loch\f2       or other liability obligations and/or rights consiste\hich\af2\dbch\af31505\loch\f2 nt with this 
+\par \hich\af2\dbch\af31505\loch\f2       License. However, in accepting such obligations, You may act only 
+\par \hich\af2\dbch\af31505\loch\f2       on Your own behalf and on Your sole responsibility, not on behalf 
+\par \hich\af2\dbch\af31505\loch\f2       of any other Contributor, and only if You agree to indemnify, 
+\par \hich\af2\dbch\af31505\loch\f2       defend, and hold each\hich\af2\dbch\af31505\loch\f2  Contributor harmless for any liability 
+\par \hich\af2\dbch\af31505\loch\f2       incurred by, or claims asserted against, such Contributor by reason 
+\par \hich\af2\dbch\af31505\loch\f2       of your accepting any such warranty or additional liability. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2    END OF TERMS AND CONDITIONS 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2    APPENDIX: How to apply the Apache\hich\af2\dbch\af31505\loch\f2  License to your work. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2       To apply the Apache License to your work, attach the following 
+\par \hich\af2\dbch\af31505\loch\f2       boilerplate notice, with the fields enclosed by brackets "[]" 
+\par \hich\af2\dbch\af31505\loch\f2       replaced with your own identifying information. (Don't include 
+\par \hich\af2\dbch\af31505\loch\f2       the brackets!) \hich\af2\dbch\af31505\loch\f2  The text should be enclosed in the appropriate 
+\par \hich\af2\dbch\af31505\loch\f2       comment syntax for the file format. We also recommend that a 
+\par \hich\af2\dbch\af31505\loch\f2       file or class name and description of purpose be included on the 
+\par \hich\af2\dbch\af31505\loch\f2       same "printed page" as the copyright notice for easier 
+\par \hich\af2\dbch\af31505\loch\f2       identification within third-party archives. 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2    Copyright [yyyy] [name of copyright owner] 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2    Licensed under the Apache License, Version 2.0 (the "License"); 
+\par \hich\af2\dbch\af31505\loch\f2    you may not use this file except in compliance with the License. 
+\par \hich\af2\dbch\af31505\loch\f2    You may obtain\hich\af2\dbch\af31505\loch\f2  a copy of the License at 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2        http://www.apache.org/licenses/LICENSE-2.0 
+\par \hich\af2\dbch\af31505\loch\f2  
+\par \hich\af2\dbch\af31505\loch\f2    Unless required by applicable law or agreed to in writing, software 
+\par \hich\af2\dbch\af31505\loch\f2    distributed under the License is distributed on an "AS IS" BASIS, 
+\par \hich\af2\dbch\af31505\loch\f2    WITHOUT WARRANTIES OR CONDITI\hich\af2\dbch\af31505\loch\f2 ONS OF ANY KIND, either express or implied. 
+\par \hich\af2\dbch\af31505\loch\f2    See the License for the specific language governing permissions and 
+\par \hich\af2\dbch\af31505\loch\f2    limitations under the License. 
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 ATTACHMENT 2 
+\par }{\rtlch\fcs1 \ab\af0 \ltrch\fcs0 \b\f0\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 Eclipse Public License - v 1.0}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 
+THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE PUBLIC LICENSE ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THE PROGRAM CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS AGREEMENT.}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \ab\af0\afs20 \ltrch\fcs0 \b\f0\fs20\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 1. DEFINITIONS}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 "Contribution" means:}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 a) in t\hich\af0\dbch\af31505\loch\f0 
+he case of the initial Contributor, the initial code and documentation distributed under this Agreement, and b) in the case of each subsequent Contributor:}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 i) changes to the Program, and}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 ii) additions to the Program;}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 where such changes and/or additions \hich\af0\dbch\af31505\loch\f0 
+to the Program originate from and are distributed by that particular Contributor. A Contribution 'originates' from a Contributor if it was added to the Program by such Contributor itself or anyone acting on such Contributor's behalf. Contributions do not 
+\hich\af0\dbch\af31505\loch\f0 i\hich\af0\dbch\af31505\loch\f0 
+nclude additions to the Program which: (i) are separate modules of software distributed in conjunction with the Program under their own license agreement, and (ii) are not derivative works of the Program. }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 "Contributor" means any person or entity that dis\hich\af0\dbch\af31505\loch\f0 tributes the Program.}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid13507751 
+\hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 
+"Licensed Patents " mean patent claims licensable by a Contributor which are necessarily infringed by the use or sale of its Contribution alone or when combined with the Program. }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid13507751 
+\hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 "Program" means the Contributions distributed in ac\hich\af0\dbch\af31505\loch\f0 cordance with this Agreement.}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 "Recipient" means anyone who receives the Program under this Agreement, including all Contributors.}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid13507751 
+\hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \ab\af0\afs20 \ltrch\fcs0 \b\f0\fs20\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 2. GRANT OF RIGHTS}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\cf0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 a) Subject to the terms of this Agreement, each Cont\hich\af0\dbch\af31505\loch\f0 
+ributor hereby grants Recipient a non-exclusive, worldwide, royalty-free copyright license to}{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\cf6\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 
+\hich\af0\dbch\af31505\loch\f0 reproduce, prepare derivative works of, publicly display, publicly perform, distribute and sublicense the Contribution of such Contributor, if any, and such deriv\hich\af0\dbch\af31505\loch\f0 
+ative works, in source code and object code form.}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 b) Subject to the terms of this Agreement, each Contributor hereby grants Recipient a non-exclusive, worldwide,}{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 
+\f0\fs20\cf11\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 royalty-free patent license under Licensed Patents to make, use, sell, offer to sell, import 
+\hich\af0\dbch\af31505\loch\f0 
+and otherwise transfer the Contribution of such Contributor, if any, in source code and object code form. This patent license shall apply to the combination of the Contribution and the Program if, at the time the Contribution is added by the Contributor, 
+\hich\af0\dbch\af31505\loch\f0 s\hich\af0\dbch\af31505\loch\f0 
+uch addition of the Contribution causes such combination to be covered by the Licensed Patents. The patent license shall not apply to any other combinations which include the Contribution. No hardware per se is licensed hereunder. }{\rtlch\fcs1 \af0 
+\ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 c) Recipient understand\hich\af0\dbch\af31505\loch\f0 
+s that although each Contributor grants the licenses to its Contributions set forth herein, no assurances are provided by any Contributor that the Program does not infringe the patent or other intellectual property rights of any other entity. Each Contrib
+\hich\af0\dbch\af31505\loch\f0 u\hich\af0\dbch\af31505\loch\f0 
+tor disclaims any liability to Recipient for claims brought by any other entity based on infringement of intellectual property rights or otherwise. As a condition to exercising the rights and licenses granted hereunder, each Recipient hereby assumes sole 
+\hich\af0\dbch\af31505\loch\f0 r\hich\af0\dbch\af31505\loch\f0 esponsibility to secure any other intellectual 
+\par \hich\af0\dbch\af31505\loch\f0 property rights needed, if any. For example, if a third party patent license is required to allow Recipient to distribute the Program, it is Recipient's responsibility to acquire that license before distribut
+\hich\af0\dbch\af31505\loch\f0 ing the Program.}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 
+d) Each Contributor represents that to its knowledge it has sufficient copyright rights in its Contribution, if any, to grant the copyright license set forth in this Agreement. }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 
+\hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \ab\af0\afs20 \ltrch\fcs0 \b\f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 3. REQUIREMENTS}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 A Contributor may choose to distribute th\hich\af0\dbch\af31505\loch\f0 e Program in object code form under its own license agreement, provided that:}{
+\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 a) it complies with the terms and conditions of this Agreement; and}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 b) its license agreement:}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 i) effectively disclaims on behalf of all Contributors all warranties and condit\hich\af0\dbch\af31505\loch\f0 
+ions, express and implied, including warranties or conditions of title and non-infringement, and implied warranties or conditions of merchantability and fitness for a particular purpose; }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 
+\hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 ii) effectively excludes on behalf of all Contributors all liabilit\hich\af0\dbch\af31505\loch\f0 
+y for damages, including direct, indirect, special, incidental and consequential damages, such as lost profits; }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 iii) states that any provisions which differ from this Agreement are offered by that Contributor alone and not by any other party; and}{\rtlch\fcs1 \af0 
+\ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 iv) st\hich\af0\dbch\af31505\loch\f0 
+ates that source code for the Program is available from such Contributor, and informs licensees how to obtain it in a reasonable manner on or through a medium customarily used for software exchange.}{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 
+\f0\fs20\cf2\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 When the Program is made available in source code form:}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 a) it must be made available under this Agreement; and }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 b) a copy of this Agreement must be included with each copy of the Program. }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 Contributors may not remove or alter any copyright notices contained within the Program. }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 
+\hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 Each Contributor must ident\hich\af0\dbch\af31505\loch\f0 
+ify itself as the originator of its Contribution, if any, in a manner that reasonably allows subsequent Recipients to identify the originator of the Contribution. }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \ab\af0\afs20 \ltrch\fcs0 \b\f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 4. COMMERCIAL DISTRIBUTION}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 Commercial distributors of software may accept certain respons\hich\af0\dbch\af31505\loch\f0 
+ibilities with respect to end users, business partners and the like. While this license is intended to facilitate the commercial use of the Program, the Contributor who includes the Program in a commercial product offering should do so in a manner which d
+\hich\af0\dbch\af31505\loch\f0 o\hich\af0\dbch\af31505\loch\f0 
+es not create potential liability for other Contributors. Therefore, if a Contributor includes the Program in a commercial product offering, such Contributor ("Commercial Contributor") hereby agrees to defend and indemnify every other Contributor ("Indemn
+\hich\af0\dbch\af31505\loch\f0 i\hich\af0\dbch\af31505\loch\f0 
+fied Contributor") against any losses, damages and costs (collectively "Losses") arising from claims, lawsuits and other legal actions brought by a third party against the Indemnified Contributor to the extent caused by the acts or omissions of such Comme
+\hich\af0\dbch\af31505\loch\f0 r\hich\af0\dbch\af31505\loch\f0 
+cial Contributor in connection with its distribution of the Program in a commercial product offering. The obligations in this section do not apply to any claims or Losses relating to any actual or alleged intellectual property infringement. In order to qu
+\hich\af0\dbch\af31505\loch\f0 a\hich\af0\dbch\af31505\loch\f0 
+lify, an Indemnified Contributor must: a) promptly notify the Commercial Contributor in writing of such claim, and b) allow the Commercial Contributor to control, and cooperate with the Commercial Contributor in, the defense and any related settlement neg
+\hich\af0\dbch\af31505\loch\f0 o\hich\af0\dbch\af31505\loch\f0 tiations. The Indemnified Contributor may participate in any such claim at its own expense.}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 For example, a Contributor might include the Program in a commercial product offering, Product X. That Contributor is then a Commercial Contributor. If that Comme
+\hich\af0\dbch\af31505\loch\f0 rcial Contributor then makes performance claims, or offers warranties related to Product X, those performance claims and warranties are such 
+\par \hich\af0\dbch\af31505\loch\f0 Commercial Contributor's responsibility alone. Under this section, the Commercial Contributor would have to defend\hich\af0\dbch\af31505\loch\f0 
+ claims against the other Contributors related to those performance claims and warranties, and if a court requires any other Contributor to pay any damages as a result, the Commercial Contributor must pay those damages.}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \ab\af0\afs20 \ltrch\fcs0 \b\f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 5. NO WARRANTY}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 EXCEPT AS EXPRESS\hich\af0\dbch\af31505\loch\f0 
+LY SET FORTH IN THIS AGREEMENT, THE PROGRAM IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED INCLUDING, WITHOUT LIMITATION, ANY WARRANTIES OR CONDITIONS OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY OR
+\hich\af0\dbch\af31505\loch\f0  \hich\af0\dbch\af31505\loch\f0 
+FITNESS FOR A PARTICULAR PURPOSE. Each Recipient is solely responsible for determining the appropriateness of using and distributing the Program and assumes all risks associated with its exercise of rights under this Agreement , including but not limited 
+\hich\af0\dbch\af31505\loch\f0 t\hich\af0\dbch\af31505\loch\f0 o the risks and costs of program errors, compliance with applicable laws, damage to or loss of data, programs or equipment, and unavailability or interruption of operations. }{\rtlch\fcs1 
+\af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \ab\af0\afs20 \ltrch\fcs0 \b\f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 6. DISCLAIMER OF LIABILITY}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 EXCEPT AS EXPRESSLY SET FORTH IN THIS AGREEMENT, NE\hich\af0\dbch\af31505\loch\f0 
+ITHER RECIPIENT NOR ANY CONTRIBUTORS SHALL HAVE ANY LIABILITY FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING WITHOUT LIMITATION LOST PROFITS), HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRAC
+\hich\af0\dbch\af31505\loch\f0 T\hich\af0\dbch\af31505\loch\f0 
+, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OR DISTRIBUTION OF THE PROGRAM OR THE EXERCISE OF ANY RIGHTS GRANTED HEREUNDER, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.}{\rtlch\fcs1 \af0 
+\ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \ab\af0\afs20 \ltrch\fcs0 \b\f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 7. GENERAL}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 
+If any provision of this Agreement is invalid or unenforceable under applicable law, it shall not affect the validity or enforceability of the remainder of the terms of this Agreement, and without further action by the parties hereto, such provision shall
+\hich\af0\dbch\af31505\loch\f0  \hich\af0\dbch\af31505\loch\f0 be reformed to the minimum extent necessary to make such provision valid and enforceable.}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 
+If Recipient institutes patent litigation against any entity (including a cross-claim or counterclaim in a lawsuit) alleging that the Program itself (excluding comb\hich\af0\dbch\af31505\loch\f0 
+inations of the Program with other software or hardware) infringes such Recipient's patent(s), then such Recipient's rights granted under Section 2(b) shall terminate as of the date such litigation is filed. }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 All Recipient's rights under this Agreement sh\hich\af0\dbch\af31505\loch\f0 
+all terminate if it fails to comply with any of the material terms or conditions of this Agreement and does not cure such failure in a reasonable period of time after becoming aware of such noncompliance. If all Recipient's rights under this Agreement ter
+\hich\af0\dbch\af31505\loch\f0 m\hich\af0\dbch\af31505\loch\f0 
+inate, Recipient agrees to cease use and distribution of the Program as soon as reasonably practicable. However, Recipient's obligations under this Agreement and any licenses granted by Recipient relating to the Program shall continue and survive. }{
+\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0  
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 Everyo\hich\af0\dbch\af31505\loch\f0 
+ne is permitted to copy and distribute copies of this Agreement, but in order to avoid inconsistency the Agreement is copyrighted and may only be modified in the following manner. The Agreement Steward reserves the right to publish new versions (including
+\hich\af0\dbch\af31505\loch\f0  \hich\af0\dbch\af31505\loch\f0 
+revisions) of this Agreement from time to time. No one other than the Agreement Steward has the right to modify this Agreement. The Eclipse Foundation is the initial Agreement Steward. The Eclipse Foundation may assign the responsibility to serve as the A
+\hich\af0\dbch\af31505\loch\f0 g\hich\af0\dbch\af31505\loch\f0 
+reement Steward to a suitable separate entity. Each new version of the Agreement will be given a distinguishing version number. The Program (including Contributions) may always be distributed subject to the version of the Agreement under which it was rece
+\hich\af0\dbch\af31505\loch\f0 i\hich\af0\dbch\af31505\loch\f0 ved. In addition, after a new version of the 
+\par \hich\af0\dbch\af31505\loch\f0 Agreement is published, Contributor may elect to distribute the Program (including its Contributions) under the new version. Except as expressly stated in Sections 2(a) and 2(b) above, Recipient receives no rig
+\hich\af0\dbch\af31505\loch\f0 
+hts or licenses to the intellectual property of any Contributor under this Agreement, whether expressly, by implication, estoppel or otherwise. All rights in the Program not expressly granted under this Agreement are reserved.}{\rtlch\fcs1 \af0 
+\ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par }{\rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \f0\fs20\insrsid13507751 \hich\af0\dbch\af31505\loch\f0 This Agreement is governed \hich\af0\dbch\af31505\loch\f0 
+by the laws of the State of New York and the intellectual property laws of the United States of America. No party to this Agreement will bring a legal action under this Agreement more than one year after the cause of action arose. Each party waives its ri
+\hich\af0\dbch\af31505\loch\f0 g\hich\af0\dbch\af31505\loch\f0 hts to a jury trial in any resulting litigation.}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid13507751 \hich\af0\dbch\af31505\loch\f0   
+\par \hich\af0\dbch\af31505\loch\f0   
+\par \hich\af0\dbch\af31505\loch\f0  
+\par }{\*\themedata 504b030414000600080000002100e9de0fbfff0000001c020000130000005b436f6e74656e745f54797065735d2e786d6cac91cb4ec3301045f748fc83e52d4a
+9cb2400825e982c78ec7a27cc0c8992416c9d8b2a755fbf74cd25442a820166c2cd933f79e3be372bd1f07b5c3989ca74aaff2422b24eb1b475da5df374fd9ad
+5689811a183c61a50f98f4babebc2837878049899a52a57be670674cb23d8e90721f90a4d2fa3802cb35762680fd800ecd7551dc18eb899138e3c943d7e503b6
+b01d583deee5f99824e290b4ba3f364eac4a430883b3c092d4eca8f946c916422ecab927f52ea42b89a1cd59c254f919b0e85e6535d135a8de20f20b8c12c3b0
+0c895fcf6720192de6bf3b9e89ecdbd6596cbcdd8eb28e7c365ecc4ec1ff1460f53fe813d3cc7f5b7f020000ffff0300504b030414000600080000002100a5d6
+a7e7c0000000360100000b0000005f72656c732f2e72656c73848fcf6ac3300c87ef85bd83d17d51d2c31825762fa590432fa37d00e1287f68221bdb1bebdb4f
+c7060abb0884a4eff7a93dfeae8bf9e194e720169aaa06c3e2433fcb68e1763dbf7f82c985a4a725085b787086a37bdbb55fbc50d1a33ccd311ba548b6309512
+0f88d94fbc52ae4264d1c910d24a45db3462247fa791715fd71f989e19e0364cd3f51652d73760ae8fa8c9ffb3c330cc9e4fc17faf2ce545046e37944c69e462
+a1a82fe353bd90a865aad41ed0b5b8f9d6fd010000ffff0300504b0304140006000800000021006b799616830000008a0000001c0000007468656d652f746865
+6d652f7468656d654d616e616765722e786d6c0ccc4d0ac3201040e17da17790d93763bb284562b2cbaebbf600439c1a41c7a0d29fdbd7e5e38337cedf14d59b
+4b0d592c9c070d8a65cd2e88b7f07c2ca71ba8da481cc52c6ce1c715e6e97818c9b48d13df49c873517d23d59085adb5dd20d6b52bd521ef2cdd5eb9246a3d8b
+4757e8d3f729e245eb2b260a0238fd010000ffff0300504b03041400060008000000210030dd4329a8060000a41b0000160000007468656d652f7468656d652f
+7468656d65312e786d6cec594f6fdb3614bf0fd87720746f6327761a07758ad8b19b2d4d1bc46e871e698996d850a240d2497d1bdae38001c3ba618715d86d87
+615b8116d8a5fb34d93a6c1dd0afb0475292c5585e9236d88aad3e2412f9e3fbff1e1fa9abd7eec70c1d1221294fda5efd72cd4324f1794093b0eddd1ef62fad
+79482a9c0498f184b4bd2991deb58df7dfbb8ad755446282607d22d771db8b944ad79796a40fc3585ee62949606ecc458c15bc8a702910f808e8c66c69b9565b
+5d8a314d3c94e018c8de1a8fa94fd05093f43672e23d06af89927ac06762a049136785c10607758d9053d965021d62d6f6804fc08f86e4bef210c352c144dbab
+999fb7b4717509af678b985ab0b6b4ae6f7ed9ba6c4170b06c788a705430adf71bad2b5b057d03606a1ed7ebf5babd7a41cf00b0ef83a6569632cd467faddec9
+699640f6719e76b7d6ac355c7c89feca9cccad4ea7d36c65b258a206641f1b73f8b5da6a6373d9c11b90c537e7f08dce66b7bbeae00dc8e257e7f0fd2badd586
+8b37a088d1e4600ead1ddaef67d40bc898b3ed4af81ac0d76a197c86826828a24bb318f3442d8ab518dfe3a20f000d6458d104a9694ac6d88728eee2782428d6
+0cf03ac1a5193be4cbb921cd0b495fd054b5bd0f530c1931a3f7eaf9f7af9e3f45c70f9e1d3ff8e9f8e1c3e3073f5a42ceaa6d9c84e5552fbffdeccfc71fa33f
+9e7ef3f2d117d57859c6fffac327bffcfc793510d26726ce8b2f9ffcf6ecc98baf3efdfdbb4715f04d814765f890c644a29be408edf3181433567125272371be
+15c308d3f28acd249438c19a4b05fd9e8a1cf4cd296699771c393ac4b5e01d01e5a30a787d72cf1178108989a2159c77a2d801ee72ce3a5c545a6147f32a9979
+3849c26ae66252c6ed637c58c5bb8b13c7bfbd490a75330f4b47f16e441c31f7184e140e494214d273fc80900aedee52ead87597fa824b3e56e82e451d4c2b4d
+32a423279a668bb6690c7e9956e90cfe766cb37b077538abd27a8b1cba48c80acc2a841f12e698f13a9e281c57911ce298950d7e03aba84ac8c154f8655c4f2a
+f074481847bd804859b5e696007d4b4edfc150b12addbecba6b18b148a1e54d1bc81392f23b7f84137c2715a851dd0242a633f900710a218ed715505dfe56e86
+e877f0034e16bafb0e258ebb4faf06b769e888340b103d331115bebc4eb813bf83291b63624a0d1475a756c734f9bbc2cd28546ecbe1e20a3794ca175f3fae90
+fb6d2dd99bb07b55e5ccf68942bd0877b23c77b908e8db5f9db7f024d9239010f35bd4bbe2fcae387bfff9e2bc289f2fbe24cfaa301468dd8bd846dbb4ddf1c2
+ae7b4c191ba8292337a469bc25ec3d411f06f53a73e224c5292c8de0516732307070a1c0660d125c7d44553488700a4d7bddd3444299910e254ab984c3a219ae
+a4adf1d0f82b7bd46cea4388ad1c12ab5d1ed8e1153d9c9f350a3246aad01c6873462b9ac05999ad5cc988826eafc3acae853a33b7ba11cd1445875ba1b236b1
+399483c90bd560b0b0263435085a21b0f22a9cf9356b38ec6046026d77eba3dc2dc60b17e92219e180643ed27acffba86e9c94c7ca9c225a0f1b0cfae0788ad5
+4adc5a9aec1b703b8b93caec1a0bd8e5de7b132fe5113cf312503b998e2c2927274bd051db6b35979b1ef271daf6c6704e86c73805af4bdd476216c26593af84
+0dfb5393d964f9cc9bad5c313709ea70f561ed3ea7b053075221d51696910d0d339585004b34272bff7213cc7a510a5454a3b349b1b206c1f0af490176745d4b
+c663e2abb2b34b23da76f6352ba57ca2881844c1111ab189d8c7e07e1daaa04f40255c77988aa05fe06e4e5bdb4cb9c5394bbaf28d98c1d971ccd20867e556a7
+689ec9166e0a522183792b8907ba55ca6e943bbf2a26e52f48957218ffcf54d1fb09dc3eac04da033e5c0d0b8c74a6b43d2e54c4a10aa511f5fb021a07533b20
+5ae07e17a621a8e082dafc17e450ffb739676998b48643a4daa7211214f623150942f6a02c99e83b85583ddbbb2c4996113211551257a656ec1139246ca86be0
+aadedb3d1441a89b6a929501833b197fee7b9641a3503739e57c732a59b1f7da1cf8a73b1f9bcca0945b874d4393dbbf10b1680f66bbaa5d6f96e77b6f59113d
+316bb31a795600b3d256d0cad2fe354538e7566b2bd69cc6cbcd5c38f0e2bcc63058344429dc2121fd07f63f2a7c66bf76e80d75c8f7a1b622f878a18941d840
+545fb28d07d205d20e8ea071b283369834296bdaac75d256cb37eb0bee740bbe278cad253b8bbfcf69eca23973d939b97891c6ce2cecd8da8e2d343578f6648a
+c2d0383fc818c798cf64e52f597c740f1cbd05df0c264c49134cf09d4a60e8a107260f20f92d47b374e32f000000ffff0300504b030414000600080000002100
+0dd1909fb60000001b010000270000007468656d652f7468656d652f5f72656c732f7468656d654d616e616765722e786d6c2e72656c73848f4d0ac2301484f7
+8277086f6fd3ba109126dd88d0add40384e4350d363f2451eced0dae2c082e8761be9969bb979dc9136332de3168aa1a083ae995719ac16db8ec8e4052164e89
+d93b64b060828e6f37ed1567914b284d262452282e3198720e274a939cd08a54f980ae38a38f56e422a3a641c8bbd048f7757da0f19b017cc524bd62107bd500
+1996509affb3fd381a89672f1f165dfe514173d9850528a2c6cce0239baa4c04ca5bbabac4df000000ffff0300504b01022d0014000600080000002100e9de0f
+bfff0000001c0200001300000000000000000000000000000000005b436f6e74656e745f54797065735d2e786d6c504b01022d0014000600080000002100a5d6
+a7e7c0000000360100000b00000000000000000000000000300100005f72656c732f2e72656c73504b01022d00140006000800000021006b799616830000008a
+0000001c00000000000000000000000000190200007468656d652f7468656d652f7468656d654d616e616765722e786d6c504b01022d00140006000800000021
+0030dd4329a8060000a41b00001600000000000000000000000000d60200007468656d652f7468656d652f7468656d65312e786d6c504b01022d001400060008
+00000021000dd1909fb60000001b0100002700000000000000000000000000b20900007468656d652f7468656d652f5f72656c732f7468656d654d616e616765722e786d6c2e72656c73504b050600000000050005005d010000ad0a00000000}
+{\*\colorschememapping 3c3f786d6c2076657273696f6e3d22312e302220656e636f64696e673d225554462d3822207374616e64616c6f6e653d22796573223f3e0d0a3c613a636c724d
+617020786d6c6e733a613d22687474703a2f2f736368656d61732e6f70656e786d6c666f726d6174732e6f72672f64726177696e676d6c2f323030362f6d6169
+6e22206267313d226c743122207478313d22646b3122206267323d226c743222207478323d22646b322220616363656e74313d22616363656e74312220616363
+656e74323d22616363656e74322220616363656e74333d22616363656e74332220616363656e74343d22616363656e74342220616363656e74353d22616363656e74352220616363656e74363d22616363656e74362220686c696e6b3d22686c696e6b2220666f6c486c696e6b3d22666f6c486c696e6b222f3e}
+{\*\latentstyles\lsdstimax267\lsdlockeddef0\lsdsemihiddendef1\lsdunhideuseddef1\lsdqformatdef0\lsdprioritydef99{\lsdlockedexcept \lsdsemihidden0 \lsdunhideused0 \lsdqformat1 \lsdpriority0 \lsdlocked0 Normal;
+\lsdsemihidden0 \lsdunhideused0 \lsdqformat1 \lsdpriority9 \lsdlocked0 heading 1;\lsdqformat1 \lsdpriority9 \lsdlocked0 heading 2;\lsdqformat1 \lsdpriority9 \lsdlocked0 heading 3;\lsdqformat1 \lsdpriority9 \lsdlocked0 heading 4;
+\lsdqformat1 \lsdpriority9 \lsdlocked0 heading 5;\lsdqformat1 \lsdpriority9 \lsdlocked0 heading 6;\lsdqformat1 \lsdpriority9 \lsdlocked0 heading 7;\lsdqformat1 \lsdpriority9 \lsdlocked0 heading 8;\lsdqformat1 \lsdpriority9 \lsdlocked0 heading 9;
+\lsdpriority39 \lsdlocked0 toc 1;\lsdpriority39 \lsdlocked0 toc 2;\lsdpriority39 \lsdlocked0 toc 3;\lsdpriority39 \lsdlocked0 toc 4;\lsdpriority39 \lsdlocked0 toc 5;\lsdpriority39 \lsdlocked0 toc 6;\lsdpriority39 \lsdlocked0 toc 7;
+\lsdpriority39 \lsdlocked0 toc 8;\lsdpriority39 \lsdlocked0 toc 9;\lsdqformat1 \lsdpriority35 \lsdlocked0 caption;\lsdsemihidden0 \lsdunhideused0 \lsdqformat1 \lsdpriority10 \lsdlocked0 Title;\lsdpriority1 \lsdlocked0 Default Paragraph Font;
+\lsdsemihidden0 \lsdunhideused0 \lsdqformat1 \lsdpriority11 \lsdlocked0 Subtitle;\lsdsemihidden0 \lsdunhideused0 \lsdqformat1 \lsdpriority22 \lsdlocked0 Strong;\lsdsemihidden0 \lsdunhideused0 \lsdqformat1 \lsdpriority20 \lsdlocked0 Emphasis;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority59 \lsdlocked0 Table Grid;\lsdunhideused0 \lsdlocked0 Placeholder Text;\lsdsemihidden0 \lsdunhideused0 \lsdqformat1 \lsdpriority1 \lsdlocked0 No Spacing;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority60 \lsdlocked0 Light Shading;\lsdsemihidden0 \lsdunhideused0 \lsdpriority61 \lsdlocked0 Light List;\lsdsemihidden0 \lsdunhideused0 \lsdpriority62 \lsdlocked0 Light Grid;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority63 \lsdlocked0 Medium Shading 1;\lsdsemihidden0 \lsdunhideused0 \lsdpriority64 \lsdlocked0 Medium Shading 2;\lsdsemihidden0 \lsdunhideused0 \lsdpriority65 \lsdlocked0 Medium List 1;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority66 \lsdlocked0 Medium List 2;\lsdsemihidden0 \lsdunhideused0 \lsdpriority67 \lsdlocked0 Medium Grid 1;\lsdsemihidden0 \lsdunhideused0 \lsdpriority68 \lsdlocked0 Medium Grid 2;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority69 \lsdlocked0 Medium Grid 3;\lsdsemihidden0 \lsdunhideused0 \lsdpriority70 \lsdlocked0 Dark List;\lsdsemihidden0 \lsdunhideused0 \lsdpriority71 \lsdlocked0 Colorful Shading;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority72 \lsdlocked0 Colorful List;\lsdsemihidden0 \lsdunhideused0 \lsdpriority73 \lsdlocked0 Colorful Grid;\lsdsemihidden0 \lsdunhideused0 \lsdpriority60 \lsdlocked0 Light Shading Accent 1;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority61 \lsdlocked0 Light List Accent 1;\lsdsemihidden0 \lsdunhideused0 \lsdpriority62 \lsdlocked0 Light Grid Accent 1;\lsdsemihidden0 \lsdunhideused0 \lsdpriority63 \lsdlocked0 Medium Shading 1 Accent 1;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority64 \lsdlocked0 Medium Shading 2 Accent 1;\lsdsemihidden0 \lsdunhideused0 \lsdpriority65 \lsdlocked0 Medium List 1 Accent 1;\lsdunhideused0 \lsdlocked0 Revision;
+\lsdsemihidden0 \lsdunhideused0 \lsdqformat1 \lsdpriority34 \lsdlocked0 List Paragraph;\lsdsemihidden0 \lsdunhideused0 \lsdqformat1 \lsdpriority29 \lsdlocked0 Quote;\lsdsemihidden0 \lsdunhideused0 \lsdqformat1 \lsdpriority30 \lsdlocked0 Intense Quote;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority66 \lsdlocked0 Medium List 2 Accent 1;\lsdsemihidden0 \lsdunhideused0 \lsdpriority67 \lsdlocked0 Medium Grid 1 Accent 1;\lsdsemihidden0 \lsdunhideused0 \lsdpriority68 \lsdlocked0 Medium Grid 2 Accent 1;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority69 \lsdlocked0 Medium Grid 3 Accent 1;\lsdsemihidden0 \lsdunhideused0 \lsdpriority70 \lsdlocked0 Dark List Accent 1;\lsdsemihidden0 \lsdunhideused0 \lsdpriority71 \lsdlocked0 Colorful Shading Accent 1;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority72 \lsdlocked0 Colorful List Accent 1;\lsdsemihidden0 \lsdunhideused0 \lsdpriority73 \lsdlocked0 Colorful Grid Accent 1;\lsdsemihidden0 \lsdunhideused0 \lsdpriority60 \lsdlocked0 Light Shading Accent 2;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority61 \lsdlocked0 Light List Accent 2;\lsdsemihidden0 \lsdunhideused0 \lsdpriority62 \lsdlocked0 Light Grid Accent 2;\lsdsemihidden0 \lsdunhideused0 \lsdpriority63 \lsdlocked0 Medium Shading 1 Accent 2;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority64 \lsdlocked0 Medium Shading 2 Accent 2;\lsdsemihidden0 \lsdunhideused0 \lsdpriority65 \lsdlocked0 Medium List 1 Accent 2;\lsdsemihidden0 \lsdunhideused0 \lsdpriority66 \lsdlocked0 Medium List 2 Accent 2;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority67 \lsdlocked0 Medium Grid 1 Accent 2;\lsdsemihidden0 \lsdunhideused0 \lsdpriority68 \lsdlocked0 Medium Grid 2 Accent 2;\lsdsemihidden0 \lsdunhideused0 \lsdpriority69 \lsdlocked0 Medium Grid 3 Accent 2;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority70 \lsdlocked0 Dark List Accent 2;\lsdsemihidden0 \lsdunhideused0 \lsdpriority71 \lsdlocked0 Colorful Shading Accent 2;\lsdsemihidden0 \lsdunhideused0 \lsdpriority72 \lsdlocked0 Colorful List Accent 2;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority73 \lsdlocked0 Colorful Grid Accent 2;\lsdsemihidden0 \lsdunhideused0 \lsdpriority60 \lsdlocked0 Light Shading Accent 3;\lsdsemihidden0 \lsdunhideused0 \lsdpriority61 \lsdlocked0 Light List Accent 3;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority62 \lsdlocked0 Light Grid Accent 3;\lsdsemihidden0 \lsdunhideused0 \lsdpriority63 \lsdlocked0 Medium Shading 1 Accent 3;\lsdsemihidden0 \lsdunhideused0 \lsdpriority64 \lsdlocked0 Medium Shading 2 Accent 3;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority65 \lsdlocked0 Medium List 1 Accent 3;\lsdsemihidden0 \lsdunhideused0 \lsdpriority66 \lsdlocked0 Medium List 2 Accent 3;\lsdsemihidden0 \lsdunhideused0 \lsdpriority67 \lsdlocked0 Medium Grid 1 Accent 3;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority68 \lsdlocked0 Medium Grid 2 Accent 3;\lsdsemihidden0 \lsdunhideused0 \lsdpriority69 \lsdlocked0 Medium Grid 3 Accent 3;\lsdsemihidden0 \lsdunhideused0 \lsdpriority70 \lsdlocked0 Dark List Accent 3;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority71 \lsdlocked0 Colorful Shading Accent 3;\lsdsemihidden0 \lsdunhideused0 \lsdpriority72 \lsdlocked0 Colorful List Accent 3;\lsdsemihidden0 \lsdunhideused0 \lsdpriority73 \lsdlocked0 Colorful Grid Accent 3;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority60 \lsdlocked0 Light Shading Accent 4;\lsdsemihidden0 \lsdunhideused0 \lsdpriority61 \lsdlocked0 Light List Accent 4;\lsdsemihidden0 \lsdunhideused0 \lsdpriority62 \lsdlocked0 Light Grid Accent 4;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority63 \lsdlocked0 Medium Shading 1 Accent 4;\lsdsemihidden0 \lsdunhideused0 \lsdpriority64 \lsdlocked0 Medium Shading 2 Accent 4;\lsdsemihidden0 \lsdunhideused0 \lsdpriority65 \lsdlocked0 Medium List 1 Accent 4;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority66 \lsdlocked0 Medium List 2 Accent 4;\lsdsemihidden0 \lsdunhideused0 \lsdpriority67 \lsdlocked0 Medium Grid 1 Accent 4;\lsdsemihidden0 \lsdunhideused0 \lsdpriority68 \lsdlocked0 Medium Grid 2 Accent 4;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority69 \lsdlocked0 Medium Grid 3 Accent 4;\lsdsemihidden0 \lsdunhideused0 \lsdpriority70 \lsdlocked0 Dark List Accent 4;\lsdsemihidden0 \lsdunhideused0 \lsdpriority71 \lsdlocked0 Colorful Shading Accent 4;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority72 \lsdlocked0 Colorful List Accent 4;\lsdsemihidden0 \lsdunhideused0 \lsdpriority73 \lsdlocked0 Colorful Grid Accent 4;\lsdsemihidden0 \lsdunhideused0 \lsdpriority60 \lsdlocked0 Light Shading Accent 5;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority61 \lsdlocked0 Light List Accent 5;\lsdsemihidden0 \lsdunhideused0 \lsdpriority62 \lsdlocked0 Light Grid Accent 5;\lsdsemihidden0 \lsdunhideused0 \lsdpriority63 \lsdlocked0 Medium Shading 1 Accent 5;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority64 \lsdlocked0 Medium Shading 2 Accent 5;\lsdsemihidden0 \lsdunhideused0 \lsdpriority65 \lsdlocked0 Medium List 1 Accent 5;\lsdsemihidden0 \lsdunhideused0 \lsdpriority66 \lsdlocked0 Medium List 2 Accent 5;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority67 \lsdlocked0 Medium Grid 1 Accent 5;\lsdsemihidden0 \lsdunhideused0 \lsdpriority68 \lsdlocked0 Medium Grid 2 Accent 5;\lsdsemihidden0 \lsdunhideused0 \lsdpriority69 \lsdlocked0 Medium Grid 3 Accent 5;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority70 \lsdlocked0 Dark List Accent 5;\lsdsemihidden0 \lsdunhideused0 \lsdpriority71 \lsdlocked0 Colorful Shading Accent 5;\lsdsemihidden0 \lsdunhideused0 \lsdpriority72 \lsdlocked0 Colorful List Accent 5;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority73 \lsdlocked0 Colorful Grid Accent 5;\lsdsemihidden0 \lsdunhideused0 \lsdpriority60 \lsdlocked0 Light Shading Accent 6;\lsdsemihidden0 \lsdunhideused0 \lsdpriority61 \lsdlocked0 Light List Accent 6;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority62 \lsdlocked0 Light Grid Accent 6;\lsdsemihidden0 \lsdunhideused0 \lsdpriority63 \lsdlocked0 Medium Shading 1 Accent 6;\lsdsemihidden0 \lsdunhideused0 \lsdpriority64 \lsdlocked0 Medium Shading 2 Accent 6;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority65 \lsdlocked0 Medium List 1 Accent 6;\lsdsemihidden0 \lsdunhideused0 \lsdpriority66 \lsdlocked0 Medium List 2 Accent 6;\lsdsemihidden0 \lsdunhideused0 \lsdpriority67 \lsdlocked0 Medium Grid 1 Accent 6;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority68 \lsdlocked0 Medium Grid 2 Accent 6;\lsdsemihidden0 \lsdunhideused0 \lsdpriority69 \lsdlocked0 Medium Grid 3 Accent 6;\lsdsemihidden0 \lsdunhideused0 \lsdpriority70 \lsdlocked0 Dark List Accent 6;
+\lsdsemihidden0 \lsdunhideused0 \lsdpriority71 \lsdlocked0 Colorful Shading Accent 6;\lsdsemihidden0 \lsdunhideused0 \lsdpriority72 \lsdlocked0 Colorful List Accent 6;\lsdsemihidden0 \lsdunhideused0 \lsdpriority73 \lsdlocked0 Colorful Grid Accent 6;
+\lsdsemihidden0 \lsdunhideused0 \lsdqformat1 \lsdpriority19 \lsdlocked0 Subtle Emphasis;\lsdsemihidden0 \lsdunhideused0 \lsdqformat1 \lsdpriority21 \lsdlocked0 Intense Emphasis;
+\lsdsemihidden0 \lsdunhideused0 \lsdqformat1 \lsdpriority31 \lsdlocked0 Subtle Reference;\lsdsemihidden0 \lsdunhideused0 \lsdqformat1 \lsdpriority32 \lsdlocked0 Intense Reference;
+\lsdsemihidden0 \lsdunhideused0 \lsdqformat1 \lsdpriority33 \lsdlocked0 Book Title;\lsdpriority37 \lsdlocked0 Bibliography;\lsdqformat1 \lsdpriority39 \lsdlocked0 TOC Heading;}}{\*\datastore 010500000200000018000000
+4d73786d6c322e534158584d4c5265616465722e362e3000000000000000000000060000
+d0cf11e0a1b11ae1000000000000000000000000000000003e000300feff090006000000000000000000000001000000010000000000000000100000feffffff00000000feffffff0000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+fffffffffffffffffdfffffffeffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffff52006f006f007400200045006e00740072007900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000016000500ffffffffffffffffffffffff0c6ad98892f1d411a65f0040963251e50000000000000000000000001019
+b399531bce01feffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000
+00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffff000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000105000000000000}}

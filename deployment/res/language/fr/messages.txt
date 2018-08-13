@@ -1,0 +1,1255 @@
+# ***************************************************************************
+# Copyright (c) 2013 SAP AG or an SAP affiliate company. All rights reserved.
+# ***************************************************************************
+__VERNUM=`get_major_version`
+
+# YES/NO Question
+MSG_PROMPT_YES_NO="[O/N] :  "
+MSG_PROMPT_NO_YES="[N/O] :  "
+
+MSG_ANSWER_Yes="Oui"
+MSG_ANSWER_yes="oui"
+MSG_ANSWER_Y="O"
+MSG_ANSWER_y="o"
+
+# Main Option Selection Screen
+MSG_MAIN_SCREEN_PROMPT_1=""
+MSG_MAIN_SCREEN_PROMPT_2="      T. Sélectionner toutes les options."
+MSG_MAIN_SCREEN_PROMPT_10="      O. Sélectionner les options par défaut."
+MSG_MAIN_SCREEN_PROMPT_3="      N. Ne sélectionner aucune option."
+MSG_MAIN_SCREEN_PROMPT_4=""
+MSG_MAIN_SCREEN_PROMPT_5="      A. Aide."
+MSG_MAIN_SCREEN_PROMPT_6="      D. Démarrer l'installation."
+MSG_MAIN_SCREEN_PROMPT_7="      Q. Quitter le programme d'installation."
+MSG_MAIN_SCREEN_PROMPT_8=""
+MSG_MAIN_SCREEN_PROMPT_9="Choix :   "
+
+MSG_MAIN_SCREEN_ANSWER_A="T"
+MSG_MAIN_SCREEN_ANSWER_D="O"
+MSG_MAIN_SCREEN_ANSWER_N="N"
+MSG_MAIN_SCREEN_ANSWER_H="A"
+MSG_MAIN_SCREEN_ANSWER_S="D"
+MSG_MAIN_SCREEN_ANSWER_Q="Q"
+MSG_MAIN_SCREEN_ANSWER_a="t"
+MSG_MAIN_SCREEN_ANSWER_d="o"
+MSG_MAIN_SCREEN_ANSWER_n="n"
+MSG_MAIN_SCREEN_ANSWER_s="d"
+MSG_MAIN_SCREEN_ANSWER_q="q"
+MSG_MAIN_SCREEN_ANSWER_h="a"
+
+# Suboption Selection Screen
+MSG_SUBOPTION_SCREEN_PROMPT_1=""
+MSG_SUBOPTION_SCREEN_PROMPT_2="      T. Sélectionner toutes les options."
+MSG_SUBOPTION_SCREEN_PROMPT_11="      O. Sélectionner les options par défaut."
+MSG_SUBOPTION_SCREEN_PROMPT_3="      N. Ne sélectionner aucune option."
+MSG_SUBOPTION_SCREEN_PROMPT_4=""
+MSG_SUBOPTION_SCREEN_PROMPT_5="      A. Aide."
+MSG_SUBOPTION_SCREEN_PROMPT_6="      P. Menu précédent."
+MSG_SUBOPTION_SCREEN_PROMPT_7="      Q. Quitter le programme d'installation."
+MSG_SUBOPTION_SCREEN_PROMPT_8=""
+MSG_SUBOPTION_SCREEN_PROMPT_9="Appuyez sur le numéro d'un élément pour basculer d'un choix à l'autre."
+MSG_SUBOPTION_SCREEN_PROMPT_10="Choix :   "
+
+MSG_SUBOPTION_SCREEN_ANSWER_A="T"
+MSG_SUBOPTION_SCREEN_ANSWER_D="O"
+MSG_SUBOPTION_SCREEN_ANSWER_N="N"
+MSG_SUBOPTION_SCREEN_ANSWER_H="A"
+MSG_SUBOPTION_SCREEN_ANSWER_P="P"
+MSG_SUBOPTION_SCREEN_ANSWER_Q="Q"
+MSG_SUBOPTION_SCREEN_ANSWER_a="t"
+MSG_SUBOPTION_SCREEN_ANSWER_d="o"
+MSG_SUBOPTION_SCREEN_ANSWER_n="n"
+MSG_SUBOPTION_SCREEN_ANSWER_h="a"
+MSG_SUBOPTION_SCREEN_ANSWER_p="p"
+MSG_SUBOPTION_SCREEN_ANSWER_q="q"
+
+# Deployment Wizard Selection Screen
+MSG_DEPLOY_SCREEN_PROMPT_1=""
+MSG_DEPLOY_SCREEN_PROMPT_2="      T. Sélectionner toutes les options."
+MSG_DEPLOY_SCREEN_PROMPT_10="      O. Sélectionner les options par défaut."
+MSG_DEPLOY_SCREEN_PROMPT_3="      N. Ne sélectionner aucune option."
+MSG_DEPLOY_SCREEN_PROMPT_4=""
+MSG_DEPLOY_SCREEN_PROMPT_5="      F. Afficher la liste des fichiers"
+MSG_DEPLOY_SCREEN_PROMPT_6="      G. Générer un fichier TAR"
+MSG_DEPLOY_SCREEN_PROMPT_7="      Q. Quitter le programme d'installation."
+MSG_DEPLOY_SCREEN_PROMPT_8=""
+MSG_DEPLOY_SCREEN_PROMPT_9="Choix :   "
+
+MSG_DEPLOY_SCREEN_ANSWER_A="T"
+MSG_DEPLOY_SCREEN_ANSWER_D="O"
+MSG_DEPLOY_SCREEN_ANSWER_N="N"
+MSG_DEPLOY_SCREEN_ANSWER_G="G"
+MSG_DEPLOY_SCREEN_ANSWER_S="D"
+MSG_DEPLOY_SCREEN_ANSWER_Q="Q"
+MSG_DEPLOY_SCREEN_ANSWER_a="t"
+MSG_DEPLOY_SCREEN_ANSWER_d="o"
+MSG_DEPLOY_SCREEN_ANSWER_n="n"
+MSG_DEPLOY_SCREEN_ANSWER_g="g"
+MSG_DEPLOY_SCREEN_ANSWER_s="d"
+MSG_DEPLOY_SCREEN_ANSWER_q="q"
+
+MSG_FILELIST_SCREEN_PROMPT_1="Les fichiers nécessaires au déploiement étaient répertoriés ci-dessus"
+MSG_FILELIST_SCREEN_PROMPT_2="Quelle action voulez-vous effectuer ?"
+MSG_FILELIST_SCREEN_PROMPT_3=""
+MSG_FILELIST_SCREEN_PROMPT_4="E. Enregistrer cette liste dans un fichier et quitter"
+MSG_FILELIST_SCREEN_PROMPT_5="M. Modifier l'ensemble des composants sélectionnés"
+MSG_FILELIST_SCREEN_PROMPT_6=""
+MSG_FILELIST_SCREEN_PROMPT_7="Choix :  "
+
+MSG_FILELIST_SCREEN_ANSWER_S="E"
+MSG_FILELIST_SCREEN_ANSWER_s="e"
+MSG_FILELIST_SCREEN_ANSWER_M="M"
+MSG_FILELIST_SCREEN_ANSWER_m="m"
+
+# Message explaning to users how to set up their environment for SQL Anywhere
+# when they have installed only one bitness of the product
+#
+# $1 ==> Product name
+# $2 ==> Product major version
+# $3 ==> Path to script (for example)
+MSG_NEED_TO_SOURCE_FOR_ENV_SINGLE_BITNESS_1="Pour définir votre environnement \${1} \${2}, vous devez sourcer le"
+MSG_NEED_TO_SOURCE_FOR_ENV_SINGLE_BITNESS_2="fichier de configuration correspondant à votre shell. Par exemple, pour utiliser"
+MSG_NEED_TO_SOURCE_FOR_ENV_SINGLE_BITNESS_3="\${1} avec un shell compatible Bourne, exécutez :"
+MSG_NEED_TO_SOURCE_FOR_ENV_SINGLE_BITNESS_4=""
+## TRANSLATOR: Do not translate this line
+MSG_NEED_TO_SOURCE_FOR_ENV_SINGLE_BITNESS_5="  source \\\"\${3}\\\""
+
+# Message explaning to users how to set up their environment for SQL Anywhere
+# when they have installed multiple bitnesses of the product
+#
+# $1 ==> Product name
+# $2 ==> Product major version
+# $3 ==> Path to script (for example)
+MSG_NEED_TO_SOURCE_FOR_ENV_MULTI_BITNESS_1="Pour définir votre environnement \${1} \${2}, vous devez sourcer le"
+MSG_NEED_TO_SOURCE_FOR_ENV_MULTI_BITNESS_2="fichier de configuration correspondant à votre shell et au type de plate-forme de"
+MSG_NEED_TO_SOURCE_FOR_ENV_MULTI_BITNESS_3="\${1} à exécuter. Par exemple, pour utiliser la version 32 bits de"
+MSG_NEED_TO_SOURCE_FOR_ENV_MULTI_BITNESS_4="\${1} avec un shell compatible Bourne, exécutez :"
+MSG_NEED_TO_SOURCE_FOR_ENV_MULTI_BITNESS_5=""
+## TRANSLATOR: Do not translate this line
+MSG_NEED_TO_SOURCE_FOR_ENV_MULTI_BITNESS_6="  source \\\"\${3}\\\""
+
+# Message explaining to users how to configure the SQL Anywhere samples when
+# they have installed only one bitness of the product
+#
+# $1 ==> Product name
+# $2 ==> Product major version
+# $3 ==> Path to script (for example)
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_SINGLE_BITNESS_1="Avant d'utiliser les exemples de \${1} \${2}, sourcez le fichier de configuration"
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_SINGLE_BITNESS_2="présent dans le répertoire des exemples de l'installation. Par exemple, exécutez :"
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_SINGLE_BITNESS_3=""
+## TRANSLATOR: Do not translate this line
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_SINGLE_BITNESS_4="  source \\\"\${3}\\\""
+
+# Message explaining to users how to configure the SQL Anywhere samples when
+# they have installed multiple bitnesses of the product
+#
+# $1 ==> Product name
+# $2 ==> Product major version
+# $3 ==> Path to script (for example)
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_MULTI_BITNESS_1="Avant d'utiliser les exemples de \${1} \${2}, sourcez le fichier de configuration"
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_MULTI_BITNESS_2="correspondant au type de plate-forme de \${1} à utiliser avec eux. Par"
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_MULTI_BITNESS_3="exemple, pour configurer les exemples à utiliser avec le logiciel 32 bits, exécutez :"
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_MULTI_BITNESS_4=""
+## TRANSLATOR: Do not translate this line
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_MULTI_BITNESS_5="  source \\\"\${3}\\\""
+
+# $1 - directory which is being scanned
+MSG_SCANNING_DIR="Balayage du répertoire d'installation '\${1}' en cours..."
+
+# $1 - directory into which the files are being installed
+MSG_INSTALLING_FILES_INTO="Installation des fichiers dans '\${1}' en cours..."
+
+# $1 - name of the file being installed
+# $2 - the directory in which it is being installed
+MSG_INSTALLING_A_FILE_INTO="Installation de \${1} dans \${2}"
+
+# $1 - directory into which the files are being installed
+MSG_REVERTING_FILES_INTO="Restauration des fichiers dans '\${1}' en cours..."
+
+# $1 : destination directory
+# $2 : location of the log file
+MSG_ERROR_EXTRACTING_FILES_1="Une erreur s'est produite lors de la tentative d'extraction des fichiers dans \${1}. "
+MSG_ERROR_EXTRACTING_FILES_2="Veuillez consulter le journal '\${2}' "
+MSG_ERROR_EXTRACTING_FILES_3="pour en savoir plus sur cette erreur."
+
+# $1 - the name of the file to be overwritten
+MSG_PROMPT_FILE_EXISTS_OVERWRITE="Le fichier '\${1}' existe déjà. Souhaitez-vous le remplacer ? "
+
+# NOTE: The following appear to be unused
+# $1 - the name of the file to be overwritten
+MSG_PROMPT_FILE_EXISTS_OVERWRITE_OK_TO_SKIP_1="AVERTISSEMENT : le fichier '\${1}' existe déjà. "
+MSG_PROMPT_FILE_EXISTS_OVERWRITE_OK_TO_SKIP_2="Souhaitez-vous le remplacer ?  "
+MSG_PROMPT_FILE_EXISTS_OVERWRITE_OK_TO_SKIP_3="Si vous ne répondez pas oui, cette étape sera ignorée."
+
+# NOTE: The following appear to be unused
+# $1 - the name of the file that was skipped
+MSG_SKIPPED_CREATING_FILE="Création de '\${1}' ignorée."
+
+# $1 : log file
+# $2 : destination directory
+MSG_EXTRACTED_FILES_LOCATION_1="Le fichier '\${1}' répertorie les fichiers installés sous '\${2}'."
+MSG_EXTRACTED_FILES_LOCATION_2="Terminé"
+
+MSG_HEADER_1="iAnywhere Solutions, Inc. One Sybase Drive, Dublin, CA 94568, USA"
+MSG_HEADER_2="Copyright (c) 2001-2010, iAnywhere Solutions, Inc. Copyright partiel (c) "
+MSG_HEADER_3="1988-2010, Sybase, Inc. Tous droits réservés. Tous droits non publiés réservés."
+
+MSG_REGISTERING_PLUGINS="Enregistrements des modules de connexion SQL Anywhere en cours..."
+
+STRING_SYBASE_SHARED_FILES="Fichiers Sybase partagés"
+STRING_SHARED_COMPONENTS_NAME="composants partagés"
+STRING_OPEN_CHAR_SETS_NAME="jeux de caractères et environnement linguistique Open Client/Open Server"
+
+STRING_DIAGNOSTICS="Diagnostics SQL Anywhere"
+
+# $1 - the component being installed
+# $2 - the directory into which it is to be installed
+MSG_DEFAULT_INSTALL_DIRECTORY_1="Le répertoire d'installation par défaut de \${1}"
+MSG_DEFAULT_INSTALL_DIRECTORY_2="est '\${2}'"
+
+# $1 - the component being installed
+# $2 - the directory into which it is to be intalled
+MSG_CURRENT_INSTALL_DIRECTORY_1="Où se trouve votre installation actuelle de \${1} ?"
+MSG_CURRENT_INSTALL_DIRECTORY_2="Emplacement par défaut : \${2}"
+MSG_OPTIONALLY_INSTALLED_COMPONENT="\${1} est un composant logiciel sous licence facultatif"
+MSG_MAY_PRESS_ENTER_IF_OPTIONAL_COMPONENT_NOT_INSTALLED="S'il n'est pas installé, appuyez sur ENTREE."
+
+MSG_GUI_DEFAULT_INSTALL_DIRECTORY="Installer dans :"
+
+# Output when the script detects the O/S is supported, but the version is too low
+#
+# $1 : Name of the package being installed
+# $2 : Version of the O/S currently installed
+# $3 : Version of the O/S required
+MSG_ERROR_OS_VERSION_TOO_LOW_1="Erreur :"
+MSG_ERROR_OS_VERSION_TOO_LOW_2="    Niveau de version du SE actuel : \${2}"
+MSG_ERROR_OS_VERSION_TOO_LOW_3="    Niveau de version du SE requis : \${3}"
+MSG_ERROR_OS_VERSION_TOO_LOW_4=""
+MSG_ERROR_OS_VERSION_TOO_LOW_5="    Le niveau de version du SE actuel est antérieur à celui requis pour exécuter"
+MSG_ERROR_OS_VERSION_TOO_LOW_6="    \${1}. Vous devrez mettre à niveau"
+MSG_ERROR_OS_VERSION_TOO_LOW_7="    le SE avant d'exécuter le produit."
+MSG_ERROR_OS_VERSION_TOO_LOW_8=""
+MSG_ERROR_OS_VERSION_TOO_LOW_9="Le programme d'installation va prendre fin sans installer \${1}."
+
+# $1 - the version being installed
+MSG_ERROR_VERSION_MISMATCH_1="ERREUR : non-concordance des versions."
+MSG_ERROR_VERSION_MISMATCH_2="Vous ne disposez pas actuellement de la version \${1}"
+MSG_ERROR_VERSION_MISMATCH_3="Veuillez vérifier l'emplacement de votre installation \${1} et réessayer."
+
+# $1 - the bitness being installed
+# $2 - the bitness of the OS
+MSG_ERROR_BITNESS_MISMATCH_1="Erreur : non-concordance des types d'installation."
+MSG_ERROR_BITNESS_MISMATCH_2="Il s'agit d'une installation \${1} bits,  or vous tentez de l'exécuter sur un système d'exploitation \${2} bits."
+MSG_ERROR_BITNESS_MISMATCH_3="Cette installation doit être exécutée sur un système d'exploitation \${1} bits."
+
+# $1 - the OS software was intended for
+# $2 - the OS user is installing on
+MSG_ERROR_OS_MISMATCH_1="Erreur : non-concordance du SE ou de l'architecture."
+MSG_ERROR_OS_MISMATCH_2="Il s'agit d'une installation pour \${1},  or vous l'avez entreprise sur \${2}."
+
+# Output when the script cannot find the df tool
+#
+# $1 : name of df tool
+MSG_ERROR_NEED_DF_1="Le logiciel d'installation a besoin de \${1} pour poursuivre l'installation."
+MSG_ERROR_NEED_DF_2="Assurez-vous que cet utilitaire est installé sur votre système et réessayez."
+
+# Output when the script cannot find the tar tool
+#
+# $1 : name of tar tool
+MSG_ERROR_NEED_TAR_1="Le logiciel d'installation a besoin de \${1} pour poursuivre l'installation."
+MSG_ERROR_NEED_TAR_2="Assurez-vous que cet utilitaire est installé sur votre système et réessayez."
+
+# $1 - the name of the file that is not a directory
+MSG_ERROR_NOT_A_DIRECTORY="\${1} existe, mais il ne s'agit pas d'un répertoire."
+
+# $1 - the name of the directory that is invalid
+MSG_ERROR_INVALID_DIRECTORY="'\${1}' n'est pas un nom de répertoire correct."
+
+# $1 - the name of the directory that already exists.
+MSG_DIRECTORY_ALREADY_EXISTS="Le répertoire '\${1}' existe déjà."
+
+# $1 - the name of the directory that already exists.
+# $2 - the version installed in the existing directory.
+# $3 - the version that will be installed.
+MSG_DIRECTORY_REQUIRES_UPGRADE="Le répertoire '\${1}' contient la version \${2}.  Celle-ci sera mise au niveau de la version \${3}."
+
+# $1 - the name of the file that already exists.
+MSG_FILE_ALREADY_EXISTS="Le fichier '\${1}' existe déjà."
+
+# $1 - the name of the directory that does not exist.
+MSG_DIRECTORY_DOES_NOT_EXIST="Le répertoire '\${1}' n'existe pas. Veuillez réessayer."
+
+# $1 - the name of the directory that is not writable
+MSG_DIRECTORY_NOT_WRITABLE="Il est impossible d'écrire dans le répertoire '\${1}'."
+
+# $1 - the name of the directory that could not be created
+MSG_ERROR_CANNOT_CREATE_DIRECTORY="Impossible de créer le répertoire \${1}. "
+
+MSG_ERROR_PATH_INVALID_OR_PERMISSIONS_LACKING="Autorisations insuffisantes ou chemin incorrect."
+
+# $1 - the name of the directory that could not be created
+MSG_ERROR_CANNOT_CREATE_DIRECTORY_ABORTING="Erreur : impossible de créer le répertoire \${1}. Abandon"
+
+# $1 -  the name of the directory on which the user does not have write
+#       permissions
+MSG_ERR_DONT_HAVE_WRITE_PERMISSIONS="Vous ne disposez pas de l'autorisation d'écrire sur \${1}."
+
+# $1 - the name of the component that has finished installing
+MSG_FINISHED_INSTALLING="Le programme a terminé l'installation de \${1} sur votre ordinateur."
+
+# Output when the user disagrees to the dev license
+#
+# $1 : name of the package
+MSG_ERROR_DISAGREE_LICENSE_1="Vous avez choisi de ne pas accepter les termes du contrat de licence."
+MSG_ERROR_DISAGREE_LICENSE_2="Le programme d'installation va prendre fin sans installer \${1}."
+
+# A string which gets generated to show how many options have been selected
+# out of the total. i.e. "12 of 18 selected"
+#
+# $1 : the number of objects currently selected
+# $2 : the total number of objects
+MSG_HOW_MANY_SELECTED="\${1} options sur \${2} sélectionnées"
+
+# $1 - the name of the invalid option
+MSG_ERROR_INVALID_OPTION="'\${1} n'est pas une option correcte."
+
+# $1 - the name of the setup script
+# $2 - the unknown option
+MSG_ERROR_UNKNOWN_OPTION="\${1} : option inconnue attribuée à -install : \${2}"
+
+# $1 - the name of the setup script
+# $2 - the unknown argument
+MSG_ERROR_CL_OPTIONS_UNKNOWN_ARGUMENT="\${1} : argument de ligne de commande inconnu : \${2}"
+
+# $1 - the name of the unrecognized region
+MSG_ERROR_UNKNOWN_REGION="Région \${1} non reconnue."
+
+# $1 - the invalid install option
+MSG_ERROR_INTERNAL_ERROR="ERREUR INTERNE : option d'installation '\${1}' incorrecte"
+
+# $1 - the value returned from $2
+# $2 - the command / function that generated $1
+MSG_ERROR_SETUP_INTERNAL_ERROR_1_1="ERREUR INTERNE D'INSTALLATION 1 : \${1} \${2}"
+MSG_ERROR_SETUP_INTERNAL_ERROR_1_2="Veuillez contacter le support technique."
+
+# $1 - the error number
+# $2 - the error
+MSG_ERROR_SETUP_INTERNAL_ERROR_NUM_1="ERREUR INTERNE D'INSTALLATION \${1} : \${2}"
+MSG_ERROR_SETUP_INTERNAL_ERROR_NUM_2="Veuillez contacter le support technique."
+
+# $1 - the "root" of the drive where the files are being installed
+# $2 - the amount of disk space needed ( in kilobytes )
+# $3 - the amount of disk space available ( in kilobytes )
+MSG_ERROR_INSUFFICIENT_DISK_SPACE_1="Vous ne disposez pas de suffisamment d'espace disque sur '\${1}'."
+MSG_ERROR_INSUFFICIENT_DISK_SPACE_2="Requis = \${2} Ko Disponible = \${3} Ko."
+
+MSG_GUI_ERROR_INSUFFICIENT_DISK_SPACE="Vous ne disposez pas de suffisamment d'espace disque sur "
+
+# lets the user know they have enough disk space to proceed with the install
+#
+# $1 - the "root" of the drive where the files are being installed
+# $2 - the amount of disk space needed ( in kilobytes )
+# $3 - the amount of disk space available ( in kilobytes )
+MSG_SUFFICIENT_DISK_SPACE="Vous disposez de suffisamment d'espace disque sur '\${1}'. Requis = \${2} Ko Disponible = \${3} Ko."
+
+# $1 - the type of license (i.e processors or seats)
+MSG_ASK_NUMBER_OF_LICENSE_CPUS="Indiquez le nombre de processeurs"
+MSG_ASK_NUMBER_OF_LICENSE_CORES="Indiquez le nombre de coeurs de processeur"
+MSG_ASK_NUMBER_OF_LICENSE_SEATS="Indiquez le nombre de postes"
+
+# $1 - the name of the tic file
+MSG_ERROR_CORRUPT_TICFILE_1="ERREUR : le fichier \${1} semble altéré."
+MSG_ERROR_CORRUPT_TICFILE_2="Veuillez communiquer ce problème au support technique de Sybase."
+
+# 1st %s - the string to be converted; 2nd %s - locale name
+MSG_GUI_ERROR_CONVERSION_FAILED="Impossible de convertir '%s' en utilisant le jeu de caractères de l'environnement linguistique actuel (%s)."
+
+MSG_RENAME_SUFFIX_1="Il est possible d'utiliser un suffixe pour renommer des copies anciennes."
+MSG_RENAME_SUFFIX_2="(par exemple, l'ancienne version de libdblib8.so sera renommée libdblib8.so.<votre_suffixe>)"
+MSG_RENAME_SUFFIX_3="Remarque : vous devez disposer de suffisamment d'espace disque pour conserver l'ensemble des anciennes copies !"
+MSG_RENAME_SUFFIX_4="Saisissez le suffixe à utiliser pour renommer les fichiers :  "
+
+MSG_STARTING_INSTALL_1="Le programme va démarrer l'installation des fichiers."
+MSG_STARTING_INSTALL_2="Veuillez appuyer sur ENTREE pour démarrer l'installation."
+
+MSG_INSTALL_COMPLETED_1="L'installation est terminée !"
+MSG_INSTALL_COMPLETED_2="Merci d'utiliser les produits d'iAnywhere Solutions, Inc."
+
+MSG_INSTALL_TITLE="Installation de \$1"
+MSG_PACKAGE_NAME="SQL Anywhere \`get_version_display\`"
+MSG_DOCUMENTATION_PACKAGE_NAME="Documentation de SQL Anywhere"
+MSG_WEB_EDITION_PACKAGE_NAME="SQL Anywhere \`get_version_display\` Web Edition"
+MSG_SAMON_DEPLOY_PACKAGE_NAME="Moniteur SQL Anywhere"
+MSG_DBCLOUD_PACKAGE_NAME="SQL Anywhere OnDemand"
+MSG_CLIENT_PACKAGE_NAME="Client SQL Anywhere"
+
+# $1 the name of the product (e.g., SQL Anywhere ${__VERNUM}, SQL Anywhere ${__VERNUM} Documentation)
+MSG_INSTALL_PRODUCT="Installer \${1}"
+
+MSG_WELCOME_PACKAGE_NAME_GERMAN_DOCUMENTATION="Documentation en allemand pour Unix"
+MSG_WELCOME_PACKAGE_NAME_JAPANESE_DOCUMENTATION="Documentation en japonais pour Unix"
+MSG_WELCOME_PACKAGE_NAME_CHINESE_DOCUMENTATION="Documentation en chinois pour Unix"
+MSG_WELCOME_PACKAGE_NAME_PATCH="Version de maintenance"
+MSG_WELCOME_PACKAGE_NAME_EBF="EBF (correctifs de bugs)"
+MSG_WELCOME_PACKAGE_NAME_64BIT_CLIENT="Client 64 bits"
+MSG_WELCOME_PACKAGE_NAME_32BIT_CLIENT="Client 32 bits"
+
+MSG_WELCOME_MESSAGE_1="Bienvenue dans le programme d'installation de \${1}."
+MSG_WELCOME_MESSAGE_2="Ce programme va installer \${1}"
+MSG_WELCOME_MESSAGE_3="sur votre ordinateur."
+MSG_WELCOME_MESSAGE_4="LE LOGICIEL FOURNI EST SOUMIS AUX TERMES DU CONTRAT AFFERENT AU"
+MSG_WELCOME_MESSAGE_5="CONTRAT DE LICENCE IANYWHERE SOLUTIONS."
+MSG_WELCOME_MESSAGE_6="Vous indiquez votre acceptation de ce contrat de licence iAnywhere Solutions en"
+MSG_WELCOME_MESSAGE_7="installant et utilisant le logiciel fourni, sauf si vous avez déjà accepté"
+MSG_WELCOME_MESSAGE_8="les termes de la licence de ce logiciel par le biais d'un contrat de licence écrit établi"
+MSG_WELCOME_MESSAGE_9="auprès d'iAnywhere Solutions, d'une de ses filiales ou d'un de ses revendeurs"
+MSG_WELCOME_MESSAGE_10="agréés."
+MSG_WELCOME_MESSAGE_11="Copyright (c) 2001-2010, iAnywhere Solutions, Inc."
+MSG_WELCOME_MESSAGE_12="Copyright partiel (c) 1988-2010, Sybase, Inc."
+MSG_WELCOME_MESSAGE_13="Tous droits réservés.  Tous droits non publiés réservés."
+# Do not translate message lines 14 to 21.
+MSG_WELCOME_MESSAGE_14="Ce logiciel contient des informations confidentielles et des secrets de fabrication d'iAnywhere"
+MSG_WELCOME_MESSAGE_15="Solutions Inc. Use, duplication or disclosure of the software and"
+MSG_WELCOME_MESSAGE_16="documentation by the U.S. Government is subject to restrictions set forth"
+MSG_WELCOME_MESSAGE_17="in a license agreement between the Government and iAnywhere Solutions, Inc."
+MSG_WELCOME_MESSAGE_18="or other written agreement specifying the Government's rights to the use of"
+MSG_WELCOME_MESSAGE_19="the software and any applicable FAR provisions, for example, FAR 52.227.19."
+MSG_WELCOME_MESSAGE_20="Siège international d'iAnywhere Solutions, Inc."
+MSG_WELCOME_MESSAGE_21="One Sybase Drive, Dublin, CA 94568-7902  Etats-Unis d'Amérique"
+
+MSG_SAMON_WELCOME_MESSAGE_1="Cette installation du Moniteur SQL Anywhere est destinée à être utilisée en production,"
+MSG_SAMON_WELCOME_MESSAGE_2="sur une autre machine que celle où réside votre installation principale de SQL Anywhere."
+MSG_SAMON_WELCOME_MESSAGE_3="Cette dernière inclut déjà une copie du Moniteur SQL Anywhere"
+MSG_SAMON_WELCOME_MESSAGE_4="appropriée aux besoins de développement et de test. Pour en savoir plus,"
+MSG_SAMON_WELCOME_MESSAGE_5="reportez-vous à la documentation."
+
+# Please note that Chinese/Japanese developer edition message is different.
+# Japanese customers need to visit www.ianywhere.jp while Chinese customers
+# need to call Sybase Chinese office (010-68568488) to get the installation
+# key.
+MSG_WELCOME_INSTALL_KEY_1="Pour mener à bien l'installation de la version Developer Edition, "
+MSG_WELCOME_INSTALL_KEY_2="vous devrez disposer d'une clé d'enregistrement. Vous pouvez vous la procurer gratuitement"
+MSG_WELCOME_INSTALL_KEY_3="sur le site Web suivant "
+MSG_WELCOME_INSTALL_KEY_4="(http://www.sybase.com/sa${__VERNUM}_registration_cd)"
+MSG_WELCOME_INSTALL_KEY_5="Si vous choisissez d'installer le logiciel sans disposer d'une clé valable, "
+MSG_WELCOME_INSTALL_KEY_6="vous bénéficierez de la version d'évaluation de 60 jours."
+MSG_WELCOME_INSTALL_KEY_7=""
+
+MSG_WELCOME_LICENSE_AGREEMENT_1="Si ce contrat ne s'affiche pas, vous pouvez le consulter à l'adresse suivante :"
+MSG_WELCOME_LICENSE_AGREEMENT_2="http://www.sybase.com/softwarelicenses."
+
+MSG_BROWSE="Parcourir..."
+MSG_SELECT="Sélectionner..."
+
+MSG_LICENSE_COUNTRY_PROMPT_1="Veuillez sélectionner le pays où le logiciel va être installé :"
+MSG_LICENSE_COUNTRY_PROMPT_2="(S'il ne figure pas dans la liste, choisissez l'une des régions génériques.)"
+MSG_LICENSE_COUNTRY_PROMPT_3="Choisissez un pays ou un numéro de région, puis appuyez sur ENTREE :"
+
+# The order of the following country/region names can be rearranged for L10N
+# The general regions should be left as the last two. Also please make sure
+# MSG_COUNTRY_1 to MSG_COUNTRY_28 are the same in string length.
+MSG_COUNTRY_1="Argentine                 "
+MSG_COUNTRY_2="Australie                 "
+MSG_COUNTRY_3="Belgique - anglais         "
+MSG_COUNTRY_4="Brésil                    "
+MSG_COUNTRY_5="Canada                    "
+MSG_COUNTRY_6="Danemark                   "
+MSG_COUNTRY_7="France - français           "
+MSG_COUNTRY_8="Allemagne - anglais         "
+MSG_COUNTRY_9="Hong Kong                 "
+MSG_COUNTRY_10="Inde                     "
+MSG_COUNTRY_11="Italie - italien           "
+MSG_COUNTRY_12="Japon                     "
+MSG_COUNTRY_13="Corée                     "
+MSG_COUNTRY_14="Malaisie                  "
+MSG_COUNTRY_15="Mexique                    "
+MSG_COUNTRY_16="Pays-Bas               "
+MSG_COUNTRY_17="Nouvelle-Zélande               "
+MSG_COUNTRY_18="Norvège                    "
+MSG_COUNTRY_19="République Populaire de Chine"
+MSG_COUNTRY_20="Singapour                 "
+MSG_COUNTRY_21="Afrique du Sud              "
+MSG_COUNTRY_22="Espagne - espagnol           "
+MSG_COUNTRY_23="Suède                    "
+MSG_COUNTRY_24="Suisse - anglais     "
+MSG_COUNTRY_25="Taïwan                    "
+MSG_COUNTRY_26="Royaume-Uni            "
+MSG_COUNTRY_27="Etats-Unis d'Amérique  "
+MSG_COUNTRY_28="Région Asie-Pacifique - Générique"
+MSG_COUNTRY_29="Pays d'Amérique latine - Autres que l'Argentine, le Brésil et le Mexique"
+MSG_COUNTRY_30="Europe, Moyen-Orient et Afrique (EMEA) - Générique"
+
+# please make sure the following license file names are in the same
+# order as the above country/region list
+MSG_COUNTRY_LICENSE_TEXT_1="Argentina.txt"
+MSG_COUNTRY_LICENSE_TEXT_2="Australia.txt"
+MSG_COUNTRY_LICENSE_TEXT_3="Belgium_English.txt"
+MSG_COUNTRY_LICENSE_TEXT_4="Brazil.txt"
+MSG_COUNTRY_LICENSE_TEXT_5="Canada.txt"
+MSG_COUNTRY_LICENSE_TEXT_6="Denmark.txt"
+MSG_COUNTRY_LICENSE_TEXT_7="France_French.txt"
+MSG_COUNTRY_LICENSE_TEXT_8="Germany_English.txt"
+MSG_COUNTRY_LICENSE_TEXT_9="Hong_Kong.txt"
+MSG_COUNTRY_LICENSE_TEXT_10="India.txt"
+MSG_COUNTRY_LICENSE_TEXT_11="Italy_Italian.txt"
+MSG_COUNTRY_LICENSE_TEXT_12="japan_ianywhere.txt"
+MSG_COUNTRY_LICENSE_TEXT_13="Korea.txt"
+MSG_COUNTRY_LICENSE_TEXT_14="Malaysia.txt"
+MSG_COUNTRY_LICENSE_TEXT_15="Mexico.txt"
+MSG_COUNTRY_LICENSE_TEXT_16="Netherlands.txt"
+MSG_COUNTRY_LICENSE_TEXT_17="New_Zealand.txt"
+MSG_COUNTRY_LICENSE_TEXT_18="Norway.txt"
+MSG_COUNTRY_LICENSE_TEXT_19="PRC.txt"
+MSG_COUNTRY_LICENSE_TEXT_20="Singapore.txt"
+MSG_COUNTRY_LICENSE_TEXT_21="SouthAfrica.txt"
+MSG_COUNTRY_LICENSE_TEXT_22="Spain_Spanish.txt"
+MSG_COUNTRY_LICENSE_TEXT_23="Sweden.txt"
+MSG_COUNTRY_LICENSE_TEXT_24="Switzerland_English.txt"
+MSG_COUNTRY_LICENSE_TEXT_25="Taiwan.txt"
+MSG_COUNTRY_LICENSE_TEXT_26="United_Kingdom.txt"
+MSG_COUNTRY_LICENSE_TEXT_27="US.txt"
+MSG_COUNTRY_LICENSE_TEXT_28="Asia.txt"
+MSG_COUNTRY_LICENSE_TEXT_29="LAO.txt"
+MSG_COUNTRY_LICENSE_TEXT_30="EMEA_General.txt"
+
+# Installer Settings And Options Screen
+MSG_EXISTING_SETTINGS_AND_OPTIONS="Les composants suivants sont déjà installés :"
+MSG_CURRENT_SETTINGS_AND_OPTIONS="Les composants suivants seront installés :"
+MSG_OPT_SA_NETWORK_SERVER="Serveur réseau SQL Anywhere"
+MSG_OPT_SA_PERSONAL_SERVER="Serveur personnel SQL Anywhere"
+MSG_OPT_SA_NETWORK_CLIENT="Client réseau SQL Anywhere"
+MSG_OPT_SA_64_NETWORK_CLIENT="Client réseau SQL Anywhere 64 bits"
+MSG_OPT_SA_32_NETWORK_CLIENT="Client réseau SQL Anywhere 32 bits"
+MSG_OPT_ISQL="Interactive SQL"
+MSG_OPT_NETWORK_SERVER_MONITOR="Console SQL Anywhere"
+MSG_OPT_DB_TOOLS="Outils de base de données"
+MSG_OPT_CPP_DEV_COMPONENTS="Composants de développement C++"
+MSG_OPT_SA_SAMPLES="Exemples d'application SQL Anywhere"
+MSG_OPT_ML_SAMPLES="Exemples d'application pour serveur MobiLink"
+MSG_OPT_UL_DEV_TOOLS="Outils de développement UltraLite"
+MSG_OPT_ML_SYNC_SRV="Serveur de synchronisation MobiLink"
+MSG_OPT_ML_MONITOR="Moniteur MobiLink"
+MSG_OPT_ML_PROFILER="Profileur MobiLink"
+MSG_OPT_ML_NOTIFIER_UTIL="Synchronisation à l'initiative du serveur - Utilitaire de notification MobiLink"
+MSG_OPT_ML_ECC_ENCRYP_COMPONENTS="Cryptage fort MobiLink pour les communications réseau (ECC)"
+MSG_OPT_ML_FIPS_ENCRYP_COMPONENTS="Cryptage fort MobiLink pour les communications réseau (FIPS)"
+MSG_OPT_ML_RSA_ENCRYP_COMPONENTS="Cryptage fort MobiLink pour les communications réseau (RSA)"
+MSG_OPT_SA_ECC_ENCRYP_COMPONENTS="Cryptage fort SQL Anywhere pour les communications réseau (ECC)"
+MSG_OPT_SA_FIPS_ENCRYP_COMPONENTS="Cryptage fort SQL Anywhere pour les communications réseau (FIPS)"
+MSG_OPT_SA_RSA_ENCRYP_COMPONENTS="Cryptage fort SQL Anywhere pour les communications réseau (RSA)"
+MSG_OPT_ML_CLIENT_FOR_SA="Client MobiLink pour SQL Anywhere"
+MSG_OPT_SR_FOR_ASE="SQL Remote pour Adaptive Server Enterprise"
+MSG_OPT_SR_FOR_SA="SQL Remote pour SQL Anywhere"
+MSG_OPT_RP_AGENT="Replication Agent"
+
+MSG_OPT_SA_PLUGIN="Module de connexion pour SQL Anywhere"
+MSG_OPT_ML_PLUGIN="Module de connexion pour serveur MobiLink"
+MSG_OPT_QA_PLUGIN="Module de connexion pour QAnywhere"
+MSG_OPT_JCONNECT="jConnect"
+MSG_OPT_ENGLISH_HTML="Documentation en anglais au format HTML"
+MSG_OPT_GERMAN_HTML="Documentation en allemand au format HTML"
+MSG_OPT_FRENCH_HTML="Documentation en français au format HTML"
+MSG_OPT_JAPANESE_HTML="Documentation en japonais au format HTML"
+MSG_OPT_CHINESE_HTML="Documentation en chinois au format HTML"
+MSG_OPT_JAVA_DOC="Documentation des outils d'administration"
+MSG_OPT_ENGLISH_PDF="Manuels imprimables en anglais (PDF)"
+MSG_OPT_GERMAN_PDF="Manuels imprimables en allemand (PDF)"
+MSG_OPT_FRENCH_PDF="Manuels imprimables en français (PDF)"
+MSG_OPT_JAPANESE_PDF="Manuels imprimables en japonais (PDF)"
+MSG_OPT_CHINESE_PDF="Manuels imprimables en chinois (PDF)"
+MSG_TARGET_DIR="Répertoires cible :  "
+MSG_CLOUDDATA_DIR="Répertoire de données :  "
+MSG_SA_TARGET_DIR="SQL Anywhere"
+MSG_SADIAG_TARGET_DIR="Diagnostics SQL Anywhere"
+MSG_SHARED_TARGET_DIR="Composants partagés"
+MSG_SR_FOR_ASE_TARGET_DIR="Composants SQL Remote pour Adaptive Server Enterprise"
+MSG_OPEN_SRV_CLNT_TARGET_DIR="Jeux de caractères et environnements linguistiques Open Client/Open Server"
+
+MSG_NO_OPTIONS_SELECTED_1=" Vous n'avez sélectionné aucune option. "
+MSG_NO_OPTIONS_SELECTED_2=" Revenez au menu principal et faites votre choix."
+
+MSG_NO_COMPONENTS_INSTALLED_1=" Aucun composant \`get_package_name\` n'a été trouvé dans"
+MSG_NO_COMPONENTS_INSTALLED_2=" '\${1}'."
+
+MSG_VERSION_TOO_NEW_1="'\$1' doit contenir \`get_package_name\`"
+MSG_VERSION_TOO_NEW_2=
+
+MSG_OPTIONS_HELP_1="[   ] Indique que l'option n'est pas sélectionnée pour l'installation."
+MSG_OPTIONS_HELP_2="[ X ] Indique que l'option est sélectionnée pour l'installation."
+
+MSG_INTERACTIVE_MODE_HELP_1="Syntaxe en mode interactif"
+MSG_INTERACTIVE_MODE_HELP_2="Avant d'utiliser ces commandes, définissez une clé à l'aide de -regkey ci-dessous"
+MSG_INTERACTIVE_MODE_HELP_3="	echo <chaîne>		renvoie la chaîne : teste la communication de base"
+MSG_INTERACTIVE_MODE_HELP_4="	iskeyvalid 		renvoie 'valid' ou 'invalid' en fonction de la clé enregistrée"
+MSG_INTERACTIVE_MODE_HELP_5="	checkdiskspace 		renvoie l'espace disque requis et disponible pour les composants sélectionnés"
+MSG_INTERACTIVE_MODE_HELP_6="	var <variable_interne>	renvoie la valeur de variable_interne (OPT_N_SERVER, par exemple)"
+MSG_INTERACTIVE_MODE_HELP_7="	setvar <var_interne>	renvoie la valeur de var_interne (OPT_N_SERVER, par exemple)"
+MSG_INTERACTIVE_MODE_HELP_8="	start 			démarre l'installation"
+MSG_INTERACTIVE_MODE_HELP_9="	exit (x)		quitte la session"
+MSG_INTERACTIVE_MODE_HELP_10="	quit (q)		quitte la session"
+MSG_INTERACTIVE_MODE_HELP_11="         -prefix <rép> (-p <rép>)           détermine le préfixe des répertoires d'installation"
+MSG_INTERACTIVE_MODE_HELP_12="         -asany-dir <rép> (-ad <rép>)       détermine le répertoire d'installation de SA"
+MSG_INTERACTIVE_MODE_HELP_13="         -shared-dir <rép> (-sd <rép>)      détermine le répertoire d'installation partagé"
+MSG_INTERACTIVE_MODE_HELP_14="         -sybase-dir <rép> (-syd <rép>)     détermine le répertoire d'installation sybase"
+MSG_INTERACTIVE_MODE_HELP_15="         -regkey <clé> (-k <clé>)           utilise la <clé> comme clé d'enregistrement"
+MSG_INTERACTIVE_MODE_HELP_16="         -seat-model <modèle> (-m <modèle>)   détermine le modèle de licence"
+MSG_INTERACTIVE_MODE_HELP_17="         -seats <nbre> (-s <nbre>)            détermine le nombre de postes ou de processeurs"
+MSG_INTERACTIVE_MODE_HELP_18="         -name <nom_util> (-n <nom_util>)   détermine le nom de l'utilisateur"
+MSG_INTERACTIVE_MODE_HELP_19="         -company <société> (-c <société>)  détermine le nom de la société"
+MSG_INTERACTIVE_MODE_HELP_20="         -install [<packages>|help]         où packages est une liste de packages séparés par des virgules"
+MSG_INTERACTIVE_MODE_HELP_21="                                            spécifiez -install help pour obtenir la liste détaillée des packages"
+
+# Use a message consisting of only a space to get a blank line
+# Use an empty message to end the sequence
+
+MSG_CL_OPTIONS_USAGE_1="Syntaxe : \${1} [options]"
+MSG_CL_OPTIONS_USAGE_2="         options :"
+MSG_CL_OPTIONS_USAGE_3="         -silent (-ss)                      installation en mode non détaillé"
+MSG_CL_OPTIONS_USAGE_4="         -nogui                             utiliser le script du shell uniquement, sans tenter d'appeler l'interface utilisateur"
+MSG_CL_OPTIONS_USAGE_5="	 -I_accept_the_license_agreement    accepter le contrat de licence"
+MSG_CL_OPTIONS_USAGE_6="         -sqlany-dir <rép> (-d <rép>)       déterminer le répertoire d'installation de SA"
+MSG_CL_OPTIONS_USAGE_7="         -regkey <clé> (-k <clé>)           utiliser la <clé> comme clé d'enregistrement"
+MSG_CL_OPTIONS_USAGE_8="         -seat-model <modèle> (-m <modèle>)   déterminer le modèle de poste"
+MSG_CL_OPTIONS_USAGE_9="         -seats <nbre> (-s <nbre>)            déterminer le nombre de postes ou de processeurs"
+MSG_CL_OPTIONS_USAGE_10="         -name <nom_util> (-n <nom_util>)   déterminer le nom de l'utilisateur"
+MSG_CL_OPTIONS_USAGE_11="         -company <société> (-c <société>)  déterminer le nom de la société"
+MSG_CL_OPTIONS_USAGE_12="         -install <packages>                où packages est une liste de packages séparés par des virgules"
+MSG_CL_OPTIONS_USAGE_13="         -list_packages                     afficher la liste des packages disponibles"
+MSG_CL_OPTIONS_USAGE_14="         -install_icons <rép> (-ii <rép>)   installer les icônes, en spécifiant le répertoire de SQL Anywhere"
+MSG_CL_OPTIONS_USAGE_15="         -type {CREATE|MODIFY|UPGRADE}      exécuter l'installation en fonction du type spécifié"
+MSG_CL_OPTIONS_USAGE_16="         -help (-h)                         afficher l'écran d'aide"
+
+#Cloud-specific options
+MSG_CLOUD_CL_OPTIONS_USAGE_1="Syntaxe : \${1} [options]"
+MSG_CLOUD_CL_OPTIONS_USAGE_2="         options :"
+MSG_CLOUD_CL_OPTIONS_USAGE_3="         -silent (-ss)                      installation en mode non détaillé"
+MSG_CLOUD_CL_OPTIONS_USAGE_4="         -nogui                             utiliser le script du shell uniquement, sans tenter d'appeler l'interface utilisateur"
+MSG_CLOUD_CL_OPTIONS_USAGE_5="	 -I_accept_the_license_agreement    accepter le contrat de licence"
+MSG_CLOUD_CL_OPTIONS_USAGE_6="         -regkey <clé> (-k <clé>)           utiliser la <clé> comme clé d'enregistrement"
+MSG_CLOUD_CL_OPTIONS_USAGE_7="         -cloud-swdir <rép> (-d <rép>)	  déterminer le répertoire d'installation du nuage"
+MSG_CLOUD_CL_OPTIONS_USAGE_8="         -cloud-data (-cd )		  déterminer le répertoire des données du nuage"
+MSG_CLOUD_CL_OPTIONS_USAGE_9="         -cloud-swverfull       		  déterminer la version complète du nuage"
+MSG_CLOUD_CL_OPTIONS_USAGE_10="         -cloud-secondary (-cs )		  nouvelle installation sur un hôte secondaire"
+MSG_CLOUD_CL_OPTIONS_USAGE_11="         -cloud-additional (-ca )	  installation supplémentaire sur un hôte primaire ou secondaire"
+MSG_CLOUD_CL_OPTIONS_USAGE_12="         -cloud-name <nom_nuage> (-cn <nom_nuage>)	spécifier le nom du nuage"
+MSG_CLOUD_CL_OPTIONS_USAGE_13="         -cloud-language <code_lang> (-cl <code_lang>)	spécifier le code de langue en deux lettres du nuage"
+MSG_CLOUD_CL_OPTIONS_USAGE_14="         -cloud-company <société> (-cc <société>)        déterminer le nom de la société"
+MSG_CLOUD_CL_OPTIONS_USAGE_15="         -cloud-username <util_nuage> (-cu <util_nuage>)	spécifier le nom de l'utilisateur du nuage"
+MSG_CLOUD_CL_OPTIONS_USAGE_16="         -cloud-userfullname <nom> (-cuf <nom>)	spécifier le nom complet de l'utilisateur du nuage"
+MSG_CLOUD_CL_OPTIONS_USAGE_17="         -cloud-useremail <email> (-cue <email>)		spécifier l'email de l'utilisateur du nuage"
+MSG_CLOUD_CL_OPTIONS_USAGE_18="         -cloud-password <mdp> (-cp <mdp>)	spécifier le mot de passe de l'utilisateur"
+MSG_CLOUD_CL_OPTIONS_USAGE_19="         -cloud-encryptkey <clé> (-ce <clé>)		spécifier la clé de cryptage"
+MSG_CLOUD_CL_OPTIONS_USAGE_20="         -cloud-securefeaturekey <clé> (-csf <clé>)	spécifier la clé des fonctionnalités de sécurité"
+MSG_CLOUD_CL_OPTIONS_USAGE_21="         -cloud-tcpport <port>	    spécifier le port TCPIP du serveur primaire"
+MSG_CLOUD_CL_OPTIONS_USAGE_22="         -cloud-httpport <port>	    spécifier le port HTTP du serveur primaire"
+MSG_CLOUD_CL_OPTIONS_USAGE_23="         -cloud-httpsport <port>     spécifier le port HTTPS du serveur primaire"
+MSG_CLOUD_CL_OPTIONS_USAGE_24="         -cloud-identityfile <fichier>  spécifier le certificat d'identité du nuage"
+MSG_CLOUD_CL_OPTIONS_USAGE_25="         -cloud-identitypwd <mdp>  spécifier le mot de passe du certificat d'identité du nuage"
+MSG_CLOUD_CL_OPTIONS_USAGE_26="         -install <packages>                où packages est une liste de packages séparés par des virgules"
+MSG_CLOUD_CL_OPTIONS_USAGE_27="         -list_packages                     afficher la liste des packages disponibles"
+MSG_CLOUD_CL_OPTIONS_USAGE_28="         -help (-h)                         afficher l'écran d'aide"
+
+# Common Errors
+ERR_OS_UNSUPPORTED="Ce SE n'est pas pris en charge"
+ERR_REG_INVALID="regkey non valable."
+ERR_NO_SQLANY_REGKEY="ECHEC, SQLANY_REGKEY ne peut pas être vide"
+MSG_REENTER_KEY="Veuillez saisir à nouveau votre clé d'enregistrement, "
+MSG_ENTER_NEW_KEY="Veuillez saisir une autre clé d'enregistrement, "
+ERR_INVALID_REGISTRATION="Vous avez saisi une clé d'enregistrement incorrecte."
+ERR_KEY_DOES_NOT_MATCH_PRODUCT="La clé que vous avez saisie ne peut pas être utilisée avec ce produit."
+MSG_GUI_ENTER_NEW_KEY="Cliquez sur Précédent pour en saisir une autre."
+MSG_GUI_EVALUATION="Cliquez sur Suivant pour installer la version d'évaluation valable 60 jours. Cliquez sur Précédent pour saisir à nouveau votre clé d'installation."
+ERR_RUNTIME_KEY="Vous avez saisi une clé de version d'exécution. Or, la version d'exécution n'est pas prise en charge sous UNIX."
+ERR_WEB_KEY="Vous avez saisi une clé de version Web Edition. Or, celle-ci n'est pas prise en charge sur cette plate-forme."
+ERR_WORKGROUP_KEY="Vous avez saisi une clé de version Workgroup Edition. Or, celle-ci n'est pas prise en charge sur cette plate-forme."
+ERR_UNSUPPORTED_KEY="La clé que vous avez saisie ne donne accès à aucune option disponible sur cette plate-forme."
+ERR_MULTIPLEBASE_KEY="Vous avez saisi plusieurs clés de base : "
+MSG_ENTER_REGISTRATION="Veuillez saisir votre clé d'enregistrement."
+MSG_MULTIPLE_KEYS_BUTTON="Saisir plusieurs clés d’enregistrement..."
+MSG_ADDITIONAL_KEYS="Clés d'enregistrement supplémentaires : "
+ERR_FATAL_ERROR_ABORT="Une erreur fatale s'étant produite, le programme d'installation va prendre fin."
+ERR_FATAL_ERROR_ABOUT="Une erreur s'est produite pendant l'installation.  Veuillez la corriger et relancer l'installation."
+ERR_CLEANING_UP="Nettoyage en cours..."
+
+MSG_MULTIPLE_KEYS_PROMPT_CONSOLE_1="Si vous devez saisir plusieurs clés d'enregistrement (si vous avez déjà"
+MSG_MULTIPLE_KEYS_PROMPT_CONSOLE_2="acheté des compléments, par exemple), séparez-les par une"
+MSG_MULTIPLE_KEYS_PROMPT_CONSOLE_3="virgule."
+MSG_MULTIPLE_KEYS_PROMPT_GUI="Si vous devez saisir plusieurs clés d'enregistrement (si vous avez déjà acheté des compléments, par exemple), cliquez sur le bouton ci-dessous."
+
+# Common Messages
+MSG_INVALID="non valable"
+MSG_VALID="valable"
+MSG_COMPLETED="Terminé."
+MSG_YES="OUI"
+MSG_NO="NON"
+MSG_NEEDED="Requis"
+MSG_AVAILABLE="Disponible"
+MSG_CHOICE="Choix"
+MSG_NAME="Nom :"
+MSG_COMPANY="Société :"
+MSG_MEGABYTE_SUFFIX="Mo"
+MSG_DONE="Terminé"
+MSG_FINISH="Terminer"
+MSG_BACK="Retour"
+MSG_NEXT="Suivant"
+MSG_CANCEL="Annuler"
+MSG_PRODUCT_NAME="SQL Anywhere"
+MSG_PRODUCT_NAME_AND_VERSION="${MSG_PRODUCT_NAME} ${__VERNUM}"
+
+MSG_EXIT_INTERACTIVE_MODE="Sortie du mode interactif."
+MSG_ASK_REGISTRATION_KEY="Si vous avez reçu une clé d'installation ou d'enregistrement de 25 caractères, saisissez-la maintenant."
+MSG_REENTER_REG_KEY="Veuillez saisir de nouveau votre clé d'installation ou d'enregistrement"
+MSG_INSTALL_EVALUATION="ou appuyer sur ENTREE pour installer la version d'évaluation valable 60 jours."
+MSG_Y_TO_ACCEPT_N_TO_REFUSE="Appuyez sur O pour accepter ou N pour refuser"
+MSG_HIT_ENTER_TO_RETURN_TO_MENU="Appuyez sur ENTREE pour revenir au menu."
+MSG_HIT_ENTER_TO_RETURN_TO_MAIN_MENU="Appuyez sur ENTREE pour revenir au menu principal"
+MSG_HIT_ENTER_TO_TRY_AGAIN="Appuyez sur ENTREE pour réessayer"
+MSG_PRESS_Q_TO_QUIT="Appuyez sur 'q' pour quitter..."
+MSG_ENTER_TO_CONTINUE="Appuyez sur ENTREE pour continuer..."
+MSG_ANY_KEY_TO_CONTINUE="Appuyez sur n'importe quelle touche pour continuer..."
+MSG_ASK_CONTINUE="Souhaitez-vous continuer ?"
+
+MSG_OBTAIN_DEV_KEY_1="Si vous ne disposez pas d'une clé d'enregistrement, vous pouvez vous en procurer une gratuitement"
+MSG_OBTAIN_DEV_KEY_2="sur le site Web suivant : "
+MSG_OBTAIN_DEV_KEY_3="http://www.sybase.com/sa${__VERNUM}_registration_cd"
+
+MSG_OBTAIN_CLOUD_KEY_1="Si vous ne disposez pas d'une clé d'enregistrement, vous pouvez vous en procurer une gratuitement"
+MSG_OBTAIN_CLOUD_KEY_2="sur le site Web suivant : "
+MSG_OBTAIN_CLOUD_KEY_3="http://response.sybase.com/forms/SQLAOnDemandReg"
+
+MSG_INSTALL_MODE="Veuillez sélectionner un type d'installation :"
+MSG_INSTALL_CREATE="Créer une installation"
+MSG_INSTALL_MODIFY="Modifier une installation existante"
+MSG_INSTALL_UPGRADE="Mettre à niveau une installation existante"
+
+MSG_INSTALL_DBCLOUD_INSTALLTYPE="Veuillez sélectionner votre type d'hôte de nuage : "
+MSG_INSTALL_DBCLOUD_INSTALLTYPE_PRIMARY="Hôte primaire - nouvelle installation"
+MSG_INSTALL_DBCLOUD_INSTALLTYPE_SECONDARY="Hôte secondaire - nouvelle installation"
+MSG_INSTALL_DBCLOUD_INSTALLTYPE_ADDITIONAL="Installation supplémentaire sur un hôte primaire ou secondaire"
+
+# Licensing Messages
+MSG_ENTER_SERVER_LICENSE_INFO="Veuillez fournir les informations suivantes sur la licence serveur :  "
+MSG_SERVER_LICENSE_INFO="Informations sur la licence serveur : "
+MSG_ENTER_NAME="Saisissez votre nom"
+MSG_ENTER_COMPANY="Saisissez le nom de votre société"
+MSG_LICENSE_TYPE="Type de licence :"
+MSG_LIC_CPU_BASED="Licence par processeur."
+MSG_LIC_CORE_BASED="Licence par coeur de processeur."
+MSG_LIC_NET_BASED="Licence par poste en réseau."
+MSG_PROCESSOR_NAME="Processeurs"
+MSG_CORE_NAME="Coeurs de processeur"
+MSG_SEAT_NAME="Postes"
+MSG_LICENSED_SEATS="Postes sous licence :"
+MSG_LICENSED_CORES="Coeurs de processeur sous licence :"
+MSG_LICENSED_PROCESSORS="Processeurs sous licence :"
+
+MSG_ENTER_DBCLOUD_LICENSE_INFO="Veuillez fournir les informations suivantes sur la licence du nuage :  "
+MSG_DBCLOUD_LICENSE_INFO="Informations sur la licence du nuage : "
+MSG_DBCLOUD_NAME="Saisissez le nom du nuage :"
+MSG_DBCLOUD_LANG="Saisissez le code de langue en deux lettres du nuage (par exemple, FR) :"
+MSG_DBCLOUD_COMPANY="Saisissez le nom de votre société :"
+MSG_DBCLOUD_KEY="Spécifiez la clé de cryptage"
+MSG_DBCLOUD_KEY_CONFIRM="Saisissez de nouveau la clé de cryptage :"
+
+MSG_DEVELOPER_EDITION_NAME="( Developer Edition )"
+
+ERR_NO_USERNAME="Aucun nom d'utilisateur n'a été spécifié."
+ERR_NO_COMPANY_NAME="Le nom de la société n'a pas été spécifié."
+ERR_NO_SEAT_OR_PROC_MODEL="Le type de poste ou de processeur n'a pas été spécifié."
+ERR_NO_SEAT_OR_PROC="Le nombre de postes ou de processeurs n'a pas été spécifié."
+
+# DBCloud config
+MSG_DBCLOUD_ASK_CONFIG_1="Le programme d'installation vous guide tout au long du paramétrage du nuage."
+MSG_DBCLOUD_ASK_CONFIG_2=""
+MSG_DBCLOUD_ASK_CONFIG_3=""
+MSG_DBCLOUD_ASK_CONFIG_4=""
+MSG_DBCLOUD_ASK_CONFIG_5=""
+
+MSG_DBCLOUD_CONFIG_CLI_Q="Souhaitez-vous créer un nuage maintenant ?"
+MSG_DBCLOUD_CONFIG_GUI_Q="C_réer un nuage à la fin de l'installation"
+
+MSG_DBCLOUD_CONFIG="Veuillez fournir les informations de paramétrage du nuage suivantes : "
+MSG_DBCLOUD_FULLNAME="Nom complet"
+MSG_DBCLOUD_EMAIL="Adresse électronique"
+MSG_DBCLOUD_USERNAME="Définir un ID utilisateur dans le nuage"
+MSG_DBCLOUD_PASSWORD="Définir un mot de passe dans le nuage"
+MSG_DBCLOUD_PASSWORD_CONFIRM="Confirmer le mot de passe"
+
+MSG_DBCLOUD_CONFIG_PORTS="Veuillez saisir les informations suivantes sur les ports du serveur primaire"
+MSG_DBCLOUD_CONFIG_PORTS_NOTE1="IMPORTANT : assurez-vous que les ports spécifiés sont disponibles avant de"
+MSG_DBCLOUD_CONFIG_PORTS_NOTE2="continuer. Il est conseillé d'utiliser les paramètres par défaut. Si"
+MSG_DBCLOUD_CONFIG_PORTS_NOTE3="vous n'utilisez pas les valeurs par défaut des ports, vous devez inclure les numéros lorsque"
+MSG_DBCLOUD_CONFIG_PORTS_NOTE4="vous vous connectez à ce serveur (chaînes de connexion et URL)."
+MSG_DBCLOUD_CONFIG_PORT_TCPIP="TCPIP"
+MSG_DBCLOUD_CONFIG_PORT_HTTP="HTTP"
+MSG_DBCLOUD_CONFIG_PORT_HTTPS="HTTPS"
+
+MSG_DBCLOUD_CONFIGURING="Configuration du nuage en cours..."
+
+ERR_DBCLOUD_USERNAME_EMPTY="Erreur : le nom d'utilisateur ne peut pas être vide. Veuillez réessayer."
+ERR_DBCLOUD_PASSWORD_MISMATCH="Erreur : non-concordance des mots de passe. Veuillez réessayer."
+ERR_DBCLOUD_PASSWORD_EMPTY="Erreur : le mot de passe ne peut pas être vide. Veuillez réessayer."
+ERR_DBCLOUD_KEY_MISMATCH="Erreur : non-concordance des clés. Veuillez réessayer."
+ERR_DBCLOUD_KEY_EMPTY="Erreur : la clé ne peut pas être vide. Veuillez réessayer."
+
+# Setup Messages
+MSG_ENTER_INSTALL_DIR="Veuillez spécifier le répertoire d'installation"
+MSG_ENTER_CLOUD_DATA_DIR="Veuillez spécifier le répertoire dans lequel stocker les données du nuage"
+MSG_ENTER_INSTALL_DIR_FULL_PATH="Veuillez spécifier le chemin complet du répertoire."
+
+# Install Option
+MSG_ASK_REVIEW_README="Souhaitez-vous consulter le fichier Read Me ?"
+MSG_ASK_DELETE_FILES="Les fichiers seront supprimés. Etes-vous sûr de vouloir continuer ?"
+MSG_ASK_OVERWRITE_FILES="Les fichiers seront écrasés. Etes-vous sûr de vouloir continuer ?"
+MSG_ASK_AGREE_LICENSE="J'ACCEPTE les termes de la licence Sybase pour l'emplacement d'installation spécifié"
+MSG_ASK_ARE_OPTIONS_SATISFACTORY="Ces paramètres vous satisfont-ils ?"
+MSG_ASK_EXIT_SETUP="Vous avez choisi de quitter l'installation. En êtes-vous sûr ?"
+
+MSG_GUI_VIEW_README="Consulter le fichier Read Me"
+
+MSG_CREATING_SC_RES_FILE="Configuration de Sybase Central :  "
+
+MSG_LICENSING_SA="Enregistrement de la licence SQL Anywhere en cours..."
+MSG_LICENSING_ML="Enregistrement de la licence du serveur MobiLink..."
+MSG_CHECKING_FOR_AVAILABLE_DISK_SPACE="Vérification de l'espace disque disponible en cours...  "
+
+# Option Messages
+MSG_SELECT_OPTIONS="Veuillez sélectionner les options à installer :"
+MSG_SELECT_INSTALL_COMPONENTS="Veuillez sélectionner les composants à installer :"
+MSG_SELECT_DEPLOY_COMPONENTS="Veuillez sélectionner les composants à déployer :"
+
+MSG_CAT_DATABASES="Bases de données"
+MSG_CAT_DATABASES_DESC="Formats de base de données disponibles"
+MSG_CAT_SYNC="Synchronisation"
+MSG_CAT_SYNC_DESC="Fonctionnalités de synchronisation"
+MSG_CAT_SQLANY32="SQL Anywhere (32 bits)"
+MSG_CAT_SQLANY32_DESC="Base de données relationnelle complète pour plates-formes 32 bits"
+MSG_CAT_SQLANY64="SQL Anywhere (64 bits)"
+MSG_CAT_SQLANY64_DESC="Base de données relationnelle complète pour plates-formes 64 bits"
+MSG_OPT_SQLANY32="Serveur SQL Anywhere"
+MSG_OPT_SQLANY32_DESC="Serveur de base de données relationnelle complet pour plates-formes 32 bits"
+MSG_OPT_SQLANY64="Serveur SQL Anywhere"
+MSG_OPT_SQLANY64_DESC="Serveur de base de données relationnelle complet pour plates-formes 64 bits"
+MSG_OPT_SQLANY_CLIENT32="Client SQL Anywhere"
+MSG_OPT_SQLANY_CLIENT32_DESC="Composants clients de base de données relationnelle pour plates-formes 32 bits"
+MSG_OPT_SQLANY_CLIENT64="Client SQL Anywhere"
+MSG_OPT_SQLANY_CLIENT64_DESC="Composants clients de base de données relationnelle pour plates-formes 64 bits"
+MSG_OPT_ML32="MobiLink (32 bits)"
+MSG_OPT_ML32_DESC="Synchronisation des données et messagerie pour plates-formes 32 bits"
+MSG_OPT_ML64="MobiLink (64 bits)"
+MSG_OPT_ML64_DESC="Synchronisation des données et messagerie pour plates-formes 64 bits"
+MSG_OPT_MLSRV32="Serveur MobiLink (32 bits)"
+MSG_OPT_MLSRV32_DESC="Serveur de synchronisation des données et de messagerie pour plates-formes 32 bits"
+MSG_OPT_MLSRV64="Serveur MobiLink (64 bits)"
+MSG_OPT_MLSRV64_DESC="Serveur de synchronisation des données et de messagerie pour plates-formes 64 bits"
+MSG_OPT_RELAYSERVER32="Serveur relais (32 bits)"
+MSG_OPT_RELAYSERVER32_DESC="Offrir une architecture de communication HTTP garantissant la répartition de la charge et la tolérance de pannes, pour permettre les échanges de données entre l'entreprise et l'extérieur"
+MSG_OPT_RELAYSERVER64="Serveur relais (64 bits)"
+MSG_OPT_RELAYSERVER64_DESC="Offrir une architecture de communication HTTP garantissant la répartition de la charge et la tolérance de pannes, pour permettre les échanges de données entre l'entreprise et l'extérieur"
+MSG_OPT_QANYWHERE="QAnywhere"
+MSG_OPT_QANYWHERE_DESC="Composants permettant l'envoi de messages entre applications"
+MSG_OPT_ULTRALITE="UltraLite"
+MSG_OPT_ULTRALITE_DESC="Base de données relationnelle compacte pour appareils plus petits"
+MSG_OPT_DBREMOTE="SQL Remote"
+MSG_OPT_DBREMOTE_DESC="Réplication bidirectionnelle des données entre bases SQL Anywhere"
+MSG_OPT_DBREMOTE32="SQL Remote (32 bits)"
+MSG_OPT_DBREMOTE32_DESC="Réplication bidirectionnelle des données entre bases SQL Anywhere"
+MSG_OPT_DBREMOTE64="SQL Remote (64 bits)"
+MSG_OPT_DBREMOTE64_DESC="Réplication bidirectionnelle des données entre bases SQL Anywhere"
+MSG_OPT_REPAGENT="Replication Agent pour SQL Anywhere"
+MSG_OPT_REPAGENT_DESC="Composant LTM (Log Transfer Manager, gestionnaire de transfert de journal) pour Sybase Replication Server"
+MSG_OPT_ADMINTOOLS32="Outils d'administration (32 bits)"
+MSG_OPT_ADMINTOOLS32_DESC="Outils d'administration tels que Sybase Central et Interactive SQL"
+MSG_OPT_ADMINTOOLS64="Outils d'administration (64 bits)"
+MSG_OPT_ADMINTOOLS64_DESC="Outils d'administration tels que Sybase Central et Interactive SQL"
+MSG_OPT_SAMON="Moniteur SQL Anywhere"
+MSG_OPT_SAMON_DESC="Surveiller les serveurs de base de données SQL Anywhere sur un réseau"
+MSG_OPT_SAMON32="Moniteur SQL Anywhere (32 bits)"
+MSG_OPT_SAMON32_DESC="Surveiller les serveurs de base de données SQL Anywhere sur un réseau"
+MSG_OPT_SAMON64="Moniteur SQL Anywhere (64 bits)"
+MSG_OPT_SAMON64_DESC="Surveiller les serveurs de base de données SQL Anywhere sur un réseau"
+MSG_OPT_SAMON_DEPLOY="Moniteur SQL Anywhere"
+MSG_OPT_SAMON_DEPLOY_DESC="Surveiller les serveurs de base de données SQL Anywhere sur un réseau"
+MSG_OPT_SAMPLES="Exemples"
+MSG_OPT_SAMPLES_DESC="Exemples illustrant l'utilisation des diverses fonctionnalités de SQL Anywhere"
+MSG_OPT_ECC="Cryptage fort ECC"
+MSG_OPT_ECC_DESC="Cryptage fort des données transmises sur les réseaux TCP/IP"
+MSG_OPT_FIPS="Cryptage fort conforme à FIPS"
+MSG_OPT_FIPS_DESC="Cryptage fort conforme à FIPS des données transmises sur les réseaux TCP/IP"
+MSG_OPT_HIGH_AVAIL="Haute disponibilité"
+MSG_OPT_HIGH_AVAIL_DESC="Agent Veritas Cluster Server et mise en miroir de base de données pour la reprise sur le serveur secondaire"
+MSG_OPT_SELINUX="Sources de la politique SELinux"
+MSG_OPT_SELINUX_DESC="Sources de la politique de Security-Enhanced Linux"
+MSG_OPT_UPGRADE="Mettre à niveau l'édition"
+MSG_OPT_UPGRADE_DESC="Mettre à niveau la licence SQL Anywhere vers une autre édition"
+MSG_OPT_IN_MEMORY="Mode en mémoire"
+MSG_OPT_IN_MEMORY_DESC="Possibilité d'exécuter la base de données SQL Anywhere entièrement en mémoire"
+MSG_OPT_SCALEOUTNODES="Scale-out en lecture seule"
+MSG_OPT_SCALEOUTNODES_DESC="Diriger les opérations nécessitant un accès en lecture seul à la base de données vers des copies en lecture seule de cette dernière"
+MSG_OPT_DBCLOUD="SQL Anywhere OnDemand"
+MSG_OPT_DBCLOUD_DESC="Créer un nuage de serveurs de base de données SQL Anywhere sur un réseau"
+
+MSG_OPT_HTML_EN_DOC="Documentation en anglais au format HTML"
+MSG_OPT_HTML_DE_DOC="Documentation en allemand au format HTML"
+MSG_OPT_HTML_FR_DOC="Documentation en français au format HTML"
+MSG_OPT_HTML_JA_DOC="Documentation en japonais au format HTML"
+MSG_OPT_HTML_ZH_DOC="Documentation en chinois au format HTML"
+MSG_OPT_PDF_EN_DOC="Manuels imprimables en anglais (PDF)"
+MSG_OPT_PDF_DE_DOC="Manuels imprimables en allemand (PDF)"
+MSG_OPT_PDF_FR_DOC="Manuels imprimables en français (PDF)"
+MSG_OPT_PDF_JA_DOC="Manuels imprimables en japonais (PDF)"
+MSG_OPT_PDF_ZH_DOC="Manuels imprimables en chinois (PDF)"
+MSG_OPT_ECLIPSE_EN_DOC="Documentation en anglais"
+MSG_OPT_ECLIPSE_DE_DOC="Documentation en allemand"
+MSG_OPT_ECLIPSE_JA_DOC="Documentation en japonais"
+MSG_OPT_ECLIPSE_ZH_DOC="Documentation en chinois"
+
+# Desktop Icons
+MSG_QUESTION_ICONS="Souhaitez-vous ajouter des éléments dans le menu Applications pour \$1 ?"
+MSG_QUESTION_KDE="Souhaitez-vous ajouter des icônes pour SQL Anywhere sur le bureau KDE de l'utilisateur actuel ?"
+MSG_KDE_NOT_FOUND="Bureau local KDE introuvable."
+MSG_QUESTION_GNOME="Souhaitez-vous ajouter des icônes pour SQL Anywhere sur le bureau GNOME de l'utilisateur actuel ?"
+MSG_GNOME_NOT_FOUND="Bureau local GNOME introuvable."
+MSG_ICON_REMOVAL_INSTRUCTIONS="Pour supprimer les icônes, utilisez le script \${1}/remicons."
+MSG_MISSING_ICON_DESTINATION="Vous devez sourcer le script sa_config dans votre répertoire bin32 ou bin64 avant de créer les icônes."
+
+# Feature tracking
+MSG_QUESTION_FEATURE_TRACKING_1="Souhaitez-vous autoriser \$1 à envoyer des informations concernant"
+MSG_QUESTION_FEATURE_TRACKING_2="l'utilisation du produit/de la fonctionnalité à SAP AG ?"
+MSG_QUESTION_FEATURE_TRACKING_3="Pour savoir comment les données collectées sont utilisées,"
+MSG_QUESTION_FEATURE_TRACKING_4="consultez : http://scn.sap.com/docs/DOC-35055"
+MSG_QUESTION_FEATURE_TRACKING_5="Aucune information personnelle n'est collectée ou envoyée."
+MSG_GUI_FEATURE_TRACKING_1="Autoriser \$1 à _envoyer des informations concernant"
+MSG_GUI_FEATURE_TRACKING_2="l'utilisation du produit/de la fonctionnalité à SAP AG."
+MSG_GUI_FEATURE_TRACKING_3="Aucune information personnelle n'est collectée ou envoyée."
+MSG_GUI_FEATURE_TRACKING_4="Utilisation des données collectées"
+MSG_MAC_FEATURE_TRACKING_1="Autoriser \$1 à envoyer des informations concernant"
+MSG_MAC_FEATURE_TRACKING_2="l'utilisation du produit/de la fonctionnalité à SAP AG."
+MSG_MAC_FEATURE_TRACKING_3="Aucune information personnelle n'est collectée ou envoyée."
+MSG_MAC_FEATURE_TRACKING_4="Utilisation des données collectées"
+
+# Icon names
+MSG_ICON_64BIT="(64 bits)"
+MSG_ICON_32BIT="(32 bits)"
+MSG_ICON_NETWORK_SERVER="Serveur réseau"
+MSG_ICON_PERSONAL_SERVER="Serveur personnel"
+MSG_ICON_START_SERVER_MONITOR="Démarrer le Moniteur SQL Anywhere"
+MSG_ICON_STOP_SERVER_MONITOR="Arrêter le Moniteur SQL Anywhere"
+MSG_ICON_SERVER_MONITOR_CONSOLE="Parcourir les données du Moniteur SQL Anywhere"
+MSG_ICON_NETWORK_SERVER_64BIT="\${MSG_ICON_NETWORK_SERVER} \${MSG_ICON_64BIT}"
+MSG_ICON_NETWORK_SERVER_32BIT="\${MSG_ICON_NETWORK_SERVER} \${MSG_ICON_32BIT}"
+MSG_ICON_PERSONAL_SERVER_64BIT="\${MSG_ICON_PERSONAL_SERVER} \${MSG_ICON_64BIT}"
+MSG_ICON_PERSONAL_SERVER_32BIT="\${MSG_ICON_PERSONAL_SERVER} \${MSG_ICON_32BIT}"
+MSG_ICON_START_SERVER_MONITOR_64BIT="\${MSG_ICON_START_SERVER_MONITOR} \${MSG_ICON_64BIT}"
+MSG_ICON_START_SERVER_MONITOR_32BIT="\${MSG_ICON_START_SERVER_MONITOR} \${MSG_ICON_32BIT}"
+MSG_ICON_STOP_SERVER_MONITOR_64BIT="\${MSG_ICON_STOP_SERVER_MONITOR} \${MSG_ICON_64BIT}"
+MSG_ICON_STOP_SERVER_MONITOR_32BIT="\${MSG_ICON_STOP_SERVER_MONITOR} \${MSG_ICON_32BIT}"
+MSG_ICON_SERVER_MONITOR="Moniteur SQL Anywhere"
+MSG_ICON_SERVER_MONITOR_64BIT="\${MSG_ICON_SERVER_MONITOR} \${MSG_ICON_64BIT}"
+MSG_ICON_SERVER_MONITOR_32BIT="\${MSG_ICON_SERVER_MONITOR} \${MSG_ICON_32BIT}"
+MSG_ICON_ADMINTOOLS="Outils d’administration"
+MSG_ICON_DBISQL="Interactive SQL"
+MSG_ICON_DBISQL_64BIT="\${MSG_ICON_DBISQL} \${MSG_ICON_64BIT}"
+MSG_ICON_DBISQL_32BIT="\${MSG_ICON_DBISQL} \${MSG_ICON_32BIT}"
+MSG_ICON_SCENTRAL="Sybase Central"
+MSG_ICON_SCENTRAL_64BIT="\${MSG_ICON_SCENTRAL} \${MSG_ICON_64BIT}"
+MSG_ICON_SCENTRAL_32BIT="\${MSG_ICON_SCENTRAL} \${MSG_ICON_32BIT}"
+MSG_ICON_MLMON="Moniteur MobiLink"
+MSG_ICON_MLPROF="Profileur MobiLink"
+MSG_ICON_MLPROF_64BIT="\${MSG_ICON_MLPROF} \${MSG_ICON_64BIT}"
+MSG_ICON_MLPROF_32BIT="\${MSG_ICON_MLPROF} \${MSG_ICON_32BIT}"
+MSG_ICON_DBCONSOLE="Console SQL Anywhere"
+MSG_ICON_DBCONSOLE_64BIT="\${MSG_ICON_DBCONSOLE} \${MSG_ICON_64BIT}"
+MSG_ICON_DBCONSOLE_32BIT="\${MSG_ICON_DBCONSOLE} \${MSG_ICON_32BIT}"
+MSG_ICON_UPSA="Mises à jour disponibles"
+MSG_ICON_DCX="DocCommentXchange"
+MSG_ICON_DOCUMENTATION="Documentation"
+MSG_ICON_DOWNLOAD_DOCUMENTATION="Télécharger la documentation"
+MSG_ICON_HELP_HTML="Manuels en ligne"
+MSG_ICON_HELP_PDF="Manuels en ligne - Format PDF"
+MSG_ICON_READ_ME="Read Me"
+MSG_ICON_ONLINE_RESOURCES="Ressources en ligne de SQL Anywhere"
+MSG_ICON_SQLANY_DOCUMENTATION="Documentation de SQL Anywhere"
+
+# Samples setup
+MSG_SAMPLES_DEST_DIR="Saisir le répertoire de destination dans lequel copier les exemples"
+MSG_SAMPLES_COPYING="Copie des exemples en cours..."
+MSG_DATA_SOURCES="Paramétrage des sources de données en cours...  "
+MSG_SAMPLE_ENV="Paramétrage du script sample_env en cours... "
+MSG_ADDITIONAL_ODBC_SETUP="Configuration ODBC supplémentaire"
+MSG_MULTIPLE_ODBC_DRIVERS="Remarque : votre installation offre plusieurs possibilités pour le pilote ODBC."
+
+# Start MobiLink with messaging script
+MSG_ENTER_MOBILINK_PROPERTIES_FILE="Saisissez le chemin complet du fichier des propriétés fourni en exemple pour MobiLink avec la messagerie QAnywhere"
+MSG_STARTING_ML_DEMO="Démarrage de MobiLink avec démo de messagerie en cours... "
+
+# for cloudenv.sh
+MSG_DBCLOUD_SETTING_ENV="Paramétrage de l'environnement du nuage en cours... "
+
+# sa_config comments
+MSG_COMMENT_SA_LOCATION="les lignes suivantes déterminent l'emplacement de SA."
+MSG_COMMENT_SHARED_LOCATION="les lignes suivantes déterminent l'emplacement du répertoire partagé."
+MSG_COMMENT_DIAG_LOCATION="les lignes suivantes déterminent l'emplacement du répertoire de diagnostic."
+MSG_COMMENT_OCOS_LOCATION="les lignes suivantes ajoutent les exécutables Open Client/Open Server dans votre chemin."
+MSG_COMMENT_SC_PATH="les lignes suivantes ajoutent Sybase Central dans votre chemin."
+MSG_COMMENT_SA_PATH="les lignes suivantes ajoutent les binaires de SA dans votre chemin."
+MSG_ADDING_OCOS_TO_LIBPATH="les lignes suivantes ajoutent les bibliothèques Open Client/Open Server dans le chemin de vos bibliothèques."
+MSG_DONT_COMMENT_SALIB="les lignes suivantes sont nécessaires pour charger les différents objets partagés de SA"
+
+MSG_DONT_COMMENT_OCOS_1="les lignes suivantes sont nécessaires pour permettre aux bibliothèques Open Client/Open Server"
+MSG_DONT_COMMENT_OCOS_2="de localiser les répertoires des jeux de caractères et des environnements linguistiques."
+
+MSG_OCOS_CHARSET_LIB_1="les lignes suivantes sont nécessaires pour permettre aux bibliothèques Open Client/Open Server"
+MSG_OCOS_CHARSET_LIB_2="de localiser les répertoires des jeux de caractères et des environnements linguistiques."
+
+# Component Errors
+ERR_MISSING_NET_SERVER="Impossible d'installer le serveur réseau.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_JAVA_DOC="Impossible d'installer la documentation Java de SA.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_DBCONSOLE="Impossible d'installer la console SQL Anywhere.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_PERSONAL_SERVER="Impossible d'installer le serveur personnel.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_UL_DEV="Impossible d'installer les outils de développement UltraLite.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_ML_MONITOR="Impossible d'installer le Moniteur MobiLink.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_REPLICATION="Impossible d'installer Replication Agent.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_SQL_REMOTE_ASE="Impossible d'installer SQL Remote pour ASE.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_MLSERVER="Impossible d'installer le serveur MobiLink.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_DBTOOLS="Impossible d'installer les outils de base de données.   Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_ML_SAMPLES="Impossible d'installer les exemples de serveur MobiLink.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_MLSIS="Impossible d'installer la synchronisation à l'initiative du serveur.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_NET_CLIENT="Impossible d'installer le client réseau.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_NET64_CLIENT="Impossible d'installer le client réseau 64 bits.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_NET32_CLIENT="Impossible d'installer le client réseau 32 bits.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_ISQL="Impossible d'installer Interactive SQL.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_JAVA="Impossible d'installer Java dans le composant de base de données.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_DEVTOOLS="Impossible d'installer les composants de développement C++.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_SA_ECC_ENCRYPTION="Impossible d'installer le cryptage SQL Anywhere (ECC).  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_SA_FIPS_ENCRYPTION="Impossible d'installer le cryptage SQL Anywhere (FIPS).  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_SA_RSA_ENCRYPTION="Impossible d'installer le cryptage SQL Anywhere (RSA).  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_MLCLIENT="Impossible d'installer le client MobiLink.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_SAMPLES="Impossible d'installer les exemples SQL Anywhere.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_SQL_REMOTE_SA="Impossible d'installer SQL Remote pour SA.  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_ML_ECC_ENCRYPTION="Impossible d'installer le cryptage MobiLink (ECC).  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_ML_FIPS_ENCRYPTION="Impossible d'installer le cryptage MobiLink (FIPS).  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_ML_RSA_ENCRYPTION="Impossible d'installer le cryptage MobiLink (RSA).  Fichiers manquants ou clé d'enregistrement incorrecte."
+ERR_MISSING_HIGH_AVAIL="Impossible d'installer la haute disponibilité.  Fichiers manquants ou clé d'enregistrement incorrecte."
+
+# EBF INSTALL ONLY
+
+MSG_CLEANING_UP_PLEASE_WAIT="Nettoyage en cours, veuillez patienter..."
+MSG_ASK_RENAME_UPDATED_FILES="Souhaitez-vous renommer les fichiers mis à jour ?"
+
+# Minimum system requirements
+MSG_CHECKING_SYSTEM_REQUIREMENTS="Vérification de la configuration système requise en cours..."
+MSG_SYSTEM_REQUIREMENTS_NOT_MET_1="Avertissement : votre système ne présente pas la configuration minimale"
+MSG_SYSTEM_REQUIREMENTS_NOT_MET_2="requise pour installer ce produit."
+MSG_SYSTEM_REQUIREMENTS_NOT_MET_3=" "
+MSG_SYSTEM_REQUIREMENTS_NOT_MET_4="Pour connaître les patchs nécessaires au système d'exploitation"
+MSG_SYSTEM_REQUIREMENTS_NOT_MET_5="pour exécuter SQL Anywhere ${__VERNUM}, rendez-vous sur"
+MSG_SYSTEM_REQUIREMENTS_NOT_MET_6="http://www.ianywhere.com/products/supported_platforms.html"
+
+MSG_ENSURE_YOU_HAVE_LATEST_PATCHES_1="Remarque : pour connaître les patchs nécessaires au système d'exploitation"
+MSG_ENSURE_YOU_HAVE_LATEST_PATCHES_2="      pour exécuter SQL Anywhere ${__VERNUM}, rendez-vous sur"
+MSG_ENSURE_YOU_HAVE_LATEST_PATCHES_3="      http://www.ianywhere.com/products/supported_platforms.html"
+
+# Core only EBFS
+MSG_INSTALLED_COMPONENTS_NOT_IN_EBF="Les composants suivants sont installés, mais ils ne seront pas mis à jour par cet EBF :"
+MSG_INSTALLED_COMPONENTS_NOT_IN_UPGRADE="Les composants suivants sont installés, mais ils ne peuvent pas être mis à jour par cette installation :"
+
+# GTK GUI resources with mnemonics
+# Attention localizers: If the target language uses Roman letters, the mnemonic letter
+# is preceded by an underscore. Otherwise (i.e., Japanese and Chinese), the mnemonic
+# letter follows the resource, preceded by an underscore and enclosed in parentheses.
+# e.g., "N_ame:" becomes "XXXX(_a)"
+MSG_GUI_LICENSE_ACCEPT="J'_accepte les termes de ce contrat."
+MSG_GUI_LICENSE_REJECT="Je n'accepte pas les termes _de ce contrat."
+MSG_GUI_INSTALL_CREATE="_Créer une installation"
+MSG_GUI_INSTALL_MODIFY="_Modifier une installation existante"
+MSG_GUI_INSTALL_UPGRADE="Mettre à nivea_u une installation existante"
+MSG_GUI_NAME="_Nom :"
+MSG_GUI_COMPANY="_Société :"
+MSG_GUI_LICENSED_SEATS="Postes sous _licence :"
+MSG_GUI_LICENSED_CORES="Coeurs de processeur sous _licence :"
+MSG_GUI_LICENSED_PROCESSORS="Processeurs sous _licence :"
+MSG_GUI_LIC_CPU_BASED="Licence par processe_ur"
+MSG_GUI_LIC_NET_BASED="Licence _par poste en réseau."
+
+MSG_ADDITIONAL_ACTIONS="Veuillez indiquer si vous souhaitez exécuter l'une quelconque des actions supplémentaires suivantes :"
+
+MSG_GUI_ICONS="Créer des éléments du menu _Applications pour \$1"
+
+MSG_GUI_ASK_CHECK_FOR_UPDATES="_Vérifier maintenant si des mises à jour de SQL Anywhere sont disponibles ?"
+MSG_GUI_STARTSYBCENTRAL="_Démarrer Sybase Central et charger la base de données exemple SQL Anywhere."
+MSG_GUI_SYBCENTRAL_SHORTCUT="Créer un raccourci sur le bureau pour _Sybase Central, outil d’administration de SQL Anywhere"
+MSG_ASK_STARTSYBCENTRAL="Souhaitez-vous démarrer Sybase Central et charger maintenant la base de données exemple SQL Anywhere ?"
+MSG_ASK_SYBCENTRAL_SHORTCUT="Souhaitez-vous créer maintenant un raccourci sur le bureau pour Sybase Central ?"
+
+MSG_MAC_LICENSE_ACCEPT="J'accepte les termes de ce contrat de licence."
+MSG_MAC_LICENSE_REJECT="Je n'accepte pas les termes de ce contrat de licence."
+MSG_OVERWRITE="Remplacer"
+MSG_KEEP_EXISTING="Conserver l'existant"
+MSG_UPGRADE="Mettre à niveau"
+
+MSG_OPT_64BIT="(64 bits)"
+MSG_OPT_32BIT="(32 bits)"
+
+# Check for Updates panel
+MSG_ASK_CHECK_FOR_UPDATES="Souhaitez-vous vérifier maintenant si des mises à jour sont disponibles ?"
+MSG_CHECKING_FOR_UPDATES="Vérification des mises à jour disponibles en cours...  "
+MSG_ERROR_CHECKING_FOR_UPDATES="Une erreur s'est produite pendant la vérification des mises à jour disponibles.  Réessayez ultérieurement."
+MSG_GUI_CHECK_FOR_UPDATES="Mises à jour disponibles"
+
+# Error messages used when running in silent mode
+MSG_SILENT_MUST_ACCEPT_LICENSE_1="Vous devez accepter le contrat de licence avec l'option"
+MSG_SILENT_MUST_ACCEPT_LICENSE_2="-I_accept_the_license_agreement pour utiliser le mode non détaillé"
+
+MSG_SILENT_REGISTRATION_KEY_INVALID_1="La clé d'enregistrement fournie n'est pas correcte. Corrigez-la"
+MSG_SILENT_REGISTRATION_KEY_INVALID_2="et réessayez."
+
+MSG_SILENT_CANNOT_USE_DEVELOPER_EDITION_1="La clé d'enregistrement fournie correspond à la version Developer Edition de SQL"
+MSG_SILENT_CANNOT_USE_DEVELOPER_EDITION_2="Anywhere. Or, celle-ci ne peut pas être installée en mode non détaillé."
+
+MSG_SILENT_CANNOT_USE_EDUCATIONAL_EDITION_1="La clé d'enregistrement fournie correspond à la version Educational Edition de SQL"
+MSG_SILENT_CANNOT_USE_EDUCATIONAL_EDITION_2="Anywhere. Or, celle-ci ne peut pas être installée en mode non détaillé."
+
+MSG_SILENT_CANNOT_USE_EVAL_LICENSE_1="La clé d'enregistrement fournie correspond à la version d'évaluation de SQL"
+MSG_SILENT_CANNOT_USE_EVAL_LICENSE_2="Anywhere. Or, celle-ci ne peut pas être installée en mode non détaillé."
+
+MSG_SILENT_CANNOT_USE_WEB_EDITION_LICENSE_1="La clé d'enregistrement fournie correspond à la version Web Edition de SQL"
+MSG_SILENT_CANNOT_USE_WEB_EDITION_LICENSE_2="Anywhere. Or, celle-ci ne peut pas être installée en mode non détaillé."
+
+MSG_SILENT_NO_PACKAGES_SELECTED_1="Vous n'avez sélectionné aucune option d'installation. Veuillez spécifier les packages à"
+MSG_SILENT_NO_PACKAGES_SELECTED_2="installer à l'aide de l'option -install"
+
+MSG_SILENT_NO_LICENSE_NAME_PROVIDED_1="L'une au moins des options sélectionnées rend nécessaire la spécification d'un nom"
+MSG_SILENT_NO_LICENSE_NAME_PROVIDED_2="pour l'enregistrement de la licence. Veuillez spécifier un nom à l'aide de l'option -name"
+MSG_SILENT_NO_LICENSE_NAME_PROVIDED_3="pour enregistrer la licence."
+
+MSG_SILENT_MUST_PROVIDE_REGISTRATION_KEY_1="Une clé d'enregistrement est nécessaire pour procéder à l'installation en mode non détaillé. Veuillez en spécifier"
+MSG_SILENT_MUST_PROVIDE_REGISTRATION_KEY_2="une et réessayer."
+
+MSG_SILENT_MUST_PROVIDE_REGISTRATION_KEY_TO_SELECT_1="Une clé d'enregistrement est nécessaire pour sélectionner les packages"
+MSG_SILENT_MUST_PROVIDE_REGISTRATION_KEY_TO_SELECT_2="sur la ligne de commande. Veuillez en spécifier une et réessayer."
+
+MSG_SILENT_MUST_PROVIDE_REGISTRATION_KEY_TO_LIST_1="Une clé d'enregistrement est nécessaire pour répertorier les packages disponibles"
+MSG_SILENT_MUST_PROVIDE_REGISTRATION_KEY_TO_LIST_2="sur la ligne de commande. Veuillez en spécifier une et réessayer."
+
+MSG_SILENT_INVALID_PACKAGE_NAMES_1="Les noms d'option suivants sont incorrects et ne correspondent pas"
+MSG_SILENT_INVALID_PACKAGE_NAMES_2="à la clé d'enregistrement fournie :"
+
+MSG_SILENT_AVAILABLE_PACKAGES="Options disponibles pour l'installation :"
+
+# For the web edition native packages
+MSG_LICENSED_FILES="Les programmes suivants sont proposés sous licence :"
+MSG_LICENSED_FILES_NONE="Fichiers de licence introuvables."
+
+# SQL Anywhere Monitor
+MSG_SAMON_SERVICE_1="Le Moniteur SQL Anywhere Monitor écoute le port 4950 et s'exécute en continu."
+MSG_SAMON_SERVICE_2="Le programme d'installation peut créer un service qui exécute le Moniteur SQL Anywhere "
+MSG_SAMON_SERVICE_3="au démarrage."
+MSG_SAMON_SERVICE_4=" "
+MSG_SAMON_SERVICE_5="Remarque : vous devez disposer des privilèges d'administrateur pour créer ce service."
+MSG_SAMON_SERVICE_CLI_Q="Souhaitez-vous créer ce service ?"
+
+# '_' is used to specify mnemonic below
+MSG_SAMON_SERVICE_GUI_Q="C_réer un service pour le Moniteur SQL Anywhere et exécuter ce dernier"
+
+MSG_SAMON_SERVICE_ERROR="Erreur lors de la création du service du Moniteur SQL Anywhere"
+
+MSG_SAMON_MIGRATE_RESOURCES_CLI_Q="Faire migrer les ressources du Moniteur SQL Anywhere existantes ?"
+MSG_SAMON_MIGRATE_RESOURCES_GUI_Q="Faire _migrer les ressources du Moniteur SQL Anywhere"
+MSG_SAMON_MIGRATION="Migration de la base de données du Moniteur SQL Anywhere"
+
+MSG_SAMON_MIGRATION_FAILED_1="Erreur lors de la migration de la base de données du Moniteur SQL Anywhere"
+MSG_SAMON_MIGRATION_FAILED_2="Consultez la documentation pour connaître la procédure de migration manuelle des données."
+
+MSG_SAMON_STOP_FAILED_FATAL_1="Le programme d'installation n'a pas pu arrêter une instance du Moniteur SQL Anywhere actuellement en cours d'exécution."
+MSG_SAMON_STOP_FAILED_FATAL_2="Veuillez arrêter manuellement cette dernière et relancer le programme d'installation."
+
+MSG_SAMON_STOP_FAILED_NONFATAL_1="Le programme d'installation n'a pas pu arrêter une instance du Moniteur SQL Anywhere actuellement en cours d'exécution."
+MSG_SAMON_STOP_FAILED_NONFATAL_2="Vous pouvez arrêter manuellement cette dernière avant d'exécuter cette version du Moniteur SQL Anywhere."
+
+# $1 : backup directory
+MSG_SAMON_BACKUP_COPY="Une copie de sauvegarde de votre base de données du Moniteur SQL Anywhere se trouve dans \${1}. "
+
+
+MSG_SAMON_CANT_UPDATE="Il est impossible d'utiliser un EBF de SQL Anywhere pour mettre à jour le Moniteur SQL Anywhere"
+
+## package names for the deployment wizard
+MSG_CAT_SQLANY64="SQL Anywhere (64 bits)"
+MSG_CAT_CLIENT_INTERFACES64="Interfaces clientes (64 bits)"
+MSG_CAT_SERVER64="Serveur SQL Anywhere (64 bits)"
+MSG_CAT_SQLANY32="SQL Anywhere (32 bits)"
+MSG_CAT_CLIENT_INTERFACES32="Interfaces clientes (32 bits)"
+MSG_CAT_SERVER32="Serveur SQL Anywhere (32 bits)"
+MSG_CAT_ULTRALITE="UltraLite"
+MSG_CAT_SYNCHRONIZATION="Synchronisation"
+MSG_CAT_MOBILINK64="MobiLink (64 bits)"
+MSG_CAT_MOBILINK32="MobiLink (32 bits)"
+MSG_CAT_ADMINTOOLS64="Outils d'administration (64 bits)"
+MSG_CAT_ADMINTOOLS32="Outils d'administration (32 bits)"
+MSG_CAT_SYBCENTRAL="Sybase Central"
+MSG_OPT_ODBC64="ODBC (64 bits)"
+MSG_OPT_ESQL64="Embedded SQL (64 bits)"
+MSG_OPT_JDBC64="JDBC (64 bits)"
+MSG_OPT_DEPLOY_CLIENT_TOOLS64="Outils clients (64 bits)"
+MSG_OPT_SERVER_PERSONAL64="Serveur personnel (64 bits)"
+MSG_OPT_SERVER_NETWORK64="Serveur réseau (64 bits)"
+MSG_OPT_SERVER_TOOLS64="Outils serveur (64 bits)"
+MSG_OPT_SERVER_UNLOADSUPPORT64="Prise en charge du déchargement (64 bits)"
+MSG_OPT_ODBC32="ODBC (32 bits)"
+MSG_OPT_ESQL32="Embedded SQL (32 bits)"
+MSG_OPT_JDBC32="JDBC (32 bits)"
+MSG_OPT_DEPLOY_CLIENT_TOOLS32="Outils clients (32 bits)"
+MSG_OPT_SERVER_PERSONAL32="Serveur personnel (32 bits)"
+MSG_OPT_SERVER_NETWORK32="Serveur réseau (32 bits)"
+MSG_OPT_SERVER_TOOLS32="Outils serveur (32 bits)"
+MSG_OPT_SERVER_UNLOADSUPPORT32="Prise en charge du déchargement (32 bits)"
+MSG_OPT_DBLGRES="Ressources clientes"
+MSG_OPT_ULTRALITE32="Moteur UltraLite (32 bits)"
+MSG_OPT_ULTRALITE64="Moteur UltraLite (64 bits)"
+MSG_OPT_MOBILINK_SQLANY32="Client MobiLink (32 bits)"
+MSG_OPT_MOBILINK_SQLANY32_DESC="Composants clients de synchronisation des données pour plates-formes 32 bits"
+MSG_OPT_MOBILINK_SQLANY64="Client MobiLink (64 bits)"
+MSG_OPT_MOBILINK_SQLANY64_DESC="Composants clients de synchronisation des données pour plates-formes 64 bits"
+MSG_OPT_QANYWHERE32="QAnywhere (32 bits)"
+MSG_OPT_SAPLUGIN32="Module de connexion SQL Anywhere (32 bits)"
+MSG_OPT_SAPLUGIN64="Module de connexion SQL Anywhere (64 bits)"
+MSG_OPT_SYBASECENTRAL32="Composants élémentaires de Sybase Central (32 bits)"
+MSG_OPT_SYBASECENTRAL64="Composants élémentaires de Sybase Central (64 bits)"
+MSG_OPT_MLPLUGIN32="Module de connexion MobiLink (32 bits)"
+MSG_OPT_MLPLUGIN64="Module de connexion MobiLink (64 bits)"
+MSG_OPT_ULPLUGIN32="Module de connexion UltraLite (32 bits)"
+MSG_OPT_ULPLUGIN64="Module de connexion UltraLite (64 bits)"
+MSG_OPT_QAPLUGIN32="Module de connexion QAnywhere (32 bits)"
+MSG_OPT_QAPLUGIN64="Module de connexion QAnywhere (64 bits)"
+MSG_OPT_ISQL32="Interactive SQL (32 bits)"
+MSG_OPT_ISQL64="Interactive SQL (64 bits)"
+MSG_OPT_DBCONSOLE32="Console SQL Anywhere (32 bits)"
+MSG_OPT_DBCONSOLE64="Console SQL Anywhere (64 bits)"
+MSG_OPT_OMNI32="Accès aux données à distance (32 bits)"
+MSG_OPT_JAVA_IN_THE_DATABASE32="Prise en charge des procédures stockées Java (32 bits)"
+MSG_OPT_EXTDLL32="Procédures externes intégrées (32 bits)"
+MSG_OPT_OMNI64="Accès aux données à distance (64 bits)"
+MSG_OPT_JAVA_IN_THE_DATABASE64="Prise en charge des procédures stockées Java (64 bits)"
+MSG_OPT_EXTDLL64="Procédures externes intégrées (64 bits)"
+
+MSG_ULTRALITE_1="Vous avez installé UltraLite pour l'iPhone. Avant de débuter un développement UltraLite"
+MSG_ULTRALITE_2="sur l'iPhone ou de construire des exemples, vous devez créer la bibliothèque UltraLite"
+MSG_ULTRALITE_3="depuis les fichiers source inclus dans l'installation."
+
+# Misc deployment wizard strings
+MSG_ENTER_DEPLOY_TAR_DESTINATION="Veuillez saisir le chemin complet du fichier TAR à générer"
+MSG_GENERATING_DEPLOYMENT_TAR="Génération du fichier TAR en cours..."
+MSG_ERROR_NOT_A_FULL_PATH="\$1 n'est pas un chemin complet."
+MSG_FILES_REQUIRED_FOR_DEPLOYMENT="Les fichiers suivants sont nécessaires pour déployer les options sélectionnées"
+
+MSG_DEPLOY_WELCOME_1="Bienvenue dans l'assistant de déploiement de SQL Anywhere ${__VERNUM} pour Unix."
+MSG_DEPLOY_WELCOME_2="Ce programme vous permettra de sélectionner les composants d'une installation"
+MSG_DEPLOY_WELCOME_3="SQL Anywhere existante et d'indiquer la liste exacte des fichiers nécessaires"
+MSG_DEPLOY_WELCOME_4="à leur déploiement sur une autre machine."
+
+MSG_DEPLOYMENT_WIZARD_COMPLETE_1="Merci d'utiliser l'assistant de déploiement de SQL Anywhere. Les fichiers nécessaires pour"
+MSG_DEPLOYMENT_WIZARD_COMPLETE_2="déployer les composants sélectionnés sont répertoriés sur la page précédente. Si"
+MSG_DEPLOYMENT_WIZARD_COMPLETE_3="vous n'avez pas encore enregistré ces informations, revenez dans l'écran"
+MSG_DEPLOYMENT_WIZARD_COMPLETE_4="précédent pour le faire."
+
+# === END OF FILE ===

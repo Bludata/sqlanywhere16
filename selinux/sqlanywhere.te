@@ -1,0 +1,185 @@
+policy_module( sqlanywhere, 1.0 )
+
+attribute sqlanywhere_domains;
+attribute sqlanywhere_execs;
+attribute sqlanywhere_types;
+
+type sqlanywhere_t, sqlanywhere_types, sqlanywhere_domains;
+type sqlanywhere_server_t, sqlanywhere_types, sqlanywhere_domains;
+type sqlanywhere_exec_t, sqlanywhere_types, sqlanywhere_execs;
+type sqlanywhere_server_exec_t, sqlanywhere_types, sqlanywhere_execs;
+type sqlanywhere_server_shlib_t, sqlanywhere_types;
+type sqlanywhere_shlib_t, sqlanywhere_types;
+type sqlanywhere_jar_t, sqlanywhere_types;
+type sqlanywhere_resource_t, sqlanywhere_types;
+type sqlanywhere_license_t, sqlanywhere_types;
+type sqlanywhere_certificate_t, sqlanywhere_types;
+type sqlanywhere_config_t, sqlanywhere_types;
+type sqlanywhere_tmp_t, sqlanywhere_types;
+type sqlanywhere_dir_t, sqlanywhere_types;
+type sqlanywhere_file_t, sqlanywhere_types;
+
+init_domain( sqlanywhere_server_t, sqlanywhere_server_exec_t )
+init_domain( sqlanywhere_t, sqlanywhere_exec_t )
+
+libs_use_ld_so( sqlanywhere_server_t );
+libs_use_shared_libs( sqlanywhere_server_t );
+libs_use_ld_so( sqlanywhere_t );
+libs_use_shared_libs( sqlanywhere_t );
+
+allow sqlanywhere_domains self :
+        process { execstack execmem getsched setsched };
+allow sqlanywhere_domains sqlanywhere_domains :
+        process { signull signal };
+allow sqlanywhere_server_t self : chr_file { ioctl };
+
+allow sqlanywhere_domains sqlanywhere_types : dir { search getattr read };
+allow sqlanywhere_domains sqlanywhere_file_t : 
+        { file lnk_file } { getattr read };
+
+allow sqlanywhere_server_t sqlanywhere_license_t : file { read getattr };
+allow sqlanywhere_domains sqlanywhere_exec_t : 
+        { lnk_file file } { read getattr };
+allow sqlanywhere_domains sqlanywhere_exec_t : dir { read getattr };
+allow sqlanywhere_t sqlanywhere_execs : { lnk_file file } { execute };
+allow sqlanywhere_t sqlanywhere_exec_t : file execute_no_trans;
+
+#do the transition
+type_transition sqlanywhere_t sqlanywhere_server_exec_t : 
+        process sqlanywhere_server_t;
+
+allow sqlanywhere_t { sqlanywhere_server_t sqlanywhere_t } :
+        process transition;
+
+allow sqlanywhere_domains sqlanywhere_domains : fd use;
+allow sqlanywhere_domains sqlanywhere_domains : 
+        process { siginh rlimitinh noatsecure };
+
+
+#shared libraries
+allow sqlanywhere_server_t { sqlanywhere_server_shlib_t sqlanywhere_shlib_t } :
+        { file lnk_file } { read getattr execute };
+allow sqlanywhere_server_t { sqlanywhere_server_shlib_t sqlanywhere_shlib_t } :
+        file { execmod };
+allow sqlanywhere_t sqlanywhere_shlib_t :
+        { file lnk_file } { read getattr execute };
+allow sqlanywhere_t sqlanywhere_shlib_t : file { execmod };
+
+#localization
+allow sqlanywhere_domains sqlanywhere_resource_t : file read;
+miscfiles_read_localization( sqlanywhere_domains )
+
+#TCP/IP communication
+allow sqlanywhere_domains self : tcp_socket create_stream_socket_perms;
+allow sqlanywhere_domains self : netlink_route_socket
+        { create bind getattr write nlmsg_read read };
+allow sqlanywhere_domains self : unix_dgram_socket
+        { create bind getattr write read connect ioctl };
+allow sqlanywhere_domains self : udp_socket { create ioctl };
+allow sqlanywhere_domains sqlanywhere_domains : unix_stream_socket 
+        { connectto read write };
+
+corenet_tcp_sendrecv_all_if( sqlanywhere_domains )
+corenet_tcp_sendrecv_all_nodes( sqlanywhere_domains )
+corenet_tcp_sendrecv_all_ports( sqlanywhere_domains )
+corenet_tcp_bind_all_nodes( sqlanywhere_domains )
+corenet_tcp_bind_all_ports( sqlanywhere_domains )
+corenet_udp_bind_all_nodes( sqlanywhere_domains )
+corenet_udp_bind_all_ports( sqlanywhere_domains )
+sysnet_dns_name_resolve( sqlanywhere_server_t )
+
+#terminal
+term_use_generic_ptys( sqlanywhere_server_t )
+term_use_generic_ptys( sqlanywhere_t )
+
+#xserver
+corenet_tcp_connect_xserver_port( sqlanywhere_domains )
+
+#syslog
+logging_send_syslog_msg( sqlanywhere_server_t )
+
+#reading various external file types
+files_search_etc( sqlanywhere_domains )
+files_read_etc_files( sqlanywhere_domains )
+files_read_etc_runtime_files( sqlanywhere_domains )
+nscd_read_pid( sqlanywhere_domains )
+files_search_usr( sqlanywhere_domains )
+files_read_usr_files( sqlanywhere_domains )
+corecmd_search_bin( sqlanywhere_domains )
+corecmd_read_bin_files( sqlanywhere_domains )
+corecmd_read_bin_symlinks( sqlanywhere_domains )
+
+
+#temp files
+files_search_tmp( sqlanywhere_domains )
+files_tmp_filetrans( sqlanywhere_domains, sqlanywhere_tmp_t, dir )
+files_tmp_filetrans( sqlanywhere_domains, sqlanywhere_tmp_t, file )
+fs_associate( sqlanywhere_tmp_t )
+allow sqlanywhere_domains sqlanywhere_tmp_t : 
+        dir { search add_name remove_name rmdir };
+allow sqlanywhere_domains sqlanywhere_tmp_t : 
+        { dir file lnk_file } 
+        { create read write lock unlink getattr setattr };
+
+#IPC
+kernel_get_sysvipc_info( sqlanywhere_domains )
+allow sqlanywhere_domains sqlanywhere_domains :
+        sem { create destroy unix_write write read };
+allow sqlanywhere_server_t sqlanywhere_tmp_t :
+        sock_file { create unlink getattr };
+allow sqlanywhere_domains sqlanywhere_tmp_t :
+        sock_file { read write };
+allow sqlanywhere_domains sqlanywhere_domains : fifo_file { read write };
+allow sqlanywhere_t self : 
+        shm { create unix_read unix_write read write destroy };
+
+#running java
+require {
+        type java_exec_t;
+}
+allow sqlanywhere_domains java_exec_t : file { read execute getattr };
+java_domtrans( sqlanywhere_server_t )
+allow sqlanywhere_t sqlanywhere_jar_t : file { read getattr };
+
+#miscellaneous stuff
+kernel_read_system_state( sqlanywhere_domains )
+kernel_read_network_state( sqlanywhere_domains )
+fs_getattr_all_fs( sqlanywhere_server_t )
+storage_getattr_fixed_disk_dev( sqlanywhere_server_t )
+dev_read_rand( sqlanywhere_domains )
+dev_read_urand( sqlanywhere_domains )
+sysnet_read_config( sqlanywhere_domains )
+kernel_sendrecv_unlabeled_packets( sqlanywhere_t )
+fs_rw_tmpfs_files( sqlanywhere_t )
+
+
+
+
+### Tunable options
+
+# allow others to view the files
+bool sqlanywhere_server_allow_unconfined true;
+bool sqlanywhere_client_allow_unconfined true;
+if( sqlanywhere_server_allow_unconfined || 
+                sqlanywhere_client_allow_unconfined ) {
+        sqlanywhere_read_files( unconfined_t ) 
+        sqlanywhere_run_client( unconfined_t ) 
+}
+
+if( sqlanywhere_server_allow_unconfined ) {
+        sqlanywhere_run_server( unconfined_t ) 
+}
+
+
+#read/write files in home_dir
+bool sqlanywhere_server_allow_home_dirs true;
+if( sqlanywhere_server_allow_home_dirs ) {
+        userdom_manage_generic_user_home_content_dirs( sqlanywhere_server_t )
+        userdom_manage_generic_user_home_content_files( sqlanywhere_server_t )
+}
+
+bool sqlanywhere_client_allow_home_dirs true;
+if( sqlanywhere_client_allow_home_dirs ) {
+        userdom_manage_generic_user_home_content_dirs( sqlanywhere_t )
+        userdom_manage_generic_user_home_content_files( sqlanywhere_t )
+}

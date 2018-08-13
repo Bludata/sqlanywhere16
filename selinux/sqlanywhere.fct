@@ -1,0 +1,15 @@
+${INSTALL_ROOT}(/.*)?      --      gen_context( system_u:object_r:sqlanywhere_file_t, s0 )
+${INSTALL_ROOT}(/.*)?      -l      gen_context( system_u:object_r:sqlanywhere_file_t, s0 )
+${INSTALL_ROOT}(/.*)?      -d      gen_context( system_u:object_r:sqlanywhere_dir_t, s0 )
+
+${INSTALL_ROOT}/bin.*/dbeng..        --      gen_context( system_u:object_r:sqlanywhere_server_exec_t, s0 )
+${INSTALL_ROOT}/bin.*/dbsrv..        --      gen_context( system_u:object_r:sqlanywhere_server_exec_t, s0 )
+${INSTALL_ROOT}/bin.*/.*\.lic        --      gen_context( system_u:object_r:sqlanywhere_license_t, s0 )
+${INSTALL_ROOT}/bin.*/.*\.crt        --      gen_context( system_u:object_r:sqlanywhere_certificate_t, s0 )
+${INSTALL_ROOT}/bin.*/.*\.ini        --      gen_context( system_u:object_r:sqlanywhere_config_t, s0 )
+
+${INSTALL_ROOT}/.*/.*\.so(\.1)?              gen_context( system_u:object_r:sqlanywhere_shlib_t, s0 )
+${INSTALL_ROOT}/lib.*/libdbserv.*\.so(\.1)?              gen_context( system_u:object_r:sqlanywhere_server_shlib_t, s0 )
+
+${INSTALL_ROOT}/res/.*\.res                  gen_context( system_u:object_r:sqlanywhere_resource_t, s0 )
+

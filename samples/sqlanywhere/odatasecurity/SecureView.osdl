@@ -1,0 +1,4 @@
+service namespace "HttpsSample" {
+    "GROUPO"."EmployeeConfidential" keys("EmployeeID");
+}
+

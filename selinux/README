@@ -1,0 +1,63 @@
+SQL Anywhere SELinux Policy
+
+This policy has been provided as a guideline.  It was written for the Red Hat 
+Enterprise Linux 5 targeted modular policy and is sufficient to make SQL 
+Anywhere run.  You can change this policy to suit your environment as required.
+
+If you install SQL Anywhere in a user's home directory using the policy that is
+included with Red Hat Enterprise Linux 5, this policy has no effect.
+
+Installation (one SQL Anywhere install)
+---------------------------------------
+
+Note: All examples are written for Red Hat Entperprise Linux 5.
+
+ 1. Install the SELinux policy development package for your system.
+        
+        # yum install selinux-policy-devel
+
+ 2. Copy the Makefile from the SELinunx policy development package to the 
+    selinux subdirectory of your SQL Anywhere installation.
+
+        # cp /usr/share/selinux/devel/Makefile /opt/sqlanywhere11/selinux
+
+ 3. Run make from the selinux subdirectory of your SQL Anywhere installation.
+
+        # cd /opt/sqlanywhere11/selinux
+        # make
+
+ 4. Disable SELinux.
+
+        # setenforce 0
+
+ 5. Run the sepolicy tool to install the new module.
+
+        # semodule -i sqlanywhere.pp
+
+ 6. Relabel your installation based on the new policy rules.
+
+        # restorecon -R /opt/sqlanywhere11
+
+ 7. Re-enable SELinux.
+
+        # setenforce 1
+
+
+Installation (multiple SQL Anywhere installs)
+---------------------------------------------
+
+If you have multiple installations of SQL Anywhere that you must apply this 
+policy to, use the steps listed above, with the following exceptions:
+
+ o In step 3, before running make, run:
+
+        # ./buildfc.sh <SQLANYWHERE_DIR> [...]
+
+   passing it the root directory of each SQL Anywhere installation.  This
+   overwrites the sqlanywhere.fc file (if it exists) with one that applies to
+   all listed installations.
+
+ o Apply step 6 to each installation directory.
+
+If you have any problems with this policy, contact SAP Technical Support or
+post to the SQL Anywhere forum http://sqlanywhere-forum.sybase.com

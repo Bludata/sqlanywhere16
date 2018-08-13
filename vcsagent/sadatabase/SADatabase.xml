@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<agent name="SADatabase" version="4.1" bundled="False">
+    <agent_description>The SADatabase agent creates, removes, and monitors a specific SQL Anywhere database on a SQL Anywhere database server.</agent_description>
+    <!--Platform the agent runs on-->
+    <platform>Win2K</platform>
+    <!--Type of agent : script-DLL-Mixed-->
+    <agenttype>Script</agenttype>
+    <!--The minimum VCS version needed for this agent-->
+    <minvcsversion>4.1</minvcsversion>
+    <!--The agent vendor name-->
+    <vendor>iAnywhere Solutions</vendor>
+    <!--Attributes list for this agent-->
+    <attributes>
+      <DatabaseFile type="str" dimension="Scalar" editable="True" important="True" mustconfigure="True" unique="True" persistent="False" range="" default="" displayname="Database File">
+            <attr_description>The full path and filename of the database file.</attr_description>
+        </DatabaseFile>
+        <DatabaseName type="str" dimension="Scalar" editable="True" important="True" mustconfigure="True" unique="True" persistent="False" range="" default="" displayname="Database Name">
+            <attr_description>The desired name for the database name on the server.  If left blank, the name will be the same as the DatabaseFile name, without the file extension.</attr_description>
+        </DatabaseName>
+        <ServerName type="str" dimension="Scalar" editable="True" important="True" mustconfigure="True" unique="True" persistent="False" range="" default="" displayname="Server Name">
+          <attr_description>The name of the server on which the database should be started/stopped.</attr_description>
+        </ServerName>
+        <StartStopPwd type="str" dimension="Scalar" editable="True" important="True" mustconfigure="True" unique="True" persistent="False" range="" default="" displayname="Utility db Password">
+          <attr_description>The password for the utility database, required to start/stop databases on a server.</attr_description>
+        </StartStopPwd>
+    </attributes>
+    <!--List of files installed by this agent-->
+    <agentfiles>
+        <file name="%VCS_HOME%\bin\SADatabase\online.pl" />
+        <file name="%VCS_HOME%\bin\SADatabase\offline.pl" />
+        <file name="%VCS_HOME%\bin\SADatabase\monitor.pl" />
+        <file name="%VCS_HOME%\bin\SADatabase\clean.pl" />
+    </agentfiles>
+</agent>

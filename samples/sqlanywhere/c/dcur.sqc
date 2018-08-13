@@ -1,0 +1,520 @@
+// ***************************************************************************
+// Copyright (c) 2013 SAP AG or an SAP affiliate company. All rights reserved.
+// ***************************************************************************
+// This sample code is provided AS IS, without warranty or liability of any kind.
+// 
+// You may use, reproduce, modify and distribute this sample code without limitation, 
+// on the condition that you retain the foregoing copyright notice and disclaimer 
+// as to the original code.  
+// 
+// *******************************************************************
+/*
+    DCUR.SQC	General SQL code for Dcursex example (all platforms)
+*/
+
+// This sample program contains a hard-coded userid and password
+// to connect to the demo database. This is done to simplify the
+// sample program. The use of hard-coded passwords is strongly
+// discouraged in production code.  A best practice for production
+// code would be to prompt the user for the userid and password.
+
+#include <ctype.h>
+#include <string.h>
+#include <stdlib.h>
+#if defined( UNDER_CE )
+    #include <windef.h>
+#endif
+
+#if defined( _MSC_VER )
+    // Suppress warning about structure alignment
+    #pragma warning( 4 : 4103 )
+#endif
+
+EXEC SQL INCLUDE SQLCA;
+EXEC SQL INCLUDE SQLDA;
+#include "sqldef.h"
+
+#if defined( _MSC_VER )
+    #pragma warning( 1 : 4103 )
+#endif
+
+#include "example.h"
+
+#define MAX_COL_WIDTH	50
+
+extern int         	PageSize;
+static TCHAR		TableName[MAX_TABLE_NAME];
+static SQLDA _fd_ *	SqlDA;
+
+#if defined( __SMALLDATA__ )
+    #if defined( _SQL_OS_NETWARE )
+	// Netware headers don't have "far" string functions
+	#define _fstrcpy(d,s)		strcpy(d,s)
+	#define _fstrlen(s)		strlen(s)
+	#define _fstrncpy(d,s,n)	strncpy(d,s,n)
+    #endif
+
+    #define WindowData_cpy(d,s)		_fstrcpy(d,s)
+    #define WindowData_len(s)		_fstrlen(s)
+    #define WindowData_ncpy(d,s,n)	_fstrncpy(d,s,n)
+
+    #define DBData_cpy(d,s)		_fstrcpy(d,s)
+    #define DBData_len(s)		_fstrlen(s)
+    #define DBData_ncpy(d,s,n)		_fstrncpy(d,s,n)
+#else
+    #if !defined( __WATCOMC__ )  &&  !defined( _MSC_VER )
+	// Other compilers don't have _tcs functions
+	#define _tcscpy(d,s)		strcpy(d,s)
+	#define _tcslen(s)		strlen(s)
+	#define _tcsncpy(d,s,n)		strncpy(d,s,n)
+    #endif
+
+    // Window data can be Unicode or multi-byte
+    #define WindowData_cpy(d,s)		_tcscpy(d,s)
+    #define WindowData_len(s)		_tcslen(s)
+    #define WindowData_ncpy(d,s,n)	_tcsncpy(d,s,n)
+
+    // Database data is always multi-byte
+    #define DBData_cpy(d,s)		strcpy(d,s)
+    #define DBData_len(s)		strlen(s)
+    #define DBData_ncpy(d,s,n)		strncpy(d,s,n)
+#endif
+
+#if defined( UNICODE )
+    // Display is in Unicode characters.
+    // Database is using multi-byte characters.
+
+    // This code is not thread-safe since it uses a global buffer.
+
+    static wchar_t			UnicodeBuffer[256];
+    static char				MultiByteBuffer[256];
+
+    #define WindowToDB_cnv(s)		(WideCharToMultiByte(		\
+						CP_ACP,			\
+						0,			\
+						s,			\
+						-1,			\
+						(LPSTR) MultiByteBuffer,\
+						_countof( MultiByteBuffer ),\
+						NULL,			\
+						NULL ),			\
+					    MultiByteBuffer)
+    #define WindowToDB_ncpy(d,s,n)	(WideCharToMultiByte(		\
+						CP_ACP,			\
+						0,			\
+						s,			\
+						-1,			\
+						(LPSTR) d,		\
+						n,			\
+						NULL,			\
+						NULL ))
+    #define DBToWindow_cnv(s)		(MultiByteToWideChar(		\
+						CP_ACP,			\
+						0,			\
+						(LPCSTR) s,		\
+						-1,			\
+						UnicodeBuffer,		\
+						_countof( UnicodeBuffer ) ),\
+					    UnicodeBuffer)
+    #define DBToWindow_ncpy(d,s,n)	(MultiByteToWideChar(		\
+						CP_ACP,			\
+						0,			\
+						(LPCSTR) s,		\
+						-1,			\
+						d,			\
+						n ))
+#else
+    #define WindowToDB_cnv(s)		(s)
+    #define WindowToDB_ncpy(d,s,n)	strncpy( d, s, n )
+    #define DBToWindow_cnv(s)		(s)
+    #define DBToWindow_ncpy(d,s,n)	strncpy( d, s, n )
+#endif
+
+EXEC SQL BEGIN DECLARE SECTION;
+static char                   CursName[ 20 ];
+static a_sql_statement_number stat;
+EXEC SQL END DECLARE SECTION;
+
+static void printSQLError( void )
+/*******************************/
+{
+    char                 buffer[ 200 ];
+
+    Displaytext( 0,
+		 TEXT( "SQL error -- %s" MY_NEWLINE_STR ),
+		 DBToWindow_cnv( sqlerror_message( &sqlca, buffer, sizeof( buffer ) ) ) );
+}
+
+static int test_cursor_open( void )
+/*********************************/
+{
+    if( SqlDA == NULL ) {
+	Displaytext( 0, TEXT( "*** Error -- cursor not open" MY_NEWLINE_STR ) );
+	return( FALSE );
+    }
+    return( TRUE );
+}
+
+static int warning( TCHAR *msg )
+/******************************/
+{
+    if( SQLCODE == SQLE_NOTFOUND ) {
+    	if( SQLCOUNT >= 0 ) {
+	    Displaytext( 0, TEXT( "Not found - past bottom of table" ) MY_NEWLINE_STR );
+	} else {
+	    Displaytext( 0, TEXT( "Not found - past top of table" ) MY_NEWLINE_STR );
+	}
+    } else {
+	Displaytext( 0, 
+	    TEXT( "Unexpected warning %ld -- %s" ) MY_NEWLINE_STR, SQLCODE, msg );
+    }
+    return( TRUE );
+}
+
+static int close_cursor( void )
+/*****************************/
+{
+    EXEC SQL WHENEVER SQLERROR CONTINUE;
+
+    EXEC SQL CLOSE :CursName;
+    // Ignore error if cursor was not declared or open
+    if( (sqlcaptr)->sqlcode < 0
+    &&  (sqlcaptr)->sqlcode != SQLE_CURSOR_NOT_DECLARED
+    &&  (sqlcaptr)->sqlcode != SQLE_CURSOR_NOT_OPEN ) {
+	printSQLError();
+    }
+    free_filled_sqlda( SqlDA );
+    SqlDA = NULL;
+    EXEC SQL DROP STATEMENT :stat;
+    // Ignore error if statement was not prepared
+    if( (sqlcaptr)->sqlcode < 0
+    &&  (sqlcaptr)->sqlcode != SQLE_INVALID_STATEMENT ) {
+	printSQLError();
+    }
+    return( TRUE );
+}
+
+EXEC SQL WHENEVER SQLERROR { printSQLError(); close_cursor(); return( FALSE ); };
+
+static int open_cursor( void )
+/****************************/
+{
+    EXEC SQL BEGIN DECLARE SECTION;
+    char                    buff[ 100 ];
+    EXEC SQL END DECLARE SECTION;
+    int			    offset;
+    int			    n;
+
+    DBData_cpy( buff, "select * from " );
+    offset = (int)DBData_len( buff );
+    WindowToDB_ncpy( buff + offset, TableName, sizeof( buff ) - offset );
+
+    /* Note that database fills in statement number on prepare */
+    EXEC SQL PREPARE :stat FROM :buff FOR UPDATE;
+
+    /* Note that we must initialize the cursor name */
+    DBData_ncpy( CursName, "table_cursor", sizeof( CursName ) );
+    EXEC SQL DECLARE :CursName CURSOR FOR :stat;
+
+    EXEC SQL OPEN :CursName;
+
+    SqlDA = alloc_sqlda( 3 );
+    EXEC SQL DESCRIBE :stat INTO SqlDA;
+    if( SqlDA->sqld > SqlDA->sqln ) {
+	n = SqlDA->sqld;
+	free_sqlda( SqlDA );
+	SqlDA = alloc_sqlda( n );
+	EXEC SQL DESCRIBE :stat INTO SqlDA;
+    }
+    fill_s_sqlda( SqlDA, 1000 );
+    return( TRUE );
+}
+
+EXEC SQL WHENEVER SQLERROR { printSQLError(); return( FALSE ); };
+
+static int fetch_row( void )
+/**************************/
+{
+    EXEC SQL FETCH RELATIVE 1 :CursName USING DESCRIPTOR SqlDA;
+
+    if( SQLCODE < 0  ||  SQLCODE == SQLE_NOTFOUND ) {
+	warning( TEXT( "Fetching" ) );
+	return( FALSE );
+    } else if( SQLCODE != 0 ) {
+	warning( TEXT( "Fetching" ) );
+	return( TRUE );
+    } else {
+	return( TRUE );
+    }
+}
+
+static int move(
+/**************/
+    EXEC SQL BEGIN DECLARE SECTION;
+    int                 relpos
+    EXEC SQL END DECLARE SECTION;
+    )
+{
+    if( !test_cursor_open() ) {
+	return( FALSE );
+    }
+    EXEC SQL FETCH RELATIVE :relpos :CursName;
+    if( SQLCODE == SQLE_NOTFOUND && SQLCOUNT == 0 ) {
+    } else if( SQLCODE ) {
+	warning( TEXT( "Moving" ) );
+	return( FALSE );
+    }
+    return( TRUE );
+}
+
+static int top( void )
+/********************/
+{
+    if( !test_cursor_open() ) {
+	return( FALSE );
+    }
+    EXEC SQL FETCH ABSOLUTE 0 :CursName;
+    return( TRUE );
+}
+
+static int bottom( void )
+/***********************/
+{
+    if( !test_cursor_open() ) {
+	return( FALSE );
+    }
+    EXEC SQL FETCH ABSOLUTE -1 :CursName;
+    return( TRUE );
+}
+
+static void help( void )
+/**********************/
+{
+    Displaytext( 0, TEXT( "DCursex Demonstration Program Commands:" ) MY_NEWLINE_STR );
+    Displaytext( 0, TEXT( "p - Print current page" ) MY_NEWLINE_STR );
+    Displaytext( 0, TEXT( "u - Move up a page" ) MY_NEWLINE_STR );
+    Displaytext( 0, TEXT( "d - Move down a page" ) MY_NEWLINE_STR );
+    Displaytext( 0, TEXT( "b - Move to bottom page" ) MY_NEWLINE_STR );
+    Displaytext( 0, TEXT( "t - Move to top page" ) MY_NEWLINE_STR );
+    Displaytext( 0, TEXT( "i - Insert a new row" ) MY_NEWLINE_STR );
+    Displaytext( 0, TEXT( "n - New table" ) MY_NEWLINE_STR );
+    Displaytext( 0, TEXT( "c - Commit changes and close cursor" ) MY_NEWLINE_STR );
+    Displaytext( 0, TEXT( "q - Quit" ) MY_NEWLINE_STR );
+    Displaytext( 0, TEXT( "h - Help (this screen)" ) MY_NEWLINE_STR );
+}
+
+static int col_width( SQLDA _fd_ *da, int col )
+/*********************************************/
+{
+    int                 col_name_len;
+    int                 data_len;
+    SQLDA_VARIABLE      _fd_ *sqlvar;
+
+    sqlvar = &da->sqlvar[ col ];
+    col_name_len = sqlvar->sqlname.length;
+    data_len = sqlvar->sqllen;
+    if( data_len > col_name_len ) {
+	col_name_len = data_len;
+    }
+    if( NULL_TEXT_LEN > (size_t) col_name_len ) {
+	col_name_len = NULL_TEXT_LEN;
+    }
+    if( col_name_len > MAX_COL_WIDTH ) {
+        return( MAX_COL_WIDTH );
+    }
+    return( col_name_len );
+}
+
+static void print_headings( SQLDA _fd_ *da )
+/******************************************/
+{
+    int                 i;
+    int                 width;
+    int                 total;
+    TCHAR               colname[ SQL_MAX_NAME_LEN + 1 ];
+    char _fd_           *sqlname;
+
+    total = 0;
+    for( i = 0; i < da->sqld; ++i ) {
+        width = col_width( da, i );
+        sqlname = da->sqlvar[ i ].sqlname.data;
+	DBToWindow_ncpy( colname, sqlname, da->sqlvar[ i ].sqlname.length );
+    	colname[ da->sqlvar[ i ].sqlname.length ] = '\0';
+        total += Displaystringtext( total, width, colname ) + 1;
+    }
+    Displaytext( 0, MY_NEWLINE_STR );
+}
+
+static void print_data( SQLDA _fd_ *da )
+/**************************************/
+{
+    int                 i;
+    int                 width;
+    int                 total;
+    SQLDA_VARIABLE _fd_ *sqlvar;
+    TCHAR _sqldafar     *data;
+
+    total = 0;
+    for( i = 0; i < da->sqld; ++i ) {
+	width = col_width( da, i );
+	sqlvar = &da->sqlvar[ i ];
+	if( *( sqlvar->sqlind ) < 0 ) {
+	    data = NULL_TEXT;
+	} else {
+	    data = DBToWindow_cnv( (char _sqldafar *)sqlvar->sqldata );
+	}
+	#if _sqlfar_isfar
+	    Displaytext( total, TEXT( "%-*.*Fs" ), width, width,
+			(char far *)data );
+	#else
+	    width = Displaystringtext( total, width, data );
+	#endif
+	total += width+1;
+    }
+    Displaytext( 0, MY_NEWLINE_STR );
+}
+
+static void print( void )
+/***********************/
+{
+    int                 i;
+
+    if( !test_cursor_open() ) {
+	return;
+    }
+    print_headings( SqlDA );
+    for( i = 0; i < PageSize; ) {
+    	++i;
+    	if( fetch_row() ) {
+	    print_data( SqlDA );
+    	} else {
+	    break;
+    	}
+    }
+    move( -i );
+}
+
+static int insert( void )
+/***********************/
+{
+    TCHAR		prompt[ 80 ];
+    TCHAR		newvalue[ 80 ];
+    char _sqldafar      *data;
+    int			i;
+    int			offset;
+
+    if( !test_cursor_open() ) {
+	return( FALSE );
+    }
+    for( i = 0; i < SqlDA->sqld; i++ ) {
+	WindowData_cpy( prompt, TEXT( "Enter a value for '" ) );
+	offset = (int)WindowData_len( prompt );
+	DBToWindow_ncpy( prompt + offset,
+			 SqlDA->sqlvar[i].sqlname.data,
+			 _countof( prompt ) - offset );
+	offset = (int)WindowData_len( prompt );
+	WindowData_cpy( prompt + offset, TEXT( "'" ) );
+	data = (char _sqldafar *) SqlDA->sqlvar[i].sqldata;
+	GetValue( prompt, newvalue, 80 );
+	if( newvalue[0] == '\0'
+            && (SqlDA->sqlvar[i].sqltype & DT_NULLS_ALLOWED) != 0 ) {
+            *SqlDA->sqlvar[i].sqlind = -1;
+	} else {
+            *SqlDA->sqlvar[i].sqlind = 0;
+	    WindowToDB_ncpy( data, newvalue, SqlDA->sqlvar[i].sqllen );
+	}
+    }
+    EXEC SQL PUT :CursName USING DESCRIPTOR SqlDA;
+    return( TRUE );
+}
+
+int WSQLEX_Init( void )
+/*********************/
+{
+    TCHAR   parmstr[ 251 ];
+    
+    if( !db_init( &sqlca ) ) {
+    	Display_systemerror( 
+	    TEXT( "Unable to initialize database interface" ) );
+    	return( FALSE );
+    }
+    GetValue( TEXT( "Enter connection string" ), parmstr, 250 );
+    if( WindowData_len( parmstr ) == 0 ) {
+	WindowData_cpy( parmstr, TEXT( "UID=DBA;PWD=sql" ) );
+    }
+    db_string_connect( &sqlca, WindowToDB_cnv( parmstr ) );
+    if( SQLCODE != SQLE_NOERROR ) {
+    	printSQLError();
+	db_fini( &sqlca );
+    	return( FALSE );
+    }
+    GetTableName( TableName, MAX_TABLE_NAME );
+    open_cursor();
+    help();
+    return( TRUE );
+}
+
+static int commit_and_close( void )
+/*********************************/
+{
+    EXEC SQL COMMIT;
+    close_cursor();
+    return( TRUE );
+}
+
+void WSQLEX_Process_Command( int selection )
+/******************************************/
+{
+    switch( tolower( selection ) ) {
+	case 'c':	commit_and_close();
+			break;
+
+	case 'p':	print();
+			break;
+
+	case 'u':	if( move( -PageSize ) ) {
+			    print();
+			}
+			break;
+
+	case 'd':	if( move( PageSize ) ) {
+			    print();
+			}
+			break;
+
+	case 't':	if( top() ) {
+			    print();
+			}
+			break;
+
+	case 'b':	if( bottom() ) {
+			    move( -PageSize );
+			    print();
+			}
+			break;
+
+	case 'h':	help();
+			break;
+
+	case 'n':	close_cursor();
+            		GetTableName( TableName, MAX_TABLE_NAME );
+            		open_cursor();
+			break;
+
+    	case 'i':   	insert();
+			break;
+
+	default:	Displaytext( 0, 
+			    TEXT( "Invalid command, press 'h' for help" ) MY_NEWLINE_STR );
+    }
+}
+
+int WSQLEX_Finish( void )
+/***********************/
+{
+    close_cursor();
+    EXEC SQL ROLLBACK WORK;
+    EXEC SQL DISCONNECT;
+    db_fini( &sqlca );
+    return( TRUE );
+}

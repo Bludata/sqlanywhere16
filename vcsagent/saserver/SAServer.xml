@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<agent name="SAServer" version="4.1" bundled="False">
+    <agent_description>The SAServer agent creates, removes, and monitors a SQL Anywhere database server.</agent_description>
+    <!--Platform the agent runs on-->
+    <platform>Win2K</platform>
+    <!--Type of agent : script-DLL-Mixed-->
+    <agenttype>Script</agenttype>
+    <!--The minimum VCS version needed for this agent-->
+    <minvcsversion>4.1</minvcsversion>
+    <!--The agent vendor name-->
+    <vendor>iAnywhere Solutions</vendor>
+    <!--Attributes list for this agent-->
+    <attributes>
+        <cmdStart type="str" dimension="Scalar" editable="True" important="True" mustconfigure="True" unique="True" persistent="False" range="" default="" displayname="StartCmd">
+            <attr_description>The complete commandline to start the database server. You can use "net start" if you want to run a database server service</attr_description>
+        </cmdStart>
+        <cmdStop type="str" dimension="Scalar" editable="True" important="True" mustconfigure="True" unique="True" persistent="False" range="" default="" displayname="StopCmd">
+            <attr_description>The complete commandline for stopping the server.  Usually dbstop.exe.  If running the database server as a service, you must use "net stop" and not dbstop.</attr_description>
+        </cmdStop>
+        <cmdMonitor type="str" dimension="Scalar" editable="True" important="True" mustconfigure="True" unique="True" persistent="False" range="" default="" displayname="MonitorCmd">
+            <attr_description>The complete commandline to monitor the server.  Usually using the dbping utility.</attr_description>
+        </cmdMonitor>
+    </attributes>
+    <!--List of files installed by this agent-->
+    <agentfiles>
+        <file name="%VCS_HOME%\bin\SAServer\online.pl" />
+        <file name="%VCS_HOME%\bin\SAServer\offline.pl" />
+        <file name="%VCS_HOME%\bin\SAServer\monitor.pl" />
+        <file name="%VCS_HOME%\bin\SAServer\clean.pl" />
+    </agentfiles>
+</agent>

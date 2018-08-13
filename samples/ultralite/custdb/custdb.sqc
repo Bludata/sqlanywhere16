@@ -1,0 +1,740 @@
+// ***************************************************************************
+// Copyright (c) 2013 SAP AG or an SAP affiliate company. All rights reserved.
+// ***************************************************************************
+// This sample code is provided AS IS, without warranty or liability
+// of any kind.
+//
+// You may use, reproduce, modify and distribute this sample code
+// without limitation, on the condition that you retain the foregoing
+// copyright notice and disclaimer as to the original code.
+//
+// *********************************************************************
+EXEC SQL INCLUDE SQLCA;
+
+#include "custdb.h"
+
+#if 0
+	// These are required for SQLPP, but are #if 0 because
+	// the host variables resolve to CDemoDB members or local variables.
+	EXEC SQL BEGIN DECLARE SECTION;
+		TCHAR	m_EmpIDStr[11];
+		long	m_OrderID;
+		long	m_MaxOrderID;
+		long	m_MinOrderID;
+		long	m_CustID;
+		TCHAR	m_Cust[31];
+		long	m_ProdID;
+		TCHAR	m_Prod[31];
+		TCHAR	m_QuantStr[11];
+		TCHAR	m_PriceStr[11];
+		TCHAR	m_DiscStr[11];
+		TCHAR	m_Status[21];
+		TCHAR	m_Notes[51];
+		long	m_ProdCount;
+		TCHAR	m_ProdCurrent[31];
+		TCHAR	m_PriceCurrent[11];
+		long	m_CustCount;
+		TCHAR	m_CustCurrent[31];
+		short	ind;
+	EXEC SQL END DECLARE SECTION;
+#endif
+
+
+// Use UltraLite's error callback mechanism to catch errors (similar
+// to EXEC SQL WHENEVER statement, but applies to all calls).
+// Explicit error handling is required in many cases.
+
+
+EXEC SQL DECLARE GetOrderCursor CURSOR FOR
+	SELECT order_id, disc, quant, notes, status,
+		   c.cust_id, cust_name, p.prod_id, prod_name, price
+	  FROM ULOrder o, ULCustomer c, ULProduct p
+	 WHERE o.cust_id = c.cust_id AND o.prod_id = p.prod_id
+  ORDER BY order_id;
+
+
+CDemoDB::CDemoDB()
+/****************/
+{
+	// parameters for ULSynchronize
+	m_Stream = NULL;
+	m_SynchParms[0] = '\0';
+	m_EnableOfflineSynch = false;
+
+	// host variables
+	m_EmpIDStr[0] = '\0';
+	m_OrderID = 0;
+	m_CustID = 0;
+	m_Cust[0] = '\0';
+	m_ProdID = 0;
+	m_Prod[0] = '\0';
+	m_QuantStr[0] = '\0';
+	m_PriceStr[0] = '\0';
+	m_DiscStr[0] = '\0';
+	m_Status[0] = '\0';
+	m_Notes[0] = '\0';
+	m_ProdCurrent[0] = '\0';
+	m_PriceCurrent[0] = '\0';
+	m_CustCurrent[0] = '\0';
+	// All remaining members are initialized during Init()
+}
+
+CDemoDB::~CDemoDB()
+/*****************/
+{
+}
+
+bool CDemoDB::Init(
+/*****************/
+	EXEC SQL BEGIN DECLARE SECTION;
+		const TCHAR * connectionParms
+	EXEC SQL END DECLARE SECTION;	
+		)
+{
+	resetError( TEXT("Startup") );
+
+	// Initialize the UltraLite library.
+	if( !db_init( &sqlca ) ) {
+		// unable to initialize database library
+		recordError( SQLCODE );
+		return( false );
+	}
+
+	// Install the error callback function.
+	ULRegisterErrorCallback( &sqlca, &errorCallback, this,
+							 m_ErrorCallbackBuf, ERROR_CALLBACK_BUF_LEN );
+
+	ULEnableTcpipSynchronization( &sqlca );
+	
+	// Connect to the database.
+	EXEC SQL CONNECT USING :connectionParms;
+	if( SQLCODE < 0 ) {
+		// unable to start/connect to database
+		db_fini( &sqlca );
+		return( false );
+	}
+	EXEC SQL OPEN GetOrderCursor;
+	if( SQLCODE < 0 ) {
+		// unable to open cursor
+		EXEC SQL DISCONNECT;
+		db_fini( &sqlca );
+		return( false );
+	}
+
+	// Complete initialization of CDemoDB object.
+	notifyOrderListChange();
+	notifyCustListChange();
+	notifyProdListChange();
+	skipToValidOrder();
+
+	// m_EmpIDStr was initialized as an empty string, and will remain so
+	// if there are no rows in this table.
+	EXEC SQL SELECT emp_id INTO :m_EmpIDStr FROM ULIdentifyEmployee_nosync;
+
+	return( m_SQLCode == SQLE_NOERROR ); // false if any error occurred
+}
+
+bool CDemoDB::Fini( void )
+/************************/
+{
+	resetError( TEXT("Shutdown") );
+
+	EXEC SQL CLOSE GetOrderCursor;
+	EXEC SQL DISCONNECT;
+	db_fini( &sqlca );
+	return( m_SQLCode == SQLE_NOERROR ); // false if any error occurred
+}
+
+bool CDemoDB::SetAndSaveEmployeeID( const TCHAR * id )
+/****************************************************/
+{
+	int					i;
+
+	resetError( TEXT("Save Employee ID") );
+
+	// The CustDB sample uses a numerical user id, but this is not
+	// a requirement.
+	// Do a strncpy, but only for digits:
+	for( i = 0; i < DEMO_NUMSTR_SIZE - 1; i++ ) {
+		if( !charIsDigit( id[i] ) ) {
+			break;
+		}
+		m_EmpIDStr[i] = id[i];
+	}
+	m_EmpIDStr[i] = '\0';
+
+	// Save the employee id in the database.
+	EXEC SQL INSERT INTO ULIdentifyEmployee_nosync (emp_id)
+		VALUES ( :m_EmpIDStr );
+
+	EXEC SQL COMMIT;
+	return( m_SQLCode == SQLE_NOERROR ); // false if any error occurred
+}
+
+void CDemoDB::SetCust( const TCHAR * cust )
+/*****************************************/
+{
+	my_strncpy( m_Cust, cust, DEMO_NAME_SIZE - 1 );
+	m_Cust[DEMO_NAME_SIZE - 1] = '\0';
+}
+
+void CDemoDB::SetProd( const TCHAR * prod )
+/*****************************************/
+{
+	my_strncpy( m_Prod, prod, DEMO_NAME_SIZE - 1 );
+	m_Prod[DEMO_NAME_SIZE - 1] = '\0';
+}
+
+void CDemoDB::SetQuantStr( const TCHAR * quantstr )
+/*************************************************/
+{
+	my_strncpy( m_QuantStr, quantstr, DEMO_NUMSTR_SIZE - 1 );
+	m_QuantStr[DEMO_NUMSTR_SIZE - 1] = '\0';
+}
+
+void CDemoDB::SetDiscStr( const TCHAR * discstr )
+/***********************************************/
+{
+	my_strncpy( m_DiscStr, discstr, DEMO_NUMSTR_SIZE - 1 );
+	m_DiscStr[DEMO_NUMSTR_SIZE - 1] = '\0';
+}
+
+bool CDemoDB::OpenProductList( void )
+/***********************************/
+{
+	resetError( TEXT("Open product list") );
+	// Create a cursor to the product list.
+	EXEC SQL DECLARE ProductListCursor CURSOR FOR
+		SELECT prod_name, price FROM ULProduct ORDER BY prod_name;
+
+	EXEC SQL OPEN ProductListCursor;
+	return( SQLCODE >= 0 );
+}
+
+long CDemoDB::GetProductCount( void )
+/***********************************/
+{
+	resetError( TEXT("Count products") );
+	// m_ProdCount caches the product count value for efficiency.
+	if( m_ProdCount == DEMO_VALUE_NOT_CACHED ) {
+		EXEC SQL SELECT count( * ) INTO :m_ProdCount FROM ULProduct;
+	}
+	return( m_ProdCount );
+}
+
+bool CDemoDB::MoveNextProductList( int skip )
+/*******************************************/
+{
+	EXEC SQL BEGIN DECLARE SECTION;
+		long	offset;
+	EXEC SQL END DECLARE SECTION;
+
+	resetError( TEXT("Fetch product") );
+	// Move the product list cursor.
+	offset = skip;
+	EXEC SQL FETCH RELATIVE :offset ProductListCursor
+		INTO :m_ProdCurrent, :m_PriceCurrent;
+
+	// The host variables will not have changed value if no row was found.
+	return( SQLCODE >= 0  &&  SQLCODE != SQLE_NOTFOUND );
+}
+
+void CDemoDB::CloseProductList( void )
+/************************************/
+{
+	EXEC SQL CLOSE ProductListCursor;
+}
+
+bool CDemoDB::OpenCustomerList( void )
+/************************************/
+{
+	resetError( TEXT("Open customer list") );
+	// Create cursor to the customer list.
+	EXEC SQL DECLARE CustomerListCursor CURSOR FOR
+		SELECT cust_name FROM ULCustomer ORDER BY cust_name;
+
+	EXEC SQL OPEN CustomerListCursor;
+	return( SQLCODE >= 0 );
+}
+
+long CDemoDB::GetCustomerCount( void )
+/************************************/
+{
+	resetError( TEXT("Count customers") );
+	// m_CustCount caches the customer count value for efficiency.
+	if( m_CustCount == DEMO_VALUE_NOT_CACHED ) {
+		EXEC SQL SELECT count( * ) INTO :m_CustCount FROM ULCustomer;
+	}
+	return( m_CustCount );
+}
+
+bool CDemoDB::MoveNextCustomerList( int skip )
+/********************************************/
+{
+	EXEC SQL BEGIN DECLARE SECTION;
+		long	offset;
+	EXEC SQL END DECLARE SECTION;
+
+	resetError( TEXT("Fetch customer") );
+	// Move the customer list cursor.
+	offset = skip;
+	EXEC SQL FETCH RELATIVE :offset CustomerListCursor
+		INTO :m_CustCurrent;
+
+	// The host variables will not have changed value if no row was found.
+	return( SQLCODE >= 0  &&  SQLCODE != SQLE_NOTFOUND );
+}
+
+void CDemoDB::CloseCustomerList( void )
+/*************************************/
+{
+	EXEC SQL CLOSE CustomerListCursor;
+}
+
+bool CDemoDB::NewOrder( void )
+/****************************/
+{
+	resetError( TEXT("Insert order") );
+
+	// Insert a new order, with product and customer lookup.
+	if( !getNextOrderID() ) {
+		return( false );
+	}
+
+	// Lookup product; fail if no matching product found.
+	EXEC SQL SELECT prod_id INTO :m_ProdID FROM ULProduct
+		WHERE prod_name LIKE :m_Prod;
+	if( SQLCODE < 0 || SQLCODE == SQLE_NOTFOUND ) {
+		// No product name match.
+		EXEC SQL ROLLBACK; // cancel order id changes
+		doOrderRelativeFetch( 0 ); // refetch old values
+		return( false );
+	}
+
+	// Lookup customer; add a new one if none matching found.
+	EXEC SQL SELECT cust_id INTO :m_CustID FROM ULCustomer 
+		WHERE cust_name LIKE :m_Cust;
+	if( SQLCODE < 0 ) {
+		EXEC SQL ROLLBACK;
+		doOrderRelativeFetch( 0 );
+		return( false );
+	}
+	if( SQLCODE == SQLE_NOTFOUND ) {
+		// Add a new customer to customer table.
+		if( !getNextCustomerID() ) {
+			EXEC SQL ROLLBACK;
+			doOrderRelativeFetch( 0 );
+			return( false );
+		}
+
+		EXEC SQL INSERT INTO ULCustomer (cust_id, cust_name)
+			VALUES( :m_CustID, :m_Cust );
+
+		notifyCustListChange(); // added a customer
+	}
+	
+	// Note the status and notes columns are NULL for new orders.
+	EXEC SQL INSERT INTO ULOrder (order_id, cust_id, prod_id, emp_id, disc, quant)
+		VALUES ( :m_OrderID, :m_CustID, :m_ProdID, :m_EmpIDStr, :m_DiscStr, :m_QuantStr );
+
+	EXEC SQL COMMIT;
+	if( m_SQLCode != SQLE_NOERROR ) { // any error signaled for insert or commit?
+		EXEC SQL ROLLBACK;
+		doOrderRelativeFetch( 0 );
+		return( false );
+	}
+
+	// Position on the newly inserted row. It's the last row
+	// because of the ORDER BY on GetOrderCursor and the way
+	// new order ids are selected.
+	doOrderAbsoluteFetch( -1 );
+	notifyOrderListChange(); // added an order
+	return( true );
+}
+
+bool CDemoDB::ProcessOrder( bool accepted, const TCHAR * notes )
+/**************************************************************/
+{
+	resetError( TEXT("Process order") );
+
+	// Accept or deny the current order.
+	my_strncpy( m_Notes, notes, DEMO_NOTES_SIZE - 1 );
+	m_Notes[DEMO_NOTES_SIZE - 1] = '\0';
+	if( accepted ) {
+		my_strcpy( m_Status, TEXT( "Approved" ) );
+	} else {
+		my_strcpy( m_Status, TEXT( "Denied" ) );
+	}
+
+	EXEC SQL UPDATE ULOrder
+		SET		notes = :m_Notes, status = :m_Status
+		WHERE	order_id = :m_OrderID;
+		
+	if( SQLCODE < 0 || SQLCOUNT != 1 ) {
+		// This is essentially an internal error -- most likely cause is
+		// the order doesn't exist.
+		doOrderRelativeFetch( 0 ); // reset old values
+		return( false );
+	}
+
+	// The ULOrder table was updated, refresh cursor with new values
+	doOrderRelativeFetch( 0 );
+
+	EXEC SQL COMMIT;
+	if( SQLCODE < 0 ) {
+		return( false );
+	}
+
+	return( true );
+}
+
+bool CDemoDB::DeleteOrder( void )
+/*******************************/
+{
+	resetError( TEXT("Delete order") );
+	EXEC SQL DELETE FROM ULOrder WHERE order_id = :m_OrderID;
+	if( SQLCODE < 0 || SQLCOUNT != 1 ) {
+		// This is essentially an internal error -- most likely cause is
+		// the order doesn't exist.
+		return( false );
+	}
+
+	EXEC SQL COMMIT;
+	if( SQLCODE < 0 ) {
+		return( false );
+	}
+
+	skipToValidOrder();
+	notifyOrderListChange();
+	return( true );
+}
+
+bool CDemoDB::MoveNextOrder( int skip )
+/*************************************/
+{
+	resetError( TEXT("Fetch order") );
+	return( doOrderRelativeFetch( skip ) );
+}
+
+void CDemoDB::ResetOrder( void )
+/******************************/
+{
+	EXEC SQL FETCH ABSOLUTE 0 GetOrderCursor;
+}
+
+void CDemoDB::ConfigureSynch(
+/***************************/
+	const char *		stream,
+	const TCHAR *		parms,
+	bool				enableOfflineSynch )
+{
+	m_Stream = stream;
+	// The stream_parms parameter contains connection and stream-specific
+	// options, such as "host=myhost.mycorp.com" or "host=172.31.143.23".
+	if( parms != NULL ) {
+		my_strncpy( m_SynchParms, parms, DEMO_PARMS_SIZE - 1 );
+		m_SynchParms[DEMO_PARMS_SIZE - 1] = '\0';
+	} else {
+		m_SynchParms[0] = '\0';
+	}
+	m_EnableOfflineSynch = enableOfflineSynch;
+}
+
+bool CDemoDB::Synchronize( ul_synch_observer_fn observer )
+/********************************************************/
+{
+	ul_synch_info		info;
+
+	resetError( TEXT("Synchronize") );
+
+	// Perform synchronization.
+	// If this method is called on a separate thread, the main thread
+	// _cannot_ access the sqlca during the synchronization.
+	// To permit this (database operations on the main thread during
+	// synchronization), initialize another sqlca for the synchronize
+	// thread here and open a second connection.
+
+	if( m_Stream == NULL ) {
+		return( false );
+	}
+	initSynchInfo( &info, observer );
+
+	disableErrorAlert(); // Application UI will display alert in this case
+	ULSynchronize( &sqlca, &info );
+	if( SQLCODE < 0 ) {
+		return( false );
+	}
+	notifyOrderListChange();
+	notifyCustListChange();
+	notifyProdListChange();
+	skipToValidOrder();
+	return( true );
+}
+
+bool CDemoDB::GetSynchronizeResult( ul_synch_result * synchResult )
+/*****************************************************************/
+{
+	return( ULGetSynchResult( &sqlca, synchResult ) ? true : false );
+}
+
+void CDemoDB::initSynchInfo( ul_synch_info * info, ul_synch_observer_fn observer )
+/********************************************************************************/
+{
+	ULInitSynchInfo( info );
+	info->user_name = m_EmpIDStr;
+	info->version = SCRIPT_VERSION;
+	info->stream = m_Stream;
+	info->stream_parms = m_SynchParms;
+	info->observer = observer;
+	info->user_data = &sqlca;
+	info->send_download_ack = ul_true;
+}
+
+bool CDemoDB::doOrderRelativeFetch( int skip )
+/********************************************/
+{
+	EXEC SQL BEGIN DECLARE SECTION;
+		long	offset;
+		short	status_ind;
+		short	notes_ind;
+	EXEC SQL END DECLARE SECTION;
+
+	// Fetch an order using a relative offset (including 0, which would
+	// refetch the current order).
+	offset = skip;
+	EXEC SQL FETCH RELATIVE :offset GetOrderCursor 
+		INTO :m_OrderID, :m_DiscStr, :m_QuantStr,
+			 :m_Notes:notes_ind, :m_Status:status_ind,
+			 :m_CustID, :m_Cust, :m_ProdID, :m_Prod, :m_PriceStr;
+	if( SQLCODE < 0 || SQLCODE == SQLE_NOTFOUND ) {
+		return( false );
+	}
+	if( notes_ind < 0 ) {
+		m_Notes[0] = '\0';
+	}
+	if( status_ind < 0 ) {
+		m_Status[0] = '\0';
+	}
+
+	return( true );
+}
+
+bool CDemoDB::doOrderAbsoluteFetch( int abs )
+/*******************************************/
+{
+	EXEC SQL BEGIN DECLARE SECTION;
+		long	offset;
+		short	status_ind;
+		short	notes_ind;
+	EXEC SQL END DECLARE SECTION;
+
+	// Fetch an order using an absolute offset of -1: the last row.
+	offset = abs;
+	EXEC SQL FETCH ABSOLUTE :offset GetOrderCursor
+		INTO :m_OrderID, :m_DiscStr, :m_QuantStr,
+			 :m_Notes:notes_ind, :m_Status:status_ind,
+			 :m_CustID, :m_Cust, :m_ProdID, :m_Prod, :m_PriceStr;
+	if( SQLCODE < 0 || SQLCODE == SQLE_NOTFOUND ) {
+		return( false );
+	}
+	if( notes_ind < 0 ) {
+		m_Notes[0] = '\0';
+	}
+	if( status_ind < 0 ) {
+		m_Status[0] = '\0';
+	}
+
+	return( true );
+}
+
+bool CDemoDB::getNextCustomerID( void )
+/*************************************/
+{
+	short		ind;
+
+	EXEC SQL SELECT min( pool_cust_id ) INTO :m_CustID:ind
+		FROM ULCustomerIDPool;
+	if( SQLCODE < 0 || ind < 0 ) {
+		return( false ); // no rows left (or some other error)
+	}
+
+	EXEC SQL DELETE FROM ULCustomerIDPool WHERE pool_cust_id = :m_CustID;
+	if( SQLCODE < 0 || SQLCOUNT != 1 ) {
+		return( false );
+	}
+
+	// Don't commit this change now... it must be rolled back if the
+	// current transaction doesn't complete fully.
+
+	return( true );
+}
+
+bool CDemoDB::getNextOrderID( void )
+/**********************************/
+{
+	short		ind;
+
+	EXEC SQL SELECT min( pool_order_id ) INTO :m_OrderID:ind
+		FROM ULOrderIDPool;
+	if( SQLCODE < 0 || ind < 0 ) {
+		return( false ); // no rows left (or some other error)
+	}
+
+	EXEC SQL DELETE FROM ULOrderIDPool WHERE pool_order_id = :m_OrderID;
+	if( SQLCODE < 0 || SQLCOUNT != 1 ) {
+		return( false );
+	}
+
+	// Don't commit this change now... it must be rolled back if the
+	// current transaction doesn't complete fully.
+
+	return( true );
+}
+
+void CDemoDB::skipToValidOrder( void )
+/************************************/
+{
+	if( !doOrderRelativeFetch( 0 ) ) {
+		// In this case the cursor is either before the first row or
+		// after the last row. Try moving down to a valid row.
+		if( !doOrderRelativeFetch( 1 ) ) {
+			// In this case the cursor was on the last row which was
+			// just deleted. Move up to a valid row.
+			doOrderRelativeFetch( -1 );
+		}
+	}
+}
+
+void CDemoDB::notifyOrderListChange( void )
+/*****************************************/
+{
+	short		ind; // see DECLARE SECTION at start of file
+
+	// The data in the ULOrder table has changed.
+	// Set the MaxOrderID, MinOrderID, and NoOrder members.
+	EXEC SQL SELECT max( order_id ) INTO :m_MaxOrderID:ind FROM ULOrder;
+	EXEC SQL SELECT min( order_id ) INTO :m_MinOrderID:ind FROM ULOrder;
+	if( SQLCODE < 0 || ind < 0 ) {
+		m_NoOrder = true;
+		m_MaxOrderID = DEMO_VALUE_NOT_CACHED;
+		m_MinOrderID = DEMO_VALUE_NOT_CACHED;
+	} else {
+		m_NoOrder = false;
+	}
+}
+
+void CDemoDB::notifyCustListChange()
+/**********************************/
+{
+	// The data in the ULCustomer table has changed.
+	// Indicate cached count must be refetched.
+	m_CustCount = DEMO_VALUE_NOT_CACHED;
+}
+
+void CDemoDB::notifyProdListChange()
+/**********************************/
+{
+	// The data in the ULProduct table has changed.
+	// Indicate cached count must be refetched.
+	m_ProdCount = DEMO_VALUE_NOT_CACHED;
+}
+
+ul_error_action CDemoDB::errorCallback(
+/*************************************/
+	SQLCA *				sqlca,
+	ul_void *			user_data,
+	ul_char *			buffer )
+{
+	ul_error_action		action;
+	CDemoDB *			self = reinterpret_cast<CDemoDB *>(user_data);
+	const TCHAR *		device_io_msg =
+		TEXT("Unable to access database file. ")
+		TEXT("Ensure space is available and any media card is inserted.");
+	const TCHAR *		incorrect_volumn_msg =
+		TEXT("A different media card was inserted. ")
+		TEXT("Please reinsert the original media card.");
+
+	(void) buffer; // same as m_ErrorCallbackBuf
+	switch( sqlca->sqlcode ) {
+	case SQLE_NOTFOUND:
+		// Suppress this warning. It is used for flow control.
+		return UL_ERROR_ACTION_DEFAULT;
+
+	case SQLE_DEVICE_IO_FAILED:
+		if( my_okcancel_dialog( device_io_msg ) ) {
+			return UL_ERROR_ACTION_TRY_AGAIN;
+		} else {
+			action = UL_ERROR_ACTION_CANCEL;
+		}
+		break;
+
+	case SQLE_INCORRECT_VOLUME_ID:
+		if( my_okcancel_dialog( incorrect_volumn_msg ) ) {
+			return UL_ERROR_ACTION_TRY_AGAIN;
+		} else {
+			action = UL_ERROR_ACTION_CANCEL;
+		}
+		break;
+
+	default:
+		action = UL_ERROR_ACTION_DEFAULT;
+		break;
+	}
+	if( sqlca->sqlcode == self->m_IgnoreSQLCode ) {
+		self->m_IgnoreSQLCode = SQLE_NOERROR; // only ignore once
+	} else {
+		self->recordError( sqlca->sqlcode );
+	}
+	return action;
+}
+
+void CDemoDB::ignoreError( an_sql_code sqlcode )
+/**********************************************/
+{
+	// ignore this error (once)
+	m_IgnoreSQLCode = sqlcode;
+}
+
+void CDemoDB::disableErrorAlert()
+/*******************************/
+{
+	// disable error alert (once)
+	m_EnableErrorAlert = false;
+}
+
+void CDemoDB::resetError( const TCHAR * context )
+/***********************************************/
+{
+	m_EnableErrorAlert = true;
+	m_IgnoreSQLCode = SQLE_NOERROR;
+	m_SQLCode = SQLE_NOERROR;
+	my_strncpy( m_ErrorContext, context, ERROR_CONTEXT_LEN - 1 );
+	m_ErrorContext[ERROR_CONTEXT_LEN - 1] = '\0';
+	m_ErrorMsg[0] = '\0';
+	m_ErrorCallbackBuf[0] = '\0';
+}
+
+void CDemoDB::recordError( an_sql_code sql_code )
+/***********************************************/
+{
+	my_assert( sql_code != 0 );
+	if( m_SQLCode < 0 ) {
+		// Already recorded an error in this context. Ignore this one.
+		// (But do override warnings with errors.)
+		return;
+	}
+	m_SQLCode = sql_code;
+	// We've chosen our buffer lengths so we know nothing can overflow here:
+	// context + error callback buffer + text we include here < m_ErrorMsg size
+	// m_ErrorCallbackBuf could be empty, that's okay.
+	my_assert( ERROR_CONTEXT_LEN + ERROR_CALLBACK_BUF_LEN + 35 < ERROR_MSG_LEN );
+	my_sprintf( m_ErrorMsg, TEXT("Error during '%s' operation. [%ld %s]"),
+				m_ErrorContext, m_SQLCode, m_ErrorCallbackBuf );
+	if( m_EnableErrorAlert ) {
+		my_error_msg( m_ErrorMsg );
+	} else {
+		m_EnableErrorAlert = true; // only disable once
+	}
+}
+
+// vim:ts=4:

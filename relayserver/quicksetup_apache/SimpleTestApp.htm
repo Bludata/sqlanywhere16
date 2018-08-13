@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>SimpleTestApp</title>
+<script type="text/JavaScript">
+<!--
+function timedRefresh(timeoutPeriod) {
+    setTimeout("location.reload(true);",timeoutPeriod);
+}
+-->
+</script>
+</head>
+<body onload="JavaScript:timedRefresh(5000);">
+<h1>Relay Server SimpleTestApp Page</h1>
+<p>This page will auto refresh every 5 sec.</p>
+<p>If this page is not displaying the last refresh time dynamically, you will need to add this page to your trusted sites in your browser or allow javascript explicitly.</p>
+<p>
+<script type="text/javascript">
+    var t = new Date();
+    document.write("Last refresh time: " + t);
+</script>
+</p>
+</body>
+</html>

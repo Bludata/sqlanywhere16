@@ -1,0 +1,236 @@
+// ***************************************************************************
+// Copyright (c) 2013 SAP AG or an SAP affiliate company. All rights reserved.
+// ***************************************************************************
+/* *********************************************************************
+// This sample code is provided AS IS, without warranty or liability
+// of any kind.
+// 
+// You may use, reproduce, modify and distribute this sample code
+// without limitation, on the condition that you retain the foregoing
+// copyright notice and disclaimer as to the original code.  
+// 
+// ****************************************************************** */
+
+/****************************************************************************
+ *									    *
+ *	Sybase SQL Anywhere Transaction Test Utility			    *
+ *									    *
+ ****************************************************************************/
+
+// ESQL API
+
+
+#include <stddef.h>
+
+#if defined( _MSC_VER )
+// Disable warnings about using "pragma pack" to change structure alignment
+#pragma warning(disable:4103)
+#endif
+
+EXEC SQL INCLUDE SQLCA;
+EXEC SQL SET SQLCA "&sqlca";
+
+#include "sqldef.h"
+#include "trantest.hpp"
+
+
+char * ESQLAPI::GetSQLError( TransactionThread * thread )
+/*******************************************************/
+{
+    return( sqlerror_message( &sqlca, thread->error_buffer, 
+		sizeof( thread->error_buffer ) ) );
+}
+
+void PrintSQLError( ESQLAPI * esql_api, TransactionThread * thread )
+/******************************************************************/
+{
+    PrintError( thread, esql_api->GetSQLError( thread ) );
+}
+
+a_bool ESQLAPI::Connect( TransactionThread * thread )
+/***************************************************/
+{ 
+    db_init( &sqlca );
+    if( db_string_connect( &sqlca, BMark->connect_string ) == 0 ) {
+        PrintSQLError( this, thread );
+	return( FALSE );
+    }
+    thread->connected = TRUE;
+    return( TRUE );
+}
+
+a_bool ESQLAPI::Disconnect( TransactionThread * thread )
+/******************************************************/
+{
+    if( thread->connected ) {
+	db_string_disconnect( &sqlca, BMark->connect_string );
+	db_fini( &sqlca );
+	thread->connected = FALSE;
+    }
+    return( TRUE );
+}
+
+EXEC SQL WHENEVER SQLERROR { PrintSQLError( this, thread ); return( FALSE ); };
+
+a_bool ESQLAPI::Commit( TransactionThread * thread )
+/**************************************************/
+{
+    EXEC SQL COMMIT WORK;
+    return( TRUE );
+}
+
+a_bool ESQLAPI::Rollback( TransactionThread * thread )
+/****************************************************/
+{
+    EXEC SQL ROLLBACK WORK;
+    return( TRUE );
+}
+
+a_bool ESQLAPI::ExecSQLString( TransactionThread * thread, char * str )
+/*********************************************************************/
+{
+    EXEC SQL BEGIN DECLARE SECTION;
+    char *		sqlstr;
+    EXEC SQL END DECLARE SECTION;
+    
+    sqlstr = str;
+    EXEC SQL EXECUTE IMMEDIATE :sqlstr;
+    return( TRUE );
+}
+
+a_bool ESQLAPI::Prepare( TransactionThread * thread, char * str, int stnum )
+/**************************************************************************/
+{
+    EXEC SQL BEGIN DECLARE SECTION;
+    char *		    sqlstr;
+    a_sql_statement_number  hstmt;
+    EXEC SQL END DECLARE SECTION;
+    SQLDA *		    da;
+    int			    i;
+    SQLDA *		    tmpda;
+    
+    sqlstr = str;
+    EXEC SQL PREPARE :hstmt FROM :sqlstr;
+    stmt[stnum] = hstmt;
+    has_result_set[stnum] = FALSE;
+    sqlda[stnum] = NULL;
+    outsqlda[stnum] = NULL;
+    tmpda = alloc_sqlda( 0 );
+    EXEC SQL DESCRIBE INPUT FOR :hstmt INTO tmpda;
+    if( tmpda->sqld > 0 ) {
+	sqlda[stnum] = alloc_sqlda( tmpda->sqld );
+	da = sqlda[stnum];
+	EXEC SQL DESCRIBE INPUT FOR :hstmt INTO da;
+	da->sqln = da->sqld;
+	for( i = 0; i < da->sqld; ++ i ) {
+	    da->sqlvar[i].sqltype = DT_STRING;
+	    da->sqlvar[i].sqllen = MAX_FETCH_SIZE;   // length should be ignored
+	    *da->sqlvar[i].sqlind = -1;	    // parameters are null until specified
+	}
+    }
+    EXEC SQL DESCRIBE OUTPUT FOR :hstmt INTO tmpda;
+    if( tmpda->sqld > 0 ) {
+	outsqlda[stnum] = alloc_sqlda( tmpda->sqld );
+	da = outsqlda[stnum];
+	// Fetch results as strings.
+	// Fetch at most 32K chars of any long fields.
+	EXEC SQL DESCRIBE OUTPUT FOR :hstmt INTO da;
+	fill_s_sqlda( da, MAX_FETCH_SIZE );    
+	// If statement has output parameters, it can not have a result set.
+	has_result_set[stnum] = TRUE;
+	for( i = 0; i < da->sqld; ++ i ) {
+	    if( (*da->sqlvar[i].sqlind & DT_PROCEDURE_OUT) != 0 ) {
+		has_result_set[stnum] = FALSE;
+		break;
+	    }
+	}
+    }
+    free_sqlda( tmpda );
+    return( TRUE );
+}
+
+a_bool ESQLAPI::SetParm( TransactionThread * /* thread */, int parmnum, char * parmval, int stnum )
+/*******************************************************************************************/
+{
+    SQLDA *		    da;
+    
+    da = sqlda[stnum];
+    da->sqlvar[parmnum].sqldata = parmval;
+    *da->sqlvar[parmnum].sqlind = (short) ((parmval == NULL) ? -1 : 0);
+    return( TRUE );
+}
+
+a_bool ESQLAPI::Execute( TransactionThread * thread, int stnum )
+/**************************************************************/
+{
+    EXEC SQL BEGIN DECLARE SECTION;
+    a_sql_statement_number  hstmt;
+    EXEC SQL END DECLARE SECTION;
+    SQLDA *		    inda;
+    SQLDA *		    outda;
+    
+    inda = sqlda[stnum];
+    outda = outsqlda[stnum];
+    hstmt = stmt[stnum];
+    if( !has_result_set[stnum] ) {
+	if( inda == NULL && outda == NULL ) {
+	    EXEC SQL EXECUTE :hstmt;
+	} else if( inda != NULL && outda == NULL ) {
+	    EXEC SQL EXECUTE :hstmt USING DESCRIPTOR inda;
+	} else if( inda != NULL && outda != NULL ) {
+	    EXEC SQL EXECUTE :hstmt USING DESCRIPTOR inda INTO DESCRIPTOR outda;
+	} else {
+	    EXEC SQL EXECUTE :hstmt INTO DESCRIPTOR outda;
+	}
+    } else {
+	EXEC SQL DECLARE curs CURSOR FOR :hstmt FOR READ ONLY;
+	if( inda == NULL ) {
+	    EXEC SQL OPEN curs;
+	} else {
+	    EXEC SQL OPEN curs USING DESCRIPTOR inda;
+	}
+	for( ;; ) {
+	    if( sqlca.sqlcode != 0 ) break;
+	    EXEC SQL FETCH curs INTO DESCRIPTOR outda;
+	}
+	EXEC SQL CLOSE curs;
+    }
+    return( TRUE );
+}
+
+a_bool ESQLAPI::Drop( TransactionThread * thread, int stnum )
+/***********************************************************/
+{
+    EXEC SQL BEGIN DECLARE SECTION;
+    a_sql_statement_number  hstmt;
+    EXEC SQL END DECLARE SECTION;
+    
+    hstmt = stmt[stnum];
+    EXEC SQL DROP STATEMENT :hstmt;
+    if( sqlda[stnum] != NULL ) {
+	free_sqlda( sqlda[stnum] );
+	sqlda[stnum] = NULL;
+    }
+    if( outsqlda[stnum] != NULL ) {
+	free_filled_sqlda( outsqlda[stnum] );
+	outsqlda[stnum] = NULL;
+    }
+    return( TRUE );
+}
+
+a_bool ESQLAPI::GetIntQuery( TransactionThread * thread, char * str, int * result )
+/*********************************************************************************/
+{
+    EXEC SQL BEGIN DECLARE SECTION;
+    char *		    sqlstr;
+    int			    intvalue;
+    a_sql_statement_number  hstmt;
+    EXEC SQL END DECLARE SECTION;
+    
+    sqlstr = str;
+    EXEC SQL PREPARE :hstmt FROM :sqlstr;
+    EXEC SQL EXECUTE :hstmt INTO :intvalue;
+    EXEC SQL DROP STATEMENT :hstmt;
+    *result = intvalue;
+    return( TRUE );
+}

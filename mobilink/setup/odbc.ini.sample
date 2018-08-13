@@ -1,0 +1,88 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; sample .odbc.ini file
+; 
+; The entries below may be used as a template for configuring data sources 
+; to be used with ODBC Drivers for MobiLink.  Entries should be merged into
+; a user's .odbc.ini file, usually located in the $HOME directory.
+;
+; Some drivers may require setting the ODBCINI environment variable in order
+; to find the .odbc.ini file, for example:
+;   export ODBCINI=~/.odbc.ini
+;
+; For more information, please refer to SQL Anywhere online help.
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+[ODBC Data Sources]
+SybaseSA=SQL Anywhere 16 Driver
+Oracle=SQL Anywhere 16 - Oracle Driver
+SybaseASE=Sybase Organic ODBC driver
+DB2=IBM DB2 CLI Driver
+a_mysql_dsn=My SQL ODBC driver
+SybaseIQ=Sybase IQ
+
+
+[SybaseSA]
+Driver=libdbodbc16.so
+UID=dba
+PWD=sql
+ServerName=demo
+CommLinks=tcpip
+
+[Oracle]
+Description=SQL Anywhere 16 - Oracle Driver
+Driver=libdboraodbc16_r.so
+UserID=uid
+Password=pwd
+ServiceName=<The TNS Service Name that appears in $ORACLE_HOME/network/admin/tnsnames.ora>
+ProcResults=[yes|no]
+ArraySize=60000
+
+[SybaseASE]
+Description=Sybase Organic ODBC driver, not available on Solaris/AIX/HP/MAC
+Driver=<Driver Location>/lib/libsybdrvodb-sqllen8.so
+Database=db
+Password=pwd
+Port=5000
+Server=asehost
+ServerInitiatedTransactions=0
+UseCursor=0
+UserID=uid
+
+[DB2]
+Description=IBM DB2 CLI Driver, not available on MAC 
+Driver=<Driver Location>/lib64/libdb2o.so
+;
+; If you are making a DSN for a 64-bit MobiLink server or other 64-bit
+; applications to connect to a DB2 10.1 database with the DB2 client
+; version 10.1, please comment out the previous line 'Driver=...' and
+; uncomment out the following two lines
+;	Driver=<Driver Location>/lib64/libdb2.so
+;	length32=1
+;
+DATABASE=db
+HOSTNAME=db2host
+PWD=pwd
+SERVICENAME=50000
+UID=uid
+
+[a_mysql_dsn]
+Description=Connector/ODBC 5.1.6 Driver DSN
+Driver=<Driver Location>/lib/libmyodbc5.so
+DATABASE=database_name
+Server=host_name
+UID=uid
+PWD=pwd
+
+[SybaseIQ]
+Driver=<Sybase IQ installation>/IQ-15_2/lib64/libdbodbc11.so
+ServerName=myIQServer
+CommLinks=tcpip{host=myComputer;port=4500}
+UID=your_login_user_ID
+PWD=your_login_user_password
+Charset=None
+
+[SAP_HANA]
+ServerNode=host_name:port_number
+Driver=<SAP HANA installation>/hdbclient/libodbcHDB.so

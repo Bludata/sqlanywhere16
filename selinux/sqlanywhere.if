@@ -1,0 +1,92 @@
+## <summary>SQL Anywhere</summary>
+
+#######################################################
+## <summary>
+##      Search files in the SQL Anywhere install tree.
+## </summary>
+## <param name="domain">
+##      Domain allowed access.
+## </param>
+#
+interface( `sqlanywhere_search_files', `
+        gen_require( `
+                attribute sqlanywhere_types;
+        ' )
+
+        allow $1 sqlanywhere_types : dir search_dir_perms;
+' )
+
+#######################################################
+## <summary>
+##      Read files in the SQL Anywhere install tree.
+## </summary>
+## <param name="domain">
+##      Domain allowed access.
+## </param>
+#
+interface( `sqlanywhere_read_files', `
+        gen_require( `
+                attribute sqlanywhere_types;
+        ' )
+
+        sqlanywhere_search_files( $1 )
+        allow $1 sqlanywhere_types : { dir file lnk_file } read_file_perms;
+' )
+
+
+#######################################################
+## <summary>
+##      Manage files in the SQL Anywhere install tree.
+## </summary>
+## <param name="domain">
+##      Domain allowed access.
+## </param>
+#
+interface( `sqlanywhere_manage_files', `
+        gen_require( `
+                attribute sqlanywhere_types;
+        ' )
+
+        allow $1 sqlanywhere_types : dir manage_dir_perms;
+        allow $1 sqlanywhere_types : { file lnk_file } manage_file_perms;
+' )
+
+
+#######################################################
+## <summary>
+##      Run SQL Anywhere server
+## </summary>
+## <param name="domain">
+##      Domain allowed access
+## </param>
+#
+interface( `sqlanywhere_run_server', `
+        gen_require( `
+                type sqlanywhere_server_exec_t;
+                type sqlanywhere_server_t;
+        ' )
+
+        type_transition $1 sqlanywhere_server_exec_t :
+                process sqlanywhere_server_t;
+        allow $1 sqlanywhere_server_t : process transition;
+' )
+
+
+#######################################################
+## <summary>
+##      Run SQL Anywhere client applications
+## </summary>
+## <param name="domain">
+##      Domain allowed access
+## </param>
+#
+interface( `sqlanywhere_run_client', `
+        gen_require( `
+                type sqlanywhere_exec_t;
+                type sqlanywhere_t;
+        ' )
+
+        type_transition $1 sqlanywhere_exec_t : process sqlanywhere_t;
+        allow $1 sqlanywhere_t : process transition;
+' )
+

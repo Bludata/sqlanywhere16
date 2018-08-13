@@ -1,0 +1,2527 @@
+// ***************************************************************************
+// Copyright (c) 2013 SAP AG or an SAP affiliate company. All rights reserved.
+// ***************************************************************************
+/* *********************************************************************
+// This sample code is provided AS IS, without warranty or liability
+// of any kind.
+// 
+// You may use, reproduce, modify and distribute this sample code
+// without limitation, on the condition that you retain the foregoing
+// copyright notice and disclaimer as to the original code.  
+// 
+// ****************************************************************** */
+
+// This sample program contains a hard-coded userid and password
+// to connect to the demo database. This is done to simplify the
+// sample program. The use of hard-coded passwords is strongly
+// discouraged in production code.  A best practice for production
+// code would be to prompt the user for the userid and password.
+
+#include "sqlos.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+#include <errno.h>
+#include <math.h>
+#include <ctype.h>
+#if defined( UNIX )
+    #include <unistd.h>
+    #include <sys/time.h>
+    #include <strings.h>
+    #include <stdarg.h>
+    #define _strnieq( s1, s2, n ) ( strncasecmp( s1, s2, n ) == 0 )
+    #define _strieq( s1, s2 ) ( strcasecmp( s1, s2 ) == 0 )
+#else
+    #if defined( __NT__ ) && !defined( USE_HI_RES_TIMER )
+        #define USE_HI_RES_TIMER
+    #endif
+    #if defined( USE_HI_RES_TIMER )
+        #include "windows.h"
+    #endif
+    #define _strnieq( s1, s2, n ) ( strnicmp( s1, s2, n ) == 0 )
+    #define _strieq( s1, s2 ) ( stricmp( s1, s2 ) == 0 )
+#endif
+#if defined( DEC_UNIX )
+    #include <stdarg.h>
+    #include <va_list.h>
+#endif
+
+#if defined( _MSC_VER )
+// Disable warning for deprecated string functions (e.g. stricmp, strdup, strnicmp).
+#   pragma warning( disable : 4996 )
+#endif
+
+EXEC SQL INCLUDE SQLCA;
+EXEC SQL INCLUDE SQLDA;
+
+#include "sqldef.h"
+
+typedef unsigned int	a_bool;
+#define TRUE		1
+#define FALSE		0
+#define FETCH_SIZE	4096
+#define DEF_FILENAME	"test.sql"
+
+#if defined( UNIX )
+    typedef struct timeval	a_clock_type;
+#elif defined( USE_HI_RES_TIMER )
+    typedef LONGLONG	a_clock_type;
+#else
+    typedef clock_t	a_clock_type;
+#endif
+
+EXEC SQL BEGIN DECLARE SECTION;
+    char 			FetchCurs[20] = "FetchCurs";
+    a_sql_statement_number	FetchStmt;
+    char			Plan[32765];
+    char			SetupStmt[10000];
+    long			Skip = 1;
+    char *			Statement;
+    unsigned short		Width = 1;
+EXEC SQL END DECLARE SECTION;
+
+
+#define STMT_SIZE_INCR	10000
+static int		ColumnCount	    = 0;    // as reported by describe
+static FILE *		CommaDelimFile	    = NULL;
+static char *		ConnectStr	    = "UID=DBA;PWD=sql";
+static a_bool		ContinueAfterError  = FALSE;
+static char		CursorType	    = ' ';
+static char *		CursorTypeFull	    = "DYNAMIC";
+static a_bool		CursorReadOnly	    = TRUE;
+static int		DescribeCount	    = 1;
+static char		DescribeType	    = ' ';
+static a_bool           DisplayCPUUse       = FALSE;
+static a_bool           DisplayFileCPUUse   = FALSE;
+static unsigned long	DisplayFreq	    = 1000;
+static a_bool		DisplayMicroSecs    = FALSE;
+static a_bool           DisplayMinMax       = FALSE;
+static a_bool		DisplayOnlyTotals   = FALSE;
+static a_bool		DisplayPlan	    = FALSE;
+static a_bool           DisplayStdDev       = FALSE;
+static a_bool		DisplayStmt	    = FALSE;
+static int		DisplaySummaryStepLen = 30;
+static int		EmptyQueries	    = 0;
+static int              EngineDelay         = 0;              
+static char *           EngineName          = NULL;              
+static a_bool           EngineStartOnce     = TRUE;             
+static char *           EngineStr           = NULL;   
+static char *           EngineStartStr      = NULL;
+static char *           EngineStopStr       = NULL;
+static char *           ExecuteEndStr       = NULL;
+static char *           ExecuteStartStr     = NULL;
+static int		FetchCursNum	    = 0;
+static char		HostVarBuff[40000];
+static a_bool		JSONOutput	    = FALSE;
+static char *		JSONTable	    = NULL;
+static int		IsolationLevel	    = -1;	// < 0 means not set
+static a_bool		NoPrefetch	    = FALSE;
+static int		OpenCount	    = 1;
+static FILE *		Output		    = stdout;
+static FILE *		OutputData	    = NULL;
+static char *		OutputOneFetchFile  = NULL;
+static a_bool		Quiet		    = FALSE;
+static a_bool		QueriesOnly	    = FALSE;
+static int		RepeatCount	    = 1;
+static int		StatementRepeatCount= 1;
+static unsigned long	RowLimit	    = 0xffffffffL;
+static int		RowsFetched	    = 0;
+static char *		SetupFile	    = NULL;
+static int		SkipMessages	    = 0;
+static int		SkipSelects	    = 0;
+static struct tm	StartTime;
+static int		StatementCount	    = 0;
+static int		StatementLine	    = 1;
+static int		StmtSize	    = 0;
+static int		StringSize	    = 0;
+static a_bool		Summarize	    = FALSE;
+static a_bool		SummarizeCategory   = FALSE;
+static int		ThinkTime	    = 0;
+
+
+static void ShowError()
+/*********************/
+{
+    char	errbuff[1000];
+    
+    fprintf( stderr, "SQL ERROR %d: %s\n\n", (int)SQLCODE,
+		sqlerror_message( &sqlca, errbuff, sizeof(errbuff) ) );
+    if( Output != stdout ) {
+	fprintf( Output, "SQL ERROR %d: %s\n\n", (int)SQLCODE, errbuff );
+    }
+}
+
+// these two functions are intentionally before an EXEC SQL WHENEVER...
+// so that errors are ignored
+static void DropFetchStmt()
+/*************************/
+{
+    EXEC SQL DROP STATEMENT :FetchStmt;
+}
+
+static void CloseFetchCurs()
+/**************************/
+{
+    EXEC SQL CLOSE :FetchCurs;
+}
+
+EXEC SQL WHENEVER SQLERROR goto sql_error;
+
+static void DoPrintf( const char *fmt, ... )
+/******************************************/
+{
+    va_list	list;
+    va_start( list, fmt );
+
+    vfprintf( Output, fmt, list );
+    if( Output != stdout && !Quiet ) {
+	vfprintf( stdout, fmt, list );
+    }
+
+    va_end( list );
+}
+
+//**********************************************************************/
+//**********************************************************************/
+
+class a_statement_stream {
+  public:
+    a_statement_stream();
+    ~a_statement_stream();
+    a_bool		open_file( char * filename );
+    void		close_file();
+    int			get_char();
+    a_bool		read_statement();
+    a_bool		add_hostvars( unsigned numvars );
+    void		free_hostvars();
+    a_bool		trim_statement();
+    a_bool		open_cursor();
+    a_bool		execute_prepared();
+    a_bool		exec_statement();
+    a_bool		statement_is_query();
+    a_bool		statement_category( char * buf, int max );
+  private:
+    FILE *		_fp;
+    a_bool		_eof_reached;
+    SQLDA *		_sqlda;
+    int			_curr_line;
+};
+
+a_statement_stream::a_statement_stream()
+/**************************************/
+    : _fp( NULL )
+    , _eof_reached( FALSE )
+    , _sqlda( NULL )
+    , _curr_line( 1 )
+{
+}
+
+a_statement_stream::~a_statement_stream()
+/***************************************/
+{
+    free_hostvars();
+}
+
+a_bool a_statement_stream::open_file( char * fname )
+/**************************************************/
+{
+    if( JSONTable == NULL ) {
+	if( fname == NULL ) {
+	    fname = DEF_FILENAME;
+	}
+	_fp = fopen( fname, "rt" );
+	if( _fp == NULL ) {
+	    fprintf( stderr, "Unable to open %s -- %s\n", fname, strerror( errno ) );
+	    return( FALSE );
+	}
+    } else if( fname != NULL ) {
+	fprintf( stderr, "Do not specify statement files when using -oj\n" );
+	return( FALSE );
+    }
+	
+    _sqlda	    = NULL;
+    _eof_reached    = FALSE;
+    _curr_line	    = 1;
+    return( TRUE );
+}
+
+void a_statement_stream::close_file()
+/***********************************/
+{
+    if( _fp != NULL ) {
+	fclose( _fp );
+	_fp = NULL;
+    }
+}
+    
+int a_statement_stream::get_char()
+/********************************/
+{
+    int			ch;
+    
+    if( _eof_reached ) {
+	return( EOF );
+    }
+    ch = fgetc( _fp );
+    if( ch == EOF ) {
+	_eof_reached = TRUE;
+    } else if( ch == '\r' ) {
+	ch = ' ';
+    } else if( ch == '\n' ) {
+	_curr_line++;
+    }
+    return( ch );
+}
+
+a_bool a_statement_stream::read_statement()
+/*****************************************/
+{
+    int			size;
+    int			ch;
+    int			nextch;
+  
+    if( _eof_reached ) {
+	return( FALSE );
+    } 
+    StatementLine = _curr_line;
+    if( JSONTable != NULL ) { 
+	// -oj JSONTable
+	Statement = (char *)malloc( strlen( JSONTable ) + 20 );
+	if( Statement == NULL ) {
+	    fprintf( stderr, "Out of memory" );
+	    return FALSE;
+	}
+	sprintf( Statement, "SELECT * FROM %s", JSONTable );
+	_eof_reached = TRUE;
+	return TRUE;
+    }
+    size = 0;
+    ch = get_char();
+    for( ;; ) {
+	// use StmtSize - 10 since we sometimes process more than one
+	// character per iteration (for example, if ch == '\n')
+	if( size >= StmtSize - 10 ) {
+	    char *  old_stmt = Statement;
+	    StmtSize += STMT_SIZE_INCR;
+	    Statement = (char *) malloc( StmtSize + 1 );
+	    if( Statement == NULL ) {
+		StmtSize -= STMT_SIZE_INCR;
+		fprintf( stderr, "Statement is too large! Failed after reading %d bytes\n", StmtSize );
+		return FALSE;
+	    }
+	    memcpy( Statement, old_stmt, size );
+	    free( old_stmt );
+	}
+	if( ch == EOF ) {
+	    Statement[size] = '\0';
+	    return( size > 0 );
+	}	 
+	if( ch == '\n' ) {
+	    Statement[size++] = (char) ch;
+	    ch = get_char();
+	    if( ch == EOF ) {
+		Statement[size] = '\0';
+		return( size > 0 );
+	    }	 
+	    if( ch == 'g' ) {
+		nextch = get_char();
+		if( nextch == 'o' ) {
+		    ch = get_char();
+		    while( ch == ' ' || ch == '\t' ) {
+			ch = get_char();
+		    }
+		    if( ch == '\n' || ch == EOF ) {
+			Statement[size] = '\0';
+			return( size > 0 );
+		    }
+		    Statement[size++] = 'g';
+		    Statement[size++] = 'o';
+		    continue;
+		}
+		Statement[size++] = 'g';
+		ch = nextch;
+	    }
+	    continue;
+	}
+	if( ch == '/' || ch == '-' ) {
+	    nextch = get_char();
+	    if( nextch == ch ) {
+		char	    hvbuff[20];
+		unsigned    pos = 0;
+		Statement[size++] = (char) '\n';
+		for( ;; ) {
+		    ch = get_char();
+		    if( ch == '\n' || ch == EOF ) break;
+		    if( pos < sizeof( hvbuff ) - 1 ) {
+			hvbuff[pos++] = (char) ch;
+		    }
+		}
+		hvbuff[pos] = '\0';
+		if( strncmp( hvbuff, " HOSTVARS:", 10 ) == 0 ) {
+		    char *	num = &hvbuff[11];
+		    char *	endnum;
+		    unsigned	numvars = strtol( num, &endnum, 10 );
+		    if( !add_hostvars( numvars ) ) {
+			return( FALSE );
+		    }
+		}
+		continue;
+	    } else if( ch == '/' && nextch == '*' ) {
+		for( ;; ) {
+		    ch = get_char();
+		    if( ch == EOF ) {
+			// Unmatched comment delimiter
+			return( FALSE );
+		    }	
+		    if( ch != '*' ) continue;
+		    ch = get_char();
+		    if( ch == EOF ) {
+			// Unmatched comment delimiter
+			return( FALSE );
+		    }	
+		    if( ch == '/' ) break;
+		} 
+		ch = get_char();
+		continue;
+	    } else if( nextch == EOF ) {
+		// Invalid statement ending in '/' or '-'
+		return( FALSE );
+	    }
+	    Statement[size++] = (char) ch;
+	    ch = nextch;
+	    continue;
+	}
+	Statement[size++] = (char) ch;
+	ch = get_char();
+    }
+}
+
+a_bool a_statement_stream::add_hostvars( unsigned numvars )
+/*********************************************************/
+{
+    int		ch;
+    int		pos;
+    char *	str	= HostVarBuff;
+    char *	endstr	= &HostVarBuff[ sizeof( HostVarBuff ) - 1 ];
+    char *	error_char;
+    char	datatype[DB_MAX_IDENTIFIER_LEN+1];
+    unsigned	hvnum;
+    sqlvar *	var;
+
+    _sqlda = alloc_sqlda( numvars );
+    if( _sqlda == NULL ) {
+	fprintf( stderr, "Out of memory" );
+	return FALSE;
+    }
+    _sqlda->sqld = (short) numvars;
+    for( hvnum = 0; hvnum < numvars; ++hvnum ) {
+	str	= HostVarBuff;
+
+	get_char(); // "// "
+	get_char(); 
+	get_char();
+	// ignore host var number 
+	for( ;; ) { // host variable number
+	    ch = get_char();
+	    if( ch == ' ' || ch == EOF ) break;
+	}
+	// get type
+	for( pos = 0;; ++pos ) {
+	    ch = get_char();
+	    if( ch == ':' || ch == EOF ) break;
+	    datatype[pos] = (char) ch;
+	}
+	// get value
+	datatype[pos] = '\0';
+	ch = get_char(); // " "
+	ch = get_char(); // "'"
+	if( ch == '\''  ) {
+	    ch = get_char();
+	}
+	for( ;; ) {
+	    if( ch == '\n' || ch == EOF  ) break;
+	    if( str < endstr ) {
+		*str++ = (char) ch;
+	    } else {
+		DoPrintf( "Host variable value too large\n" );
+		return( FALSE );
+	    }
+	    ch = get_char();
+	}
+	
+	if( str > HostVarBuff ) {
+	    --str;
+	    // skip trailing whitespace
+     	    ch = (char)*str;
+	    while( str >= HostVarBuff &&( ch == ' ' || ch == '\t' ) ) {
+	        --str;
+	        ch = (char)*str;
+            }
+	    // skip the last  '\'' 
+  	    if( str >= HostVarBuff && ch == '\'' ) {
+	       --str;
+            }
+	    str++;
+        }
+
+	*str = '\0';
+	
+	var = &_sqlda->sqlvar[hvnum];
+	if( _strieq( datatype, "INT" ) ) {
+	    var->sqltype = DT_INT;
+	    var->sqllen = 4;
+	    var->sqldata = malloc( 4 );
+	    *var->sqlind = 0;
+	    *((int *) var->sqldata) = strtol( HostVarBuff, &error_char, 10 );
+	} else if( _strieq( datatype, "NULL" ) || _strieq( datatype, "any" ) )  {
+	    var->sqltype = DT_STRING;
+	    var->sqllen = 0;
+	    var->sqldata = NULL;
+	    *var->sqlind = -1;
+	} else {
+	    var->sqltype = DT_STRING;
+	    var->sqllen = (short) strlen( HostVarBuff );
+	    var->sqldata = malloc( var->sqllen + 1 );
+	    memcpy( var->sqldata, HostVarBuff, var->sqllen+1 );
+	    *var->sqlind = 0;
+	}
+    }
+    return( TRUE );
+}
+
+void a_statement_stream::free_hostvars()
+/**************************************/
+{
+    sqlvar *	    var;
+    int		    hvnum;
+
+    if( _sqlda != NULL ) {
+	for( hvnum = 0; hvnum < _sqlda->sqld; ++hvnum ) {
+	    var = &_sqlda->sqlvar[hvnum];
+	    if( var->sqldata != NULL ) {
+		free( var->sqldata );
+	    }
+	}
+	free_sqlda( _sqlda );
+	_sqlda = NULL;
+    }
+}
+
+a_bool a_statement_stream::trim_statement()
+/*****************************************/
+{
+    char *	    str;
+    
+    str = &Statement[ strlen( Statement ) ];
+    while( --str > &Statement[0] ) {
+	if( *str != ' ' && *str != '\t' && *str != '\n' && *str != '\r' ) break;
+	*str = '\0';	
+    }
+    return( str > &Statement[0] );
+}
+
+a_bool a_statement_stream::open_cursor()
+/**************************************/
+{
+    if( NoPrefetch ) {
+	if( _sqlda == NULL ) {
+	    EXEC SQL OPEN :FetchCurs BLOCK 0;
+	} else {
+	    EXEC SQL OPEN :FetchCurs USING DESCRIPTOR _sqlda BLOCK 0;
+	}
+    } else {
+	if( _sqlda == NULL ) {
+	    EXEC SQL OPEN :FetchCurs;
+	} else {
+	    EXEC SQL OPEN :FetchCurs USING DESCRIPTOR _sqlda;
+	}
+    }
+    return( TRUE );
+sql_error:
+    return( FALSE );
+}
+
+a_bool a_statement_stream::execute_prepared()
+/*******************************************/
+{
+    if( _sqlda == NULL ) {
+	EXEC SQL EXECUTE :FetchStmt;
+    } else {
+	EXEC SQL EXECUTE :FetchStmt USING DESCRIPTOR _sqlda;
+    }
+    return( TRUE );
+sql_error:
+    ShowError();
+    return( FALSE );
+}
+
+a_bool a_statement_stream::exec_statement()
+/*****************************************/
+{
+    a_bool  prepared_stmt = FALSE;
+
+    if( _sqlda == NULL ) {
+	EXEC SQL EXECUTE IMMEDIATE :Statement;
+    } else {
+	EXEC SQL PREPARE :FetchStmt FROM :Statement;
+	prepared_stmt = TRUE;
+	EXEC SQL EXECUTE :FetchStmt USING DESCRIPTOR _sqlda;
+	EXEC SQL DROP STATEMENT :FetchStmt;
+    }
+    return( TRUE );
+sql_error:
+    ShowError();
+    if( prepared_stmt ) {
+	DropFetchStmt();
+    }
+    return( FALSE );
+}
+
+#define is_a_space( c ) ( (c) == ' ' || (c) == '\t' || (c) == '\n' || (c) == '\r' )
+#define skip_space( s ) for( ; is_a_space( *(s) ); (s)++ );
+#define copy_word( s, t, max ) for( ; max>1 && *(s) && !is_a_space( *(s) ); *(t)++=*(s)++,(max)-- );
+
+a_bool a_statement_stream::statement_is_query()
+/*********************************************/
+{
+    char *		str = &Statement[0];
+    
+    skip_space( str );
+    if( _strnieq( str, "select", 6 ) && is_a_space( str[6] ) ) {
+	return( TRUE );
+    } else if( _strnieq( str, "call", 4 ) && is_a_space( str[4] ) ) {
+	return( TRUE );
+    } else if( _strnieq( str, "exec", 4 ) && is_a_space( str[4] ) ) {
+	return( TRUE );
+    } else if( _strnieq( str, "execute", 7 ) && is_a_space( str[7] ) ) {
+	return( TRUE );
+    } else if( _strnieq( str, "with", 4 ) && is_a_space( str[4] ) ) {
+	return( TRUE );
+    }
+    return( FALSE );
+}
+
+a_bool a_statement_stream::statement_category( char * buf, int max )
+/******************************************************************/
+{
+    char *	str = &Statement[0];
+    char *	t   = buf;
+    
+    skip_space( str );
+    if( _strnieq( str, "select", 6 ) && is_a_space( str[6] ) ) {
+	copy_word( str, t, max );
+	skip_space( str );
+	if( max > 1 ) {
+	    *t++ = ' ';
+	    max--;
+	}
+    } else if( _strnieq( str, "call", 4 ) && is_a_space( str[4] ) ) {
+	str += 5;
+	skip_space( str );
+    } else if( _strnieq( str, "exec", 4 ) && is_a_space( str[4] ) ) {
+	str += 5;
+	skip_space( str );
+    }
+    copy_word( str, t, max );
+    *t = '\0';
+    return( t != buf );
+}
+
+//**********************************************************************/
+//**********************************************************************/
+
+class a_counter {
+  public:
+    a_counter( char * name );		// Note: name must be static
+    ~a_counter()			{};
+    char *	name()			{ return _name; }
+    void	clear();		// clear everything
+    void	clear_value()		{ _value = 0; }
+    void	add( double add_to_value );
+    double	value()			{ return( _value ); }
+    int		cumulative_count()	{ return( _cumulative_count ); }
+    double	cumulative_value()	{ return( _cumulative_value ); }
+    double	cumulative_min()	{ return( _cumulative_min ); }
+    double	cumulative_max()	{ return( _cumulative_max ); }
+    double	std_deviation();
+    void	display( const char * prefix = NULL, char * t1 = NULL, char * t2 = NULL );
+    void	summary( const char * prefix = NULL );
+  protected:
+    char *	_name;
+    double	_value;
+    int		_cumulative_count;	// number of values put into _cumulative_value
+    double	_cumulative_value;
+    double	_cumulative_min;
+    double	_cumulative_max;
+    double	_cumulative_val_sq;	// sum of _cumulative_value^2
+};
+
+a_counter::a_counter( char * name )
+/*********************************/
+{
+    _name = name;
+    clear();
+}
+
+void a_counter::clear()
+/*********************/
+{
+    _value		= 0.0;
+    _cumulative_count	= 0;
+    _cumulative_value	= 0.0;
+    _cumulative_min	= 0.0;
+    _cumulative_max	= 0.0;
+    _cumulative_val_sq	= 0.0;
+}
+
+void a_counter::add( double add_to_value )
+/****************************************/
+{
+    _value += add_to_value;
+    _cumulative_value	+= add_to_value;
+    _cumulative_val_sq	+= add_to_value * add_to_value;
+    _cumulative_count	++;
+    if( _cumulative_count == 1 ) {
+	_cumulative_min	= add_to_value;
+	_cumulative_max	= add_to_value;
+    } else {
+	if( add_to_value < _cumulative_min ) _cumulative_min = add_to_value;
+	if( add_to_value > _cumulative_max ) _cumulative_max = add_to_value;
+    }
+}
+
+double a_counter::std_deviation()
+/*******************************/
+{
+    if( _cumulative_count < 2 ) {
+	return 0.0;
+    } else {
+	// variance^2 = S[(Xi-M)^2]/(N-1) = (S[Xi^2]-S[Xi]^2/N)/(N-1)
+	double num  = (double)_cumulative_count;
+	double sum2 = _cumulative_value * _cumulative_value;
+	double var2 = ( _cumulative_val_sq - sum2/num ) / ( num - 1 );
+	return sqrt( var2 );
+    }
+}
+
+void a_counter::display( const char * prefix, char * t1, char * t2 )
+/******************************************************************/
+{
+    char buff[128];
+
+    if( prefix == NULL ) prefix = _name;
+    strcpy( buff, prefix );
+    strcat( buff, ":" );
+    DoPrintf( "%-22s", buff );
+    DoPrintf( DisplayMicroSecs ? "%.06f" : "%.03f", value() );
+    DoPrintf( " seconds" );
+    if( t1 != NULL ) {
+	DoPrintf( ", %s", t1 );
+    }
+    if( t2 != NULL ) {
+	DoPrintf( ", %s", t2 );
+    }
+    DoPrintf( "\n" );
+}
+
+void a_counter::summary( const char * prefix )
+/********************************************/
+{
+    char	buff[128];
+    char	fmt[10];
+    double	dur = cumulative_value();
+    int		num = cumulative_count();
+
+    if( prefix == NULL ) prefix = name();
+    strcpy( buff, prefix );
+    buff[DisplaySummaryStepLen] = '\0';	// make sure it fits within the field
+    sprintf( fmt, "%%-%ds", DisplaySummaryStepLen );
+
+    DoPrintf( fmt, buff );
+    DoPrintf( "%6d", num );
+    DoPrintf( DisplayMicroSecs ? "%13.6f" : "%10.3f", dur );
+    if( num != 0 ) {
+	if( DisplayMinMax ) {
+	    DoPrintf( DisplayMicroSecs ? "%11.6f" : "%8.3f", cumulative_min() );
+	    DoPrintf( DisplayMicroSecs ? "%11.6f" : "%8.3f", dur / (double)num );
+	    DoPrintf( DisplayMicroSecs ? "%11.6f" : "%8.3f", cumulative_max() );
+	} else {
+	    DoPrintf( DisplayMicroSecs ? "%11.6f" : "%8.3f", dur / (double)num );
+	}
+	if( DisplayStdDev ) {
+	    if( num > 1 ) {
+		DoPrintf( DisplayMicroSecs ? "%11.6f" : "%8.3f", std_deviation() );
+	    } else if( dur != 0.0 ) {
+		DoPrintf( DisplayMicroSecs ? "%11s" : "%8s", "" );
+	    }
+	}
+    }
+    if( num != 0 && dur != 0.0 ) {
+	DoPrintf( "%11.1f", (double)num / dur );
+    }
+    DoPrintf( "\n" );
+}
+
+//**********************************************************************/
+//**********************************************************************/
+
+static void DisplaySummaryTitle( void )
+/*************************************/
+{
+    char	fmt[10];
+
+    sprintf( fmt, "%%-%ds", DisplaySummaryStepLen );
+    DoPrintf( fmt, "SQL Step" );
+    DoPrintf( " count" );
+    if( DisplayMicroSecs ) DoPrintf( "   " );
+    DoPrintf( "   seconds" );
+    if( DisplayMinMax ) {
+	if( DisplayMicroSecs ) DoPrintf( "   " );
+	DoPrintf( " min.s/i" );
+    }
+    if( DisplayMicroSecs ) DoPrintf( "   " );
+    DoPrintf( " avg.s/i" );
+    if( DisplayMinMax ) {
+	if( DisplayMicroSecs ) DoPrintf( "   " );
+	DoPrintf( " max.s/i" );
+    }
+    if( DisplayStdDev ) {
+	if( DisplayMicroSecs ) DoPrintf( "   " );
+	DoPrintf( " std.dev" );
+    }
+    DoPrintf( "   iter/sec" );
+    DoPrintf( "\n" );
+}
+
+static void DisplaySummaryDashes( void )
+/*************************************/
+{
+    char	fmt[10];
+
+    sprintf( fmt, "%%-%ds", DisplaySummaryStepLen );
+    DoPrintf( fmt, "------------" );
+    DoPrintf( " -----" );
+    DoPrintf( DisplayMicroSecs ? "     --------" : "   -------" ); // seconds
+    if( DisplayMinMax ) {
+	DoPrintf( DisplayMicroSecs ? "   --------" : " -------" );  // min
+    }
+    DoPrintf( DisplayMicroSecs ? "   --------" : " -------" );  // avg
+    if( DisplayMinMax ) {
+	DoPrintf( DisplayMicroSecs ? "   --------" : " -------" );  // max
+    }
+    if( DisplayStdDev ) {
+	DoPrintf( DisplayMicroSecs ? "   --------" : " -------" );  // deviation
+    }
+    DoPrintf( "   --------" );
+    DoPrintf( "\n" );
+}
+
+//**********************************************************************/
+//**********************************************************************/
+
+class a_timer : private a_counter {
+  public:
+    a_timer( char * name );
+    ~a_timer()				{};
+    char *	name()			{ return a_counter::name(); }
+    void	clear();
+    void	start_clean()		{ clear(); start(); }
+    void	start();
+    void	stop();
+    void	clear_duration()	{ clear_value(); }
+    void	add( double add_dur )	{ a_counter::add( add_dur ); }
+    void	add( a_timer timer )	{ a_counter::add( timer.duration() ); }
+    double	duration()		{ return( value() ); }
+    int		cumulative_count()	{ return( a_counter::cumulative_count() ); }
+    double	cumulative_duration()	{ return( cumulative_value() ); }
+    double	min_duration()	 	{ return( cumulative_min() ); }
+    double	max_duration()	 	{ return( cumulative_max() ); }
+    void	display( const char * phase = NULL, char * t1 = NULL, char * t2 = NULL )
+	                                { a_counter::display( phase, t1, t2 ); }
+    void	display( unsigned io, char * text );
+    void	summary( const char * phase = NULL )
+	                                { a_counter::summary( phase ); }
+  private:
+    void	get_clock( a_clock_type * clk );
+    a_clock_type _start;
+};
+
+a_timer::a_timer( char * name )
+/*****************************/
+    : a_counter( name )
+{
+    clear();
+}
+
+void a_timer::get_clock( a_clock_type * clk )
+/*******************************************/
+{
+#if defined( UNIX )
+    gettimeofday( clk, NULL );
+#elif defined( USE_HI_RES_TIMER )
+    LARGE_INTEGER	now = {0};
+
+    if( QueryPerformanceCounter( &now ) ) {
+	*clk = now.QuadPart;
+    } else {
+	static int reported = 0;
+	if( !reported ) {
+	    reported ++;
+	    fprintf( stderr, "**** FAILED TO QueryPerformanceCounter ****\n" );
+	}
+	*clk = 0;
+    }
+#else
+    *clk = clock();
+#endif
+}
+
+void a_timer::clear()
+/*******************/
+{
+#if ! defined( UNIX )
+    _start		 = 0;
+#else
+    _start.tv_sec 	 = 0;
+    _start.tv_usec	 = 0;
+#endif
+    a_counter::clear();
+}
+
+void a_timer::start()
+/*******************/
+{
+    get_clock( &_start );
+}
+
+void a_timer::stop()
+/******************/
+{
+    a_clock_type	stop;
+    double		dur;
+
+    get_clock( &stop );
+#if defined( UNIX )
+    dur = ( (double)( (stop).tv_sec - (_start).tv_sec ) )
+	+ ( (double)( (stop).tv_usec - (_start).tv_usec ) / (double)1000000.0 );
+#elif defined( USE_HI_RES_TIMER )
+    LARGE_INTEGER	freq = {0};
+    if( !QueryPerformanceFrequency( &freq ) ) {
+	freq.QuadPart = 1;
+    }
+    dur = ((double) (stop - _start)) / freq.QuadPart;
+#else
+    dur = (double) (stop - _start) / CLOCKS_PER_SEC;
+#endif
+    clear_value();
+    add( dur );
+}
+
+void a_timer::display( unsigned io, char * text )
+/***********************************************/
+{
+    char	io_info[128];
+    double	dur = duration();
+    
+    if( dur == 0.0 ) {
+	sprintf( io_info, "%d I/Os", io );
+    } else {
+	sprintf( io_info, "%d I/Os, %3ld per second", io, (long)( (double)io / dur ) );
+    }
+    display( NULL, io_info, text );
+}
+
+//**********************************************************************/
+//**********************************************************************/
+
+class a_cpu_timer {
+  public:
+    a_cpu_timer( char * name );
+    ~a_cpu_timer()			{};
+    char *	name()			{ return _tot_time.name(); }
+    a_bool	start();
+    void	clear_duration();
+    a_bool	stop();
+    void	display();
+    void	summary();
+  private:
+    a_bool	get_clock( double * cpu, double * usr, double * sys );
+    double	_beg_tot;
+    double	_beg_usr;
+    double	_beg_sys;
+    a_counter	_tot_time;
+    a_counter	_usr_time;
+    a_counter	_sys_time;
+};
+
+a_cpu_timer::a_cpu_timer( char * name )
+/*************************************/
+    : _tot_time( name )
+    , _usr_time( name )
+    , _sys_time( name )
+{
+}
+
+a_bool a_cpu_timer::get_clock( double * tot, double * usr, double * sys )
+/***********************************************************************/
+{
+    EXEC SQL BEGIN DECLARE SECTION;
+    double	v_tot;
+    double	v_usr;
+    double	v_sys;
+    EXEC SQL END DECLARE SECTION;
+
+    EXEC SQL SELECT property('ProcessCPU'),
+                    property('ProcessCPUUser'),
+                    property('ProcessCPUSystem')
+			 INTO :v_tot, :v_usr, :v_sys;
+    if( tot != NULL ) *tot = v_tot;
+    if( usr != NULL ) *usr = v_usr;
+    if( sys != NULL ) *sys = v_sys;
+    return( TRUE );
+sql_error:
+    fprintf( stderr, "**** Failed to query CPU usage\n" );
+    ShowError();
+    DisplayCPUUse = FALSE;
+    DisplayFileCPUUse = FALSE;
+    return( FALSE );
+}
+
+void a_cpu_timer::clear_duration()
+/********************************/
+{
+    _tot_time.clear_value();
+    _usr_time.clear_value();
+    _sys_time.clear_value();
+}
+
+a_bool a_cpu_timer::start()
+/*************************/
+{
+    return get_clock( &_beg_tot, &_beg_usr, &_beg_sys );
+}
+
+a_bool a_cpu_timer::stop()
+/*************************/
+{
+    double		end_tot;
+    double		end_usr;
+    double		end_sys;
+
+    if( ! get_clock( &end_tot, &end_usr, &end_sys ) ) {
+	return FALSE;
+    } else {
+	_tot_time.add( end_tot - _beg_tot );
+	_usr_time.add( end_usr - _beg_usr );
+	_sys_time.add( end_sys - _beg_sys );
+    }
+    return TRUE;
+}
+
+void a_cpu_timer::display()
+/*************************/
+{
+    char	buff[128];
+    char *	s = buff;
+
+    sprintf( s, DisplayMicroSecs ? "usr: %.06f" : "usr: %.03f", _usr_time.value() );
+    s += strlen( s );
+    sprintf( s, DisplayMicroSecs ? ", sys: %.06f" : ", sys: %.03f", _sys_time.value() );
+    _tot_time.display( NULL, buff );
+}
+
+void a_cpu_timer::summary()
+/*************************/
+{
+    char	buff[128];
+
+    sprintf( buff, "%s (tot)", name() );
+    _tot_time.summary( buff );
+    sprintf( buff, "%s (usr)", name() );
+    _usr_time.summary( buff );
+    sprintf( buff, "%s (sys)", name() );
+    _sys_time.summary( buff );
+}
+
+
+// timers to keep track of both the current statement
+// and totals for all statements
+static a_timer		PlanTime( "plan" );
+static a_timer		PrepTime( "PREPARE" );
+static a_timer		DescTime( "DESCRIBE" );
+static a_timer		ExecTime( "EXECUTE (described non-query)" );
+static a_timer		ExecImmTime( "EXECUTE IMMEDIATE (non-query)" );
+static a_timer		OpenTime( "OPEN" );
+static a_timer		FetchTime( "FETCH" );
+static a_timer		FetchFirstTime( "FETCH first row" );
+static a_timer		FetchRestTime( "FETCH remaining rows" );
+static a_timer		CloseTime( "CLOSE" );
+static a_timer		DropTime( "DROP" );
+static a_timer		TotalTime( "Total" );
+static a_timer		JSONOpenTime( "JSON Open" );
+static a_timer		JSONCloseTime( "JSON Close" );
+static a_timer		JSONTotalTime( "JSON Total" );
+static a_cpu_timer	CPUTime( "Engine CPU usage" );
+// total for all statements (not used on a per-statement basis)
+static a_timer		TotalElapsedTime( "Total elapsed for whole run" );
+static a_cpu_timer	TotalCPUTime( "Total engine CPU usage" );
+	
+
+//**********************************************************************/
+//**********************************************************************/
+
+#define MAX_CATEGORIES		32
+#define MAX_CATEGORY_NAME_LEN	64
+class a_category {
+  public:
+    a_category( char * name );
+    ~a_category()		{ delete _time; }
+  public:
+    char	_name[MAX_CATEGORY_NAME_LEN];
+    a_timer *	_time;
+};
+typedef a_category * p_category;
+
+a_category::a_category( char * name )
+/***********************************/
+{
+    strncpy( _name, name, MAX_CATEGORY_NAME_LEN );
+    _time = new a_timer( _name );
+}
+
+static int		NumCategories  = 0;
+static p_category 	Categories[MAX_CATEGORIES];
+static a_timer		CatOtherTime( "<uncategorized>" );
+
+void AddTimeToCategory( char *stmt_category, a_timer *time )
+/**********************************************************/
+{
+    int i;
+
+    if( SummarizeCategory ) {
+	for( i = 0; i < NumCategories; i++ ) {
+	    if( _strieq( Categories[i]->_name, stmt_category ) ) {
+		// found category with same stmt_prefix.  Add this stmt's
+		// time
+		Categories[i]->_time->add( *time );
+		return;
+	    }
+	}
+	// no category with same statement prefix yet
+	if( NumCategories < MAX_CATEGORIES ) {
+	    Categories[NumCategories] = new a_category( stmt_category );
+	    Categories[NumCategories]->_time->add( *time );
+	    NumCategories++;
+	} else {
+	    CatOtherTime.add( *time );
+	}
+    }
+}
+
+//**********************************************************************/
+//**********************************************************************/
+
+static void OutputRows( FILE *output, SQLDA *sqlda, int rows, int cols )
+/**********************************************************************/
+{
+    int			i, j, offset;
+
+    if( output == NULL ) return;
+    offset = 0;
+    for( i = 0; i < rows; ++i ) {
+	for( j = 0; j < cols; ++j, ++offset ) {
+	    fputs( (char *) sqlda->sqlvar[offset].sqldata, output );
+	    if( j+1 != cols ) {
+		fputc( ',', output );
+	    }
+	}
+	fputc( '\n', output );
+    }
+}
+
+typedef struct an_oc_column_def {
+    char *  name;
+    char *  type;
+    int	    col_width;	    // so column name headings line up with data
+} an_oc_column_def;
+
+an_oc_column_def OCColumn[] = {
+{   "stmt",		"int primary key",  4 },
+{   "line",		"int",		    5 },
+{   "total_t",		"double",	    7 },
+{   "prep_t",		"double",	    7 },
+{   "desc_t",		"double",	    7 },
+{   "open_t",		"double",	    7 },
+{   "f_1st_t",		"double",	    7 },
+{   "f_rest_t",		"double",	    7 },
+{   "close_t",		"double",	    7 },
+{   "exec_t",		"double",	    6 },
+{   "sql_prefix",	"char(80)",	    10 }
+};
+#define NUM_OCCOLUMNS ( sizeof( OCColumn ) / sizeof( an_oc_column_def ) )
+
+static void ShowOCHelp()
+/**********************/
+{
+    unsigned i;
+
+    printf( "Use \"fetchtst -oc commafile.txt ...\" to generate comma delimated commafile.txt.\n" );
+    printf( "commafile.txt can be loaded into a database or excel for analysis\n" );
+    printf( "(for example to do charting or to compare a number of runs).\n" );
+    printf( "The first line of commafile.txt is the column names.  The data can\n" );
+    printf( "be loaded into a table using the following SQL:\n\n" );
+    printf( "create table t_fetchtst_run(\n" );
+    for( i = 0; i < NUM_OCCOLUMNS; i++ ) {
+	printf( "  %-16s %s%s\n",
+	        OCColumn[i].name, OCColumn[i].type,
+		i < NUM_OCCOLUMNS - 1 ? "," : " );" );
+    }
+    printf( "load table t_fetchtst_run from 'commafile.txt' skip 1;\n" );
+}
+
+static void InitCommaDelimFile( char * file_name )
+/************************************************/
+{
+    unsigned i;
+
+    CommaDelimFile = fopen( file_name, "wb" );
+    if( CommaDelimFile == NULL ) {
+	fprintf( stderr, "Cannot access '%s' for output: %s\n", file_name, strerror( errno ) );
+    } else {
+	for( i = 0; i < NUM_OCCOLUMNS; i++ ) {
+	    fprintf( CommaDelimFile, "%*s%s",
+		     OCColumn[i].col_width,
+		     OCColumn[i].name,
+		     i < NUM_OCCOLUMNS - 1 ? "," : "\n" );
+	}
+    }
+}
+
+static void ShowUsage()
+/*********************/
+{
+    fprintf( stderr, "Usage: FETCHTST [options] [<file1> [.. <fileN>]]\n" );
+    fprintf( stderr, "Options:\n" );
+    fprintf( stderr, "   -a [ams]        : add to output m:min/max, or s:std.dev, or a:all\n" );
+    fprintf( stderr, "   -b nnn          : fetch nnn records at a time\n" );
+    fprintf( stderr, "   -c conn_str     : database connection string\n" );
+    fprintf( stderr, "   -ce             : continue execution after SQL error\n" );
+    fprintf( stderr, "   -d describe_type: statement or cursor (default statement)\n" );
+    fprintf( stderr, "   -e fname        : execute file of SQL before running sql statements\n" );
+    fprintf( stderr, "   -es cmd_str     : execute the command string at the start of each iteration\n" );
+    fprintf( stderr, "   -ee cmd_str     : execute the command string at the end of each iteration\n" );
+    fprintf( stderr, "   -f file         : output rows to 'file' (otherwise rows are not output)\n" );
+    fprintf( stderr, "   -g              : generate category summary (group by SQL text prefix)\n" );
+    fprintf( stderr, "   -ga             : same as -aa -g -gc -u\n" );
+    fprintf( stderr, "   -gc             : print engine cpu usage per statement\n" );
+    fprintf( stderr, "   -gf             : print engine cpu usage per file\n" );
+    fprintf( stderr, "   -gm nnn         : skip the first nnn 'message' statements\n" );
+    fprintf( stderr, "   -gs nnn         : skip the first nnn 'select' queries\n" );
+    fprintf( stderr, "   -gt             : print statement totals only\n" );
+    fprintf( stderr, "   -h              : this help usage information\n" );
+    fprintf( stderr, "   -i nnn          : think time (milliseconds) between statements\n" );
+    fprintf( stderr, "   -is n           : set isolation level at beginning to n\n" );
+    fprintf( stderr, "   -j nnn          : repeat each file nnn times\n" );
+    fprintf( stderr, "   -js nnn         : repeat each statement nnn times\n" );
+    fprintf( stderr, "   -k              : disable prefetching\n" );
+    fprintf( stderr, "   -l nnn          : stop after nnn records\n" );
+    fprintf( stderr, "   -m              : display summary only\n" );
+    fprintf( stderr, "   -n              : execute queries only\n" );
+    fprintf( stderr, "   -o outfile      : record fetch duration in file\n" );
+    fprintf( stderr, "   -oa outfile     : record all output in file\n" );
+    fprintf( stderr, "   -oc outfile     : record SQL step times to comma delimited file\n" );
+    fprintf( stderr, "   -oc help        : display help on how to load -oc outfile into a table\n" );
+    fprintf( stderr, "   -oj table       : output to -o outfile in JSON for select * from table\n" );
+    fprintf( stderr, "   -p              : display plan\n" );
+    fprintf( stderr, "   -q              : quiet mode\n" );
+    fprintf( stderr, "   -r nnn          : output status every nnn rows\n" );
+    fprintf( stderr, "   -ro             : READ ONLY cursors (default)\n" );
+    fprintf( stderr, "   -s nnn          : skip by nnn records\n" );
+    fprintf( stderr, "   -t cursor_type  : INSENSITIVE, SCROLL, or NOSCROLL (default DYNAMIC)\n" );
+    fprintf( stderr, "   -u              : display timers in microseconds (default milliseconds)\n" );
+    fprintf( stderr, "   -up             : FOR UPDATE cursors (default READ ONLY)\n" );
+    fprintf( stderr, "   -v              : display statement before executing\n" );
+    fprintf( stderr, "   -w nnn          : number of OPEN/CLOSEs\n" );
+    fprintf( stderr, "   -x nnn          : number of DESCRIBEs to execute for each query\n" );
+    fprintf( stderr, "   -yd nnn         : wait nnn milliseconds after engine starts\n" );
+    fprintf( stderr, "   -ym             : start a new engine for each iteration or file\n" );
+    fprintf( stderr, "   -yn eng_name    : name the engine 'eng_name'\n" );
+    fprintf( stderr, "   -ys start_str   : start the engine using the given start string\n" );
+    fprintf( stderr, "   -z nnn          : fetch as strings - max size nnn\n" );
+    fprintf( stderr, "<file1> .. <fileN> : name of file(s) containing sql statement(s)\n" );
+    fprintf( stderr, "\t\t     - file(s) may contain multiple queries and other SQL,\n" );
+    fprintf( stderr, "\t\t       separated by a line containing only \"go\"\n" );
+    fprintf( stderr, "\t\t     - default file is \"%s\" if none specified.\n", DEF_FILENAME );
+}
+
+static int ArgumentIsASwitch( char * arg )
+/****************************************/
+{
+#if defined( UNIX )
+    return ( arg[0] == '-' );
+#else
+    return ( arg[0] == '-' ) || ( arg[0] == '/' );
+#endif
+}
+
+static int ProcessOptions( char ** argv, a_bool def = TRUE )
+/**********************************************************/
+{
+    int		argc;
+    char *	arg;
+
+    for( argc = 1; (arg = argv[argc]) != NULL; ++ argc ) {
+	if( !ArgumentIsASwitch( arg ) ) break;
+
+	a_bool	onoff = def;
+
+	if( ( arg[1] == '-' || arg[1] == '+' ) && arg[2] != '\0' ) {
+	    // option is --X or -+X
+	    onoff = ( arg[1] == '+' );
+	    arg ++;
+	}
+
+	char	opt   = arg[1];
+	char	sub   = '\0';
+
+	if( arg[2] != '\0' && strchr( "ceijgoruys", opt ) != NULL && strchr( "-+", arg[2] ) == NULL ) {
+	    // get sub-option
+	    sub = arg[2];
+	    if( ( opt == 'e' && strchr( "es", sub ) != NULL ) ||
+	        ( opt == 'g' && strchr( "ms", sub ) != NULL ) ||
+		( opt == 'j' && strchr( "s", sub ) != NULL ) ||
+		( opt == 'i' && strchr( "s", sub ) != NULL ) ||
+		( opt == 'o' && strchr( "acj", sub ) != NULL ) ||
+		( opt == 'y' && strchr( "nsd", sub ) != NULL ) ) {
+	        // sub-option needs an argument
+	        arg += 3;
+		if( !arg[0] ) arg = argv[++argc];
+		if( arg == NULL ) {
+		    fprintf( stderr, "**** Missing argument to option: -%c%c\n", opt, sub );
+		    ShowUsage();
+		    return( -1 );
+		}
+	    } else {
+		// sub-option takes a bool onoff
+		if( ( arg[3] == '-' || arg[3] == '+' ) ) {
+		    // option is -XY- or -XY+
+		    onoff = ( arg[3] == '+' );
+		}
+	    }
+	} else if( strchr( "abcdefijlorstwxz", opt ) != NULL ) {
+	    // option needs an argument
+	    arg += 2;
+	    if( !arg[0] ) arg = argv[++argc];
+	    if( arg == NULL ) {
+		fprintf( stderr, "**** Missing argument to option: -%c\n", opt );
+		ShowUsage();
+		return( -1 );
+	    }
+	} else {
+	    // option takes a bool onoff
+	    if( ( arg[2] == '-' || arg[2] == '+' ) ) {
+		// option is -X- or -X+
+		onoff = ( arg[2] == '+' );
+	    }
+	}
+	switch( opt ) {
+	case 'a':
+	    if( strchr( arg, '-' ) != NULL ) {
+		onoff = FALSE;
+	    } else if( strchr( arg, '+' ) != NULL ) {
+		onoff = TRUE;
+	    }
+	    if( ( strchr( arg, 'a' ) != NULL ) || ( strchr( arg, 'm' ) != NULL ) ) {
+		DisplayMinMax = onoff;
+	    }
+	    if( ( strchr( arg, 'a' ) != NULL ) || ( strchr( arg, 's' ) != NULL ) ) {
+		DisplayStdDev = onoff;
+	    }
+	    break;
+	case 'b':
+	    Width = (unsigned short) atoi( arg );
+	    break;
+	case 'c':
+	    switch( sub ) {
+	    case 'e':
+		ContinueAfterError = onoff;
+		break;
+	    default:
+		ConnectStr = arg;
+		break;
+	    }
+	    break;
+	case 'd':
+            DescribeType = arg[0];
+	    break;
+	case 'e':
+	    switch( sub ) {
+	    case 'e':
+	        ExecuteEndStr = arg;
+		break;
+	    case 's':
+	        ExecuteStartStr = arg;
+		break;
+	    default:
+	        SetupFile = arg;
+		break;
+	    }
+	    break;
+	case 'f':
+	    OutputData = fopen( arg, "wb" );
+	    if( OutputData == NULL ) {
+	        fprintf( stderr, "Cannot access '%s' for output: %s\n", arg, strerror( errno ) );
+            }
+	    break;
+	case 'g':
+	    switch( sub ) {
+	    case '\0':
+		SummarizeCategory = onoff;
+		break;
+	    case 'a':
+		{
+		    static char * ga_args[] = { "<>", "-aa", "-g", "-gc", "-u", NULL };
+		    ProcessOptions( ga_args, onoff );
+		}
+		break;
+	    case 'c':
+		DisplayCPUUse = onoff;
+		break;
+	    case 'f':
+		DisplayFileCPUUse = onoff;
+		break;
+	    case 'm':
+		SkipMessages = atoi( arg );
+		break;
+	    case 's':
+		SkipSelects = atoi( arg );
+		break;
+	    case 't':
+		DisplayOnlyTotals = onoff;
+		break;
+	    default:
+		fprintf( stderr, "**** Unknown option: -%c%c\n", opt, sub );
+		ShowUsage();
+		return( -1 );
+	    } //switch sub
+	    break;
+	case 'h':
+	    ShowUsage();
+	    return( -1 );
+	case 'i':
+	    switch( sub ) {
+	    case 's':
+		IsolationLevel = atol( arg );
+		if( (!isdigit(*arg)) || (IsolationLevel < 0 || IsolationLevel > 3) ) {
+		    fprintf( stderr, "**** Invalid isolation level: -%c%c %s\n", opt, sub, arg );
+		    ShowUsage();
+		    return( -1 );
+		}
+		break;
+	    case '\0':
+		ThinkTime = atol( arg );
+		if( (!isdigit(*arg)) || (ThinkTime < 0) ) {
+		    fprintf( stderr, "**** Invalid think time: -%c %s\n", opt, arg );
+		    ShowUsage();
+		    return( -1 );
+		}
+		break;    //    db_init( &sqlca );
+	    default:
+		fprintf( stderr, "**** Unknown option: -%c%c\n", opt, sub );
+		ShowUsage();
+		return( -1 );
+	    }
+	    break;
+	case 'j':  {
+	    int	tmp;
+	    tmp = atol( arg );
+	    if( (!isdigit(*arg)) || (tmp < 0) ) {
+		fprintf( stderr, "**** Invalid repeat count: -%c %s\n", opt, arg );
+		ShowUsage();
+		return( -1 );
+	    }
+	    switch( sub ) {
+	    case 's':
+		StatementRepeatCount = tmp;
+		break;
+	    case '\0':
+		RepeatCount = tmp;
+		break;
+	    default:
+		fprintf( stderr, "**** Unknown option: -%c%c\n", opt, sub );
+		ShowUsage();
+		return( -1 );
+	    }
+	}   break;
+	case 'k':
+	    NoPrefetch = onoff;
+	    break;
+	case 'l':
+	    RowLimit = atol( arg );
+	    if( (!isdigit(*arg)) ) {
+		fprintf( stderr, "**** Invalid row limit: -%c %s\n", opt, arg );
+		ShowUsage();
+		return( -1 );
+	    }
+	    break;
+	case 'm':
+	    Summarize = onoff;
+	    break;
+	case 'n':
+	    QueriesOnly = onoff;
+	    break;
+	case 'o':
+	    if( sub == 'a' ) {
+		Output = fopen( arg, "w" );
+		if( Output == NULL ) {
+		    fprintf( stderr, "Can't open file %s for writing\n", arg );
+		    Output = stdout;
+		}
+	    } else if( sub == 'c' ) {
+		if( _strieq( arg, "help" ) ) {
+		    ShowOCHelp();
+		    return( -1 );
+		} else {
+		    InitCommaDelimFile( arg );
+		}
+	    } else if( sub == 'j' ) {
+		JSONOutput = TRUE;
+		// do not specify a file, query is select * from arg
+		JSONTable = arg;
+	    } else {
+		OutputOneFetchFile = arg;
+	    }
+	    break;
+	case 'p':
+	    DisplayPlan = onoff;
+	    break;
+	case 'q':
+	    Quiet = onoff;
+	    break;
+	case 'r':
+	    if( sub == 'o' ) {
+		CursorReadOnly = TRUE;
+	    } else {
+		DisplayFreq = atol( arg );
+		if( (!isdigit(*arg)) ) {
+		    fprintf( stderr, "**** Invalid display freq: -%c %s\n", opt, arg );
+		    ShowUsage();
+		    return( -1 );
+		}
+	    }
+	    break;
+	case 's':
+	    Skip = atol( arg );
+	    if( (!isdigit(*arg)) || (Skip < 0) ) {
+		fprintf( stderr, "**** Invalid skip: -%c %s\n", opt, arg );
+		ShowUsage();
+		return( -1 );
+	    }
+	    break;
+	case 't':
+	    switch( arg[0] ) {
+	    case 'i':
+	    case 'I':
+		// INSENSITIVE
+		CursorType = 'I';
+		break;
+	    case 'n':
+	    case 'N':
+		// NOSCROLL
+		CursorType = 'N';
+		break;
+	    case 's':
+	    case 'S':
+		// SCROLL
+		CursorType = 'S';
+		break;
+	    default:
+		fprintf( stderr, "**** Bad cursor type: -t %s\n", arg );
+		ShowUsage();
+		return( -1 );
+	    }
+	    CursorTypeFull = arg;
+	    break;
+	case 'u':
+	    if( sub == 'p' ) {
+		CursorReadOnly = FALSE;
+	    } else {
+		DisplayMicroSecs = onoff;
+	    }
+	    break;
+	case 'v':
+	    DisplayStmt = onoff;
+	    break;
+	case 'w':
+	    OpenCount = atol( arg );
+	    if( (!isdigit(*arg)) || (OpenCount < 0) ) {
+		fprintf( stderr, "**** Invalid open count: -%c %s\n", opt, arg );
+		ShowUsage();
+		return( -1 );
+	    }
+	    break;
+	case 'x':
+	    DescribeCount = atol( arg );
+	    if( (!isdigit(*arg)) || (DescribeCount < 0) ) {
+		fprintf( stderr, "**** Invalid describe count: -%c %s\n", opt, arg );
+		ShowUsage();
+		return( -1 );
+	    }
+	    break;
+	case 'y':
+	    switch( sub ) {
+	    case 'd':
+	        EngineDelay = atol( arg );
+		if( (!isdigit(*arg)) || (EngineDelay < 0) ) {
+		    fprintf( stderr, "**** Invalid start delay: -%c%c %s\n", opt, sub, arg );
+		    ShowUsage();
+		    return( -1 );
+		}
+		break;
+	    case 's':
+	        EngineStr = arg;
+		break;
+	    case 'm':
+		EngineStartOnce = FALSE;
+		break;
+	    case 'n':
+	        EngineName = arg;
+		break;
+	    default:
+		fprintf( stderr, "**** Unknown option: -%c%c\n", opt, sub );
+		ShowUsage();
+		return( -1 );
+	    }
+	    break;
+	case 'z':
+	    StringSize = atol( arg );
+	    if( (!isdigit(*arg)) || (StringSize < 0) ) {
+		fprintf( stderr, "**** Invalid string size: -%c %s\n", opt, arg );
+		ShowUsage();
+		return( -1 );
+	    }
+	    break;
+	default:
+	    fprintf( stderr, "**** Unknown option: -%c\n", opt );
+	    ShowUsage();
+	    return( -1 );
+	}
+    }
+    return( argc );
+}
+
+static a_bool SetIsolationLevel( int iso )
+/****************************************/
+{
+    if( iso >= 0 ) {
+	EXEC SQL BEGIN DECLARE SECTION;
+	char iso_level[16];
+	EXEC SQL END DECLARE SECTION;
+
+	sprintf( iso_level, "%d", iso );
+	EXEC SQL SET TEMPORARY OPTION ISOLATION_LEVEL = :iso_level;
+	if( !Quiet ) {
+	    DoPrintf( "Running at Isolation level %d\n", iso );
+	}
+    }
+    return( TRUE );
+
+sql_error:
+    fprintf( stderr, "**** Error while setting isolation level\n" );
+    return( FALSE );
+}
+
+static a_bool ExecSetupFile()
+/***************************/
+{
+    FILE *		fp;
+    int			size;
+    
+    if( SetupFile == NULL ) {
+	return( TRUE );
+    }
+    fp = fopen( SetupFile, "rt" );
+    if( fp == NULL ) {
+	fprintf( stderr, "Unable to open %s -- %s\n", SetupFile, strerror( errno ) );
+	return( FALSE );
+    }
+    size = (int)fread( SetupStmt, sizeof(char), sizeof(SetupStmt), fp );
+    SetupStmt[size] = '\0';
+    if( DisplayStmt ) {
+	DoPrintf( "execute before statements: \n%s\n\n", SetupStmt );
+    }
+    EXEC SQL EXECUTE IMMEDIATE :SetupStmt;
+sql_error:
+    fclose( fp );
+    return( SQLCODE >= 0 );
+}
+
+// Change the FetchCurs cursor name to work around pre-801 EBF (including 5.5)
+// SQLE_PROCEDURE_COMPLETE problems where the cursor could not be re-used.
+// (See QTS 298957 for more info).
+static void change_cursor_name( void )
+/************************************/
+{
+    sprintf( FetchCurs, "FetchCurs%d", ++FetchCursNum );
+}
+
+// build a prefix of Statement with extra whitespace removed
+static char *GetStatementPrefix( char *buf, int buf_size, a_bool double_quotes )
+/******************************************************************************/
+{
+    char *  src			= &Statement[0];
+    char *  dst			= buf;
+    char    curr;
+    int	    dst_remain		= buf_size;
+    a_bool  already_in_space	= TRUE;
+
+#define _copy_char( c ) { *dst++ = c; dst_remain--; }
+    
+    // leave space for ...
+    while( dst_remain > 4 && *src != '\0' ) {
+	curr = *src;
+	if( is_a_space( curr ) ) {
+	    if( !already_in_space ) {
+		_copy_char( ' ' );
+	    }
+	} else if( curr == '\'' && double_quotes ) {
+	    if( dst_remain <= 5 ) break;
+	    _copy_char( curr );
+	    _copy_char( curr );
+	} else {
+	    _copy_char( curr );
+	}
+	already_in_space = is_a_space( curr );
+	src++;
+    }
+    *dst = '\0';
+    if( *src != '\0' ) {
+	strcpy( dst, "..." );
+    }
+    return( buf );
+#undef _copy_char
+}
+
+
+static void ShowStatement()
+/*************************/
+{
+    char buf[49];
+
+    ++StatementCount;
+    if( Quiet ) return;
+    if( DisplayStmt ) {
+	DoPrintf( "----- Statement %d (line %d) -----\n%s\n",
+		  StatementCount, StatementLine, Statement );
+    } else {
+	GetStatementPrefix( buf, sizeof( buf ), FALSE );
+	DoPrintf( "Statement %d (line %d): %s\n",
+		StatementCount, StatementLine, buf );
+    }
+}
+
+static void InjectDelay( int delay )
+/***********************************/
+{
+    if( delay > 0 ) {
+#if defined( WIN32 )
+        Sleep( delay );
+#elif defined( UNIX ) && !defined( DEC_UNIX )
+	usleep( delay * 1000 );
+#else
+	fprintf( stderr, "Delay not support on this platform, ignored\n" );
+#endif
+    }
+}
+
+static int ExecuteCommand( char* str )
+/************************************/
+{
+    int rc = 0;
+    if( str != NULL ) {
+        if( !Quiet ) {
+	    DoPrintf("Executing \"%s\"\n", str );
+	}
+	rc = system( str );	// Veracode false positive [by design]
+	if( rc != 0 ) {
+	    DoPrintf("Execution of \"%s\" failed, rc=%d\n", str, rc );
+	}
+    } 
+    return rc;
+}
+
+static void CreateEngineStrings()
+/*******************************/
+{
+  if( EngineStr == NULL ) {
+      return;
+  }
+
+  if( EngineName != NULL ) {
+      EngineStartStr = (char*) malloc( strlen( EngineStr ) + strlen( EngineName ) + 64 );
+      sprintf( EngineStartStr, "Start=%s;Autostop=No;EngineName=%s", EngineStr, EngineName );
+
+      EngineStopStr = (char*) malloc( strlen( EngineName ) + 64 );
+      sprintf( EngineStopStr, "Unconditional=yes;EngineName=%s", EngineName );
+  } else {
+      EngineStartStr = (char*) malloc( strlen( EngineStr ) + 64 );
+      sprintf( EngineStartStr, "Start=%s;Autostop=No", EngineStr );
+
+      EngineStopStr = (char*) malloc( strlen( "Unconditional=yes" ) + 1 );
+      strcpy( EngineStopStr, "Unconditional=yes" );
+  }
+}
+
+static void FreeEngineStrings()
+/*****************************/
+{
+    if( EngineStr == NULL ) {
+        return;
+    }
+
+    if( EngineStartStr != NULL ) {
+        free( EngineStartStr );
+    }
+
+    if( EngineStopStr != NULL ) {
+        free( EngineStopStr );
+    }
+}
+
+static a_bool StartEngine()
+/*************************/
+{
+    a_bool ret = TRUE;
+
+    if( EngineStartStr != NULL ) {
+        // db_start_engine returns TRUE if an engine is already running
+        ret = db_start_engine( &sqlca, EngineStartStr );
+	if( !ret ) {
+	    DoPrintf( "---- Unable to start engine \"%s\"\n", EngineStartStr );
+	} else {
+	    InjectDelay( EngineDelay );
+	}
+    }
+    return ret;
+}
+
+static a_bool StopEngine()
+/*************************/
+{
+    a_bool ret = TRUE;
+    if( EngineStopStr != NULL ) {
+        ret = db_stop_engine( &sqlca, EngineStopStr );
+	if( !ret ) {
+	    DoPrintf( "---- Unable to stop engine \"%s\"\n", EngineStopStr );
+	}
+    }
+    return ret;
+}
+
+static void ClearTimersForStatement( void )
+/*****************************************/
+{
+    TotalTime.clear_duration();
+    PlanTime.clear_duration();
+    PrepTime.clear_duration();
+    OpenTime.clear_duration();
+    DescTime.clear_duration();
+    ExecTime.clear_duration();
+    FetchTime.clear_duration();
+    FetchFirstTime.clear_duration();
+    FetchRestTime.clear_duration();
+    CloseTime.clear_duration();
+    DropTime.clear_duration();
+    ExecImmTime.clear_duration();
+    CPUTime.clear_duration();
+}
+
+static void SleepThinkTime()
+/**************************/
+{
+#if defined( WIN32 )
+    Sleep( ThinkTime );
+#elif defined( UNIX ) && !defined( DEC_UNIX )
+    usleep( ThinkTime * 1000 );
+#else
+    fprintf( stderr, "Think time not support on this platform, -i ignored\n" );
+    ThinkTime = 0;
+#endif
+}
+
+static a_bool DoExecuteImmAndSummarize( a_statement_stream *strm,
+					char *		    stmt_category )
+/*************************************************************************/
+{
+    int	repeat;
+    for( repeat = StatementRepeatCount; repeat > 0; repeat-- ) {
+	if( DisplayCPUUse ) {
+	    CPUTime.start();
+	}
+	ExecImmTime.start();
+	if( !strm->exec_statement() ) return( FALSE );
+	ExecImmTime.stop();
+	TotalTime.add( ExecImmTime );
+	if( DisplayCPUUse ) {
+	    CPUTime.stop();
+	}
+	if( !Quiet && !Summarize ) {
+	    ExecImmTime.display( (char *)NULL,
+				 SummarizeCategory ? stmt_category : NULL );
+	    if( !DisplayOnlyTotals && DisplayCPUUse ) {
+		CPUTime.display();
+	    }
+	    DoPrintf( "\n" );
+	}
+	if( !Quiet && !Summarize && repeat > 1 ) {
+	    DoPrintf( "---- Repeating statement: %d more to go\n", repeat-1 );
+	}
+    }
+    AddTimeToCategory( stmt_category, &ExecImmTime );
+    return( TRUE );
+}
+
+static void GetAndDisplayPlan( void )
+/***********************************/
+{
+    char *	s;
+
+    PlanTime.start();
+    EXEC SQL SELECT PLAN( :Statement ) INTO :Plan;
+    PlanTime.stop();
+    for( s = &Plan[sizeof(Plan)-2]; s >= &Plan[0] && *s == ' '; --s );
+    *++s = '\0';
+    DoPrintf( "Plan is\n%s\n", Plan );
+sql_error:
+    ;	// ignore plan errors
+}
+
+static a_bool DoPrepareAndDeclare( void )
+/***************************************/
+{
+    a_bool	did_prepare = FALSE;
+
+    PrepTime.start();
+    if( CursorReadOnly ) {
+	EXEC SQL PREPARE :FetchStmt FROM :Statement FOR READ ONLY;
+    } else {
+	EXEC SQL PREPARE :FetchStmt FROM :Statement FOR UPDATE;
+    }
+    did_prepare = TRUE;
+
+    switch( CursorType ) {
+    case 'i':
+    case 'I':
+	EXEC SQL DECLARE :FetchCurs INSENSITIVE CURSOR FOR :FetchStmt;
+	break;
+    case 's':
+    case 'S':
+	EXEC SQL DECLARE :FetchCurs SCROLL CURSOR FOR :FetchStmt;
+	break;
+    case 'n':
+    case 'N':
+	EXEC SQL DECLARE :FetchCurs NO SCROLL CURSOR FOR :FetchStmt;
+	break;
+    default:
+	EXEC SQL DECLARE :FetchCurs CURSOR FOR :FetchStmt;
+	break;
+    }
+    PrepTime.stop();
+    return( TRUE );
+    
+sql_error:
+    ShowError();
+    if( did_prepare ) {
+	DropFetchStmt();
+    }
+    return( FALSE );
+}
+
+// after a describe, adjust the SQLDA so that numerics are fetched as
+// strings, since that is the only documented way to fetch them with
+// full precision
+static void ConvertDescribedNumericToString( SQLDA * sqlda )
+/**********************************************************/
+{
+    int	    i;
+    SQLVAR *sqlvar;
+
+    for( i = 0; i < sqlda->sqld; ++i ) {
+	sqlvar = &sqlda->sqlvar[i];
+	if( ( sqlvar->sqltype & DT_TYPES ) == DT_DECIMAL ) {
+	    sqlvar->sqltype = DT_STRING;
+	    sqlvar->sqllen = PRECISION( sqlvar->sqllen ) + 2;
+	}
+    }
+}
+
+static SQLDA *DoDescribeAndOpenOrExecute( a_statement_stream *strm,
+					  a_bool *	    do_fetch_and_close )
+/******************************************************************************/
+{
+    SQLDA *	sqlda;
+    a_bool	cursor_opened = FALSE;
+    int		i, j, offset;
+
+    *do_fetch_and_close = TRUE;
+    sqlda = alloc_sqlda( 10 );
+    if( sqlda == NULL ) {
+	fprintf( stderr, "Out of memory" );
+	return NULL;
+    }
+
+    DescTime.start();
+    if( DescribeType == 'c' ) {
+	// Must open before describing
+	OpenTime.start();
+	if( !strm->open_cursor() ) goto sql_error;
+	OpenTime.stop();
+	cursor_opened = TRUE;
+	if( SQLCODE == SQLE_PROCEDURE_COMPLETE ) {
+	    // statement already executed as part of open
+	    change_cursor_name();
+	    *do_fetch_and_close = FALSE;
+	    return( sqlda );
+	}
+	// restart timer so that open time isn't counted in both OpenTime
+	// and DescTime
+	DescTime.start();
+	for( i = DescribeCount; i > 0; --i ) {
+	    EXEC SQL DESCRIBE CURSOR :FetchCurs INTO sqlda;
+	}
+    } else {
+	for( i = DescribeCount; i > 0; --i ) {
+	    EXEC SQL DESCRIBE :FetchStmt INTO sqlda;
+	}
+    }
+    DescTime.stop();
+
+    if( DescribeCount > 1 ) {
+	DoPrintf( "%.03f seconds for describes\n", DescTime.duration() );
+	fflush( stdout );
+    }
+    ColumnCount = sqlda->sqld;
+    if( ColumnCount == 0 ) {
+	ExecTime.start();
+	if( !strm->execute_prepared() ) goto sql_error;
+	ExecTime.stop();
+	*do_fetch_and_close = FALSE;
+	return( sqlda );
+    }
+    // part of DoDescribe
+    if( ColumnCount * Width > sqlda->sqln || Width > 1 ) {
+	free_sqlda( sqlda );
+	sqlda = alloc_sqlda( ColumnCount * Width );
+	if( sqlda == NULL ) {
+	    fprintf( stderr, "alloc_sqlda failed.  Note number of columns * width must be < 32K\n" );
+	    return NULL;
+	}
+	if( DescribeType == 'c' ) {
+	    EXEC SQL DESCRIBE CURSOR :FetchCurs INTO sqlda;
+	} else {
+	    EXEC SQL DESCRIBE :FetchStmt INTO sqlda;
+	}
+	ConvertDescribedNumericToString( sqlda );
+	sqlda->sqld = (short) (ColumnCount * Width);
+	offset = ColumnCount;
+	for( i = 1; i < (int) Width; ++i ) {
+	    for( j = 0; j < ColumnCount; ++j, ++offset ) {
+		sqlda->sqlvar[offset].sqltype = sqlda->sqlvar[j].sqltype;
+		sqlda->sqlvar[offset].sqllen = sqlda->sqlvar[j].sqllen;
+		memcpy( &sqlda->sqlvar[offset].sqlname,
+			&sqlda->sqlvar[j].sqlname,
+			sizeof( sqlda->sqlvar[0].sqlname ) );
+	    }
+	}
+    } else {
+	ConvertDescribedNumericToString( sqlda );
+    }
+    if( StringSize != 0 ) {
+	fill_s_sqlda( sqlda, StringSize );
+    } else if( OutputData ) {
+	fill_s_sqlda( sqlda, FETCH_SIZE );
+    } else {
+	fill_sqlda( sqlda );
+    }
+    if( DescribeType != 'c' ) {
+	OpenTime.start();
+	// Open after DESCRIBE so cursor is not built twice
+	for( i = OpenCount; i > 0; --i ) {
+	    if( !strm->open_cursor() ) goto sql_error;
+	    if( OpenCount > 1 && i > 1 ) {
+		CloseFetchCurs();
+	    }
+	}
+	OpenTime.stop();
+	cursor_opened = TRUE;
+    }
+    if( OpenCount > 1 ) {
+	DoPrintf( "%.03f seconds for OPEN/CLOSE pairs\n", OpenTime.duration() );
+	fflush( stdout );
+    }
+    return( sqlda );
+sql_error:
+    ShowError();
+    if( cursor_opened ) {
+	CloseFetchCurs();
+    }
+    DropFetchStmt();
+    free_filled_sqlda( sqlda );
+    return( NULL );
+}
+
+static a_bool DoFetches( SQLDA *	sqlda,
+			 long *		first_io,
+			 long *		total_io,
+			 unsigned long* p_rows )
+/***********************************************/
+{
+    unsigned long   rows = 0;
+    ldiv_t	    row_display;
+
+    SQLIOCOUNT = 0;
+    FetchFirstTime.start();
+    EXEC SQL FETCH :FetchCurs USING DESCRIPTOR sqlda ARRAY :Width;
+    FetchFirstTime.stop();
+    *first_io = SQLIOCOUNT;
+
+    FetchRestTime.start();
+    if( SQLCODE < 0 || SQLCODE == SQLE_NOTFOUND ) {
+	rows = 0;
+    } else {
+	if( FetchFirstTime.duration() > 30.0 && !Summarize && !DisplayOnlyTotals ) {
+	    DoPrintf( "%.03f seconds for first row\n", FetchFirstTime.duration() );
+	    fflush( stdout );
+	}
+	rows = SQLCOUNT ? SQLCOUNT : 1;
+	OutputRows( OutputData, sqlda, rows, sqlda->sqld );
+	while( rows < RowLimit ) {
+	    EXEC SQL FETCH RELATIVE :Skip :FetchCurs
+			USING DESCRIPTOR sqlda ARRAY :Width;
+	    if( SQLCODE == SQLE_NOTFOUND ) break;
+	    if( OutputData != NULL ) {
+		OutputRows( OutputData, sqlda, SQLCOUNT ? SQLCOUNT : 1, sqlda->sqld );
+	    }
+	    if( SQLCOUNT == 0 ) {
+		++rows;
+	    } else {
+		rows += SQLCOUNT;
+		if( SQLCOUNT != Width ) break;
+	    }
+	
+	    if( DisplayFreq != 0 && JSONOutput == FALSE ) {		
+		row_display = ldiv( rows, DisplayFreq );
+		if( !Quiet && row_display.rem == 0 ) {
+		    // don't write this to a file because of the \r
+		    printf( "Rows fetched = %ld\r", rows );
+		    fflush( stdout );
+		}
+	    }
+	} //while
+    }
+    FetchRestTime.stop();
+    *total_io = SQLIOCOUNT;
+    *p_rows = rows;
+    return( TRUE );
+
+sql_error:
+    ShowError();
+    CloseFetchCurs();
+    DropFetchStmt();
+    free_filled_sqlda( sqlda );
+    return( FALSE );
+}
+
+#define TIME_STR_SIZE 30
+
+static void WriteJSONOutput( FILE * outfile )
+/*******************************************/
+{
+    time_t	now;
+    struct tm *	end_time;
+    char	time_str[ TIME_STR_SIZE ];
+    double	fetch_time;
+
+    fetch_time = FetchFirstTime.duration() + FetchRestTime.duration();
+
+    now = time( NULL );
+    end_time = localtime( &now );
+
+    fprintf( outfile, "{\n  \"program\": \"fetchtstESQL\",\n" );
+    fprintf( outfile, "  \"test_type\": \"FETCH\",\n" );
+    // start_time and finish_time is approximate (computed separately from
+    // elapsed_time)
+    strftime( time_str, TIME_STR_SIZE, "%Y-%m-%d %H:%M:%S", &StartTime );
+    fprintf( outfile, "  \"start_time\": \"%s\",\n", time_str );
+    strftime( time_str, TIME_STR_SIZE, "%Y-%m-%d %H:%M:%S", end_time );
+    fprintf( outfile, "  \"finish_time\": \"%s\",\n", time_str );
+    fprintf( outfile, "  \"table_name\": \"%s\",\n", JSONTable );
+    fprintf( outfile, "  \"cursor_type\": \"%s\",\n", CursorTypeFull );
+    fprintf( outfile, "  \"width\": %d,\n", Width );
+    fprintf( outfile, "  \"column_count\": %d,\n", ColumnCount );
+    fprintf( outfile, "  \"record_count\": %d,\n", RowsFetched );
+    // elapsed time is accurate to microsecond on Windows
+    fprintf( outfile, "  \"elapsed_time\": %.06f,\n", JSONTotalTime.duration() );
+    fprintf( outfile, "  \"open_time\": %.06f,\n", JSONOpenTime.duration() );
+    fprintf( outfile, "  \"fetch_time\": %.06f,\n", fetch_time );
+    fprintf( outfile, "  \"close_time\": %.06f\n", JSONCloseTime.duration() );
+    fprintf( outfile, "}\n" );
+}
+
+static a_bool DoExecuteQueryAndSummarize( a_statement_stream *strm,
+					  char *	      stmt_category )
+/***************************************************************************/
+{
+    long		first_io    = 0;
+    long		total_io    = 0;
+    unsigned long	rows	    = 0;
+    a_bool		do_fetch_and_close = TRUE;
+    double		fetch_time;
+    SQLDA *		sqlda;
+    int			repeat;
+
+    if( DisplayPlan && !Quiet ) {
+	GetAndDisplayPlan();
+    }
+
+    for( repeat = StatementRepeatCount; repeat > 0; repeat-- ) {
+	if( DisplayCPUUse ) {
+	    CPUTime.start();
+	}
+	JSONTotalTime.start();
+	JSONOpenTime.start();
+
+	if( !DoPrepareAndDeclare() ) return( FALSE );
+
+	sqlda = DoDescribeAndOpenOrExecute( strm, &do_fetch_and_close );
+	if( sqlda == NULL ) {
+	    return( FALSE );
+	}
+	JSONOpenTime.stop();
+    
+	if( do_fetch_and_close ) {
+	    if( !DoFetches( sqlda, &first_io, &total_io, &rows ) ) return( FALSE );
+	    
+	    JSONCloseTime.start();
+	    CloseTime.start();
+	    CloseFetchCurs();
+	    CloseTime.stop();
+	}
+    
+	DropTime.start();
+	DropFetchStmt();
+	DropTime.stop();
+    
+	free_filled_sqlda( sqlda );
+	if( do_fetch_and_close ) {
+	    JSONCloseTime.stop();
+	}
+	JSONTotalTime.stop();
+    
+	if( DisplayCPUUse ) {
+	    CPUTime.stop();
+	}
+    
+	// compute total time
+	fetch_time =   FetchFirstTime.duration() +	FetchRestTime.duration();
+	TotalTime.add( PlanTime.duration() +	PrepTime.duration() +
+		       DescTime.duration() +	OpenTime.duration() +
+		       ExecTime.duration() +	fetch_time +
+		       CloseTime.duration() +	DropTime.duration() );
+    
+	if( !Quiet && !Summarize ) {
+	    if( !DisplayOnlyTotals ) {
+		if( DisplayPlan ) {
+		    PlanTime.display();
+		}
+		PrepTime.display();
+		DescTime.display();
+		OpenTime.display( ( DescribeType == 'c' ) ? "> OPEN" : "OPEN" );
+		if( do_fetch_and_close ) {
+		    FetchFirstTime.display( first_io, NULL );
+		    FetchRestTime.display();
+		    CloseTime.display();
+		} else {
+		    ExecTime.display();
+		}
+		DropTime.display();
+	    }
+	    TotalTime.display( total_io, SummarizeCategory ? stmt_category : NULL );
+	    if( !DisplayOnlyTotals ) {
+		if( DisplayCPUUse ) {
+		    CPUTime.display();
+		}
+		DoPrintf( "Fetch rate: %ld rows in ", rows );
+		DoPrintf( DisplayMicroSecs ? "%.06f" : "%.03f", fetch_time );
+		DoPrintf( " seconds, %10.03f per second\n\n",
+			fetch_time == 0.0 ? 0 : (rows / fetch_time ) );
+	    }
+	}
+	if( rows > 0 ) {
+	    RowsFetched += rows;
+	} else {
+	    ++EmptyQueries;
+	}
+	if( OutputOneFetchFile != NULL ) {
+	    FILE *	outfile;
+	    
+	    outfile = fopen( OutputOneFetchFile, JSONOutput ? "at" : "wt" );
+	    if( outfile != NULL ) {
+		if( JSONOutput ) {
+		    WriteJSONOutput( outfile );
+		} else {
+		    // save single query fetch time (only last query time 
+		    // saved if multiple queries are in input file)
+		    fprintf( outfile, "%7.03f", fetch_time );
+		}
+		fclose( outfile );
+	    }
+	}
+	if( !Quiet && !Summarize && repeat > 1 ) {
+	    DoPrintf( "---- Repeating statement: %d more to go\n", repeat-1 );
+	}
+    }
+
+    AddTimeToCategory( stmt_category, &TotalTime );
+    
+    return( TRUE );
+}
+
+static void OutputToCommaDelimFile()
+/**********************************/
+{
+    char 	buf[80];
+
+    if( CommaDelimFile == NULL ) return;
+    if( NUM_OCCOLUMNS != 11 ) {
+	DoPrintf( "Internal error: OutputToCommaDelimFile does not match OCColumns\n" );
+	return;
+    }
+    fprintf( CommaDelimFile,
+	    "%4d,%5d,%10.6f,%10.6f,%10.6f,%10.6f,%10.6f,%10.6f,%10.6f,%10.6f,'%s'\n",
+	     StatementCount,
+	     StatementLine,
+	     TotalTime.duration(),
+	     PrepTime.duration(),
+	     DescTime.duration(),
+	     OpenTime.duration(),
+	     FetchFirstTime.duration(),
+	     FetchRestTime.duration(),
+	     CloseTime.duration(),
+	     ExecTime.duration() + ExecImmTime.duration(),
+	     GetStatementPrefix( buf, sizeof( buf ), TRUE ) );
+}
+
+static void DisplayAllStatementSummary()
+/**************************************/
+{
+    int i;
+
+    DoPrintf( "=============== Totals ===============\n" );
+    DisplaySummaryTitle();
+    DisplaySummaryDashes();
+    if( DisplayPlan ) {
+	PlanTime.summary();
+    }
+    PrepTime.summary( );
+    DescTime.summary();
+    OpenTime.summary( ( DescribeType == 'c' ) ? "> OPEN" : "OPEN" );
+    FetchFirstTime.summary();
+    FetchRestTime.summary();
+    CloseTime.summary();
+    DropTime.summary();
+    ExecTime.summary();
+    ExecImmTime.summary();
+    DisplaySummaryDashes();
+    TotalTime.summary();
+    TotalElapsedTime.summary();
+    if( DisplayCPUUse ) {
+	CPUTime.summary();
+    }
+    if( DisplayFileCPUUse ) {
+	TotalCPUTime.summary();
+    }
+    DisplaySummaryDashes();
+    if( SummarizeCategory ) {
+	for( i = 0; i < NumCategories; i++ ) {
+	    Categories[i]->_time->summary();
+	}
+	if( CatOtherTime.cumulative_count() > 0 ) {
+	    CatOtherTime.summary();
+	}
+	DisplaySummaryDashes();
+    }
+
+    DoPrintf( DisplayMicroSecs ? "GRAND TOTAL: %13.6f\n" : "GRAND TOTAL: %10.3f\n", TotalElapsedTime.cumulative_duration() );
+    DoPrintf( "Statements:                   %6d\n", StatementCount );
+    DoPrintf( "Rows fetched:                 %6d\n", RowsFetched );
+    DoPrintf( "Queries with no rows:         %6d\n", EmptyQueries );
+}
+
+// ignore disconnect errors in main
+EXEC SQL WHENEVER SQLERROR CONTINUE;
+
+int main( int argc, char * argv[] )
+/*********************************/
+{
+    a_statement_stream	strm;
+    int			repeat;
+    int			error_count = 0;
+    a_bool		first_iter = TRUE;
+    a_bool		okay = TRUE;
+    a_bool		test_failed = TRUE;
+    time_t		now;
+
+    // first word or two of statement use to divide statements into categories
+    char		stmt_category[MAX_CATEGORY_NAME_LEN];
+
+    argc = ProcessOptions( argv );
+    if( argc < 0 ) {
+	return( EXIT_FAIL );
+    }
+
+    if( !strm.open_file( argv[argc] ) ) {
+	return( EXIT_FAIL );
+    }
+    db_init( &sqlca );
+
+    if( argv[argc] != NULL && argv[argc+1] != NULL && !Quiet ) {
+	DoPrintf( "---- Starting file: %s\n", argv[argc] );
+    }
+
+    StmtSize = STMT_SIZE_INCR;
+    Statement = (char *) malloc( StmtSize );
+
+    CreateEngineStrings();
+
+    now = time( NULL );
+    memcpy( &StartTime, localtime( &now ), sizeof( StartTime ) );
+
+    repeat = RepeatCount;
+    TotalElapsedTime.start();
+
+    for( ;; ) { // for all repeats of all files
+	test_failed = TRUE;
+	if( EngineStr != NULL &&( first_iter || !EngineStartOnce ) ) {
+	    if( !StartEngine() ) break;
+	}
+	if( !db_string_connect( &sqlca, ConnectStr ) )break;
+	if( !SetIsolationLevel( IsolationLevel ) ) break;
+    
+	if( first_iter ) {
+	    if( !ExecSetupFile() ) break;
+	    first_iter = FALSE;
+	}
+	test_failed = FALSE;
+    
+	TotalCPUTime.clear_duration();
+	if( DisplayFileCPUUse ) {
+	    TotalCPUTime.start();
+	}
+	ExecuteCommand( ExecuteStartStr );
+	while( okay ) { // for each statement
+	    // start a new statement
+	    strm.free_hostvars();
+	    if( !strm.read_statement() ) break;
+	    if( !strm.trim_statement() ) continue;
+    
+	    strm.statement_category( stmt_category, sizeof(stmt_category) );
+	    if( SkipSelects > 0 && _strnieq( stmt_category, "select ", 7 ) ) {
+		SkipSelects --;
+		continue;
+	    }
+	    if( SkipMessages > 0 && _strieq( stmt_category, "message" ) ) {
+		SkipMessages --;
+		continue;
+	    }
+    
+	    if( ThinkTime > 0 ) {
+		SleepThinkTime();
+	    }
+    
+	    ClearTimersForStatement();
+	    if( !strm.statement_is_query() ) {
+		if( QueriesOnly ) continue;
+		ShowStatement();
+		okay = DoExecuteImmAndSummarize( &strm, stmt_category );
+	    } else {
+		ShowStatement();
+		okay = DoExecuteQueryAndSummarize( &strm, stmt_category );
+	    }
+	    if( okay ) {
+		OutputToCommaDelimFile();
+	    } else if( ContinueAfterError ) {
+		error_count++;
+		okay = TRUE;
+	    }
+	} // while each statement
+	ExecuteCommand( ExecuteEndStr );
+	if( DisplayFileCPUUse ) {
+	    TotalCPUTime.stop();
+	}
+	strm.close_file();
+	if( EngineStr != NULL && !EngineStartOnce ) {
+	    StopEngine();
+	}
+	EXEC SQL DISCONNECT;
+    
+	if( !okay ) break;
+    
+	// check for repeat execution of the file
+	repeat --;
+	if( repeat > 0 && strm.open_file( argv[argc] ) ) {
+	    if( !Quiet ) DoPrintf( "---- Repeating file: %d more to go\n", repeat );
+	// check if more than one filename specified on command line
+	} else if( argv[argc] != NULL && argv[argc+1] != NULL ) {
+	    argc++;
+	    if( !strm.open_file( argv[argc] ) ) break;
+	    if( !Quiet ) DoPrintf( "---- Starting file: %s\n", argv[argc] );
+	    repeat = RepeatCount;
+	// otherwise we're done
+	} else {
+	    break;
+	}
+    } // for( ;; ) // repeats and all files
+
+    if( test_failed ) {
+	// initialization of the outer loop failed
+	ShowError();
+	if( EngineStr != NULL ) {
+	    StopEngine();
+	}
+	EXEC SQL DISCONNECT;
+	strm.close_file();
+    } else {
+	if( EngineStr != NULL && EngineStartOnce ) {
+	    StopEngine();
+	}
+	TotalElapsedTime.stop();
+    
+	if( Summarize || StatementCount > 1 ) {
+	    DisplayAllStatementSummary();
+	    if( !okay ) {
+		DoPrintf( "*** RUN ABORTED DUE TO ERROR (use -ce to continue after errors) ***\n" );
+	    } else if( error_count > 0 ) {
+		DoPrintf( "(%d error(s) occurred during the run)\n", error_count );
+	    }
+	}
+	if( !okay ) {
+	    test_failed = TRUE;
+	}
+    }
+
+    db_fini( &sqlca );
+    free( Statement );
+    FreeEngineStrings();
+    if( OutputData ) {
+	fclose( OutputData );
+    }
+    if( CommaDelimFile ) {
+	fclose( CommaDelimFile );
+    }
+    if( Output != stdout ) {
+	fclose( Output );
+    }
+    return( test_failed );
+}

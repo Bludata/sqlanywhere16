@@ -1,0 +1,30 @@
+The following files are covered by 'The Apache Software License, Version 2.0':
+------------------------------------------------------------------------------
+batik-anim.jar -- Batik SVG Toolkit
+batik-awt-util.jar -- Batik SVG Toolkit
+batik-bridge.jar -- Batik SVG Toolkit
+batik-codec.jar -- Batik SVG Toolkit
+batik-css.jar -- Batik SVG Toolkit
+batik-dom.jar -- Batik SVG Toolkit
+batik-ext.jar -- Batik SVG Toolkit
+batik-extension.jar -- Batik SVG Toolkit
+batik-gui-util.jar -- Batik SVG Toolkit
+batik-gvt.jar -- Batik SVG Toolkit
+batik-parser.jar -- Batik SVG Toolkit
+batik-script.jar -- Batik SVG Toolkit
+batik-svg-dom.jar -- Batik SVG Toolkit
+batik-svggen.jar -- Batik SVG Toolkit
+batik-swing.jar -- Batik SVG Toolkit
+batik-transcoder.jar -- Batik SVG Toolkit
+batik-util.jar -- Batik SVG Toolkit
+batik-xml.jar -- Batik SVG Toolkit
+js.jar -- Batik SVG Toolkit
+pdf-transcoder.jar -- Batik SVG Toolkit
+xalan-2.6.0.jar -- Batik SVG Toolkit
+xerces_2_5_0.jar -- Batik SVG Toolkit
+xml-apis-ext.jar -- Batik SVG Toolkit
+xml-apis.jar -- Batik SVG Toolkit
+diffutils-1.2.1 -- DiffUtils version 1.2.1
+velocity-1.7-dep.jar -- Velocity (currently version 1.7)
+wstx-asl-3.2.6.jar -- Woodstox version 3.2.6
+xerces_2_5_0.jar -- Xerces XML parser version 2.5.0

@@ -1,0 +1,1255 @@
+# ***************************************************************************
+# Copyright (c) 2013 SAP AG or an SAP affiliate company. All rights reserved.
+# ***************************************************************************
+__VERNUM=`get_major_version`
+
+# YES/NO Question
+MSG_PROMPT_YES_NO="[Y/N]: "
+MSG_PROMPT_NO_YES="[N/Y]: "
+
+MSG_ANSWER_Yes="是"
+MSG_ANSWER_yes="是"
+MSG_ANSWER_Y="Y"
+MSG_ANSWER_y="y"
+
+# Main Option Selection Screen
+MSG_MAIN_SCREEN_PROMPT_1=""
+MSG_MAIN_SCREEN_PROMPT_2="      A. 选择所有选项。"
+MSG_MAIN_SCREEN_PROMPT_10="      D. 选择缺省选项。"
+MSG_MAIN_SCREEN_PROMPT_3="      N. 不选择任何选项。"
+MSG_MAIN_SCREEN_PROMPT_4=""
+MSG_MAIN_SCREEN_PROMPT_5="      H. 帮助。"
+MSG_MAIN_SCREEN_PROMPT_6="      S. 开始安装。"
+MSG_MAIN_SCREEN_PROMPT_7="      Q. 退出安装。"
+MSG_MAIN_SCREEN_PROMPT_8=""
+MSG_MAIN_SCREEN_PROMPT_9="选择:  "
+
+MSG_MAIN_SCREEN_ANSWER_A="A"
+MSG_MAIN_SCREEN_ANSWER_D="D"
+MSG_MAIN_SCREEN_ANSWER_N="N"
+MSG_MAIN_SCREEN_ANSWER_H="H"
+MSG_MAIN_SCREEN_ANSWER_S="S"
+MSG_MAIN_SCREEN_ANSWER_Q="Q"
+MSG_MAIN_SCREEN_ANSWER_a="a"
+MSG_MAIN_SCREEN_ANSWER_d="d"
+MSG_MAIN_SCREEN_ANSWER_n="n"
+MSG_MAIN_SCREEN_ANSWER_s="s"
+MSG_MAIN_SCREEN_ANSWER_q="q"
+MSG_MAIN_SCREEN_ANSWER_h="h"
+
+# Suboption Selection Screen
+MSG_SUBOPTION_SCREEN_PROMPT_1=""
+MSG_SUBOPTION_SCREEN_PROMPT_2="      A. 选择所有选项。"
+MSG_SUBOPTION_SCREEN_PROMPT_11="      D. 选择缺省选项。"
+MSG_SUBOPTION_SCREEN_PROMPT_3="      N. 不选择任何选项。"
+MSG_SUBOPTION_SCREEN_PROMPT_4=""
+MSG_SUBOPTION_SCREEN_PROMPT_5="      H. 帮助。"
+MSG_SUBOPTION_SCREEN_PROMPT_6="      P. 上一个菜单。"
+MSG_SUBOPTION_SCREEN_PROMPT_7="      Q. 退出安装。"
+MSG_SUBOPTION_SCREEN_PROMPT_8=""
+MSG_SUBOPTION_SCREEN_PROMPT_9="按项目编号来切换其选择状态。"
+MSG_SUBOPTION_SCREEN_PROMPT_10="选择: "
+
+MSG_SUBOPTION_SCREEN_ANSWER_A="A"
+MSG_SUBOPTION_SCREEN_ANSWER_D="D"
+MSG_SUBOPTION_SCREEN_ANSWER_N="N"
+MSG_SUBOPTION_SCREEN_ANSWER_H="H"
+MSG_SUBOPTION_SCREEN_ANSWER_P="P"
+MSG_SUBOPTION_SCREEN_ANSWER_Q="Q"
+MSG_SUBOPTION_SCREEN_ANSWER_a="a"
+MSG_SUBOPTION_SCREEN_ANSWER_d="d"
+MSG_SUBOPTION_SCREEN_ANSWER_n="n"
+MSG_SUBOPTION_SCREEN_ANSWER_h="h"
+MSG_SUBOPTION_SCREEN_ANSWER_p="p"
+MSG_SUBOPTION_SCREEN_ANSWER_q="q"
+
+# Deployment Wizard Selection Screen
+MSG_DEPLOY_SCREEN_PROMPT_1=""
+MSG_DEPLOY_SCREEN_PROMPT_2="      A. 选择所有选项。"
+MSG_DEPLOY_SCREEN_PROMPT_10="      D. 选择缺省选项。"
+MSG_DEPLOY_SCREEN_PROMPT_3="      N. 不选择任何选项。"
+MSG_DEPLOY_SCREEN_PROMPT_4=""
+MSG_DEPLOY_SCREEN_PROMPT_5="      S. 显示文件列表"
+MSG_DEPLOY_SCREEN_PROMPT_6="      G. 生成 Tar 文件"
+MSG_DEPLOY_SCREEN_PROMPT_7="      Q. 退出安装。"
+MSG_DEPLOY_SCREEN_PROMPT_8=""
+MSG_DEPLOY_SCREEN_PROMPT_9="选择:  "
+
+MSG_DEPLOY_SCREEN_ANSWER_A="A"
+MSG_DEPLOY_SCREEN_ANSWER_D="D"
+MSG_DEPLOY_SCREEN_ANSWER_N="N"
+MSG_DEPLOY_SCREEN_ANSWER_G="G"
+MSG_DEPLOY_SCREEN_ANSWER_S="S"
+MSG_DEPLOY_SCREEN_ANSWER_Q="Q"
+MSG_DEPLOY_SCREEN_ANSWER_a="a"
+MSG_DEPLOY_SCREEN_ANSWER_d="d"
+MSG_DEPLOY_SCREEN_ANSWER_n="n"
+MSG_DEPLOY_SCREEN_ANSWER_g="g"
+MSG_DEPLOY_SCREEN_ANSWER_s="s"
+MSG_DEPLOY_SCREEN_ANSWER_q="q"
+
+MSG_FILELIST_SCREEN_PROMPT_1="以上所示为部署所需的文件列表"
+MSG_FILELIST_SCREEN_PROMPT_2="您要进行什么操作？"
+MSG_FILELIST_SCREEN_PROMPT_3=""
+MSG_FILELIST_SCREEN_PROMPT_4="S. 将此列表保存到文件，然后退出"
+MSG_FILELIST_SCREEN_PROMPT_5="M. 修改选定组件的集合"
+MSG_FILELIST_SCREEN_PROMPT_6=""
+MSG_FILELIST_SCREEN_PROMPT_7="选择: "
+
+MSG_FILELIST_SCREEN_ANSWER_S="S"
+MSG_FILELIST_SCREEN_ANSWER_s="s"
+MSG_FILELIST_SCREEN_ANSWER_M="M"
+MSG_FILELIST_SCREEN_ANSWER_m="m"
+
+# Message explaning to users how to set up their environment for SQL Anywhere
+# when they have installed only one bitness of the product
+#
+# $1 ==> Product name
+# $2 ==> Product major version
+# $3 ==> Path to script (for example)
+MSG_NEED_TO_SOURCE_FOR_ENV_SINGLE_BITNESS_1="要设置 \${1} \${2} 环境，您需要对适合您的 shell 的"
+MSG_NEED_TO_SOURCE_FOR_ENV_SINGLE_BITNESS_2="配置文件执行 source 命令。例如，要同时使用"
+MSG_NEED_TO_SOURCE_FOR_ENV_SINGLE_BITNESS_3="\${1} 与 bourne 兼容 shell，则运行:"
+MSG_NEED_TO_SOURCE_FOR_ENV_SINGLE_BITNESS_4=""
+## TRANSLATOR: Do not translate this line
+MSG_NEED_TO_SOURCE_FOR_ENV_SINGLE_BITNESS_5="  source \\\"\${3}\\\""
+
+# Message explaning to users how to set up their environment for SQL Anywhere
+# when they have installed multiple bitnesses of the product
+#
+# $1 ==> Product name
+# $2 ==> Product major version
+# $3 ==> Path to script (for example)
+MSG_NEED_TO_SOURCE_FOR_ENV_MULTI_BITNESS_1="要设置 \${1} \${2} 环境，您需要对适合您的 shell 以及"
+MSG_NEED_TO_SOURCE_FOR_ENV_MULTI_BITNESS_2="想要运行的 \${1} 的位的配置文件执行 source 命令。"
+MSG_NEED_TO_SOURCE_FOR_ENV_MULTI_BITNESS_3="例如，要同时使用 32 位版本的 \${1} 与 bourne 兼容"
+MSG_NEED_TO_SOURCE_FOR_ENV_MULTI_BITNESS_4="shell，则运行: "
+MSG_NEED_TO_SOURCE_FOR_ENV_MULTI_BITNESS_5=""
+## TRANSLATOR: Do not translate this line
+MSG_NEED_TO_SOURCE_FOR_ENV_MULTI_BITNESS_6="  source \\\"\${3}\\\""
+
+# Message explaining to users how to configure the SQL Anywhere samples when
+# they have installed only one bitness of the product
+#
+# $1 ==> Product name
+# $2 ==> Product major version
+# $3 ==> Path to script (for example)
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_SINGLE_BITNESS_1="在使用 \${1} \${2} 的示例前,请 source "
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_SINGLE_BITNESS_2="示例安装目录中的配置脚本。例如，运行:"
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_SINGLE_BITNESS_3=""
+## TRANSLATOR: Do not translate this line
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_SINGLE_BITNESS_4="  source \\\"\${3}\\\""
+
+# Message explaining to users how to configure the SQL Anywhere samples when
+# they have installed multiple bitnesses of the product
+#
+# $1 ==> Product name
+# $2 ==> Product major version
+# $3 ==> Path to script (for example)
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_MULTI_BITNESS_1="在使用 \${1} \${2} 的示例前，请 source 想要使用的"
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_MULTI_BITNESS_2="\${1} 的位相对应的配置脚本。例如，要配置与 32"
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_MULTI_BITNESS_3="位软件配合使用的示例，则运行:"
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_MULTI_BITNESS_4=""
+## TRANSLATOR: Do not translate this line
+MSG_NEED_TO_SOURCE_FOR_SAMPLES_MULTI_BITNESS_5="  source \\\"\${3}\\\""
+
+# $1 - directory which is being scanned
+MSG_SCANNING_DIR="正在扫描安装目录 '\${1}' ..."
+
+# $1 - directory into which the files are being installed
+MSG_INSTALLING_FILES_INTO="正在将文件安装到 '\${1}' 中..."
+
+# $1 - name of the file being installed
+# $2 - the directory in which it is being installed
+MSG_INSTALLING_A_FILE_INTO="正在将 \${1} 安装到 \${2} 中"
+
+# $1 - directory into which the files are being installed
+MSG_REVERTING_FILES_INTO="正在回退 '\${1}' 中的文件..."
+
+# $1 : destination directory
+# $2 : location of the log file
+MSG_ERROR_EXTRACTING_FILES_1="尝试抽取 \${1} 中的文件时出现错误。"
+MSG_ERROR_EXTRACTING_FILES_2="请参阅日志文件 '\${2}' "
+MSG_ERROR_EXTRACTING_FILES_3="以获得有关该错误的详细信息。"
+
+# $1 - the name of the file to be overwritten
+MSG_PROMPT_FILE_EXISTS_OVERWRITE="文件 '\${1}' 已经存在。是否覆盖它？"
+
+# NOTE: The following appear to be unused
+# $1 - the name of the file to be overwritten
+MSG_PROMPT_FILE_EXISTS_OVERWRITE_OK_TO_SKIP_1="警告: 文件 '\${1}' 已经存在。"
+MSG_PROMPT_FILE_EXISTS_OVERWRITE_OK_TO_SKIP_2="是否覆盖它？ "
+MSG_PROMPT_FILE_EXISTS_OVERWRITE_OK_TO_SKIP_3="如果您没有回答“是”，则会跳过此步骤。"
+
+# NOTE: The following appear to be unused
+# $1 - the name of the file that was skipped
+MSG_SKIPPED_CREATING_FILE="跳过创建 '\${1}' 的操作。"
+
+# $1 : log file
+# $2 : destination directory
+MSG_EXTRACTED_FILES_LOCATION_1="文件 '\${1}' 包含 '\${2}' 下所安装的文件的列表。"
+MSG_EXTRACTED_FILES_LOCATION_2="已完成"
+
+MSG_HEADER_1="iAnywhere Solutions, Inc. One Sybase Drive, Dublin, CA 94568, USA"
+MSG_HEADER_2="版权所有 (c) 2001-2010, iAnywhere Solutions, Inc. 部分版权所有 (c) "
+MSG_HEADER_3="1988-2010, Sybase, Inc. All rights reserved. 保留所有未公开的权利。"
+
+MSG_REGISTERING_PLUGINS="正在注册 SQL Anywhere 插件..."
+
+STRING_SYBASE_SHARED_FILES="共享的 Sybase 文件"
+STRING_SHARED_COMPONENTS_NAME="共享的组件"
+STRING_OPEN_CHAR_SETS_NAME="Open Client/Open Server 字符集和区域设置"
+
+STRING_DIAGNOSTICS="SQL Anywhere 诊断"
+
+# $1 - the component being installed
+# $2 - the directory into which it is to be installed
+MSG_DEFAULT_INSTALL_DIRECTORY_1="\${1} 的缺省安装目录"
+MSG_DEFAULT_INSTALL_DIRECTORY_2="为 '\${2}'"
+
+# $1 - the component being installed
+# $2 - the directory into which it is to be intalled
+MSG_CURRENT_INSTALL_DIRECTORY_1="\${1} 当前安装在什么位置？"
+MSG_CURRENT_INSTALL_DIRECTORY_2="缺省位置为: \${2}"
+MSG_OPTIONALLY_INSTALLED_COMPONENT="\${1} 是可选的已授权软件组件。"
+MSG_MAY_PRESS_ENTER_IF_OPTIONAL_COMPONENT_NOT_INSTALLED="如果尚未安装它，您可以按 ENTER 键。"
+
+MSG_GUI_DEFAULT_INSTALL_DIRECTORY="安装到:"
+
+# Output when the script detects the O/S is supported, but the version is too low
+#
+# $1 : Name of the package being installed
+# $2 : Version of the O/S currently installed
+# $3 : Version of the O/S required
+MSG_ERROR_OS_VERSION_TOO_LOW_1="错误:"
+MSG_ERROR_OS_VERSION_TOO_LOW_2="    当前的操作系统版本级别为: \${2}"
+MSG_ERROR_OS_VERSION_TOO_LOW_3="    所需的操作系统版本级别为: \${3}"
+MSG_ERROR_OS_VERSION_TOO_LOW_4=""
+MSG_ERROR_OS_VERSION_TOO_LOW_5="    当前的操作系统级别较低，无法运行"
+MSG_ERROR_OS_VERSION_TOO_LOW_6="    \${1}。您需要升级"
+MSG_ERROR_OS_VERSION_TOO_LOW_7="    操作系统，然后再尝试运行本产品。"
+MSG_ERROR_OS_VERSION_TOO_LOW_8=""
+MSG_ERROR_OS_VERSION_TOO_LOW_9="安装程序将立即终止而不安装 \${1}。"
+
+# $1 - the version being installed
+MSG_ERROR_VERSION_MISMATCH_1="错误: 版本不匹配。"
+MSG_ERROR_VERSION_MISMATCH_2="当前的版本似乎不是 \${1}"
+MSG_ERROR_VERSION_MISMATCH_3="请验证 \${1} 的安装位置，然后重试。"
+
+# $1 - the bitness being installed
+# $2 - the bitness of the OS
+MSG_ERROR_BITNESS_MISMATCH_1="错误: 位不匹配。"
+MSG_ERROR_BITNESS_MISMATCH_2="这是一个 \${1} 位安装程序。而您正试图在 \${2} 位的操作系统上进行安装。"
+MSG_ERROR_BITNESS_MISMATCH_3="此安装程序必须在 \${1} 位操作系统上运行。"
+
+# $1 - the OS software was intended for
+# $2 - the OS user is installing on
+MSG_ERROR_OS_MISMATCH_1="错误: OS 或体系结构不匹配。"
+MSG_ERROR_OS_MISMATCH_2="这是用于 \${1} 的安装程序。您正试图在 \${2} 上进行安装。"
+
+# Output when the script cannot find the df tool
+#
+# $1 : name of df tool
+MSG_ERROR_NEED_DF_1="安装软件需要 \${1} 才能继续安装过程。"
+MSG_ERROR_NEED_DF_2="请确保系统中安装了此实用程序，然后重试。"
+
+# Output when the script cannot find the tar tool
+#
+# $1 : name of tar tool
+MSG_ERROR_NEED_TAR_1="安装软件需要 \${1} 才能继续安装过程。"
+MSG_ERROR_NEED_TAR_2="请确保系统中安装了此实用程序，然后重试。"
+
+# $1 - the name of the file that is not a directory
+MSG_ERROR_NOT_A_DIRECTORY="\${1} 已存在，但不是目录。"
+
+# $1 - the name of the directory that is invalid
+MSG_ERROR_INVALID_DIRECTORY="'\${1}' 不是有效的目录名。"
+
+# $1 - the name of the directory that already exists.
+MSG_DIRECTORY_ALREADY_EXISTS="目录 '\${1}' 已经存在。"
+
+# $1 - the name of the directory that already exists.
+# $2 - the version installed in the existing directory.
+# $3 - the version that will be installed.
+MSG_DIRECTORY_REQUIRES_UPGRADE="目录 '\${1}' 包含版本 \${2}。它将升级到版本 \${3}。"
+
+# $1 - the name of the file that already exists.
+MSG_FILE_ALREADY_EXISTS="文件 '\${1}' 已经存在。"
+
+# $1 - the name of the directory that does not exist.
+MSG_DIRECTORY_DOES_NOT_EXIST="目录 '\${1}' 不存在。请重试。"
+
+# $1 - the name of the directory that is not writable
+MSG_DIRECTORY_NOT_WRITABLE="目录 '\${1}' 不可写入。"
+
+# $1 - the name of the directory that could not be created
+MSG_ERROR_CANNOT_CREATE_DIRECTORY="无法创建目录 \${1}。"
+
+MSG_ERROR_PATH_INVALID_OR_PERMISSIONS_LACKING="权限不足或路径无效。"
+
+# $1 - the name of the directory that could not be created
+MSG_ERROR_CANNOT_CREATE_DIRECTORY_ABORTING="错误: 无法创建目录 \${1}。正在中止"
+
+# $1 -  the name of the directory on which the user does not have write
+#       permissions
+MSG_ERR_DONT_HAVE_WRITE_PERMISSIONS="您对 \${1} 没有写权限。"
+
+# $1 - the name of the component that has finished installing
+MSG_FINISHED_INSTALLING="安装程序已在计算机上安装完 \${1}。"
+
+# Output when the user disagrees to the dev license
+#
+# $1 : name of the package
+MSG_ERROR_DISAGREE_LICENSE_1="您已选择不同意许可协议。"
+MSG_ERROR_DISAGREE_LICENSE_2="安装程序将立即终止而不安装 \${1}。"
+
+# A string which gets generated to show how many options have been selected
+# out of the total. i.e. "12 of 18 selected"
+#
+# $1 : the number of objects currently selected
+# $2 : the total number of objects
+MSG_HOW_MANY_SELECTED="选中了 \${1} 个，共 \${2} 个"
+
+# $1 - the name of the invalid option
+MSG_ERROR_INVALID_OPTION="'\${1}' 不是有效的选项。"
+
+# $1 - the name of the setup script
+# $2 - the unknown option
+MSG_ERROR_UNKNOWN_OPTION="\${1}: 为 -install 指定了未知的选项: \${2}"
+
+# $1 - the name of the setup script
+# $2 - the unknown argument
+MSG_ERROR_CL_OPTIONS_UNKNOWN_ARGUMENT="\${1}: 未知的命令行参数: \${2}"
+
+# $1 - the name of the unrecognized region
+MSG_ERROR_UNKNOWN_REGION="无法识别区域 \${1}。"
+
+# $1 - the invalid install option
+MSG_ERROR_INTERNAL_ERROR="内部错误: 无效的安装选项 '\${1}'"
+
+# $1 - the value returned from $2
+# $2 - the command / function that generated $1
+MSG_ERROR_SETUP_INTERNAL_ERROR_1_1="安装程序内部错误 1: \${1} \${2}"
+MSG_ERROR_SETUP_INTERNAL_ERROR_1_2="请联系技术支持部门。"
+
+# $1 - the error number
+# $2 - the error
+MSG_ERROR_SETUP_INTERNAL_ERROR_NUM_1="安装程序内部错误 \${1}: \${2}"
+MSG_ERROR_SETUP_INTERNAL_ERROR_NUM_2="请联系技术支持部门。"
+
+# $1 - the "root" of the drive where the files are being installed
+# $2 - the amount of disk space needed ( in kilobytes )
+# $3 - the amount of disk space available ( in kilobytes )
+MSG_ERROR_INSUFFICIENT_DISK_SPACE_1="'\${1}' 中没有足够的磁盘空间。"
+MSG_ERROR_INSUFFICIENT_DISK_SPACE_2="所需空间 = \${2}K，可用空间 = \${3}K。"
+
+MSG_GUI_ERROR_INSUFFICIENT_DISK_SPACE="'在以下磁盘中，磁盘空间不足: "
+
+# lets the user know they have enough disk space to proceed with the install
+#
+# $1 - the "root" of the drive where the files are being installed
+# $2 - the amount of disk space needed ( in kilobytes )
+# $3 - the amount of disk space available ( in kilobytes )
+MSG_SUFFICIENT_DISK_SPACE="'\${1}' 中有足够的磁盘空间。所需空间 = \${2}K，可用空间 = \${3}K。"
+
+# $1 - the type of license (i.e processors or seats)
+MSG_ASK_NUMBER_OF_LICENSE_CPUS="输入处理器的数量"
+MSG_ASK_NUMBER_OF_LICENSE_CORES="输入核心数量"
+MSG_ASK_NUMBER_OF_LICENSE_SEATS="输入存取设备的数量"
+
+# $1 - the name of the tic file
+MSG_ERROR_CORRUPT_TICFILE_1="错误: \${1} 看来已损坏。"
+MSG_ERROR_CORRUPT_TICFILE_2="请将此问题报告给 Sybase 技术支持部门。"
+
+# 1st %s - the string to be converted; 2nd %s - locale name
+MSG_GUI_ERROR_CONVERSION_FAILED="无法将 '%s' 转换为当前地区的字符集 (%s)。"
+
+MSG_RENAME_SUFFIX_1="可通过重命名后缀来重命名旧的副本。"
+MSG_RENAME_SUFFIX_2="（例如，将旧版本的 libdblib8.so 重命名为 libdblib8.so.<您指定的后缀>）"
+MSG_RENAME_SUFFIX_3="请注意，您需要足够的磁盘空间来保留旧的副本！"
+MSG_RENAME_SUFFIX_4="请输入您希望使用的重命名后缀:  "
+
+MSG_STARTING_INSTALL_1="安装程序现在将开始安装文件。"
+MSG_STARTING_INSTALL_2="请按 ENTER 键开始。"
+
+MSG_INSTALL_COMPLETED_1="安装完成！"
+MSG_INSTALL_COMPLETED_2="感谢您使用 iAnywhere Solutions, Inc. 的产品。"
+
+MSG_INSTALL_TITLE="\$1 安装"
+MSG_PACKAGE_NAME="SQL Anywhere \`get_version_display\`"
+MSG_DOCUMENTATION_PACKAGE_NAME="SQL Anywhere 文档"
+MSG_WEB_EDITION_PACKAGE_NAME="SQL Anywhere \`get_version_display\` Web 版"
+MSG_SAMON_DEPLOY_PACKAGE_NAME="SQL Anywhere 监控器"
+MSG_DBCLOUD_PACKAGE_NAME="SQL Anywhere OnDemand"
+MSG_CLIENT_PACKAGE_NAME="SQL Anywhere 客户端"
+
+# $1 the name of the product (e.g., SQL Anywhere ${__VERNUM}, SQL Anywhere ${__VERNUM} Documentation)
+MSG_INSTALL_PRODUCT="安装 \${1}"
+
+MSG_WELCOME_PACKAGE_NAME_GERMAN_DOCUMENTATION="用于 Unix 的德文文档"
+MSG_WELCOME_PACKAGE_NAME_JAPANESE_DOCUMENTATION="用于 Unix 的日文文档"
+MSG_WELCOME_PACKAGE_NAME_CHINESE_DOCUMENTATION="用于 Unix 的中文文档"
+MSG_WELCOME_PACKAGE_NAME_PATCH="维护版本"
+MSG_WELCOME_PACKAGE_NAME_EBF="EBF"
+MSG_WELCOME_PACKAGE_NAME_64BIT_CLIENT="64 位客户端"
+MSG_WELCOME_PACKAGE_NAME_32BIT_CLIENT="32 位客户端"
+
+MSG_WELCOME_MESSAGE_1="欢迎使用 \${1} 安装程序。"
+MSG_WELCOME_MESSAGE_2="本程序将安装 \${1} 到您的计算机上。"
+MSG_WELCOME_MESSAGE_3=""
+MSG_WELCOME_MESSAGE_4="内含软件遵照随附的 IANYWHERE SOLUTIONS "
+MSG_WELCOME_MESSAGE_5="许可协议的条款而提供。"
+MSG_WELCOME_MESSAGE_6="除非您已与 iAnywhere Solutions 或其子公司或授权"
+MSG_WELCOME_MESSAGE_7="经售商之一签订了单独的书面许可协议并同意本软件"
+MSG_WELCOME_MESSAGE_8="的许可条款，否则安装和使用内含的软件即表示您接受"
+MSG_WELCOME_MESSAGE_9="此 iAnywhere Solutions 许可协议。"
+MSG_WELCOME_MESSAGE_10=""
+MSG_WELCOME_MESSAGE_11="版权所有 (c) 2001-2010, iAnywhere Solutions, Inc."
+MSG_WELCOME_MESSAGE_12="部分版权所有 (c) 1988-2010, Sybase, Inc."
+MSG_WELCOME_MESSAGE_13="Sybase, Inc. All rights reserved. 保留所有未公开的权利。"
+# Do not translate message lines 14 to 21.
+MSG_WELCOME_MESSAGE_14="This software contains confidential and trade secret information of iAnywhere"
+MSG_WELCOME_MESSAGE_15="Solutions Inc.  Use, duplication or disclosure of the software and"
+MSG_WELCOME_MESSAGE_16="documentation by the U.S. Government is subject to restrictions set forth"
+MSG_WELCOME_MESSAGE_17="in a license agreement between the Government and iAnywhere Solutions, Inc."
+MSG_WELCOME_MESSAGE_18="or other written agreement specifying the Government's rights to the use of"
+MSG_WELCOME_MESSAGE_19="the software and any applicable FAR provisions, for example, FAR 52.227.19."
+MSG_WELCOME_MESSAGE_20="iAnywhere Solutions, Inc. Worldwide Headquarters"
+MSG_WELCOME_MESSAGE_21="One Sybase Drive, Dublin, CA 94568-7902  U.S.A."
+
+MSG_SAMON_WELCOME_MESSAGE_1="此 SQL Anywhere 监控器安装程序用于生产，应安装"
+MSG_SAMON_WELCOME_MESSAGE_2="到与 SQL Anywhere 主安装程序不同的计算机上。"
+MSG_SAMON_WELCOME_MESSAGE_3="在 SQL Anywhere 主安装程序中已经提供了适合开发和"
+MSG_SAMON_WELCOME_MESSAGE_4="测试的 SQL Anywhere 监控器副本。 请参见"
+MSG_SAMON_WELCOME_MESSAGE_5="相关文档了解详细信息。"
+
+# Please note that Chinese/Japanese developer edition message is different.
+# Japanese customers need to visit www.ianywhere.jp while Chinese customers
+# need to call Sybase Chinese office (010-68568488) to get the installation
+# key.
+MSG_WELCOME_INSTALL_KEY_1="要成功完成开发人员版的安装， "
+MSG_WELCOME_INSTALL_KEY_2="您需要注册密钥。如果您没有注册密钥，可以"
+MSG_WELCOME_INSTALL_KEY_3="从以下网站获取 "
+MSG_WELCOME_INSTALL_KEY_4="(http://www.sybase.com/sa${__VERNUM}_registration_cd)"
+MSG_WELCOME_INSTALL_KEY_5="如果选择完成此安装，但却没有有效的安装密钥， "
+MSG_WELCOME_INSTALL_KEY_6="本软件将以 60 天评测版的形式安装。"
+MSG_WELCOME_INSTALL_KEY_7=""
+
+MSG_WELCOME_LICENSE_AGREEMENT_1="如果无法查看此协议，可在以下位置找到并阅读该协议的副本:"
+MSG_WELCOME_LICENSE_AGREEMENT_2="http://www.sybase.com/softwarelicenses。"
+
+MSG_BROWSE="浏览..."
+MSG_SELECT="选择..."
+
+MSG_LICENSE_COUNTRY_PROMPT_1="请选择您安装本软件时的所在地:"
+MSG_LICENSE_COUNTRY_PROMPT_2="（如果该位置未列出，请选择该位置所在的地区）。"
+MSG_LICENSE_COUNTRY_PROMPT_3="请选择国家或地区编号，然后按 ENTER 键:"
+
+# The order of the following country/region names can be rearranged for L10N
+# The general regions should be left as the last two. Also please make sure
+# MSG_COUNTRY_1 to MSG_COUNTRY_28 are the same in string length.
+MSG_COUNTRY_1="阿根廷                    "
+MSG_COUNTRY_2="澳大利亚                  "
+MSG_COUNTRY_3="比利时 - 英语             "
+MSG_COUNTRY_4="巴西                      "
+MSG_COUNTRY_5="加拿大                    "
+MSG_COUNTRY_6="丹麦                      "
+MSG_COUNTRY_7="法国 - 法语               "
+MSG_COUNTRY_8="德国 - 英语               "
+MSG_COUNTRY_9="中国香港特别行政区        "
+MSG_COUNTRY_10="印度                      "
+MSG_COUNTRY_11="意大利 - 意大利语         "
+MSG_COUNTRY_12="日本                      "
+MSG_COUNTRY_13="韩国                      "
+MSG_COUNTRY_14="马来西亚                  "
+MSG_COUNTRY_15="墨西哥                    "
+MSG_COUNTRY_16="荷兰                      "
+MSG_COUNTRY_17="新西兰                    "
+MSG_COUNTRY_18="挪威                      "
+MSG_COUNTRY_19="中华人民共和国            "
+MSG_COUNTRY_20="新加坡                    "
+MSG_COUNTRY_21="南非                      "
+MSG_COUNTRY_22="西班牙 - 西班牙语         "
+MSG_COUNTRY_23="瑞典                      "
+MSG_COUNTRY_24="瑞士 – 英语              "
+MSG_COUNTRY_25="中国台湾地区              "
+MSG_COUNTRY_26="英国                      "
+MSG_COUNTRY_27="美国                      "
+MSG_COUNTRY_28="亚太地区 - 通用              "
+MSG_COUNTRY_29="拉丁美洲国家 - 不包括阿根廷、巴西和墨西哥"
+MSG_COUNTRY_30="欧洲、中东和非洲地区 - 通用"
+
+# please make sure the following license file names are in the same
+# order as the above country/region list
+MSG_COUNTRY_LICENSE_TEXT_1="Argentina.txt"
+MSG_COUNTRY_LICENSE_TEXT_2="Australia.txt"
+MSG_COUNTRY_LICENSE_TEXT_3="Belgium_English.txt"
+MSG_COUNTRY_LICENSE_TEXT_4="Brazil.txt"
+MSG_COUNTRY_LICENSE_TEXT_5="Canada.txt"
+MSG_COUNTRY_LICENSE_TEXT_6="Denmark.txt"
+MSG_COUNTRY_LICENSE_TEXT_7="France_French.txt"
+MSG_COUNTRY_LICENSE_TEXT_8="Germany_English.txt"
+MSG_COUNTRY_LICENSE_TEXT_9="Hong_Kong.txt"
+MSG_COUNTRY_LICENSE_TEXT_10="India.txt"
+MSG_COUNTRY_LICENSE_TEXT_11="Italy_Italian.txt"
+MSG_COUNTRY_LICENSE_TEXT_12="japan_ianywhere.txt"
+MSG_COUNTRY_LICENSE_TEXT_13="Korea.txt"
+MSG_COUNTRY_LICENSE_TEXT_14="Malaysia.txt"
+MSG_COUNTRY_LICENSE_TEXT_15="Mexico.txt"
+MSG_COUNTRY_LICENSE_TEXT_16="Netherlands.txt"
+MSG_COUNTRY_LICENSE_TEXT_17="New_Zealand.txt"
+MSG_COUNTRY_LICENSE_TEXT_18="Norway.txt"
+MSG_COUNTRY_LICENSE_TEXT_19="PRC.txt"
+MSG_COUNTRY_LICENSE_TEXT_20="Singapore.txt"
+MSG_COUNTRY_LICENSE_TEXT_21="SouthAfrica.txt"
+MSG_COUNTRY_LICENSE_TEXT_22="Spain_Spanish.txt"
+MSG_COUNTRY_LICENSE_TEXT_23="Sweden.txt"
+MSG_COUNTRY_LICENSE_TEXT_24="Switzerland_English.txt"
+MSG_COUNTRY_LICENSE_TEXT_25="Taiwan.txt"
+MSG_COUNTRY_LICENSE_TEXT_26="United_Kingdom.txt"
+MSG_COUNTRY_LICENSE_TEXT_27="US.txt"
+MSG_COUNTRY_LICENSE_TEXT_28="Asia.txt"
+MSG_COUNTRY_LICENSE_TEXT_29="LAO.txt"
+MSG_COUNTRY_LICENSE_TEXT_30="EMEA_General.txt"
+
+# Installer Settings And Options Screen
+MSG_EXISTING_SETTINGS_AND_OPTIONS="下列组件已经安装："
+MSG_CURRENT_SETTINGS_AND_OPTIONS="将安装以下组件："
+MSG_OPT_SA_NETWORK_SERVER="SQL Anywhere 网络服务器"
+MSG_OPT_SA_PERSONAL_SERVER="SQL Anywhere 个人服务器"
+MSG_OPT_SA_NETWORK_CLIENT="SQL Anywhere 网络客户端"
+MSG_OPT_SA_64_NETWORK_CLIENT="SQL Anywhere 64 位网络客户端"
+MSG_OPT_SA_32_NETWORK_CLIENT="SQL Anywhere 32 位网络客户端"
+MSG_OPT_ISQL="Interactive SQL"
+MSG_OPT_NETWORK_SERVER_MONITOR="SQL Anywhere 控制台"
+MSG_OPT_DB_TOOLS="数据库工具"
+MSG_OPT_CPP_DEV_COMPONENTS="C++ 开发组件"
+MSG_OPT_SA_SAMPLES="SQL Anywhere 示例应用程序"
+MSG_OPT_ML_SAMPLES="MobiLink 服务器示例应用程序"
+MSG_OPT_UL_DEV_TOOLS="UltraLite 开发工具"
+MSG_OPT_ML_SYNC_SRV="MobiLink 同步服务器"
+MSG_OPT_ML_MONITOR="MobiLink 监控器"
+MSG_OPT_ML_PROFILER="MobiLink 分析器"
+MSG_OPT_ML_NOTIFIER_UTIL="服务器启动的同步 - MobiLink Notifier 实用程序"
+MSG_OPT_ML_ECC_ENCRYP_COMPONENTS="用于网络通信的 MobiLink 高度加密 (ECC)"
+MSG_OPT_ML_FIPS_ENCRYP_COMPONENTS="用于网络通信的 MobiLink 高度加密 (FIPS)"
+MSG_OPT_ML_RSA_ENCRYP_COMPONENTS="用于网络通信的 MobiLink 高度加密 (RSA)"
+MSG_OPT_SA_ECC_ENCRYP_COMPONENTS="用于网络通信的 SQL Anywhere 高度加密 (ECC)"
+MSG_OPT_SA_FIPS_ENCRYP_COMPONENTS="用于网络通信的 SQL Anywhere 高度加密 (FIPS)"
+MSG_OPT_SA_RSA_ENCRYP_COMPONENTS="用于网络通信的 SQL Anywhere 高度加密 (RSA)"
+MSG_OPT_ML_CLIENT_FOR_SA="SQL Anywhere 的 MobiLink 客户端"
+MSG_OPT_SR_FOR_ASE="SQL Remote for Adaptive Server Enterprise"
+MSG_OPT_SR_FOR_SA="SQL Remote for SQL Anywhere"
+MSG_OPT_RP_AGENT="复制代理"
+
+MSG_OPT_SA_PLUGIN="SQL Anywhere 插件"
+MSG_OPT_ML_PLUGIN="MobiLink 服务器插件"
+MSG_OPT_QA_PLUGIN="QAnywhere 插件"
+MSG_OPT_JCONNECT="jConnect"
+MSG_OPT_ENGLISH_HTML="英文 HTML 文档"
+MSG_OPT_GERMAN_HTML="德文 HTML 文档"
+MSG_OPT_FRENCH_HTML="法文 HTML 文档"
+MSG_OPT_JAPANESE_HTML="日文 HTML 文档"
+MSG_OPT_CHINESE_HTML="中文 HTML 文档"
+MSG_OPT_JAVA_DOC="管理工具文档"
+MSG_OPT_ENGLISH_PDF="英文版印刷手册 (PDF)"
+MSG_OPT_GERMAN_PDF="德文版印刷手册 (PDF)"
+MSG_OPT_FRENCH_PDF="法文版印刷手册 (PDF)"
+MSG_OPT_JAPANESE_PDF="日文版印刷手册 (PDF)"
+MSG_OPT_CHINESE_PDF="中文版印刷手册 (PDF)"
+MSG_TARGET_DIR="目标目录:  "
+MSG_CLOUDDATA_DIR="数据目录:  "
+MSG_SA_TARGET_DIR="SQL Anywhere"
+MSG_SADIAG_TARGET_DIR="SQL Anywhere 诊断"
+MSG_SHARED_TARGET_DIR="共享组件"
+MSG_SR_FOR_ASE_TARGET_DIR="SQL Remote for Adaptive Server Enterprise 组件"
+MSG_OPEN_SRV_CLNT_TARGET_DIR="Open Client/Open Server 字符集和区域设置"
+
+MSG_NO_OPTIONS_SELECTED_1=" 您没有选择任何选项。"
+MSG_NO_OPTIONS_SELECTED_2=" 请返回主菜单进行选择。"
+
+MSG_NO_COMPONENTS_INSTALLED_1=" 未在"
+MSG_NO_COMPONENTS_INSTALLED_2=" '\${1}' 中找到 \`get_package_name\` 组件。"
+
+MSG_VERSION_TOO_NEW_1="'\$1' 必须包含 \`get_package_name\`"
+MSG_VERSION_TOO_NEW_2=
+
+MSG_OPTIONS_HELP_1="[   ] 表示未选择该选项进行安装。"
+MSG_OPTIONS_HELP_2="[ X ] 表示已选择该选项进行安装。"
+
+MSG_INTERACTIVE_MODE_HELP_1="交互模式用法"
+MSG_INTERACTIVE_MODE_HELP_2="在使用这些命令之前，请用下面的 -regkey 设置一个密钥"
+MSG_INTERACTIVE_MODE_HELP_3="	echo <字符串>		回写字符串: 测试基本通信"
+MSG_INTERACTIVE_MODE_HELP_4="	iskeyvalid		为注册密钥返回 'valid' 或 'invalid'"
+MSG_INTERACTIVE_MODE_HELP_5="	checkdiskspace		返回所选组件需要的空间和当前可用的空间"
+MSG_INTERACTIVE_MODE_HELP_6="	var <内部变量>	        回写内部变量的值，如 OPT_N_SERVER"
+MSG_INTERACTIVE_MODE_HELP_7="	setvar <内部变量>	回写内部变量的值，如 OPT_N_SERVER"
+MSG_INTERACTIVE_MODE_HELP_8="	start			开始安装"
+MSG_INTERACTIVE_MODE_HELP_9="	exit (x)		结束此次会话"
+MSG_INTERACTIVE_MODE_HELP_10="	quit (q)		结束此次会话"
+MSG_INTERACTIVE_MODE_HELP_11="         -prefix <目录> (-p <目录>)           设置安装目录的前缀"
+MSG_INTERACTIVE_MODE_HELP_12="         -asany-dir <目录> (-ad <目录>)       设置 SA 安装目录"
+MSG_INTERACTIVE_MODE_HELP_13="         -shared-dir <目录> (-sd <目录>)      设置共享安装目录"
+MSG_INTERACTIVE_MODE_HELP_14="         -sybase-dir <目录> (-syd <目录>)     设置 sybase 安装目录"
+MSG_INTERACTIVE_MODE_HELP_15="         -regkey <密钥> (-k <密钥>)           使用 <密钥> 作为注册密钥"
+MSG_INTERACTIVE_MODE_HELP_16="         -seat-model <模式> (-m <模式>)       指定许可模式"
+MSG_INTERACTIVE_MODE_HELP_17="         -seats <数量> (-s <数量>)            指定存取设备或处理器的数量"
+MSG_INTERACTIVE_MODE_HELP_18="         -name <用户名> (-n <用户名>)         指定用户名"
+MSG_INTERACTIVE_MODE_HELP_19="         -company <公司> (-c <公司>)          指定公司名"
+MSG_INTERACTIVE_MODE_HELP_20="         -install [<包>|help]                 此处的包是指以逗号分隔的包名称列表"
+MSG_INTERACTIVE_MODE_HELP_21="                                              要获取更详细的包列表，请指定 -install help"
+
+# Use a message consisting of only a space to get a blank line
+# Use an empty message to end the sequence
+
+MSG_CL_OPTIONS_USAGE_1="用法: \${1} [开关]"
+MSG_CL_OPTIONS_USAGE_2="         开关:"
+MSG_CL_OPTIONS_USAGE_3="         -silent (-ss)                      静默安装。"
+MSG_CL_OPTIONS_USAGE_4="         -nogui                             仅使用外壳程序脚本，不尝试调用图形用户界面"
+MSG_CL_OPTIONS_USAGE_5="	 -I_accept_the_license_agreement    接受许可协议"
+MSG_CL_OPTIONS_USAGE_6="         -sqlany-dir <目录> (-ad <目录>)       设置 SA 安装目录"
+MSG_CL_OPTIONS_USAGE_7="         -regkey <密钥> (-k <密钥>)           使用 <密钥> 作为注册密钥"
+MSG_CL_OPTIONS_USAGE_8="         -seat-model <模式> (-m <模式>)   指定存取设备模式"
+MSG_CL_OPTIONS_USAGE_9="         -seats <数量> (-s <数量>)            指定存取设备或处理器的数量"
+MSG_CL_OPTIONS_USAGE_10="         -name <用户名> (-n <用户名>)   指定用户名"
+MSG_CL_OPTIONS_USAGE_11="         -company <公司> (-c <公司>)  指定公司名"
+MSG_CL_OPTIONS_USAGE_12="         -install <包>         此处的包是指以逗号分隔的包名称列表"
+MSG_CL_OPTIONS_USAGE_13="         -list_packages                     显示可用包的列表"
+MSG_CL_OPTIONS_USAGE_14="         -install_icons <目录> (-ii <目录>)   安装图标，指定 SQL Anywhere 目录"
+MSG_CL_OPTIONS_USAGE_15="         -type {CREATE|MODIFY|UPGRADE}      按照指定的类型运行安装程序"
+MSG_CL_OPTIONS_USAGE_16="         -help (-h)                         显示此帮助屏幕"
+
+#Cloud-specific options
+MSG_CLOUD_CL_OPTIONS_USAGE_1="用法:\${1} [开关]"
+MSG_CLOUD_CL_OPTIONS_USAGE_2="         开关:"
+MSG_CLOUD_CL_OPTIONS_USAGE_3="         -silent (-ss)                      静默安装。"
+MSG_CLOUD_CL_OPTIONS_USAGE_4="         -nogui                             仅使用外壳程序脚本，不尝试调用图形用户界面"
+MSG_CLOUD_CL_OPTIONS_USAGE_5="	 -I_accept_the_license_agreement    接受许可协议"
+MSG_CLOUD_CL_OPTIONS_USAGE_6="         -regkey <密钥> (-k <密钥>)           使用 <密钥> 作为注册密钥"
+MSG_CLOUD_CL_OPTIONS_USAGE_7="         -cloud-swdir <目录> (-d <目录>)	  设置云安装目录"
+MSG_CLOUD_CL_OPTIONS_USAGE_8="         -cloud-data (-cd )		  设置云数据目录"
+MSG_CLOUD_CL_OPTIONS_USAGE_9="         -cloud-swverfull		  设置云完全版本"
+MSG_CLOUD_CL_OPTIONS_USAGE_10="         -cloud-secondary (-cs )		  次级主机上新的安装"
+MSG_CLOUD_CL_OPTIONS_USAGE_11="         -cloud-additional (-ca )	  主级或次级主机上的附加安装"
+MSG_CLOUD_CL_OPTIONS_USAGE_12="         -cloud-name <云名称> (-cn <云名称>)	指定云名称"
+MSG_CLOUD_CL_OPTIONS_USAGE_13="         -cloud-language <langcode> (-cl <langcode>)	指定云的双字母语言代码"
+MSG_CLOUD_CL_OPTIONS_USAGE_14="         -cloud-company <公司> (-cc <公司>)    指定公司名称"
+MSG_CLOUD_CL_OPTIONS_USAGE_15="         -cloud-username <云用户> (-cu <云用户>)	指定云用户名"
+MSG_CLOUD_CL_OPTIONS_USAGE_16="         -cloud-userfullname <名称> (-cuf <名称>)	指定云用户的完整名称"
+MSG_CLOUD_CL_OPTIONS_USAGE_17="         -cloud-useremail <电子邮件> (-cue <电子邮件>)		指定云用户的电子邮件"
+MSG_CLOUD_CL_OPTIONS_USAGE_18="         -cloud-password <口令> (-cp <口令>)	指定用户口令"
+MSG_CLOUD_CL_OPTIONS_USAGE_19="         -cloud-encryptkey <密钥> (-ce <密钥>)		指定加密密钥"
+MSG_CLOUD_CL_OPTIONS_USAGE_20="         -cloud-securefeaturekey <密钥> (-csf <密钥>)	指定安全功能密钥"
+MSG_CLOUD_CL_OPTIONS_USAGE_21="         -cloud-tcpport <端口>	    指定主服务器的 TCPIP 端口"
+MSG_CLOUD_CL_OPTIONS_USAGE_22="         -cloud-httpport <端口>	    指定主服务器的 HTTP 端口"
+MSG_CLOUD_CL_OPTIONS_USAGE_23="         -cloud-httpsport <端口>	    指定主服务器的 HTTPS 端口"
+MSG_CLOUD_CL_OPTIONS_USAGE_24="         -cloud-identityfile <文件>  指定要用于云的身份证书"
+MSG_CLOUD_CL_OPTIONS_USAGE_25="         -cloud-identitypwd <口令> 指定云身份证书的口令"
+MSG_CLOUD_CL_OPTIONS_USAGE_26="         -install <包>                此处的包是指以逗号分隔的包名称列表"
+MSG_CLOUD_CL_OPTIONS_USAGE_27="         -list_packages                     显示可用包的列表"
+MSG_CLOUD_CL_OPTIONS_USAGE_28="         -help (-h)                         显示此帮助屏幕"
+
+# Common Errors
+ERR_OS_UNSUPPORTED="不支持此操作系统。"
+ERR_REG_INVALID="无效的注册密钥。"
+ERR_NO_SQLANY_REGKEY="失败，SQLANY_REGKEY 不能为空"
+MSG_REENTER_KEY="请重新输入注册密钥， "
+MSG_ENTER_NEW_KEY="请输入不同的注册密钥， "
+ERR_INVALID_REGISTRATION="您输入的注册密钥无效。"
+ERR_KEY_DOES_NOT_MATCH_PRODUCT="输入的密钥不能用于本产品。"
+MSG_GUI_ENTER_NEW_KEY="单击“上一步”输入不同的密钥。"
+MSG_GUI_EVALUATION="单击“下一步”安装 60 天评测版。单击“上一步”重新输入安装密钥。"
+ERR_RUNTIME_KEY="您输入了运行时版密钥。运行时版在 UNIX 上不受支持。"
+ERR_WEB_KEY="您输入了 Web 版密钥。此平台不支持 Web 版。"
+ERR_WORKGROUP_KEY="您输入了工作组版密钥。 这一版本在此平台上不受支持。"
+ERR_UNSUPPORTED_KEY="您输入的密钥未公开任何在此平台上可用的选项。"
+ERR_MULTIPLEBASE_KEY="您输入了多个基本密钥: "
+MSG_ENTER_REGISTRATION="请输入注册密钥。"
+MSG_MULTIPLE_KEYS_BUTTON="输入多个注册密钥..."
+MSG_ADDITIONAL_KEYS="其它注册密钥: "
+ERR_FATAL_ERROR_ABORT="安装程序遇上一个致命错误，将中止。"
+ERR_FATAL_ERROR_ABOUT="安装过程中发生了错误。请解决这个错误然后再次运行安装程序。"
+ERR_CLEANING_UP="正在清理..."
+
+MSG_MULTIPLE_KEYS_PROMPT_CONSOLE_1="如果您要输入多个注册密钥（例如，"
+MSG_MULTIPLE_KEYS_PROMPT_CONSOLE_2="您购买了加载项），可以通过使用逗号分隔来"
+MSG_MULTIPLE_KEYS_PROMPT_CONSOLE_3="输入多个密钥。"
+MSG_MULTIPLE_KEYS_PROMPT_GUI="如果要输入多个注册密钥（例如您购买了加载项），则单击下面的按钮。"
+
+# Common Messages
+MSG_INVALID="无效"
+MSG_VALID="有效"
+MSG_COMPLETED="已完成。"
+MSG_YES="是"
+MSG_NO="否"
+MSG_NEEDED="所需空间"
+MSG_AVAILABLE="可用空间"
+MSG_CHOICE="选择"
+MSG_NAME="名称:"
+MSG_COMPANY="公司:"
+MSG_MEGABYTE_SUFFIX="MB"
+MSG_DONE="完成"
+MSG_FINISH="结束"
+MSG_BACK="向后"
+MSG_NEXT="下一步"
+MSG_CANCEL="取消"
+MSG_PRODUCT_NAME="SQL Anywhere"
+MSG_PRODUCT_NAME_AND_VERSION="${MSG_PRODUCT_NAME} ${__VERNUM}"
+
+MSG_EXIT_INTERACTIVE_MODE="退出交互模式。"
+MSG_ASK_REGISTRATION_KEY="如果您已收到一组由 25 个字符组成的注册密钥或安装密钥，现在请输入它。"
+MSG_REENTER_REG_KEY="请重新输入注册密钥或安装密钥。"
+MSG_INSTALL_EVALUATION="或按 Enter 键安装 60 天评测版。"
+MSG_Y_TO_ACCEPT_N_TO_REFUSE="按 Y 键接受，或按 N 键拒绝"
+MSG_HIT_ENTER_TO_RETURN_TO_MENU="按 ENTER 键返回菜单。"
+MSG_HIT_ENTER_TO_RETURN_TO_MAIN_MENU="按 ENTER 键返回主菜单"
+MSG_HIT_ENTER_TO_TRY_AGAIN="按 ENTER 键重试"
+MSG_PRESS_Q_TO_QUIT="按 'q' 键退出..."
+MSG_ENTER_TO_CONTINUE="按 ENTER 键继续..."
+MSG_ANY_KEY_TO_CONTINUE="按任意键继续..."
+MSG_ASK_CONTINUE="是否继续？"
+
+MSG_OBTAIN_DEV_KEY_1="如果您没有注册密钥，可以"
+MSG_OBTAIN_DEV_KEY_2="从以下网站免费获取: "
+MSG_OBTAIN_DEV_KEY_3="http://www.sybase.com/sa${__VERNUM}_registration_cd"
+
+MSG_OBTAIN_CLOUD_KEY_1="如果您没有注册密钥，可以"
+MSG_OBTAIN_CLOUD_KEY_2="从以下网站免费获取: "
+MSG_OBTAIN_CLOUD_KEY_3="http://response.sybase.com/forms/SQLAOnDemandReg"
+
+MSG_INSTALL_MODE="请选择安装类型："
+MSG_INSTALL_CREATE="创建新安装"
+MSG_INSTALL_MODIFY="修改现有安装"
+MSG_INSTALL_UPGRADE="升级现有安装"
+
+MSG_INSTALL_DBCLOUD_INSTALLTYPE="请选择云主机类型:"
+MSG_INSTALL_DBCLOUD_INSTALLTYPE_PRIMARY="主级主机 - 新安装"
+MSG_INSTALL_DBCLOUD_INSTALLTYPE_SECONDARY="次级主机 - 新安装"
+MSG_INSTALL_DBCLOUD_INSTALLTYPE_ADDITIONAL="主级或次级主机上的附加安装"
+
+# Licensing Messages
+MSG_ENTER_SERVER_LICENSE_INFO="请输入以下服务器许可信息: "
+MSG_SERVER_LICENSE_INFO="服务器许可信息: "
+MSG_ENTER_NAME="输入您的姓名"
+MSG_ENTER_COMPANY="输入公司名称"
+MSG_LICENSE_TYPE="许可类型:"
+MSG_LIC_CPU_BASED="基于 CPU 的模式。"
+MSG_LIC_CORE_BASED="基于核心的模式。"
+MSG_LIC_NET_BASED="联网式存取设备（基于存取设备）模式。"
+MSG_PROCESSOR_NAME="处理器"
+MSG_CORE_NAME="内核"
+MSG_SEAT_NAME="存取设备"
+MSG_LICENSED_SEATS="授权的存取设备:"
+MSG_LICENSED_CORES="许可的核心:"
+MSG_LICENSED_PROCESSORS="授权的处理器:"
+
+MSG_ENTER_DBCLOUD_LICENSE_INFO="请输入以下云许可信息: "
+MSG_DBCLOUD_LICENSE_INFO="云许可信息: "
+MSG_DBCLOUD_NAME="输入云名称:"
+MSG_DBCLOUD_LANG="输入云的双字母语言代码（例如 EN）:"
+MSG_DBCLOUD_COMPANY="输入公司名称:"
+MSG_DBCLOUD_KEY="设置加密密钥"
+MSG_DBCLOUD_KEY_CONFIRM="重新输入加密密钥"
+
+MSG_DEVELOPER_EDITION_NAME="（开发人员版）"
+
+ERR_NO_USERNAME="未指定用户名。"
+ERR_NO_COMPANY_NAME="未指定公司名。"
+ERR_NO_SEAT_OR_PROC_MODEL="未指定存取设备或处理器模式。"
+ERR_NO_SEAT_OR_PROC="未指定存取设备或处理器数量。"
+
+# DBCloud config
+MSG_DBCLOUD_ASK_CONFIG_1="安装程序可指导您完成整个云安装过程。"
+MSG_DBCLOUD_ASK_CONFIG_2=""
+MSG_DBCLOUD_ASK_CONFIG_3=""
+MSG_DBCLOUD_ASK_CONFIG_4=""
+MSG_DBCLOUD_ASK_CONFIG_5=""
+
+MSG_DBCLOUD_CONFIG_CLI_Q="是否现在创建新的云？"
+MSG_DBCLOUD_CONFIG_GUI_Q="安装完成时创建新的云(_C)"
+
+MSG_DBCLOUD_CONFIG="请输入以下云设置信息"
+MSG_DBCLOUD_FULLNAME="完整名称"
+MSG_DBCLOUD_EMAIL="电子邮件"
+MSG_DBCLOUD_USERNAME="设置云用户 ID"
+MSG_DBCLOUD_PASSWORD="设置云口令"
+MSG_DBCLOUD_PASSWORD_CONFIRM="重新输入口令"
+
+MSG_DBCLOUD_CONFIG_PORTS="请为主服务器输入以下端口信息"
+MSG_DBCLOUD_CONFIG_PORTS_NOTE1="重要:请验证指定端口是否可用，然后再继续"
+MSG_DBCLOUD_CONFIG_PORTS_NOTE2="此步骤。建议使用提供的缺省设置。如果"
+MSG_DBCLOUD_CONFIG_PORTS_NOTE3="不使用端口缺省设置，则连接到此服务器时"
+MSG_DBCLOUD_CONFIG_PORTS_NOTE4="必须包含此端口号（连接字符串和 URL）。"
+MSG_DBCLOUD_CONFIG_PORT_TCPIP="TCPIP"
+MSG_DBCLOUD_CONFIG_PORT_HTTP="HTTP"
+MSG_DBCLOUD_CONFIG_PORT_HTTPS="HTTPS"
+
+MSG_DBCLOUD_CONFIGURING="正在配置云..."
+
+ERR_DBCLOUD_USERNAME_EMPTY="错误:用户名不能为空。请重试。"
+ERR_DBCLOUD_PASSWORD_MISMATCH="错误:口令不匹配。请重试。"
+ERR_DBCLOUD_PASSWORD_EMPTY="错误:口令不能为空。请重试。"
+ERR_DBCLOUD_KEY_MISMATCH="错误:密钥不必配。请重试。"
+ERR_DBCLOUD_KEY_EMPTY="错误:密钥不能为空。请重试。"
+
+# Setup Messages
+MSG_ENTER_INSTALL_DIR="请输入安装目录"
+MSG_ENTER_CLOUD_DATA_DIR="请输入要存储云数据的目录"
+MSG_ENTER_INSTALL_DIR_FULL_PATH="请指定目录的完整路径名。"
+
+# Install Option
+MSG_ASK_REVIEW_README="要查看自述文件吗？"
+MSG_ASK_DELETE_FILES="文件将被删除，确实要这样做？"
+MSG_ASK_OVERWRITE_FILES="文件将被覆盖，确实要这样做？"
+MSG_ASK_AGREE_LICENSE="就指定的安装位置而言，我同意 Sybase 许可条款"
+MSG_ASK_ARE_OPTIONS_SATISFACTORY="您认为这些设置符合您的要求吗？"
+MSG_ASK_EXIT_SETUP="您已选择退出安装程序。确实要这样做？"
+
+MSG_GUI_VIEW_README="查看自述文件"
+
+MSG_CREATING_SC_RES_FILE="正在配置 Sybase Central: "
+
+MSG_LICENSING_SA="正在授权 SQL Anywhere..."
+MSG_LICENSING_ML="正在授权 MobiLink 服务器..."
+MSG_CHECKING_FOR_AVAILABLE_DISK_SPACE="正在检查可用磁盘空间... "
+
+# Option Messages
+MSG_SELECT_OPTIONS="请选择要安装的选项:"
+MSG_SELECT_INSTALL_COMPONENTS="请选择要安装的组件:"
+MSG_SELECT_DEPLOY_COMPONENTS="请选择要部署的组件:"
+
+MSG_CAT_DATABASES="数据库"
+MSG_CAT_DATABASES_DESC="可用的数据库格式"
+MSG_CAT_SYNC="同步"
+MSG_CAT_SYNC_DESC="同步功能"
+MSG_CAT_SQLANY32="SQL Anywhere（32 位）"
+MSG_CAT_SQLANY32_DESC="适用于 32 位平台的功能完备的关系数据库"
+MSG_CAT_SQLANY64="SQL Anywhere（64 位）"
+MSG_CAT_SQLANY64_DESC="适用于 64 位平台的功能完备的关系数据库"
+MSG_OPT_SQLANY32="SQL Anywhere 服务器"
+MSG_OPT_SQLANY32_DESC="适用于 32 位平台的功能完备的关系数据库服务器"
+MSG_OPT_SQLANY64="SQL Anywhere 服务器"
+MSG_OPT_SQLANY64_DESC="适用于 64 位平台的功能完备的关系数据库服务器"
+MSG_OPT_SQLANY_CLIENT32="SQL Anywhere 客户端"
+MSG_OPT_SQLANY_CLIENT32_DESC="适用于 32 位平台的关系数据库客户端组件"
+MSG_OPT_SQLANY_CLIENT64="SQL Anywhere 客户端"
+MSG_OPT_SQLANY_CLIENT64_DESC="适用于 64 位平台的关系数据库客户端组件"
+MSG_OPT_ML32="MobiLink（32 位）"
+MSG_OPT_ML32_DESC="适用于 32 位平台的数据同步和消息传递"
+MSG_OPT_ML64="MobiLink（64 位）"
+MSG_OPT_ML64_DESC="适用于 64 位平台的数据同步和消息传递"
+MSG_OPT_MLSRV32="MobiLink 服务器（32 位）"
+MSG_OPT_MLSRV32_DESC="适用于 32 位平台的数据同步和消息传递服务器"
+MSG_OPT_MLSRV64="MobiLink 服务器（64 位）"
+MSG_OPT_MLSRV64_DESC="适用于 64 位平台的数据同步和消息传递服务器"
+MSG_OPT_RELAYSERVER32="中继服务器（32 位）"
+MSG_OPT_RELAYSERVER32_DESC="使用于企业数据传输的基于 HTTP 的通信体系结构具有安全、负载平衡和容错能力"
+MSG_OPT_RELAYSERVER64="中继服务器（64 位）"
+MSG_OPT_RELAYSERVER64_DESC="使用于企业数据传输的基于 HTTP 的通信体系结构具有安全、负载平衡和容错能力"
+MSG_OPT_QANYWHERE="QAnywhere"
+MSG_OPT_QANYWHERE_DESC="用于在应用程序之间发送消息的组件"
+MSG_OPT_ULTRALITE="UltraLite"
+MSG_OPT_ULTRALITE_DESC="适用于小型设备的精简关系数据库"
+MSG_OPT_DBREMOTE="SQL Remote"
+MSG_OPT_DBREMOTE_DESC="SQL Anywhere 数据库之间的数据双向复制"
+MSG_OPT_DBREMOTE32="SQL Remote（32 位）"
+MSG_OPT_DBREMOTE32_DESC="SQL Anywhere 数据库之间的数据双向复制"
+MSG_OPT_DBREMOTE64="SQL Remote（64 位）"
+MSG_OPT_DBREMOTE64_DESC="SQL Anywhere 数据库之间的数据双向复制"
+MSG_OPT_REPAGENT="SQL Anywhere 复制代理"
+MSG_OPT_REPAGENT_DESC="Sybase Replication Server 的“日志传送管理器”(LTM) 组件"
+MSG_OPT_ADMINTOOLS32="管理工具（32 位）"
+MSG_OPT_ADMINTOOLS32_DESC="Sybase Central 和 Interactive SQL 之类的管理工具"
+MSG_OPT_ADMINTOOLS64="管理工具（64 位）"
+MSG_OPT_ADMINTOOLS64_DESC="Sybase Central 和 Interactive SQL 之类的管理工具"
+MSG_OPT_SAMON="SQL Anywhere 监控器"
+MSG_OPT_SAMON_DESC="在网络上监控 SQL Anywhere 数据库服务器"
+MSG_OPT_SAMON32="SQL Anywhere 监控器(32 位)"
+MSG_OPT_SAMON32_DESC="在网络上监控 SQL Anywhere 数据库服务器"
+MSG_OPT_SAMON64="SQL Anywhere 监控器(64 位)"
+MSG_OPT_SAMON64_DESC="在网络上监控 SQL Anywhere 数据库服务器"
+MSG_OPT_SAMON_DEPLOY="SQL Anywhere 监控器"
+MSG_OPT_SAMON_DEPLOY_DESC="在网络上监控 SQL Anywhere 数据库服务器"
+MSG_OPT_SAMPLES="示例"
+MSG_OPT_SAMPLES_DESC="说明如何使用各种 SQL Anywhere 功能的示例"
+MSG_OPT_ECC="ECC 高度加密"
+MSG_OPT_ECC_DESC="对通过 TCP/IP 网络传输的数据进行高度加密"
+MSG_OPT_FIPS="FIPS 认可的高度加密"
+MSG_OPT_FIPS_DESC="对通过 TCP/IP 网络传输的数据进行 FIPS 认证的高度加密。"
+MSG_OPT_HIGH_AVAIL="高可用性"
+MSG_OPT_HIGH_AVAIL_DESC="Veritas 聚簇服务器代理和用于故障转移的数据库镜像"
+MSG_OPT_SELINUX="SELinux 策略源"
+MSG_OPT_SELINUX_DESC="用于安全增强的 Linux 的策略源"
+MSG_OPT_UPGRADE="版本升级"
+MSG_OPT_UPGRADE_DESC="将 SQL Anywhere 许可升级到另一版本"
+MSG_OPT_IN_MEMORY="内存模式"
+MSG_OPT_IN_MEMORY_DESC="完全在内存中运行 SQL Anywhere 数据库的功能"
+MSG_OPT_SCALEOUTNODES="只读向外扩展"
+MSG_OPT_SCALEOUTNODES_DESC="减负 (Offload) 操作需要拥有对数据库的只读访问权限，以便仅读取数据库的副本"
+MSG_OPT_DBCLOUD="SQL Anywhere OnDemand"
+MSG_OPT_DBCLOUD_DESC="在网络上创建 SQL Anywhere 数据库服务器的云"
+
+MSG_OPT_HTML_EN_DOC="英文 HTML 文档"
+MSG_OPT_HTML_DE_DOC="德文 HTML 文档"
+MSG_OPT_HTML_FR_DOC="法文 HTML 文档"
+MSG_OPT_HTML_JA_DOC="日文 HTML 文档"
+MSG_OPT_HTML_ZH_DOC="中文 HTML 文档"
+MSG_OPT_PDF_EN_DOC="英文版印刷手册 (PDF)"
+MSG_OPT_PDF_DE_DOC="德文版印刷手册 (PDF)"
+MSG_OPT_PDF_FR_DOC="法文版印刷手册 (PDF)"
+MSG_OPT_PDF_JA_DOC="日文版印刷手册 (PDF)"
+MSG_OPT_PDF_ZH_DOC="中文版印刷手册 (PDF)"
+MSG_OPT_ECLIPSE_EN_DOC="英文文档"
+MSG_OPT_ECLIPSE_DE_DOC="德文文档"
+MSG_OPT_ECLIPSE_JA_DOC="日文文档"
+MSG_OPT_ECLIPSE_ZH_DOC="中文文档"
+
+# Desktop Icons
+MSG_QUESTION_ICONS="您是否要为 \$1 添加应用程序菜单项？"
+MSG_QUESTION_KDE="是否将 SQL Anywhere 图标添加到当前用户的 KDE 台式机上吗？"
+MSG_KDE_NOT_FOUND="找不到 KDE 本地台式机。"
+MSG_QUESTION_GNOME="是否将 SQL Anywhere 图标添加到当前用户的 GNOME 台式机上吗？"
+MSG_GNOME_NOT_FOUND="找不到 GNOME 本地台式机。"
+MSG_ICON_REMOVAL_INSTRUCTIONS="要删除图标，请使用脚本 \${1}/remicons。"
+MSG_MISSING_ICON_DESTINATION="尝试创建图标之前，必须在 bin32 或 bin64 目录中编写脚本 sa_config 的源代码。"
+
+# Feature tracking
+MSG_QUESTION_FEATURE_TRACKING_1="您是否允许 \$1 将"
+MSG_QUESTION_FEATURE_TRACKING_2="产品/功能用法信息发送到 SAP AG？"
+MSG_QUESTION_FEATURE_TRACKING_3="有关如何使用已收集数据的信息，"
+MSG_QUESTION_FEATURE_TRACKING_4="请参见:http://scn.sap.com/docs/DOC-35055"
+MSG_QUESTION_FEATURE_TRACKING_5="不会收集或发送个人信息。"
+MSG_GUI_FEATURE_TRACKING_1="允许 \$1 将产品/功能用法信息发送到 SAP AG。(_S)"
+MSG_GUI_FEATURE_TRACKING_2="不会收集或发送任何个人信息。"
+MSG_GUI_FEATURE_TRACKING_3=""
+MSG_GUI_FEATURE_TRACKING_4="如何使用收集的数据"
+MSG_MAC_FEATURE_TRACKING_1="允许 \$1 将产品/功能用法信息发送到 SAP AG。"
+MSG_MAC_FEATURE_TRACKING_2="不会收集或发送任何个人信息。"
+MSG_MAC_FEATURE_TRACKING_3=""
+MSG_MAC_FEATURE_TRACKING_4="如何使用收集的数据"
+
+# Icon names
+MSG_ICON_64BIT="（64 位）"
+MSG_ICON_32BIT="（32 位）"
+MSG_ICON_NETWORK_SERVER="网络服务器"
+MSG_ICON_PERSONAL_SERVER="个人服务器"
+MSG_ICON_START_SERVER_MONITOR="启动 SQL Anywhere 监控器"
+MSG_ICON_STOP_SERVER_MONITOR="停止 SQL Anywhere 监控器"
+MSG_ICON_SERVER_MONITOR_CONSOLE="浏览 SQL Anywhere 监控器数据"
+MSG_ICON_NETWORK_SERVER_64BIT="\${MSG_ICON_NETWORK_SERVER} \${MSG_ICON_64BIT}"
+MSG_ICON_NETWORK_SERVER_32BIT="\${MSG_ICON_NETWORK_SERVER} \${MSG_ICON_32BIT}"
+MSG_ICON_PERSONAL_SERVER_64BIT="\${MSG_ICON_PERSONAL_SERVER} \${MSG_ICON_64BIT}"
+MSG_ICON_PERSONAL_SERVER_32BIT="\${MSG_ICON_PERSONAL_SERVER} \${MSG_ICON_32BIT}"
+MSG_ICON_START_SERVER_MONITOR_64BIT="\${MSG_ICON_START_SERVER_MONITOR} \${MSG_ICON_64BIT}"
+MSG_ICON_START_SERVER_MONITOR_32BIT="\${MSG_ICON_START_SERVER_MONITOR} \${MSG_ICON_32BIT}"
+MSG_ICON_STOP_SERVER_MONITOR_64BIT="\${MSG_ICON_STOP_SERVER_MONITOR} \${MSG_ICON_64BIT}"
+MSG_ICON_STOP_SERVER_MONITOR_32BIT="\${MSG_ICON_STOP_SERVER_MONITOR} \${MSG_ICON_32BIT}"
+MSG_ICON_SERVER_MONITOR="SQL Anywhere 监控器"
+MSG_ICON_SERVER_MONITOR_64BIT="\${MSG_ICON_SERVER_MONITOR} \${MSG_ICON_64BIT}"
+MSG_ICON_SERVER_MONITOR_32BIT="\${MSG_ICON_SERVER_MONITOR} \${MSG_ICON_32BIT}"
+MSG_ICON_ADMINTOOLS="管理工具"
+MSG_ICON_DBISQL="Interactive SQL"
+MSG_ICON_DBISQL_64BIT="\${MSG_ICON_DBISQL} \${MSG_ICON_64BIT}"
+MSG_ICON_DBISQL_32BIT="\${MSG_ICON_DBISQL} \${MSG_ICON_32BIT}"
+MSG_ICON_SCENTRAL="Sybase Central"
+MSG_ICON_SCENTRAL_64BIT="\${MSG_ICON_SCENTRAL} \${MSG_ICON_64BIT}"
+MSG_ICON_SCENTRAL_32BIT="\${MSG_ICON_SCENTRAL} \${MSG_ICON_32BIT}"
+MSG_ICON_MLMON="MobiLink 监控器"
+MSG_ICON_MLPROF="MobiLink 分析器"
+MSG_ICON_MLPROF_64BIT="\${MSG_ICON_MLPROF} \${MSG_ICON_64BIT}"
+MSG_ICON_MLPROF_32BIT="\${MSG_ICON_MLPROF} \${MSG_ICON_32BIT}"
+MSG_ICON_DBCONSOLE="SQL Anywhere 控制台"
+MSG_ICON_DBCONSOLE_64BIT="\${MSG_ICON_DBCONSOLE} \${MSG_ICON_64BIT}"
+MSG_ICON_DBCONSOLE_32BIT="\${MSG_ICON_DBCONSOLE} \${MSG_ICON_32BIT}"
+MSG_ICON_UPSA="检查更新"
+MSG_ICON_DCX="DocCommentXchange"
+MSG_ICON_DOCUMENTATION="文档"
+MSG_ICON_DOWNLOAD_DOCUMENTATION="下载文档"
+MSG_ICON_HELP_HTML="联机手册"
+MSG_ICON_HELP_PDF="联机手册 - PDF 格式"
+MSG_ICON_READ_ME="自述文件"
+MSG_ICON_ONLINE_RESOURCES="SQL Anywhere 在线资源"
+MSG_ICON_SQLANY_DOCUMENTATION="SQL Anywhere 文档"
+
+# Samples setup
+MSG_SAMPLES_DEST_DIR="输入示例副本的目标目录"
+MSG_SAMPLES_COPYING="正在复制示例..."
+MSG_DATA_SOURCES="正在安装数据源... "
+MSG_SAMPLE_ENV="正在设置 sample_env 脚本... "
+MSG_ADDITIONAL_ODBC_SETUP="其它 ODBC 安装"
+MSG_MULTIPLE_ODBC_DRIVERS="注意: 您的安装具有多个可能的 ODBC 驱动程序。"
+
+# Start MobiLink with messaging script
+MSG_ENTER_MOBILINK_PROPERTIES_FILE="输入装有 QAnywhere Messaging 的 MobiLink 的示例属性文件的完整路径名"
+MSG_STARTING_ML_DEMO="正在启动装有 Messaging Demo 的 MobiLink... "
+
+# for cloudenv.sh
+MSG_DBCLOUD_SETTING_ENV="正在设置云环境... "
+
+# sa_config comments
+MSG_COMMENT_SA_LOCATION="以下行设置 SA 位置。"
+MSG_COMMENT_SHARED_LOCATION="以下行设置共享目录位置。"
+MSG_COMMENT_DIAG_LOCATION="以下行设置诊断目录位置。"
+MSG_COMMENT_OCOS_LOCATION="以下行将 Open Client/Open Server 可执行文件添加到路径。"
+MSG_COMMENT_SC_PATH="以下行将 Sybase Central 添加到路径。"
+MSG_COMMENT_SA_PATH="以下行将 SA 二进制内容添加到路径。"
+MSG_ADDING_OCOS_TO_LIBPATH="以下行将 Open Client/Open Server 库添加到库路径。"
+MSG_DONT_COMMENT_SALIB="必须设置以下行，以装载 SA 的各种共享对象"
+
+MSG_DONT_COMMENT_OCOS_1="必须设置以下行，以便 Open Client/Open Server"
+MSG_DONT_COMMENT_OCOS_2="库可以找到字符集和区域设置目录。"
+
+MSG_OCOS_CHARSET_LIB_1="必须设置以下行，以便 Open Client/Open Server"
+MSG_OCOS_CHARSET_LIB_2="库可以找到字符集和区域设置目录。"
+
+# Component Errors
+ERR_MISSING_NET_SERVER="无法安装网络服务器。文件缺失或注册密钥无效。"
+ERR_MISSING_JAVA_DOC="无法安装SA Java 文档。文件缺失或注册密钥无效。"
+ERR_MISSING_DBCONSOLE="无法安装 SQL Anywhere 控制台。文件缺失或注册密钥无效。"
+ERR_MISSING_PERSONAL_SERVER="无法安装个人服务器。文件缺失或注册密钥无效。"
+ERR_MISSING_UL_DEV="无法安装 UltraLite 开发工具。文件缺失或注册密钥无效。"
+ERR_MISSING_ML_MONITOR="无法安装 MobiLink 监控器。文件缺失或注册密钥无效。"
+ERR_MISSING_REPLICATION="无法安装复制代理。文件缺失或注册密钥无效。"
+ERR_MISSING_SQL_REMOTE_ASE="无法安装 SQL Remote ASE。文件缺失或注册密钥无效。"
+ERR_MISSING_MLSERVER="无法安装 MobiLink 服务器。文件缺失或注册密钥无效。"
+ERR_MISSING_DBTOOLS="无法安装数据库工具。文件缺失或注册密钥无效。"
+ERR_MISSING_ML_SAMPLES="无法安装 MobiLink 服务器示例。文件缺失或注册密钥无效。"
+ERR_MISSING_MLSIS="无法安装服务器启动的同步。文件缺失或注册密钥无效。"
+ERR_MISSING_NET_CLIENT="无法安装网络客户端。文件缺失或注册密钥无效。"
+ERR_MISSING_NET64_CLIENT="无法安装 64 位网络客户端。文件缺失或注册密钥无效。"
+ERR_MISSING_NET32_CLIENT="无法安装 32 位网络客户端。文件缺失或注册密钥无效。"
+ERR_MISSING_ISQL="无法安装 Interactive SQL。文件缺失或注册密钥无效。"
+ERR_MISSING_JAVA="无法安装数据库中的 Java 组件。文件缺失或注册密钥无效。"
+ERR_MISSING_DEVTOOLS="无法安装 C++ 开发组件。文件缺失或注册密钥无效。"
+ERR_MISSING_SA_ECC_ENCRYPTION="无法安装 SQL Anywhere 加密 (ECC)。文件缺失或注册密钥无效。"
+ERR_MISSING_SA_FIPS_ENCRYPTION="无法安装 SQL Anywhere 加密 (FIPS)。 文件缺失或注册密钥无效。"
+ERR_MISSING_SA_RSA_ENCRYPTION="无法安装 SQL Anywhere 加密 (RSA)。文件缺失或注册密钥无效。"
+ERR_MISSING_MLCLIENT="无法安装 MobiLink 客户端。文件缺失或注册密钥无效。"
+ERR_MISSING_SAMPLES="无法安装 SQL Anywhere 示例。文件缺失或注册密钥无效。"
+ERR_MISSING_SQL_REMOTE_SA="无法安装 SQL Remote SA。文件缺失或注册密钥无效。"
+ERR_MISSING_ML_ECC_ENCRYPTION="无法安装 MobiLink 加密 (ECC)。文件缺失或注册密钥无效。"
+ERR_MISSING_ML_FIPS_ENCRYPTION="无法安装 MobiLink 加密 (FIPS)。文件缺失或注册密钥无效。"
+ERR_MISSING_ML_RSA_ENCRYPTION="无法安装 MobiLink 加密 (RSA)。文件缺失或注册密钥无效。"
+ERR_MISSING_HIGH_AVAIL="无法安装高可用性。文件缺失或注册密钥无效。"
+
+# EBF INSTALL ONLY
+
+MSG_CLEANING_UP_PLEASE_WAIT="正在清理，请稍候..."
+MSG_ASK_RENAME_UPDATED_FILES="是否重命名已更新的文件？"
+
+# Minimum system requirements
+MSG_CHECKING_SYSTEM_REQUIREMENTS="检查系统要求..."
+MSG_SYSTEM_REQUIREMENTS_NOT_MET_1="警告: 似乎您的系统不满足安装"
+MSG_SYSTEM_REQUIREMENTS_NOT_MET_2="此产品的最小系统要求。"
+MSG_SYSTEM_REQUIREMENTS_NOT_MET_3=" "
+MSG_SYSTEM_REQUIREMENTS_NOT_MET_4="有关运行 SQL Anywhere ${__VERNUM} 所需操作系统补丁程序"
+MSG_SYSTEM_REQUIREMENTS_NOT_MET_5="的完整列表，请访问"
+MSG_SYSTEM_REQUIREMENTS_NOT_MET_6="http://www.ianywhere.com/products/supported_platforms.html"
+
+MSG_ENSURE_YOU_HAVE_LATEST_PATCHES_1="注意: 有关运行 SQL Anywhere ${__VERNUM} 所需操作系统补丁程序"
+MSG_ENSURE_YOU_HAVE_LATEST_PATCHES_2="      的完整列表，请访问"
+MSG_ENSURE_YOU_HAVE_LATEST_PATCHES_3="      http://www.ianywhere.com/products/supported_platforms.html"
+
+# Core only EBFS
+MSG_INSTALLED_COMPONENTS_NOT_IN_EBF="将安装以下组件，但此安装程序不会对其进行更新:"
+MSG_INSTALLED_COMPONENTS_NOT_IN_UPGRADE="将安装以下组件，但此安装程序无法对其进行更新:"
+
+# GTK GUI resources with mnemonics
+# Attention localizers: If the target language uses Roman letters, the mnemonic letter
+# is preceded by an underscore. Otherwise (i.e., Japanese and Chinese), the mnemonic
+# letter follows the resource, preceded by an underscore and enclosed in parentheses.
+# e.g., "N_ame:" becomes "XXXX(_a)"
+MSG_GUI_LICENSE_ACCEPT="我接受此协议的条款(_A)。"
+MSG_GUI_LICENSE_REJECT="我不接受此协议的条款(_D)。"
+MSG_GUI_INSTALL_CREATE="创建新安装(_N)"
+MSG_GUI_INSTALL_MODIFY="修改现有安装(_M)"
+MSG_GUI_INSTALL_UPGRADE="升级现有安装(_U)"
+MSG_GUI_NAME="名称(_A):"
+MSG_GUI_COMPANY="公司(_O):"
+MSG_GUI_LICENSED_SEATS="授权的存取设备(_L):"
+MSG_GUI_LICENSED_CORES="授权的核心(_L):"
+MSG_GUI_LICENSED_PROCESSORS="授权的处理器(_L):"
+MSG_GUI_LIC_CPU_BASED="基于 CPU 的模式(_U)"
+MSG_GUI_LIC_NET_BASED="联网存取设备（每存取设备）模式(_P)。"
+
+MSG_ADDITIONAL_ACTIONS="请指定是否要执行以下附加操作之一:"
+
+MSG_GUI_ICONS="为 \$1 创建应用程序菜单项(_A)"
+
+MSG_GUI_ASK_CHECK_FOR_UPDATES="立即检查 SQL Anywhere 的更新吗(_C)？"
+MSG_GUI_STARTSYBCENTRAL="启动 Sybase Central 并装载 SQL Anywhere 示例数据库(_S)。"
+MSG_GUI_SYBCENTRAL_SHORTCUT="为 Sybase Central（用于管理 SQL Anywhere 的工具）创建桌面快捷方式(_D)"
+MSG_ASK_STARTSYBCENTRAL="是否要现在启动 Sybase Central 并装载 SQL Anywhere 样本数据库?"
+MSG_ASK_SYBCENTRAL_SHORTCUT="是否要现在为 Sybase Central 创建桌面快捷方式?"
+
+MSG_MAC_LICENSE_ACCEPT="我接受此协议的条款。"
+MSG_MAC_LICENSE_REJECT="我不接受此协议的条款。"
+MSG_OVERWRITE="替换"
+MSG_KEEP_EXISTING="保留现有的"
+MSG_UPGRADE="升级"
+
+MSG_OPT_64BIT="（64 位）"
+MSG_OPT_32BIT="（32 位）"
+
+# Check for Updates panel
+MSG_ASK_CHECK_FOR_UPDATES="您希望现在检查更新吗？"
+MSG_CHECKING_FOR_UPDATES="正在检查更新... "
+MSG_ERROR_CHECKING_FOR_UPDATES="检查更新时发生错误。请稍后再试。"
+MSG_GUI_CHECK_FOR_UPDATES="检查更新"
+
+# Error messages used when running in silent mode
+MSG_SILENT_MUST_ACCEPT_LICENSE_1="您必须通过使用"
+MSG_SILENT_MUST_ACCEPT_LICENSE_2="-I_accept_the_license_agreement 开关接受此许可协议才能使用安静模式"
+
+MSG_SILENT_REGISTRATION_KEY_INVALID_1="所提供的注册密钥无效。请验证您输入了"
+MSG_SILENT_REGISTRATION_KEY_INVALID_2="正确的密钥并重试。"
+
+MSG_SILENT_CANNOT_USE_DEVELOPER_EDITION_1="所提供的注册密钥针对 SQL Anywhere"
+MSG_SILENT_CANNOT_USE_DEVELOPER_EDITION_2="的开发人员版。无法以安静模式安装开发人员版。"
+
+MSG_SILENT_CANNOT_USE_EDUCATIONAL_EDITION_1="所提供的注册密钥针对 SQL Anywhere"
+MSG_SILENT_CANNOT_USE_EDUCATIONAL_EDITION_2="教育版。 无法以安静模式安装教育版。"
+
+MSG_SILENT_CANNOT_USE_EVAL_LICENSE_1="所提供的注册密钥针对 SQL Anywhere"
+MSG_SILENT_CANNOT_USE_EVAL_LICENSE_2="的评测版。无法以安静模式安装评测版。"
+
+MSG_SILENT_CANNOT_USE_WEB_EDITION_LICENSE_1="所提供的注册密钥针对 SQL Anywhere Web 版。"
+MSG_SILENT_CANNOT_USE_WEB_EDITION_LICENSE_2="无法以安静模式安装 Web 版。"
+
+MSG_SILENT_NO_PACKAGES_SELECTED_1="您没有为安装选择任何选项。请使用 –install 开关指定"
+MSG_SILENT_NO_PACKAGES_SELECTED_2="要安装的软件包"
+
+MSG_SILENT_NO_LICENSE_NAME_PROVIDED_1="所选选项中至少有一项要求您指定名称"
+MSG_SILENT_NO_LICENSE_NAME_PROVIDED_2="以进行授权。请使用 -name 开关提供用于授权的"
+MSG_SILENT_NO_LICENSE_NAME_PROVIDED_3="名称。"
+
+MSG_SILENT_MUST_PROVIDE_REGISTRATION_KEY_1="要使用静默安装，必须提供注册密钥。请指定"
+MSG_SILENT_MUST_PROVIDE_REGISTRATION_KEY_2="有效注册密钥，然后重试。"
+
+MSG_SILENT_MUST_PROVIDE_REGISTRATION_KEY_TO_SELECT_1="必须提供注册密钥才能在命令行上选择"
+MSG_SILENT_MUST_PROVIDE_REGISTRATION_KEY_TO_SELECT_2="软件包。请指定有效注册密钥，然后重试。"
+
+MSG_SILENT_MUST_PROVIDE_REGISTRATION_KEY_TO_LIST_1="必须提供注册密钥才能在命令行上列出"
+MSG_SILENT_MUST_PROVIDE_REGISTRATION_KEY_TO_LIST_2="可用软件包。请指定有效注册密钥，然后重试。"
+
+MSG_SILENT_INVALID_PACKAGE_NAMES_1="下列选项名称无效，或未被所提供的注册密钥"
+MSG_SILENT_INVALID_PACKAGE_NAMES_2="公开:"
+
+MSG_SILENT_AVAILABLE_PACKAGES="可用于安装的选项:"
+
+# For the web edition native packages
+MSG_LICENSED_FILES="以下程序被授权:"
+MSG_LICENSED_FILES_NONE="找不到授权文件。"
+
+# SQL Anywhere Monitor
+MSG_SAMON_SERVICE_1="SQL Anywhere 监控器监听 4950 端口并将持续运行。"
+MSG_SAMON_SERVICE_2="在引导时安装程序会创建服务以启动 SQL Anywhere 监控器。 "
+MSG_SAMON_SERVICE_3=" "
+MSG_SAMON_SERVICE_4=" "
+MSG_SAMON_SERVICE_5="注意:您必须具有管理员权限才能创建该服务。"
+MSG_SAMON_SERVICE_CLI_Q="是否希望创建服务？"
+
+# '_' is used to specify mnemonic below
+MSG_SAMON_SERVICE_GUI_Q="创建 SQL Anywhere 监控器服务并启动 SQL Anywhere 监控器(_R)"
+
+MSG_SAMON_SERVICE_ERROR="创建 SQL Anywhere 监控器服务时出错"
+
+MSG_SAMON_MIGRATE_RESOURCES_CLI_Q="迁移现有 SQL Anywhere 监控器资源?"
+MSG_SAMON_MIGRATE_RESOURCES_GUI_Q="迁移现有 SQL Anywhere 监控器资源(_M)"
+MSG_SAMON_MIGRATION="正在迁移 SQL Anywhere 监控器数据库"
+
+MSG_SAMON_MIGRATION_FAILED_1="迁移 SQL Anywhere 监控器数据库是发生了错误"
+MSG_SAMON_MIGRATION_FAILED_2="请参照文档中关于如何手动迁移您的数据的说明。"
+
+MSG_SAMON_STOP_FAILED_FATAL_1="安装程序不能停止正在运行的 SQL Anywhere 监控器实例。"
+MSG_SAMON_STOP_FAILED_FATAL_2="请手动将其停止然后重新运行安装程序。"
+
+MSG_SAMON_STOP_FAILED_NONFATAL_1="安装程序不能停止正在运行的 SQL Anywhere 监控器实例。"
+MSG_SAMON_STOP_FAILED_NONFATAL_2="在运行该版本的 SQL Anywhere 监控器前，应手动停止实例。"
+
+# $1 : backup directory
+MSG_SAMON_BACKUP_COPY="在 \${1} 中找到了一个您的 SQL Anywhere 监控器数据库的备份。"
+
+
+MSG_SAMON_CANT_UPDATE="无法使用 SQL Anywhere EBF 来更新 SQL Anywhere 监控器"
+
+## package names for the deployment wizard
+MSG_CAT_SQLANY64="SQL Anywhere（64 位）"
+MSG_CAT_CLIENT_INTERFACES64="客户端接口（64 位）"
+MSG_CAT_SERVER64="SQL Anywhere Server（64 位）"
+MSG_CAT_SQLANY32="SQL Anywhere（32 位）"
+MSG_CAT_CLIENT_INTERFACES32="客户端接口（32 位）"
+MSG_CAT_SERVER32="SQL Anywhere Server（32 位）"
+MSG_CAT_ULTRALITE="UltraLite"
+MSG_CAT_SYNCHRONIZATION="同步"
+MSG_CAT_MOBILINK64="MobiLink（64 位）"
+MSG_CAT_MOBILINK32="MobiLink（32 位）"
+MSG_CAT_ADMINTOOLS64="管理工具（64 位）"
+MSG_CAT_ADMINTOOLS32="管理工具（32 位）"
+MSG_CAT_SYBCENTRAL="Sybase Central"
+MSG_OPT_ODBC64="ODBC（64 位）"
+MSG_OPT_ESQL64="嵌入式 SQL（64 位）"
+MSG_OPT_JDBC64="JDBC（64 位）"
+MSG_OPT_DEPLOY_CLIENT_TOOLS64="客户端工具（64 位）"
+MSG_OPT_SERVER_PERSONAL64="个人服务器（64 位）"
+MSG_OPT_SERVER_NETWORK64="网络服务器（64 位）"
+MSG_OPT_SERVER_TOOLS64="服务器工具（64 位）"
+MSG_OPT_SERVER_UNLOADSUPPORT64="卸载支持（64 位）"
+MSG_OPT_ODBC32="ODBC（32 位）"
+MSG_OPT_ESQL32="嵌入式 SQL（32 位）"
+MSG_OPT_JDBC32="JDBC（32 位）"
+MSG_OPT_DEPLOY_CLIENT_TOOLS32="客户端工具（32 位）"
+MSG_OPT_SERVER_PERSONAL32="个人服务器（32 位）"
+MSG_OPT_SERVER_NETWORK32="网络服务器（32 位）"
+MSG_OPT_SERVER_TOOLS32="服务器工具（32 位）"
+MSG_OPT_SERVER_UNLOADSUPPORT32="卸载支持（32 位）"
+MSG_OPT_DBLGRES="客户端资源"
+MSG_OPT_ULTRALITE32="UltraLite 引擎（32 位）"
+MSG_OPT_ULTRALITE64="UltraLite 引擎（64 位）"
+MSG_OPT_MOBILINK_SQLANY32="MobiLink 客户端（32 位）"
+MSG_OPT_MOBILINK_SQLANY32_DESC="适用于 32 位平台的数据同步客户端组件"
+MSG_OPT_MOBILINK_SQLANY64="MobiLink 客户端（64 位）"
+MSG_OPT_MOBILINK_SQLANY64_DESC="适用于 64 位平台的数据同步客户端组件"
+MSG_OPT_QANYWHERE32="QAnywhere（32 位）"
+MSG_OPT_SAPLUGIN32="SQL Anywhere 插件（32 位）"
+MSG_OPT_SAPLUGIN64="SQL Anywhere 插件（64 位）"
+MSG_OPT_SYBASECENTRAL32="Sybase Central 基本组件（32 位）"
+MSG_OPT_SYBASECENTRAL64="Sybase Central 基本组件（64 位）"
+MSG_OPT_MLPLUGIN32="MobiLink 插件（32 位）"
+MSG_OPT_MLPLUGIN64="MobiLink 插件（64 位）"
+MSG_OPT_ULPLUGIN32="UltraLite 插件（32 位）"
+MSG_OPT_ULPLUGIN64="UltraLite 插件（64 位）"
+MSG_OPT_QAPLUGIN32="QAnywhere 插件（32 位）"
+MSG_OPT_QAPLUGIN64="QAnywhere 插件（64 位）"
+MSG_OPT_ISQL32="Interactive SQL（32 位）"
+MSG_OPT_ISQL64="Interactive SQL（64 位）"
+MSG_OPT_DBCONSOLE32="SQL Anywhere 控制台（32 位）"
+MSG_OPT_DBCONSOLE64="SQL Anywhere 控制台（64 位）"
+MSG_OPT_OMNI32="远程数据访问（32 位）"
+MSG_OPT_JAVA_IN_THE_DATABASE32="对 Java 存储过程的支持（32 位）"
+MSG_OPT_EXTDLL32="内置外部过程（32 位）"
+MSG_OPT_OMNI64="远程数据访问（64 位）"
+MSG_OPT_JAVA_IN_THE_DATABASE64="对 Java 存储过程的支持（64 位）"
+MSG_OPT_EXTDLL64="内置外部过程（64 位）"
+
+MSG_ULTRALITE_1="已安装用于 iPhone 的 UltraLite。在 iPhone 上开始 UltraLite 开发"
+MSG_ULTRALITE_2="或构建示例之前，必须从安装中包括的源文件"
+MSG_ULTRALITE_3="构建 UltraLite 库。"
+
+# Misc deployment wizard strings
+MSG_ENTER_DEPLOY_TAR_DESTINATION="请输入要生成的 tar 文件的完整路径"
+MSG_GENERATING_DEPLOYMENT_TAR="正在生成 tar 文件..."
+MSG_ERROR_NOT_A_FULL_PATH="\$1 不是完整路径。"
+MSG_FILES_REQUIRED_FOR_DEPLOYMENT="需要以下文件来部署选定的选项"
+
+MSG_DEPLOY_WELCOME_1="欢迎使用 SQL Anywhere ${__VERNUM} 部署向导 Unix 版。"
+MSG_DEPLOY_WELCOME_2="使用此程序可以选择现有 SQL Anywhere 安装程序的组件，"
+MSG_DEPLOY_WELCOME_3="并准确提供将这些组件部署到另一台计算机所需的"
+MSG_DEPLOY_WELCOME_4="文件列表。"
+
+MSG_DEPLOYMENT_WIZARD_COMPLETE_1="感谢您使用 SQL Anywhere 部署向导。 部署选定组件所需"
+MSG_DEPLOYMENT_WIZARD_COMPLETE_2="的文件已在上一页中列出。 如果"
+MSG_DEPLOYMENT_WIZARD_COMPLETE_3="您尚未记录此信息，请返回至上一屏幕"
+MSG_DEPLOYMENT_WIZARD_COMPLETE_4="并记录信息。"
+
+# === END OF FILE ===

@@ -1,0 +1,8 @@
+type SADatabase (
+	static i18nstr ArgList[] = { sDatabaseFile, SDatabaseName, sServerName, sUtildbPwd }
+	str sDatabaseFile
+	str sDatabaseName
+	str sServerName
+	str sUtildbPwd
+)
+

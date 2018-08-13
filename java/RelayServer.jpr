@@ -1,0 +1,7 @@
+PluginName=RelayServer 16
+PluginId=relayserver1600
+PluginClass=com.sybase.relayserver.plugin.RSPlugin
+PluginFile=/opt/sqlanywhere16/java/rsplugin.jar
+AdditionalClasspath=/opt/sqlanywhere16/java/salib.jar:/opt/sqlanywhere16/java/jlogon.jar:/opt/sqlanywhere16/java/JComponents1600.jar:/opt/sqlanywhere16/java/rstool.jar
+ClassloaderId=SA1600
+InitialLoadOrder=4

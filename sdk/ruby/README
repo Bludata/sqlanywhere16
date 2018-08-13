@@ -1,0 +1,14 @@
+This directory contains three separate projects used to supporting SQL Anywhere.They are:
+
+./sqlanywhere
+   - This is the main driver that allows Ruby to to connect to DBCAPI
+   - It is built and distributed as a gem called 'sqlanywhere'
+
+./dbd-sqlanywhere
+   - This is a pure-Ruby driver for the Ruby DBI interface
+   - This driver relies on the 'sqlanywhere' gem already being installed
+
+./activerecord-sqlanywhere-adapter
+   - This is a pure-Ruby ActiveRecord drive used by Ruby on Rails
+   - This driver is itself a pure-Ruby gem
+   - This driver relies on the 'sqlanywhere' gem already being installed

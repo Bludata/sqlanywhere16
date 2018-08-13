@@ -1,0 +1,7 @@
+PluginName=UltraLite 16
+PluginId=ultralite1600
+PluginClass=ianywhere.ultralite.plugin.ULPlugin
+PluginFile=/opt/sqlanywhere16/java/ulplugin.jar
+AdditionalClasspath=/opt/sqlanywhere16/java/isql.jar:/opt/sqlanywhere16/java/salib.jar:/opt/sqlanywhere16/java/JComponents1600.jar:/opt/sqlanywhere16/java/jlogon.jar:/opt/sqlanywhere16/java/jodbc4.jar:/opt/sqlanywhere16/java/batik-anim.jar:/opt/sqlanywhere16/java/batik-awt-util.jar:/opt/sqlanywhere16/java/batik-bridge.jar:/opt/sqlanywhere16/java/batik-codec.jar:/opt/sqlanywhere16/java/batik-css.jar:/opt/sqlanywhere16/java/batik-dom.jar:/opt/sqlanywhere16/java/batik-ext.jar:/opt/sqlanywhere16/java/batik-extension.jar:/opt/sqlanywhere16/java/batik-gui-util.jar:/opt/sqlanywhere16/java/batik-gvt.jar:/opt/sqlanywhere16/java/batik-parser.jar:/opt/sqlanywhere16/java/batik-script.jar:/opt/sqlanywhere16/java/batik-svg-dom.jar:/opt/sqlanywhere16/java/batik-svggen.jar:/opt/sqlanywhere16/java/batik-swing.jar:/opt/sqlanywhere16/java/batik-transcoder.jar:/opt/sqlanywhere16/java/batik-util.jar:/opt/sqlanywhere16/java/batik-xml.jar:/opt/sqlanywhere16/java/js.jar:/opt/sqlanywhere16/java/pdf-transcoder.jar:/opt/sqlanywhere16/java/xerces_2_5_0.jar:/opt/sqlanywhere16/java/xml-apis-ext.jar:/opt/sqlanywhere16/java/xml-apis.jar
+ClassloaderId=SA1600
+InitialLoadOrder=3

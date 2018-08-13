@@ -1,0 +1,122 @@
+#
+# This is a sample relay server configuration file defining a relay server 
+# farm with 2 relay servers, 4 backend farms and 5 backend servers altogether.
+#
+# Relay servers:
+#     rs1.rs.com
+#     rs2.rs.com
+#
+# Assume load balanced address of the relay server farm is www.rs.com.
+#
+# Backend farms and servers and their corresponding rsoe commandlines:
+#     Company1.Sales.MLFarm
+#         MLServer01   rsoe.exe -cr host=www.rs.com -f Company1.Sales.MLFarm -id MLServer01 -t 7b2493b0-d0d4-464f-b0de-24643e1e0feb
+#         MLServer02   rsoe.exe -cr host=www.rs.com -f Company1.Sales.MLFarm -id MLServer02 -t de1aac83-a653-4e0f-8a6c-0a161a6ee407
+#     Company1.Manufacturing.MLFarm
+#         MLServer01   rsoe.exe -cr host=www.rs.com -f Company1.Manufacturing.MLFarm -id MLServer01 -t 621ece03-9246-4da7-99e3-c07c7599031c
+#     Company2.AFFarm
+#         AFServer01   rsoe.exe -cr host=www.rs.com -f Company2.AFFarm -id AFServer01 -t a688728f-1ae7-4438-969e-6f5e30a07882
+#     Company2.SAPFarm
+#         SAPG1        rsoe.exe -cr host=www.rs.com -f Company2.SAPFarm -id SAPG1 -t de68b75b-ff33-4c81-a920-2333494dfd8a -cs "host=localhost;port=443;https=1;identity=c:\rsoe.id;identity_password=****;trusted_certificates=c:\testrsaserver.crt"
+#
+# Note: The two instances of MobiLinkServer01 are different servers.
+#
+# Relay server configuration file usually contains authentication information. 
+# Access to this file must be administered.
+# 
+# URL prefix for client applications:
+#     https://www.rs.com/ias_relay_server/client/rs_client.dll/Company1.Sales.MLFarm
+#     https://www.rs.com/ias_relay_server/client/rs_client.dll/Company1.Manufacturing.MLFarm
+#     https://www.rs.com/ias_relay_server/client/rs_client.dll/Company2.AFFarm
+#     https://www.rs.com/ias_relay_server/client/rs_client.dll/Company2.SAPFarm
+#
+
+#-------------------------------------
+# Relay server options
+#-------------------------------------
+[options]
+verbosity = 1
+
+#--------------------
+# Relay server peers
+#--------------------
+[relay_server]
+enable          = yes
+host            = rs1.rs.com
+http_port       = 80
+https_port      = 443
+description     = Machine #1 in RS farm
+
+[relay_server]
+enable          = yes
+host            = rs2.rs.com
+http_port       = 80
+https_port      = 443
+description     = Machine #2 in RS farm
+
+#---------------
+# Backend farms
+#---------------
+[backend_farm]
+id              = Company1.Sales.MLFarm
+
+[backend_farm]
+enable          = yes
+verbosity       = 4
+id              = Company1.Manufacturing.MLFarm
+description     = Company1's MobiLink farm in their Manufacturing department
+client_security = yes
+backend_security= yes
+active_cookie	= no
+active_header	= yes
+max_client_buffer=512k
+renew_overlapped_cookie=yes
+
+[backend_farm]
+enable          = yes
+id              = Company2.AFFarm
+description     = Company2's Afaria farm
+
+[backend_farm]
+enable          = yes
+id              = Company2.SAPFarm
+client_security = yes
+backend_security= yes
+forward_x509_identity= yes
+forwarder_certificate_subject= CN = \*.mysap.com, *
+forwarder_certificate_issuer= CN = ca??.mysap.com, *
+description     = Company2's SAP Gateway farm
+
+#-----------------
+# Backend servers
+#-----------------
+[backend_server]
+farm     = Company1.Sales.MLFarm
+id       = MLServer01
+
+[backend_server]
+farm     = Company1.Sales.MLFarm
+id       = MLServer02
+
+[backend_server]
+enable   = no
+verbosity= inherit
+mac      = 01-23-45-67-89-ad
+id       = MLServer01
+token    = 621ece03-9246-4da7-99e3-c07c7599031c
+description= ML server number 1
+farm     = Company1.Manufacturing.MLFarm
+
+[backend_server]
+enable   = yes
+farm     = Company2.AFFarm
+id       = AFServer01
+mac      = 01-23-45-67-89-ae
+token    = a688728f-1ae7-4438-969e-6f5e30a07882
+
+[backend_server]
+enable   = yes
+farm     = Company2.SAPFarm
+id       = SAPG1
+mac      = 01-23-45-67-89-af
+token    = de68b75b-ff33-4c81-a920-2333494dfd8a

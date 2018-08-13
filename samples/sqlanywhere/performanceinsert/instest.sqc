@@ -1,0 +1,818 @@
+// ***************************************************************************
+// Copyright (c) 2013 SAP AG or an SAP affiliate company. All rights reserved.
+// ***************************************************************************
+// This sample code is provided AS IS, without warranty or liability of any kind.
+// 
+// You may use, reproduce, modify and distribute this sample code without limitation, 
+// on the condition that you retain the foregoing copyright notice and disclaimer 
+// as to the original code.  
+// 
+// *******************************************************************
+
+// This sample program contains a hard-coded userid and password
+// to connect to the demo database. This is done to simplify the
+// sample program. The use of hard-coded passwords is strongly
+// discouraged in production code.  A best practice for production
+// code would be to prompt the user for the userid and password.
+
+#include "sqlos.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <time.h>
+#include <assert.h>
+
+#ifdef UNIX
+#include <sys/time.h>
+#endif
+#if defined( __NT__ ) 
+    #if !defined( USE_HI_RES_TIMER )
+	#define USE_HI_RES_TIMER
+    #endif
+    #include "windows.h"
+#endif
+
+EXEC SQL INCLUDE SQLCA;
+EXEC SQL INCLUDE SQLDA;
+
+#include "sqldef.h"
+#include "sqlos.h"
+
+#define _SQLCODE	sqlca.sqlcode
+
+#define TRUE		1
+#define FALSE		0
+
+#ifdef UNIX
+    typedef struct timeval a_clock;
+#else
+    // use high resolution counter
+    typedef __int64	a_clock;
+#endif
+
+#if defined( UNIX ) && !defined( _SQL_OS_UNIX_VARIANT_AIX )
+    typedef long long		int64;
+#elif !defined( _SQL_OS_UNIX_VARIANT_AIX )
+    typedef __int64		int64;
+#endif
+typedef unsigned int	a_bool;
+
+EXEC SQL BEGIN DECLARE SECTION;
+    char			Statement[10000];
+    char			InsertStmt[500];
+    a_sql_statement_number	Stmt;
+    char *			Cursor = "Curs";
+EXEC SQL END DECLARE SECTION;
+static SQLVAR *		DescribeSQLVar	    = NULL; // array with NumCols elements
+static struct tm	StartTime;
+static long		RowValue	    = 0;
+static double		CommitTime	    = 0;
+
+
+// Options:
+static int		CheckpointFrequency = 0;
+static int		CommitFrequency	    = 0;
+static char *		ConnectStr	    = "UID=DBA;PWD=sql";
+static char *		JSONTable	    = NULL;
+static a_bool		NoRowLocks	    = FALSE;
+static int		NumCols		    = 0;
+static int		NumNonNullCols	    = -1;
+static char *		OutputFile	    = NULL;
+static a_bool		Quiet		    = FALSE;
+static int		Rows		    = 1;
+static a_bool		UniqueRows	    = FALSE;
+static a_bool		UseInsert	    = FALSE;
+static int		Width		    = 1;
+
+static int ArgumentIsASwitch( char * arg )
+/****************************************/
+{
+#if defined( UNIX )
+    return ( arg[0] == '-' );
+#else
+    return ( arg[0] == '-' ) || ( arg[0] == '/' );
+#endif
+}
+
+static int ProcessOptions( char ** argv )
+/***************************************/
+{
+    char *		arg;
+    int			argc;
+    char		opt;
+    char		sub;
+    
+    for( argc = 1; (arg = argv[argc]) != NULL; ++ argc ) {
+	if( ! ArgumentIsASwitch( arg ) ) break;
+	opt = arg[1];
+	sub = arg[2]; // sub option
+	if( opt != 'i' && opt != 'x' && opt != 'l' && opt != 'q' ) {
+	    // Get value for option
+	    arg += 2;
+	    if( opt == 'o' && sub == 'j' ) {
+		arg ++; // skip sub 
+	    }
+	    if( !arg[0] ) arg = argv[++argc];
+	}
+	if( arg == NULL ) {
+	    fprintf( stderr, "Usage: INSTEST [options] [fname]\n" );
+	    fprintf( stderr, "Options:\n" );
+	    fprintf( stderr, "   -c conn_str     : database connection string\n" );
+	    fprintf( stderr, "   -i              : use INSERT (default = PUT)\n" );
+	    fprintf( stderr, "   -k rows         : CHECKPOINT frequency (default = never)\n" );
+	    fprintf( stderr, "   -l              : lock table exclusively (no row locks)\n" );
+	    fprintf( stderr, "   -m rows         : COMMIT frequency (default = never)\n" );
+	    fprintf( stderr, "   -n cols         : number of non-null columns\n" );
+	    fprintf( stderr, "   -o outfile      : record duration in file\n" );
+	    fprintf( stderr, "   -oj table       : output JSON format, truncate then insert into table\n" );
+	    fprintf( stderr, "   -q              : quiet mode\n" );
+	    fprintf( stderr, "   -r rows         : rows to insert\n" );
+	    fprintf( stderr, "   -v start_value  : starting value (for keys)\n" );
+	    fprintf( stderr, "   -w width        : rows to insert per request\n" );
+	    fprintf( stderr, "   -x              : generate unique row values\n" );
+	    return( -1 );
+	}
+	switch( opt ) {
+	case 'c':
+	    ConnectStr = arg;
+	    break;
+	case 'i':
+	    UseInsert = TRUE;
+	    break;
+	case 'k':
+	    CheckpointFrequency = atol( arg );
+	    break;
+	case 'l':
+	    NoRowLocks = TRUE;
+	    break;
+	case 'm':
+	    CommitFrequency = atol( arg );
+	    break;
+	case 'n':
+	    NumNonNullCols = atol( arg );
+	    break;
+	case 'o':
+	    if( sub == 'j' ) {
+		JSONTable = arg;
+	    } else {
+		OutputFile = arg;
+	    }
+	    break;
+	case 'q':
+	    Quiet = TRUE;
+	    break;
+	case 'r':
+	    Rows = atol( arg );
+	    break;
+	case 'v':
+	    RowValue = atol( arg );
+	    break;
+	case 'w':
+	    Width = atol( arg );
+	    break;
+	case 'x':
+	    UniqueRows = TRUE;
+	    break;
+	default:
+	    ;
+	}
+    }
+    return( argc );
+}
+
+static a_bool ReadStatement( char * fname )
+/*****************************************/
+{
+    FILE *		fp;
+    size_t		size;
+    
+    if( JSONTable != NULL ) {
+	if( fname != NULL ) {
+	    fprintf( stderr, "Cannot specify a SQL file with -oj\n" );
+	    return( FALSE );
+	}
+	sprintf( Statement, "SELECT * FROM %s", JSONTable );
+	return( TRUE );
+    }
+
+    if( fname == NULL ) {
+	fname = "test.sql";
+    }
+    fp = fopen( fname, "rt" );
+    if( fp == NULL ) {
+	fprintf( stderr, "Unable to open %s -- %s\n", fname, strerror( errno ) );
+	return( FALSE );
+    }
+    size = fread( Statement, sizeof(char), sizeof(Statement), fp );
+    fclose( fp );
+    Statement[size] = '\0';
+    return( TRUE );
+}
+
+static a_bool SplitStmt()
+/***********************/
+{
+    char *		sep;
+    
+    if( JSONTable != NULL ) return( TRUE );
+    sep = strchr( Statement, ';' );
+    if( sep == NULL ) {
+	fprintf( stderr, "Expecting SELECT ...; INSERT ...\n" );
+	return( FALSE );
+    }
+    *sep++ = '\0';
+    strcpy( InsertStmt, sep );
+    return( TRUE );
+}
+
+static void TruncateAndCheckpoint()
+/*********************************/
+{
+EXEC SQL BEGIN DECLARE SECTION;
+    char			truncate_stmt[500];
+EXEC SQL END DECLARE SECTION;
+
+    fprintf( stdout, "Truncating table & checkpointing\n" );
+    sprintf( truncate_stmt, "TRUNCATE TABLE %s", JSONTable );
+    EXEC SQL EXECUTE IMMEDIATE :truncate_stmt;
+    if( _SQLCODE >= 0 ) {
+	EXEC SQL CHECKPOINT;
+    }
+    fprintf( stdout, "Inserting rows...\n" );
+}
+    
+static SQLDA * MakeSQLDA()
+/************************/
+// Make an SQLDA with ("width" * (number of columns in cursor)) items.
+{
+    SQLDA *		sqlda;
+    int			i;
+    int			j;
+    int			offset;
+    unsigned		sqltype;
+    
+    sqlda = alloc_sqlda( 0 );
+    EXEC SQL DESCRIBE :Stmt INTO sqlda;
+    if( _SQLCODE < 0 ) return( NULL );
+    NumCols = sqlda->sqld;
+    if( NumCols == 0 ) {
+	fprintf( stderr, "describe returned no columns\n" );
+	return( NULL );
+    }
+	
+    free_sqlda( sqlda );
+    sqlda = alloc_sqlda( NumCols * Width );
+    if( sqlda == NULL ) {
+	fprintf( stderr, "alloc_sqlda failed.  Note number of columns * width must be < 32K\n" );
+	return NULL;
+    }
+    EXEC SQL DESCRIBE :Stmt INTO sqlda;
+    if( _SQLCODE < 0 ) return( NULL );
+
+    // save exact describe types away
+    DescribeSQLVar = (SQLVAR *)malloc( NumCols * sizeof( SQLVAR ) );
+    if( DescribeSQLVar == NULL ) {
+	fprintf( stderr, "out of memory\n" );
+	return( NULL );
+    }
+    memcpy( DescribeSQLVar, sqlda->sqlvar, NumCols * sizeof( SQLVAR ) );
+
+    sqlda->sqld = (short) (NumCols * Width);
+    offset = NumCols;
+    for( i = 1; i < Width; ++i ) {
+	for( j = 0; j < NumCols; ++j, ++offset ) {
+	    sqlda->sqlvar[offset].sqltype = sqlda->sqlvar[j].sqltype;
+	    sqlda->sqlvar[offset].sqllen = sqlda->sqlvar[j].sqllen;
+	    memcpy( &sqlda->sqlvar[offset].sqlname,
+		    &sqlda->sqlvar[j].sqlname,
+		    sizeof( sqlda->sqlvar[0].sqlname ) );
+	}
+    }
+
+    // Insert DECIMAL types as integers or strings, increase len for
+    // DT_TIME and DT_TIMESTAMP
+    for( i = 0; i < sqlda->sqld; ++i ) {
+	sqltype = sqlda->sqlvar[i].sqltype & DT_TYPES;
+	if( sqltype == DT_DECIMAL ) {
+	    sqlda->sqlvar[i].sqltype &= DT_FLAGS;
+	    if( JSONTable == NULL ) {
+		sqlda->sqlvar[i].sqltype |= DT_INT;
+	    } else {
+		sqlda->sqlvar[i].sqltype |= DT_STRING;
+		sqlda->sqlvar[i].sqllen = PRECISION( sqlda->sqlvar[i].sqllen ) 
+					  + 2;
+	    }
+	} else if( sqltype == DT_TIME || sqltype == DT_TIMESTAMP ) {
+	    // allow extra space for microseconds
+	    sqlda->sqlvar[i].sqllen += 6;
+	}
+    }
+    fill_sqlda( sqlda );
+    if( JSONTable != NULL ) {
+	sprintf( InsertStmt, "INSERT INTO %s VALUES(", JSONTable );
+	for( i = 0; i < NumCols - 1; ++i ) {
+	    strcat( InsertStmt, "?," );
+	}
+	strcat( InsertStmt, "? )" );
+    }
+    return( sqlda );
+}
+
+static a_bool FillItem( SQLVAR * sqlvar, int col )
+/************************************************/
+// Generate unique values for each column.
+{
+    char		buff[100];
+    int			len;
+    unsigned		sqltype;
+    static int		printed_JSON_type_warning = FALSE;
+    
+    if( JSONTable != NULL ) {
+	sqltype = DescribeSQLVar[col].sqltype & DT_TYPES;
+	switch( sqltype ) {
+	    case DT_INT:
+		*(int *)sqlvar->sqldata = 2147483647;
+		return( TRUE );
+	    case DT_DECIMAL: {
+		char * str = (char *)sqlvar->sqldata;
+		int precision = PRECISION( DescribeSQLVar[col].sqllen );
+		int scale = SCALE( DescribeSQLVar[col].sqllen );
+		// sqlvar should be of type DT_STRING
+		memset( str, '9', precision + 1 );
+		str[precision-scale] = '.';
+		str[precision+1] = '\0';
+		return( TRUE );
+		}
+	    case DT_FLOAT:
+		*(float *)sqlvar->sqldata = 1.0;
+		return( TRUE );
+	    case DT_DOUBLE:
+		*(double *)sqlvar->sqldata = 1.0;
+		return( TRUE );
+	    case DT_FIXCHAR:
+		memset( (char *)sqlvar->sqldata, '*', sqlvar->sqllen );
+		return( TRUE );
+	    case DT_VARCHAR: {
+		len = DescribeSQLVar[col].sqllen;
+		*(unsigned short *)sqlvar->sqldata = len;
+		// + 2 for the 2 byte len field within the data pointer
+		memset( (char *)sqlvar->sqldata + 2, '-', len );
+		return( TRUE );
+		}
+	    case DT_DATE:
+		strcpy( (char *)sqlvar->sqldata, "2012-01-01" );
+		return( TRUE );
+	    case DT_TIME:
+		strcpy( (char *)sqlvar->sqldata, "23:59:59.999999" );
+		return( TRUE );
+	    case DT_TIMESTAMP:
+		strcpy( (char *)sqlvar->sqldata, "2012-01-01 23:59:59.999999" );
+		return( TRUE );
+	}
+	// otherwise not a type specified by JSON output performance tests
+	if( !printed_JSON_type_warning ) {
+	    fprintf( stderr, "Warning: Column %d type %d format not specifically handled for JSON output\n", col, sqltype );
+	    printed_JSON_type_warning = TRUE;
+	}
+	// falling through
+    }
+
+    sqltype = sqlvar->sqltype & DT_TYPES;
+    switch( sqltype ) {
+	case DT_TINYINT:
+	    *(unsigned char *)sqlvar->sqldata = (unsigned char) RowValue;
+	    break;
+	case DT_SMALLINT:
+	case DT_UNSSMALLINT:
+	    *(short *)sqlvar->sqldata = (short) RowValue;
+	    break;
+	case DT_INT:
+	case DT_UNSINT:
+	    *(int *)sqlvar->sqldata = RowValue;
+	    break;
+	case DT_BIGINT:
+	case DT_UNSBIGINT:
+	    *(int64 *)sqlvar->sqldata = (int64) RowValue;
+	    break;
+	case DT_FLOAT:
+	    *(float *)sqlvar->sqldata = (float) RowValue;
+	    break;
+	case DT_DOUBLE:
+	    *(double *)sqlvar->sqldata = (double) RowValue;
+	    break;
+	case DT_STRING:
+	    sprintf( (char *)sqlvar->sqldata, "%ld", RowValue );
+	    break;
+	case DT_FIXCHAR:
+	    sprintf( buff, "%ld", RowValue );
+	    len = (int)strlen( buff );
+	    memset( (char *)sqlvar->sqldata, '*', sqlvar->sqllen );
+	    if( len < sqlvar->sqllen ) {
+		memcpy( (char *)sqlvar->sqldata, buff, len );
+	    }
+	    break;
+	case DT_VARCHAR: {
+	    char *		str;
+	    unsigned short *	size;
+	    unsigned short	varsize;
+	    
+	    sprintf( buff, "%ld", RowValue );
+	    len = (int)strlen( buff );
+	    varsize = (unsigned short) (sqlvar->sqllen - 3);
+	    size = (unsigned short *) sqlvar->sqldata;
+	    str = (char *) sqlvar->sqldata;
+	    str += sizeof( unsigned short );
+	    memset( str, '*', varsize );
+	    memcpy( str, buff, len );
+	    *size = varsize;
+	    break;
+	}
+	case DT_DATE:
+	    strcpy( (char *)sqlvar->sqldata, "1999/05/01" );
+	    break;
+	case DT_TIME:
+	case DT_TIMESTAMP: {
+	    int		yy;
+	    int		mm;
+	    int		dd;
+	    int		hh;
+	    int		nn;
+	    int		ss;
+	    int		sss;
+	    long	rowval = RowValue;
+
+	    sss = rowval % 1000;
+	    rowval /= 1000;
+	    ss = rowval % 60;
+	    rowval /= 60;
+	    nn = rowval % 60;
+	    rowval /= 60;
+	    hh = rowval % 24;
+	    rowval /= 24;
+	    dd = (rowval % 28) + 1;
+	    rowval /= 28;
+	    mm = (rowval % 12) + 1;
+	    rowval /= 12;
+	    yy = (rowval % 1000) + 2000;
+	    
+	    if( sqltype == DT_TIMESTAMP ) {
+		sprintf( (char *)sqlvar->sqldata, "%-.4d/%-.2d/%-.2d %-.2d:%-.2d:%-.2d.%-.3d",
+		    yy, mm, dd, hh, nn, ss, sss );
+	    } else {
+		sprintf( (char *)sqlvar->sqldata, "%-.2d:%-.2d:%-.2d.%-.3d",
+		    hh, nn, ss, sss );
+	    }
+	    break;
+	}
+	case DT_DECIMAL:    // inserted as INT
+	case DT_BINARY:
+	case DT_LONGBINARY:
+	case DT_LONGVARCHAR:
+	    return( FALSE );// not supported
+	default:
+	    return( FALSE );// not supported
+	    ;
+    }
+    return( TRUE );
+}
+
+static a_bool PopulateSQLDA( SQLDA * sqlda, long rows )
+/*****************************************************/
+{
+    int 		col;
+    unsigned		offset;
+    
+    offset = 0;
+    for( ; rows > 0; --rows, ++RowValue ) {
+	for( col = 0; col < NumNonNullCols; ++col, ++offset ) {
+	    if( ! FillItem( &sqlda->sqlvar[offset], col ) ) {
+		fprintf( stdout, "Unsupported data type\n" );
+		return( FALSE );
+	    }
+	}
+	// Leave remaining columns as NULL
+	for( ; col < NumCols; ++col, ++offset ) {
+	    *sqlda->sqlvar[offset].sqlind = -1;
+	}
+    }
+    return( TRUE );
+}
+
+static void GetCurrentClock( a_clock * oTime )
+/*******************************************/
+{
+    assert( oTime );
+
+#ifdef UNIX
+    gettimeofday( oTime, NULL );
+#else
+    LARGE_INTEGER	now = {0};
+
+    if( QueryPerformanceCounter( &now ) ) {
+	*oTime = now.QuadPart;
+    } else { 
+	fprintf( stderr, "**** FAILED TO QueryPerformanceCounter ****\n" );
+	*oTime = 0;
+    }
+#endif
+}
+
+static double Duration( a_clock * start, a_clock * finish )
+/*********************************************************/
+{
+#ifdef UNIX
+    double time;
+    double frac;
+#else    
+    LARGE_INTEGER	freq = {0};
+#endif
+
+    assert( start );
+    assert( finish );
+    
+#ifdef UNIX
+    time = (double) (finish->tv_sec - start->tv_sec);
+    frac = (double) (finish->tv_usec - start->tv_usec) / (double) 1000000 ;
+
+    time += frac;
+    return time;
+#else
+    if( !QueryPerformanceFrequency( &freq ) ) {
+	fprintf( stderr, "**** FAILED TO QueryPerformanceFrequency ****\n" );
+	freq.QuadPart = 1;
+    }
+    return( ((double) (*finish - *start)) / freq.QuadPart );
+#endif
+}
+
+static void DisplayStats(   long	total, 
+			    long	rows, 
+			    a_clock	* start_time, 
+			    a_clock	* finish_time )
+/***************************************************/
+{
+    double  dur = 0, rate = 0;
+
+    dur = Duration( start_time, finish_time );
+    rate = dur == 0 ? 0 : ((double)rows) / dur;
+    if( Quiet ) return;
+    fprintf( stdout, 
+	"Inserted %8ld rows (%8ld total) in %7.03f seconds (%5.0f per second)\n",
+		     rows == 0 ? total : rows,
+		     total,
+                     dur, 
+		     rate );
+}
+
+static a_bool LockTable( )
+/************************/
+{
+    EXEC SQL WHENEVER SQLERROR { return( FALSE ); };
+    if( NoRowLocks ) {
+	EXEC SQL SET TEMPORARY OPTION SubsumeRowLocks='on';
+	EXEC SQL LOCK TABLE perf IN EXCLUSIVE MODE;
+    }
+    return( TRUE );
+}
+
+static a_bool DoCommit()
+/**********************/
+{
+    a_clock		commit_start;
+    a_clock		commit_end;
+
+    GetCurrentClock( &commit_start );
+    EXEC SQL COMMIT WORK;
+    GetCurrentClock( &commit_end );
+    CommitTime += Duration( &commit_start, &commit_end );
+    return( TRUE );
+}
+
+#define	MIN_REPORT_INTERVAL	1000L
+static a_bool InsertRows( SQLDA * sqlda, a_clock * start_time )
+
+/***********************************************************/
+{
+    long		remaining;
+    EXEC SQL BEGIN DECLARE SECTION;
+    unsigned short	rows;	    
+    EXEC SQL END DECLARE SECTION;
+    a_bool		populate;
+    long		completed;
+    a_clock             curr_time;
+    a_clock		last_time;
+    long		last_completed;
+    long		unreported;
+    long		last_commit;
+    long		last_checkpoint;
+    long		report_interval;
+    
+    EXEC SQL WHENEVER SQLERROR { return( FALSE ); };
+    populate	    = TRUE;
+    completed	    = 0;
+    last_commit	    = 0;
+    last_checkpoint = 0;
+    last_time	    = *start_time;
+    last_completed  = completed;
+    report_interval = MIN_REPORT_INTERVAL;
+
+    for( remaining = Rows; remaining > 0; remaining -= Width ) {
+	rows = (unsigned short) (remaining <= (long) Width ? remaining : Width);
+	if( populate ) {
+	    if( ! PopulateSQLDA( sqlda, rows ) ) {
+		return( FALSE );
+	    }
+	    populate = UniqueRows;
+	}
+	if( UseInsert ) {
+	    EXEC SQL EXECUTE :Stmt USING DESCRIPTOR sqlda ARRAY :rows;
+	} else {
+	    EXEC SQL PUT :Cursor USING DESCRIPTOR sqlda ARRAY :rows;
+	}
+	completed += rows;
+
+	unreported = completed - last_completed;
+	if( unreported >= report_interval && JSONTable == NULL ) {
+            GetCurrentClock(&curr_time);
+	    if( Duration( &last_time, &curr_time ) >= 1.0 ) {
+		DisplayStats( completed, unreported, &last_time, &curr_time );
+		last_completed = completed;
+		last_time = curr_time;
+		report_interval = MIN_REPORT_INTERVAL;
+	    } else {
+	    	report_interval += MIN_REPORT_INTERVAL;
+	    }
+	}
+	if( CommitFrequency != 0 
+	&&  (completed - last_commit) >= CommitFrequency ) {
+	    last_commit = completed;
+	    if( !DoCommit() ) {
+		return( FALSE );
+	    }
+	    LockTable();
+	}
+	if( CheckpointFrequency != 0 
+	&&  (completed - last_checkpoint) >= CheckpointFrequency ) {
+	    last_checkpoint = completed;
+	    EXEC SQL CHECKPOINT;
+	}
+    }
+    return( TRUE );
+}
+
+#define TIME_STR_SIZE 30
+
+void WriteOutputFile( double open_time,
+		      double insert_time,
+		      double close_time,
+		      double total_time )
+/*****************************************/
+{
+    FILE *	outfile;
+    time_t	now;
+    struct tm *	end_time;
+    char	time_str[ TIME_STR_SIZE ];
+
+    if( OutputFile == NULL ) return;
+    outfile = fopen( OutputFile, JSONTable != NULL ? "at" : "wt" );
+    if( outfile == NULL ) {
+	fprintf( stderr, "Unable to open %s\n", OutputFile );
+	return;
+    }
+    if( JSONTable != NULL ) {
+	now = time( NULL );
+	end_time = localtime( &now );
+
+	fprintf( outfile, "{\n  \"program\": \"instestESQL\",\n" );
+	fprintf( outfile, "  \"test_type\": \"INSERT\",\n" );
+	// start_time and finish_time is approximate (computed separately from
+	// elapsed_time)
+	strftime( time_str, TIME_STR_SIZE, "%Y-%m-%d %H:%M:%S", &StartTime );
+	fprintf( outfile, "  \"start_time\": \"%s\",\n", time_str );
+	strftime( time_str, TIME_STR_SIZE, "%Y-%m-%d %H:%M:%S", end_time );
+	fprintf( outfile, "  \"finish_time\": \"%s\",\n", time_str );
+	fprintf( outfile, "  \"table_name\": \"%s\",\n", JSONTable );
+	fprintf( outfile, "  \"width\": %d,\n", Width );
+	fprintf( outfile, "  \"commit_frequency\": %d,\n", CommitFrequency );
+	fprintf( outfile, "  \"column_count\": %d,\n", NumCols );
+	fprintf( outfile, "  \"record_count\": %d,\n", Rows );
+	// elapsed time is accurate to microsecond on Windows
+	fprintf( outfile, "  \"elapsed_time\": %.06f,\n", total_time );
+	fprintf( outfile, "  \"open_time\": %.06f,\n", open_time );
+	fprintf( outfile, "  \"insert_time\": %.06f,\n", insert_time );
+	fprintf( outfile, "  \"commit_time\": %.06f,\n", CommitTime );
+	fprintf( outfile, "  \"close_time\": %.06f\n", close_time );
+	fprintf( outfile, "}\n" );
+    } else { 
+	fprintf( outfile, "%7.03f\n", insert_time );
+    }
+    fclose( outfile );
+}
+
+int main( int argc, char * argv[] )
+/*********************************/
+{
+    SQLDA *		sqlda;
+    time_t		now;
+    a_clock		total_start;
+    a_clock		insert_start;
+    a_clock		close_start;
+    a_clock		total_end;
+    double		total_time, open_time, insert_time, close_time;
+
+    EXEC SQL WHENEVER SQLERROR GOTO error;
+    argc = ProcessOptions( argv );
+    if( argc < 0 || ! ReadStatement( argv[argc] ) ) {
+	return( EXIT_FAIL );
+    }
+    if( UseInsert ) {
+	if( ! SplitStmt() ) {
+	    return( EXIT_FAIL );
+	}
+    }
+       
+    sqlda = NULL;
+    db_init( &sqlca );
+    db_string_connect( &sqlca, ConnectStr );
+    if( _SQLCODE < 0 ) goto error;
+
+    LockTable();
+
+    if( JSONTable != NULL ) {
+	TruncateAndCheckpoint();
+	if( _SQLCODE < 0 ) goto error;
+    }
+
+    now = time( NULL );
+    memcpy( &StartTime, localtime( &now ), sizeof( StartTime ) );
+    GetCurrentClock( &total_start );
+
+    EXEC SQL PREPARE :Stmt FROM :Statement FOR UPDATE;
+
+    sqlda = MakeSQLDA();
+    if( sqlda == NULL ) goto error;
+    
+    if( UseInsert ) {
+	EXEC SQL DROP STATEMENT :Stmt;
+	EXEC SQL PREPARE :Stmt FROM :InsertStmt;
+    } else {
+	EXEC SQL DECLARE :Cursor CURSOR FOR :Stmt;
+	EXEC SQL OPEN :Cursor WITH HOLD;
+    }
+    
+    if( NumNonNullCols == -1 ) {
+	NumNonNullCols = NumCols;
+    }
+    GetCurrentClock( &insert_start );
+    open_time = Duration( &total_start, &insert_start );
+    if( !InsertRows( sqlda, &total_start ) ) {
+	goto error;
+    }
+
+    if( !DoCommit() ) {
+	goto error;
+    }
+
+    GetCurrentClock( &close_start );
+    insert_time = Duration( &insert_start, &close_start );
+    
+    if( ! UseInsert ) {
+	EXEC SQL CLOSE :Cursor;
+    }
+    EXEC SQL DROP STATEMENT :Stmt;
+    free_filled_sqlda( sqlda );
+    sqlda = NULL;
+    GetCurrentClock( &total_end );
+    total_time = Duration( &total_start, &total_end );
+    close_time = Duration( &close_start, &total_end );
+
+    DisplayStats( Rows, Rows, &insert_start, &total_end );
+
+    if( !Quiet ) {
+	fprintf( stdout, "\nPrepare Time: %7.03f seconds\n", open_time );
+	fprintf( stdout, "Insert  Time: %7.03f seconds (includes Commit Time)\n",
+			 insert_time );
+	fprintf( stdout, "Commit  Time: %7.03f seconds\n", CommitTime );
+	fprintf( stdout, "Drop    Time: %7.03f seconds\n", close_time );
+	fprintf( stdout, "Total   Time: %7.03f seconds\n", total_time );
+    }
+
+    WriteOutputFile( open_time, insert_time, close_time, total_time );
+
+    EXEC SQL DISCONNECT;
+    db_fini( &sqlca );
+
+    return( 0 );
+
+error:
+    fprintf( stderr, "Stopped due to error %d: %s\n", (int)_SQLCODE,
+		sqlerror_message( &sqlca, Statement, sizeof(Statement) ) );
+    if( sqlda != NULL ) {
+	free_filled_sqlda( sqlda );
+    }
+    EXEC SQL WHENEVER SQLERROR CONTINUE;
+    EXEC SQL DISCONNECT;
+    db_fini( &sqlca );
+    return( 1 );
+}

@@ -1,0 +1,8 @@
+type SAServer (
+	static i18nstr ArgList[] = { cmdStart, cmdMonitor, cmdStop, pid }
+	str cmdStart
+	str cmdMonitor
+	str cmdStop
+	int pid
+)
+

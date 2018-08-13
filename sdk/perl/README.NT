@@ -1,0 +1,77 @@
+DBD::SQLAnywhere -- a SQLAnywhere interface for Perl 5.
+
+   Portions Copyright (c) 1994,1995,1996            Tim Bunce
+   Portions Copyright (c) 2013			    SAP AG or an SAP affiliate company
+
+   For license information, please see license.txt included in this
+   distribution.
+
+*BEFORE* BUILDING, TESTING AND INSTALLING this you will need to:
+
+    Build, test and install Perl 5 (at least 5.6.0 is recommended).
+    It is very important to test it and install it!
+
+    Build, test and install the DBI module (at least DBI 1.51 is
+    required) if it is not already included in your perl distribution.
+
+    No SQL Anywhere software needs to be installed to build this
+    module; however, a SQL Anywhere client installation is required in
+    order to use the module.
+
+    A full SQLAnywhere client+server installation is recommended for
+    testing this module otherwise the tests will be skipped.
+
+Building:
+    On UNIX:
+	[ Linux, Solaris, AIX, HP-UX, etc. ]
+
+	source sa_config.sh (or sa_config.csh) from the SQL Anywhere
+	installation
+
+	perl Makefile.PL
+	make
+	copy demo.db from the SQL Anywhere installation directory
+	    to the current directory
+	make test
+	make install
+    
+    On Win32:
+	[ requires Microsoft C and ActiveState's ActivePerl
+	  (www.activestate.com) ]
+
+	NOTE: ActivePerl 5.6.0 build 616 or later is required.
+
+	perl Makefile.PL
+	nmake
+	copy demo.db from the SQL Anywhere installation directory
+	    to the current directory
+	nmake test
+	nmake install
+
+    Do not hand-edit the generated Makefile as those changes will be
+    lost the next time 'perl Makefile.PL' is invoked. Always try to
+    make changes via the Makefile.PL command line and/or editing
+    Makefile.PL.
+
+---------------------------------------------------------------
+
+Notes:
+
+For information on how to use DBD::SQLAnywhere, please invoke the
+following after DBD::SQLAnywhere has been installed:
+
+    perldoc DBD::SQLAnywhere
+
+Prior to installation, you may instead run the following when
+SQLAnywhere.pm is in your current directory:
+
+    perldoc SQLAnywhere.pm
+
+Examples can be found in the 'eg' directory:
+    connect.pl  -> Demonstrates a simple connect.
+    retrieve.pl -> Demonstrates retrieving data from a table and displaying the result set.
+    blobs.pl    -> Demonstrates the use of blobs
+
+For further examples, consult the test scripts located in the 't'
+directory.
+

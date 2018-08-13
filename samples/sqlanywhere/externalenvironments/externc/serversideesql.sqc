@@ -1,0 +1,91 @@
+// ***************************************************************************
+// Copyright (c) 2013 SAP AG or an SAP affiliate company. All rights reserved.
+// ***************************************************************************
+// This sample code is provided AS IS, without warranty or liability of
+// any kind.
+// 
+// You may use, reproduce, modify and distribute this sample code without
+// limitation, on the condition that you retain the foregoing copyright 
+// notice and disclaimer as to the original code.  
+// 
+// *******************************************************************
+
+// Example of performing server-side request using the C_ESQL external environment
+
+#include "testsrc.h"
+
+#include "sqlca.h"
+#include "sqlda.h"
+
+EXEC SQL INCLUDE SQLCA;
+
+static SQLCA *_sqlc;
+
+EXEC SQL SET SQLCA "_sqlc";
+EXEC SQL WHENEVER SQLERROR { ret = _sqlc->sqlcode; };
+
+static void GetConnection( an_extfn_api *api, void *arg_handle )
+/**************************************************************/
+{
+    an_extfn_value	arg;
+
+    // returns the server-side connection (note the connection already exists and is ready for use)
+    if( api->get_value( arg_handle, EXTFN_CONNECTION_HANDLE_ARG_NUM, &arg ) && arg.data != NULL ) {
+	_sqlc = (SQLCA *)arg.data;
+    }
+}
+
+static void RunQuery( an_extfn_api *api, void *arg_handle, char *query )
+/**********************************************************************/
+{
+    // Run a query via ESQL using the server-side connection
+    EXEC SQL BEGIN DECLARE SECTION;
+    char *h_stmt_text = query;
+    EXEC SQL END DECLARE SECTION;
+
+    int ret = 0;
+
+    GetConnection( api, arg_handle );
+
+    EXEC SQL EXECUTE IMMEDIATE :h_stmt_text;
+}
+
+
+_VOID_ENTRY ESQLCreateTable( an_extfn_api *api, void *arg_handle )
+/****************************************************************/
+{
+    RunQuery( api, arg_handle, (char *)"CREATE TABLE ExtESQLServerSide_Tab( c1 int, c2 char(128), c3 smallint, c4 double, c5 numeric(30,6) )" );
+}
+
+_VOID_ENTRY ESQLUpdateTable( an_extfn_api *api, void *arg_handle )
+/****************************************************************/
+{
+    RunQuery( api, arg_handle, (char *)"UPDATE ExtESQLServerSide_Tab SET c1 = c3" );
+}
+
+_VOID_ENTRY ESQLDeleteTable( an_extfn_api *api, void *arg_handle )
+/****************************************************************/
+{
+    RunQuery( api, arg_handle, (char *)"DELETE FROM ExtESQLServerSide_Tab" );
+}
+
+_VOID_ENTRY ESQLDropTable( an_extfn_api *api, void *arg_handle )
+/**************************************************************/
+{
+    RunQuery( api, arg_handle, (char *)"DROP TABLE ExtESQLServerSide_Tab" );
+}
+
+_VOID_ENTRY ESQLPopulateTable( an_extfn_api *api, void *arg_handle )
+/******************************************************************/
+{
+    for( int i = 1; i <= 1000; ++i ) {
+	char str[128];
+	sprintf( str, "This is row #%d", i );
+
+	char buffer[4096];
+	sprintf( buffer, "INSERT INTO ExtESQLServerSide_Tab VALUES( %d, '%s', %d, %d, %d)",
+	                 i, str, 8000 + i, ((double)i)/ 0.03, i);
+	RunQuery( api, arg_handle, buffer );
+    }
+}
+

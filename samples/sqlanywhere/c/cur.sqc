@@ -1,0 +1,211 @@
+// ***************************************************************************
+// Copyright (c) 2013 SAP AG or an SAP affiliate company. All rights reserved.
+// ***************************************************************************
+// This sample code is provided AS IS, without warranty or liability of any kind.
+// 
+// You may use, reproduce, modify and distribute this sample code without limitation, 
+// on the condition that you retain the foregoing copyright notice and disclaimer 
+// as to the original code.  
+// 
+// *******************************************************************
+/*
+    CUR.SQC 	General SQL code for Cursex example (all platforms)
+*/
+
+#include <stdio.h>
+#include <ctype.h>
+#if defined( UNDER_CE )
+    #include <windef.h>
+#endif
+
+#if defined( _MSC_VER )
+    // Suppress warning about structure alignment
+    #pragma warning( 4 : 4103 )
+#endif
+
+EXEC SQL INCLUDE SQLCA;
+#include "sqldef.h"
+#include "example.h"
+
+
+extern int              PageSize;
+                       
+typedef struct an_employee {
+    unsigned long       emp_id;
+    char                name[ 41 ];
+    char                sex[ 2 ];        /* M or F plus null char */
+    char                birthdate[ 15 ];
+} an_employee;
+
+static void printSQLError()
+{
+    char                buffer[ 200 ];
+
+    Displaytext( 0, TEXT( "SQL error -- %s\n" ),
+	sqlerror_message( &sqlca, buffer, sizeof( buffer ) ) );
+}
+
+EXEC SQL WHENEVER SQLERROR { printSQLError(); return( FALSE ); };
+
+static int do_connect()
+{
+    EXEC SQL CONNECT "DBA" IDENTIFIED BY "sql";
+    return( TRUE );
+    /* errors will return FALSE: - see WHENEVER above */
+}
+
+static int release()
+{
+    EXEC SQL ROLLBACK WORK;
+    EXEC SQL DISCONNECT;
+    db_fini( &sqlca );
+    return( TRUE );
+}
+
+static int open_cursor()
+{
+    EXEC SQL DECLARE C1 CURSOR FOR
+	SELECT EmployeeID, GivenName || ' ' || Surname, Sex, BirthDate
+	FROM GROUPO.Employees;
+    EXEC SQL OPEN C1;
+    return( TRUE );
+}
+
+static int close_cursor()
+{
+    EXEC SQL CLOSE C1;
+    return( TRUE );
+}
+
+static int fetch_row( 
+    EXEC SQL BEGIN DECLARE SECTION;
+    unsigned long       *emp_id,
+    char                *name,
+    char                *sex,
+    char                *birthdate 
+    EXEC SQL END DECLARE SECTION;
+    )
+{
+    EXEC SQL FETCH RELATIVE 1 C1
+	     INTO :emp_id, :name, :sex, :birthdate;
+
+    if( SQLCODE ) {
+	return( FALSE );
+    } else {
+	return( TRUE );
+    }
+}
+
+static int move( 
+    EXEC SQL BEGIN DECLARE SECTION;
+    int                 relpos
+    EXEC SQL END DECLARE SECTION;
+    )
+{
+    EXEC SQL FETCH RELATIVE :relpos C1;
+    return( TRUE );
+}
+
+static int top()
+{
+    EXEC SQL FETCH ABSOLUTE 0 C1;
+    return( TRUE );
+}
+
+static int bottom()
+{
+    EXEC SQL FETCH ABSOLUTE -1 C1;
+    return( TRUE );
+}
+
+static void help()
+{
+    Displaytext( 0, TEXT( "Cursex Demonstration Program Commands:\n" ) );
+    Displaytext( 0, TEXT( "p - Print current page\n" ) );
+    Displaytext( 0, TEXT( "u - Move up a page\n" ) );
+    Displaytext( 0, TEXT( "d - Move down a page\n" ) );
+    Displaytext( 0, TEXT( "b - Move to bottom page\n" ) );
+    Displaytext( 0, TEXT( "t - Move to top page\n" ) );
+    Displaytext( 0, TEXT( "q - Quit\n" ) );
+    Displaytext( 0, TEXT( "h - Help (this screen)\n" ) );
+}
+
+static void print()
+{
+    an_employee         s;
+    int                 i;
+    int                 status;
+
+    for( i = 0; i < PageSize; ) {
+	++i;
+	status = fetch_row( &s.emp_id, s.name, s.sex, s.birthdate );
+	if( status ) {
+            Displaytext( 0, TEXT( "%6ld" ), s.emp_id );
+            Displaytext( 10, TEXT( "%-30.30s" ), s.name );
+            Displaytext( 30, TEXT( "%-3.3s" ), s.sex );
+            Displaytext( 40, TEXT( "%-15.15s\n" ), s.birthdate );
+	} else {
+	    break;
+	}
+    }
+    move( -i );
+}
+
+extern int WSQLEX_Init()
+{
+    if( !db_init( &sqlca ) ) {
+    	Display_systemerror( 
+	    TEXT( "Unable to initialize database interface" ) );
+	return( FALSE );
+    }
+    if( !db_find_engine( &sqlca, NULL ) ) {
+	Display_systemerror( TEXT( "Database server not running" ) );
+	db_fini( &sqlca );
+	return( FALSE );
+    }
+    if( !do_connect() ) {
+	Display_systemerror( TEXT( "Could not connect" ) );
+	db_fini( &sqlca );
+	return( FALSE );
+    }
+    open_cursor();
+    help();
+    return( TRUE );
+}
+
+extern void WSQLEX_Process_Command( int selection )
+{
+    switch( tolower( selection ) ) {
+	case 'p':	print();
+			break;
+
+	case 'u':	move( -PageSize );
+			print();
+			break;
+			
+	case 'd':	move( PageSize );
+			print();
+			break;
+
+	case 't':	top();
+			print();
+			break;
+
+	case 'b':	bottom();
+			move( -PageSize );
+			print();
+	    		break;
+
+	case 'h':	help();
+			break;
+
+	default:	Displaytext( 0, TEXT( "Invalid command, press 'h' for help\n" ) );
+    }
+}
+
+extern int WSQLEX_Finish()
+{
+    close_cursor();
+    release();
+    return( TRUE );
+}

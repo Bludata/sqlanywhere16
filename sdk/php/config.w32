@@ -1,0 +1,7 @@
+ARG_WITH("sqlanywhere", "SQL Anywhere support", "no");
+
+if (PHP_SQLANYWHERE != "no") {
+    EXTENSION('sqlanywhere', 'sqlanywhere.c sacapidll.c sqlany_dbg.c' );
+    AC_DEFINE('HAVE_SQLANYWHERE', 1);
+}
+

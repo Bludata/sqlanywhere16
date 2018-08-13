@@ -1,0 +1,44 @@
+FREE DOWNLOAD COMPONENTS/
+THIRD PARTY TERMS AND CONDITIONS
+
+
+
+A. FREE DOWNLOAD COMPONENTS LIST
+
+The Program/Software identified on the attached Free Download Components List contains open source and/or other types of free download components.  Those components for which third party license terms and/or notices are required are identified in the attached Free Download Components List and/or at the "Third Party Legal Site":  http://www.sybase.com/softwarelicenses/third_party_legal .
+
+The Free Download Components Lists may be updated from time to time. Please see the Third Party Legal Site for the most current Free Download Components List for the Program/Software.
+
+Not all versions of the Program or Software will contain all identified components.  
+
+
+B. MASTER LIST OF THIRD PARTY TERMS AND CONDITIONS
+
+The third party license terms and notices for the components identified in the attached Free Download Components List are set out in the Master List of Third Party Terms and Conditions (the "Master List"), which is provided with this Program/Software and/or is available on the Third Party Legal Site.  The Master List may be updated from time to time.  Please see the Third Party Legal Site for the most current Master List of Third Party Terms and Conditions.
+
+
+
+
+
+FREE DOWNLOAD COMPONENTS LIST 
+PROGRAM/SOFTWARE:  SQL Anywhere OnDemand v1.0
+
+Aladdin Enterprises Components: MD5 
+Apache Software Foundation - Xerces (licensed under Apache license version 2.0)
+Asual DZZD, Rostislav Hristov Component:  SWFAddress
+Boost.org Component : Boost , Boost C++ Libraries
+FlexLib Contributors  Component: FlexLib
+Gailly, Jean-Loup and Mark Adler Component: Zlib Compression Library
+IBM Corporation Component: ICU (1.8.1 and later)
+Open Software Foundation, Inc., Hewlett-Packard Company, Digital Equipment Corporation, Microsoft Component: UUID
+
+ THIS PROGRAM/SOFTWARE INCLUDES ALL OR PORTIONS OF THE FOLLOWING "INCLUDED SYBASE PROGRAMS", for which the Free Download Components are identified             a) on the Third Party Legal Site and/or b) in the Included Sybase Program.  Please see the Third Party Legal Site for the most current Free Download Components Lists for the Included Sybase Programs.  
+
+SQL Anywhere v. 12.0.1
+
+
+06.12. 2012
+
+06.12.2012
+
+
