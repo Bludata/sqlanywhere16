@@ -1,0 +1,106 @@
+#!/bin/sh 
+# ***************************************************************************
+# Copyright (c) 2013 SAP AG or an SAP affiliate company. All rights reserved.
+# ***************************************************************************
+
+create_new_tmpfile()
+####################
+# PRE : none
+# POST: new empty file $TMPFILE created.
+{
+    if [ "_$TMPFILE" != "_" ] && [ -f "$TMPFILE" ]; then
+        rm -f "$TMPFILE"
+    fi
+    
+    TMPPREFIX=/tmp/SqlAnySetup.
+    TMPFILE="${TMPPREFIX}$$"
+
+    touch $TMPFILE
+}
+
+show_readme()
+####################
+{
+    . "$MEDIA_ROOT/res/language/en/messages.txt"
+    LANGCODE=`get_lang_code`
+
+    if [ -f "$MEDIA_ROOT/res/language/$LANGCODE/messages.txt" ] ; then
+	create_new_tmpfile
+	csconvert -s UTF8 "$MEDIA_ROOT/res/language/$LANGCODE/messages.txt" "$TMPFILE"
+	. "$TMPFILE"
+    fi
+    . "$MEDIA_ROOT/res/language/common.sh"
+    PACKAGE_NAME=`eval echo ${PACKAGE_NAME}`
+
+    
+    if [ "$INTERACTIVE" = "true" ]; then
+        if [ ! -f "$MEDIA_ROOT/readme_$LANGCODE.txt" ]; then
+            cat "$MEDIA_ROOT/readme_en.txt"
+        else
+            # cat "$MEDIA_ROOT/readme_$LANGCODE.txt"
+            csconvert -s UTF8 "$MEDIA_ROOT/readme_$LANGCODE.txt" $TMPFILE
+            cat "$TMPFILE"
+        fi
+    else
+        if [ ! -f "$MEDIA_ROOT/readme_$LANGCODE.txt" ]; then
+            more "$MEDIA_ROOT/readme_en.txt"
+        else
+            csconvert -s UTF8 "$MEDIA_ROOT/readme_$LANGCODE.txt" $TMPFILE
+            more "$TMPFILE"
+        fi
+    fi
+
+    rm -f "$TMPFILE"
+}
+
+installer_run_bitness()
+#######################
+{
+    if [ "`plat_bitness`" = "64" ] && [ -f "$MEDIA_ROOT/bin64/dbinstall" ] && `"$MEDIA_ROOT/bin64/dbinstall" 2>/dev/null` ; then
+	echo 64
+    else
+	if `"$MEDIA_ROOT/bin32/dbinstall" 2>/dev/null` ; then
+	    echo 32
+	else
+	    echo "Internal error: Unable to execute dbinstall"
+	    exit
+	fi
+    fi
+}
+
+init_variables()
+################
+{
+    BITNESS=`installer_run_bitness`
+    PATH="$MEDIA_ROOT/bin$BITNESS:/bin:/usr/bin:$PATH"
+    
+    LDPATH_VARNAME=`plat_ld_var_name`
+    eval "$LDPATH_VARNAME='$MEDIA_ROOT/lib$BITNESS':'$MEDIA_ROOT/res':\$$LDPATH_VARNAME"
+
+    eval "export $LDPATH_VARNAME"
+    export PATH
+}
+
+########################
+# mainline 
+########################
+
+if [ -z "${MEDIA_ROOT:-}" ] ; then
+    L_DIR=`pwd`
+    MEDIA_ROOT=`dirname "$0"`
+    case _$MEDIA_ROOT in
+	_/* )
+	    true
+	    ;;
+
+	* )
+	    MEDIA_ROOT=`dirname "$L_DIR/$0"`
+	    ;;
+    esac
+fi
+
+. "$MEDIA_ROOT/res/scripts/platform.sh"
+. "$MEDIA_ROOT/res/scripts/language.sh"
+. "$MEDIA_ROOT/res/scripts/versioning.sh"
+init_variables
+show_readme
