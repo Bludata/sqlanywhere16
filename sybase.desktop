@@ -1,0 +1,20 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Sybase Central (64-bit)
+Name[en]=Sybase Central (64-bit)
+Name[de]=Sybase Central (64-Bit)
+Name[ja]=Sybase Central (64 ビット)
+Name[zh_CN]=Sybase Central （64 位）
+Name[fr]=Sybase Central (64 bits)
+Comment=Sybase Central (64-bit)
+Comment[en]=Sybase Central (64-bit)
+Comment[de]=Sybase Central (64-Bit)
+Comment[ja]=Sybase Central (64 ビット)
+Comment[zh_CN]=Sybase Central （64 位）
+Comment[fr]=Sybase Central (64 bits)
+Icon=/opt/sqlanywhere16/res/SybaseCentral.png
+Exec="/opt/sqlanywhere16/bin64s/scjview" 
+Path=/opt/sqlanywhere16/bin64s
+Terminal=false
